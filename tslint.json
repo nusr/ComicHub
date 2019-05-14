@@ -10,6 +10,13 @@
     "no-console": {
       "severity": "off",
       "options": ["debug", "info", "log", "time", "timeEnd", "trace"]
-    }
+    },
+    "quotemark": [
+      true,
+      "single",
+      "jsx-single",
+      "avoid-escape",
+      "avoid-template"
+    ]
   }
 }

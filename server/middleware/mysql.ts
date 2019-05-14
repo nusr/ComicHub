@@ -11,7 +11,7 @@ function handleEmpty(stateType) {
     };
   } else if (stateType === configData.typeConfig.chapter) {
     dataResult = {
-      msg: `爬取结果为空！`,
+      msg: '爬取结果为空！',
     };
   }
   return dataResult;
