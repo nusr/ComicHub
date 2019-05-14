@@ -1,0 +1,52 @@
+@sider-width: 225px;
+
+.sider {
+    width: @sider-width;
+    overflow: auto;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    transition: all 0.3s;
+}
+
+.mainLayout {
+    margin-left: @sider-width;
+    transition: all 0.3s;
+
+    :global {
+        .ant-layout-header {
+            background-color: #fff;
+            padding: 20px 0;
+        }
+
+        .ant-tree li {
+            padding: 0;
+        }
+    }
+}
+
+.collapsed {
+    .sider {
+        display: none;
+    }
+
+    .mainLayout {
+        margin-left: 0;
+    }
+}
+
+.header {
+    display: flex;
+}
+
+.trigger {
+    font-size: 18px;
+    line-height: 64px;
+    padding: 8px 20px;
+    cursor: pointer;
+    transition: color 0.3s;
+
+    &:hover {
+        color: #1890ff;
+    }
+}

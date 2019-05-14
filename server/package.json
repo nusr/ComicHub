@@ -1,0 +1,59 @@
+{
+    "name": "Comic",
+    "version": "0.0.1",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "node index.js",
+        "dev": "nodemon index.js",
+        "test": "NODE_ENV=test jest --coverage --runInBand --forceExit",
+        "jest": "NODE_ENV=test jest --runInBand --forceExit",
+        "try": "node try.js"
+    },
+    "dependencies": {
+        "axios": "0.18.0",
+        "axios-retry": "3.1.2",
+        "cheerio": "1.0.0-rc.3",
+        "koa": "2.7.0",
+        "koa-mount": "4.0.0",
+        "koa-router": "7.4.0",
+        "mustache": "^3.0.1",
+        "mysql": "^2.17.1",
+        "pidusage": "2.0.17",
+        "puppeteer": "^1.15.0",
+        "sharp": "^0.22.1",
+        "socks-proxy-agent": "4.0.2",
+        "tunnel": "0.0.6",
+        "webp-converter": "^2.2.2",
+        "winston": "3.2.1"
+    },
+    "devDependencies": {
+        "axios-mock-adapter": "1.16.0",
+        "jest": "^24.8.0",
+        "mockdate": "2.0.2",
+        "nodemon": "1.19.0",
+        "supertest": "4.0.2"
+    },
+    "engines": {
+        "node": ">=8.0.0"
+    },
+    "jest": {
+        "testMatch": [
+            "**/test/**/*.js"
+        ],
+        "testPathIgnorePatterns": [
+            "/node_modules/",
+            "/lib/"
+        ],
+        "coverageReporters": [
+            "text-summary",
+            "lcov"
+        ],
+        "collectCoverageFrom": [
+            "lib/**/*.js",
+            "!lib/routes/**/*.js"
+        ],
+        "bail": true,
+        "testEnvironment": "node"
+    }
+}
