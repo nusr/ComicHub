@@ -11,7 +11,7 @@ export default {
                 dva: true,
                 dynamicImport: true,
                 hardSource: false,
-                title: 'ComicHub',
+                title: 'comic-hub',
                 routes: {
                     exclude: [/components/],
                 },

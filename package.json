@@ -1,7 +1,7 @@
 {
-    "name": "ComicHub",
+    "name": "comic-hub",
     "version": "1.0.0",
-    "description": "ComicHub",
+    "description": "comic-hub",
     "main": "./dist/main/main.js",
     "private": true,
     "scripts": {
@@ -53,7 +53,7 @@
         "directories": {
             "output": "release"
         },
-        "appId": "com.nusr.ComicHub",
+        "appId": "com.nusr.comic-hub",
         "asar": false
     },
     "husky": {
@@ -74,7 +74,7 @@
             "**/build/**/*"
         ]
     },
-    "repository": "https://github.com/nusr/ComicHub",
+    "repository": "https://github.com/nusr/comic-hub",
     "keywords": [
         "Electron",
         "umi",
