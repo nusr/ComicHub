@@ -25,7 +25,9 @@ module.exports = async (ctx) => {
             await page.goto(downloadUrl, {
                 waitUntil: 'networkidle2',
             });
-            const downloadLink = await page.evaluate(() => document.querySelector('#mangaFile').src);
+            const downloadLink = await page.evaluate(
+                () => document.querySelector('#mangaFile').src
+            );
             temp.push({
                 page: i,
                 url: downloadLink,

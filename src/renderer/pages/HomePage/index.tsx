@@ -19,19 +19,22 @@ export default function HomePage() {
     return (
         <div className={containerClass}>
             <div className={styles.sider}>
-                <MenuTree/>
+                <MenuTree />
             </div>
             <Layout className={styles.mainLayout}>
                 <Header className={styles.header}>
-                    <Icon className={styles.trigger} type={collapsed ? 'menu-unfold' : 'menu-fold'}
-                          onClick={toggleMenu}/>
-                    <SearchBox/>
+                    <Icon
+                        className={styles.trigger}
+                        type={collapsed ? 'menu-unfold' : 'menu-fold'}
+                        onClick={toggleMenu}
+                    />
+                    <SearchBox />
                 </Header>
                 <Content className={styles.content}>
-                    <SearchResult/>
+                    <SearchResult />
                 </Content>
                 <Footer className={styles.footer}>
-                    <Notification/>
+                    <Notification />
                 </Footer>
             </Layout>
         </div>

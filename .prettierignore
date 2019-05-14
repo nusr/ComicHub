@@ -6,3 +6,9 @@ yarn-error.log
 npm-debug.log
 src/renderer/pages/.umi/
 .vscode
+node_modules
+**/node_modules
+dist
+src/renderer/pages/.umi
+release
+downloadResult

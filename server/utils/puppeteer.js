@@ -2,7 +2,15 @@ const config = require('../shared/config');
 const puppeteer = require('puppeteer');
 
 const options = {
-    args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-infobars', '--window-position=0,0', '--ignore-certifcate-errors', '--ignore-certifcate-errors-spki-list', `--user-agent=${config.ua}`],
+    args: [
+        '--no-sandbox',
+        '--disable-setuid-sandbox',
+        '--disable-infobars',
+        '--window-position=0,0',
+        '--ignore-certifcate-errors',
+        '--ignore-certifcate-errors-spki-list',
+        `--user-agent=${config.ua}`,
+    ],
     headless: true,
     ignoreHTTPSErrors: true,
     userDataDir: './tmp',

@@ -1,73 +1,97 @@
 {
-  "name": "ComicHub",
-  "version": "1.0.0",
-  "description": "ComicHub",
-  "main": "./dist/main/main.js",
-  "private": true,
-  "build": {
-    "files": [
-      "dist/",
-      "node_modules/",
-      "package.json"
+    "name": "ComicHub",
+    "version": "1.0.0",
+    "description": "ComicHub",
+    "main": "./dist/main/main.js",
+    "private": true,
+    "scripts": {
+        "start": "concurrently \"npm run start:render\" \"wait-on http://localhost:8000 && npm run start:main\"",
+        "start:render": "APP_ROOT=src/renderer umi dev",
+        "start:main": "electron-webpack dev",
+        "start:server": "npm run --prefix ./server  dev",
+        "build:main-prod": "NODE_ENV=production webpack --config ./scripts/webpack.main.prod.js",
+        "build:main-dev": "NODE_ENV=development webpack --config ./scripts/webpack.main.dev.js",
+        "build:renderer": "APP_ROOT=src/renderer umi build",
+        "watch": "tsc -w",
+        "lint": "tslint -c tslint.json -p tsconfig.json --fix",
+        "debug:main": "electron --inspect=5858 -w ./dist/main/main.js",
+        "pack": "npm run build:renderer && npm run build:main-prod && electron-builder --dir",
+        "dist": "electron-builder",
+        "prettier": "prettier \"**/*.{ts,tsx,js,jsx,less,js,json,md}\" --write",
+        "lint-staged": "lint-staged"
+    },
+    "devDependencies": {
+        "awesome-typescript-loader": "^5.2.1",
+        "concurrently": "^4.1.0",
+        "electron": "^5.0.1",
+        "electron-builder": "^20.38.5",
+        "electron-debug": "^3.0.0",
+        "electron-webpack": "^2.6.2",
+        "electron-webpack-ts": "^3.1.1",
+        "husky": "^2.2.0",
+        "lint-staged": "^8.1.6",
+        "prettier": "1.17.1",
+        "ts-loader": "^6.0.0",
+        "tslint": "^5.10.0",
+        "typescript": "^3.2.4",
+        "umi": "^2.4.4",
+        "umi-plugin-react": "^1.4.2",
+        "wait-on": "^3.2.0",
+        "webpack": "4.31.0",
+        "webpack-cli": "^3.2.1",
+        "webpack-merge": "^4.2.1"
+    },
+    "build": {
+        "files": [
+            "dist/",
+            "node_modules/",
+            "package.json"
+        ],
+        "mac": {
+            "category": "Comic"
+        },
+        "directories": {
+            "output": "release"
+        },
+        "appId": "com.nusr.ComicHub",
+        "asar": false
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "npm run lint-staged"
+        }
+    },
+    "lint-staged": {
+        "linters": {
+            "**/*.{ts,tsx,js,jsx,less,js,json,md}": [
+                "npm run prettier",
+                "git add"
+            ]
+        },
+        "ignore": [
+            "**/release/**/*",
+            "**/dist/**/*",
+            "**/build/**/*"
+        ]
+    },
+    "repository": "https://github.com/nusr/ComicHub",
+    "keywords": [
+        "Electron",
+        "umi",
+        "Comic",
+        "typescript"
     ],
-    "mac": {
-      "category": "Comic"
+    "author": {
+        "name": "Steve Xu",
+        "email": "stevexugc@gmail.com"
     },
-    "directories": {
-      "output": "release"
+    "electronWebpack": {
+        "main": {
+            "sourceDirectory": "src/main"
+        },
+        "renderer": {
+            "sourceDirectory": null
+        }
     },
-    "appId": "com.nusr.ComicHub",
-    "asar": false
-  },
-  "scripts": {
-    "start": "npm run build-main-dev && electron ./dist/main/main.js",
-    "start:main": "electron-webpack dev",
-    "start:render": "APP_ROOT=src/renderer umi dev",
-    "build-main-prod": "NODE_ENV=production webpack --config ./scripts/webpack.main.prod.config.js",
-    "build-main-dev": "NODE_ENV=development webpack --config ./scripts/webpack.main.config.js",
-    "build:renderer": "APP_ROOT=src/renderer umi build",
-    "watch": "tsc -w",
-    "lint": "tslint -c tslint.json -p tsconfig.json",
-    "debug:main": "electron --inspect=5858 -w ./dist/main/main.js",
-    "pack": "npm run build:renderer && npm run build-main-prod && electron-builder --dir",
-    "dist": "electron-builder",
-    "prettier": "prettier --list-different \"./**/*.{ts,tsx,js,jsx,less}\""
-  },
-  "repository": "https://github.com/nusr/ComicHub",
-  "keywords": [
-    "Electron",
-    "umi",
-    "Comic",
-    "typescript"
-  ],
-  "author": {
-    "name": "Steve Xu",
-    "email": "stevexugc@gmail.com"
-  },
-  "devDependencies": {
-    "awesome-typescript-loader": "^5.2.1",
-    "electron": "^5.0.1",
-    "electron-builder": "^20.38.5",
-    "electron-debug": "^3.0.0",
-    "electron-webpack": "^2.6.2",
-    "electron-webpack-ts": "^3.1.1",
-    "prettier": "1.17.1",
-    "ts-loader": "^6.0.0",
-    "tslint": "^5.10.0",
-    "typescript": "^3.2.4",
-    "umi": "^2.4.4",
-    "umi-plugin-react": "^1.4.2",
-    "webpack": "4.31.0",
-    "webpack-cli": "^3.2.1",
-    "webpack-merge": "^4.2.1"
-  },
-  "electronWebpack": {
-    "main": {
-      "sourceDirectory": "src/main"
-    },
-    "renderer": {
-      "sourceDirectory": null
-    }
-  },
-  "license":"MIT"
+    "license": "MIT"
 }

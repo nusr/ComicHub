@@ -56,5 +56,5 @@
         "bail": true,
         "testEnvironment": "node"
     },
-    "license":"MIT"
+    "license": "MIT"
 }

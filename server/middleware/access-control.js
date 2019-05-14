@@ -18,12 +18,20 @@ module.exports = async (ctx, next) => {
         await next();
     } else {
         if (config.whitelist) {
-            if (!(config.whitelist.indexOf(ip) !== -1 || config.whitelist.indexOf(requestPath) !== -1)) {
+            if (
+                !(
+                    config.whitelist.indexOf(ip) !== -1 ||
+                    config.whitelist.indexOf(requestPath) !== -1
+                )
+            ) {
                 reject(ctx);
             }
         } else {
             if (config.blacklist) {
-                if (config.blacklist.indexOf(ip) !== -1 || config.blacklist.indexOf(requestPath) !== -1) {
+                if (
+                    config.blacklist.indexOf(ip) !== -1 ||
+                    config.blacklist.indexOf(requestPath) !== -1
+                ) {
                     reject(ctx);
                 }
             }

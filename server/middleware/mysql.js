@@ -60,8 +60,15 @@ module.exports = async (ctx, next) => {
             }
         }
         if (type === typeConfig.chapter) {
-            const searchItem = await mysqlService.searchOne(name, typeConfig.search);
-            const results = await mysqlService.searchItem(searchItem.id, type, (field = 'search_id'));
+            const searchItem = await mysqlService.searchOne(
+                name,
+                typeConfig.search
+            );
+            const results = await mysqlService.searchItem(
+                searchItem.id,
+                type,
+                (field = 'search_id')
+            );
             if (results && results.length > 0) {
                 ctx.body = results;
                 ctx.response.set({
@@ -71,15 +78,34 @@ module.exports = async (ctx, next) => {
             }
         }
         if (type === typeConfig.download) {
-            const chapterItem = await mysqlService.searchOne(name, typeConfig.chapter);
-            const results = await mysqlService.searchItem(chapterItem.id, type, (field = 'chapter_id'));
+            const chapterItem = await mysqlService.searchOne(
+                name,
+                typeConfig.chapter
+            );
+            const results = await mysqlService.searchItem(
+                chapterItem.id,
+                type,
+                (field = 'chapter_id')
+            );
             if (results && results.length > 0) {
-                const searchItem = await mysqlService.searchOne(chapterItem.search_id, typeConfig.search, 'id');
+                const searchItem = await mysqlService.searchOne(
+                    chapterItem.search_id,
+                    typeConfig.search,
+                    'id'
+                );
 
-                const downloadList = formatDownloadPath(results, searchItem, chapterItem);
+                const downloadList = formatDownloadPath(
+                    results,
+                    searchItem,
+                    chapterItem
+                );
                 for (let item of downloadList) {
                     await sleep(100);
-                    downloadImage(item.url, item.fileName, parseUrl.getReferer(name));
+                    downloadImage(
+                        item.url,
+                        item.fileName,
+                        parseUrl.getReferer(name)
+                    );
                 }
                 ctx.response.set({
                     'Mysql-Table-Download-Cache': 'true',
@@ -105,7 +131,10 @@ module.exports = async (ctx, next) => {
         }
         if (stateType === typeConfig.chapter) {
             dataResult = filterArray(dataResult);
-            const searchResult = await mysqlService.searchOne(searchUrl, typeConfig.search);
+            const searchResult = await mysqlService.searchOne(
+                searchUrl,
+                typeConfig.search
+            );
             if (searchResult && searchResult.id) {
                 for (let item of dataResult) {
                     await mysqlService.addItem(
@@ -120,8 +149,15 @@ module.exports = async (ctx, next) => {
         }
         if (stateType === typeConfig.download) {
             dataResult = filterArray(dataResult);
-            const chapterItem = await mysqlService.searchOne(searchUrl, typeConfig.chapter);
-            const searchItem = await mysqlService.searchOne(chapterItem.search_id, typeConfig.search, 'id');
+            const chapterItem = await mysqlService.searchOne(
+                searchUrl,
+                typeConfig.chapter
+            );
+            const searchItem = await mysqlService.searchOne(
+                chapterItem.search_id,
+                typeConfig.search,
+                'id'
+            );
             if (searchItem && chapterItem) {
                 for (let item of dataResult) {
                     await mysqlService.addItem(
@@ -132,10 +168,18 @@ module.exports = async (ctx, next) => {
                         stateType
                     );
                 }
-                const downloadList = formatDownloadPath(dataResult, searchItem, chapterItem);
+                const downloadList = formatDownloadPath(
+                    dataResult,
+                    searchItem,
+                    chapterItem
+                );
                 for (let item of downloadList) {
                     await sleep(100);
-                    downloadImage(item.url, item.fileName, parseUrl.getReferer(searchUrl));
+                    downloadImage(
+                        item.url,
+                        item.fileName,
+                        parseUrl.getReferer(searchUrl)
+                    );
                 }
             }
         }

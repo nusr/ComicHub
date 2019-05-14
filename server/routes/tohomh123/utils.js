@@ -76,7 +76,8 @@ function getDownloadItem(data, pageSize) {
     return result;
 }
 
-const getSearchUrl = (name) => `${baseUrl}/action/Search?keyword=${encodeURIComponent(name)}`;
+const getSearchUrl = (name) =>
+    `${baseUrl}/action/Search?keyword=${encodeURIComponent(name)}`;
 const getDownloadUrl = (name, page) => {
     const url = name;
     if (page === 1) {

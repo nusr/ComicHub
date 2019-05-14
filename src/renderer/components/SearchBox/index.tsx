@@ -10,7 +10,11 @@ export default function SearchBox() {
 
     return (
         <div>
-            <Search placeholder="input search text" onSearch={searchResult} enterButton />
+            <Search
+                placeholder="input search text"
+                onSearch={searchResult}
+                enterButton
+            />
         </div>
     );
 }

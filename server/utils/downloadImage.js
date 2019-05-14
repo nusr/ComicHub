@@ -19,7 +19,11 @@ const getExtName = (url) => {
 
 function downloadImage(url, fileName, referer = 'https://www.manhuagui.com') {
     const extName = getExtName(url);
-    const filePath = path.join(config.downloadBase, getComicSite(referer), fileName + extName);
+    const filePath = path.join(
+        config.downloadBase,
+        getComicSite(referer),
+        fileName + extName
+    );
     const parseDir = path.parse(filePath);
     makeDir(parseDir.dir);
     const stream = fs.createWriteStream(filePath);

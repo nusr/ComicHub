@@ -15,7 +15,8 @@ router.get('/', async (ctx) => {
     if (!config.debugInfo || config.debugInfo === 'false') {
         showDebug = false;
     } else {
-        showDebug = config.debugInfo === true || config.debugInfo === ctx.query.debug;
+        showDebug =
+            config.debugInfo === true || config.debugInfo === ctx.query.debug;
     }
 
     const stats = await pidusage(process.pid);
@@ -34,7 +35,10 @@ router.get('/', async (ctx) => {
             },
             {
                 name: '请求频率',
-                value: ((ctx.debug.request / (stats.elapsed / 1000)) * 60).toFixed(3) + ' 次/分钟',
+                value:
+                    ((ctx.debug.request / (stats.elapsed / 1000)) * 60).toFixed(
+                        3
+                    ) + ' 次/分钟',
             },
             {
                 name: '内存占用',
