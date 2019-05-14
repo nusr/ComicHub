@@ -1,10 +1,10 @@
-# ComicHub
+# comic
 
 > PDF 漫画生成器。
 
 ## 介绍
 
-ComicHub 是一款漫画生成器。爬取网站的图片，生成 PDF 文件。
+comic 是一款漫画生成器。爬取网站的图片，生成 PDF 文件。
 
 ## 装包
 
