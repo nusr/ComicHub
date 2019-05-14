@@ -1,24 +1,15 @@
 {
-    "extends": "tslint:recommended",
-    "rules": {
-        "max-line-length": {
-            "options": [120]
-        },
-        "new-parens": true,
-        "no-arg": true,
-        "no-bitwise": true,
-        "no-conditional-assignment": true,
-        "no-consecutive-blank-lines": false,
-        "ordered-imports": false,
-        "quotemark": [true, "single"],
-        "no-console": {
-            "severity": "off",
-            "options": ["debug", "info", "log", "time", "timeEnd", "trace"]
-        }
-    },
-    "jsRules": {
-        "max-line-length": {
-            "options": [120]
-        }
+  "extends": "tslint:recommended",
+  "rules": {
+    "new-parens": true,
+    "no-arg": true,
+    "no-bitwise": true,
+    "no-conditional-assignment": true,
+    "no-consecutive-blank-lines": false,
+    "ordered-imports": false,
+    "no-console": {
+      "severity": "off",
+      "options": ["debug", "info", "log", "time", "timeEnd", "trace"]
     }
+  }
 }

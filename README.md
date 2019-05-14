@@ -26,13 +26,13 @@ npm i
 首先通过以下命令启动渲染进程(默认端口：8000)
 
 ```bash
-yarn start:renderer
+yarn start:reacter
 ```
 
 然后启动主进程
 
 ```bash
-yarn start:main
+yarn start:electron
 ```
 
 ## 打包

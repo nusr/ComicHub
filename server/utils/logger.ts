@@ -1,19 +1,19 @@
 import winston from 'winston';
 import config from '../shared/config';
 const logger = winston.createLogger({
-    level: config.loggerLevel,
-    format: winston.format.json(),
-    transports: [
-        //
-        // - Write to all logs with level `info` and below to `combined.log`
-        // - Write all logs error (and below) to `error.log`.
-        //
-        new winston.transports.File({
-            filename: 'logs/error.log',
-            level: 'error',
-        }),
-        new winston.transports.File({ filename: 'logs/combined.log' }),
-    ],
+  level: config.loggerLevel,
+  format: winston.format.json(),
+  transports: [
+    //
+    // - Write to all logs with level `info` and below to `combined.log`
+    // - Write all logs error (and below) to `error.log`.
+    //
+    new winston.transports.File({
+      filename: 'logs/error.log',
+      level: 'error',
+    }),
+    new winston.transports.File({ filename: 'logs/combined.log' }),
+  ],
 });
 
 //
@@ -21,13 +21,13 @@ const logger = winston.createLogger({
 // `${info.level}: ${info.message} JSON.stringify({ ...rest }) `
 //
 logger.add(
-    new winston.transports.Console({
-        format: winston.format.combine(
-            winston.format.colorize(),
-            winston.format.simple()
-        ),
-        silent: process.env.NODE_ENV === 'test',
-    })
+  new winston.transports.Console({
+    format: winston.format.combine(
+      winston.format.colorize(),
+      winston.format.simple()
+    ),
+    silent: process.env.NODE_ENV === 'test',
+  })
 );
 
 export default logger;

@@ -1,23 +1,9 @@
 import routes from './routes';
+import plugins from './plugins';
 export default {
-    history: 'hash',
-    outputPath: `../../dist/renderer`,
-    plugins: [
-        [
-            'umi-plugin-react',
-            {
-                antd: true,
-                dll: true,
-                dva: true,
-                dynamicImport: true,
-                hardSource: false,
-                title: 'comic-hub',
-                routes: {
-                    exclude: [/components/],
-                },
-            },
-        ],
-    ],
-    publicPath: './',
-    routes,
+  history: 'hash',
+  outputPath: `../../dist/renderer`,
+  plugins,
+  publicPath: './',
+  routes,
 };

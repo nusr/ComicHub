@@ -1,6 +1,6 @@
 const debugHandler = async (ctx, next) => {
-    ctx.debug.request++;
+  ctx.debug.request++;
 
-    await next();
+  await next();
 };
 export default debugHandler;
