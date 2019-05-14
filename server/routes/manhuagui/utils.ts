@@ -1,12 +1,13 @@
 import urlModule from 'url';
 import cheerio from 'cheerio';
 import urlConfig from '../../shared/urlConfig';
+import { ISearchItem, IChapterItem, IImageItem } from '../../service/type';
 
 const baseUrl = urlConfig.manhuagui.base;
 
-const getSearchList = (data) => {
+const getSearchList = (data: string) => {
   const $ = cheerio.load(data);
-  const result = [];
+  const result: ISearchItem[] = [];
   const list = $('.book-result>ul>li');
   list.each(function() {
     const dom = $(this)
@@ -45,9 +46,9 @@ const getSearchList = (data) => {
   return result;
 };
 
-const getChapterList = (data) => {
+const getChapterList = (data: string) => {
   const $ = cheerio.load(data);
-  const chapters = [];
+  const chapters: IChapterItem[] = [];
   $('.chapter-list > ul >li').each(function() {
     const dom = $(this)
       .find('a')
@@ -68,14 +69,15 @@ const getChapterList = (data) => {
   return chapters;
 };
 
-function getDownloadItem(data) {
+function getDownloadItem(data: string) {
   const $ = cheerio.load(data);
   const src = $('#mangaFile').attr('src');
   return src;
 }
 
-const getSearchUrl = (name) => `${baseUrl}/s/${encodeURIComponent(name)}.html`;
-const getDownloadUrl = (name, page) => {
+const getSearchUrl = (name: string): string =>
+  `${baseUrl}/s/${encodeURIComponent(name)}.html`;
+const getDownloadUrl = (name: string, page: number): string => {
   const url = name;
   if (page === 1) {
     return url;

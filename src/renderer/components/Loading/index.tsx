@@ -1,5 +1,5 @@
+import { Icon, Spin } from 'antd';
 import styles from './index.less';
-import { Spin, Icon } from 'antd';
 
 const antIcon = <Icon type="loading" style={{ fontSize: 30 }} spin />;
 

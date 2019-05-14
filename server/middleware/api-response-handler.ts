@@ -20,7 +20,7 @@ const statusCodes = {
   GATEWAY_TIME_OUT: 504,
 };
 
-const responseHandler = async (ctx, next) => {
+const responseHandler = async (ctx, next: () => Promise<any>) => {
   ctx.res.statusCodes = statusCodes;
   ctx.statusCodes = ctx.res.statusCodes;
 

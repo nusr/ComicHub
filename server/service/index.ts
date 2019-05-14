@@ -1,5 +1,6 @@
 import mysql from '../mysql';
-function getAllData(tableName) {
+
+function getAllData(tableName: string) {
   return new Promise(async (resolve) => {
     const sql = `SELECT * FROM ${tableName}`;
     const result = await mysql(sql, undefined);
@@ -7,21 +8,23 @@ function getAllData(tableName) {
   });
 }
 
-function searchItem(value, tableName, field = 'url') {
+function searchItem(value: string | number, tableName: string, field = 'url') {
   return new Promise(async (resolve) => {
     const sql = `SELECT * FROM ${tableName} WHERE ${field}=?`;
     const results = await mysql(sql, [value]);
     resolve(results || []);
   });
 }
-function searchOne(value, tableName, field = 'url') {
+
+function searchOne(value: string | number, tableName: string, field = 'url') {
   return new Promise(async (resolve) => {
     const sql = `SELECT * FROM ${tableName} WHERE ${field}=?`;
-    const results = (await mysql(sql, [value])) || [];
+    const results: any = (await mysql(sql, [value])) || [];
     resolve(results[0]);
   });
 }
-function addItem(data, tableName) {
+
+function addItem(data: any, tableName: string) {
   return new Promise(async (resolve) => {
     // 判断是否存在
     const results = await searchItem(data.url, tableName);
@@ -34,29 +37,33 @@ function addItem(data, tableName) {
       ...data,
       create_time: +new Date(),
     };
-    const result = await mysql(sql, realData);
+    const result: any = await mysql(sql, realData);
     resolve(result.insertId > 0);
   });
 }
 
-function deleteItem(id, tableName) {
+function deleteItem(id: number, tableName: string) {
   return new Promise(async (resolve) => {
     const sql = `DELETE FROM ${tableName} WHERE id=?`;
-    const result = await mysql(sql, [id]);
+    const result: any = await mysql(sql, [id]);
     resolve(result.affectedRows === 1);
   });
 }
 
-function editItem(data, tableName) {
+function editItem(data: any, tableName: string) {
   return new Promise(async (resolve) => {
     const sql = `UPDATE ${tableName} SET title=?,url=?,desc=? WHERE id=?`;
     const sqlData = [data.title, data.url, data.desc, data.id];
-    const result = await mysql(sql, sqlData);
+    const result: any = await mysql(sql, sqlData);
     resolve(result.affectedRows === 1);
   });
 }
 
-function foggySearch(value, tableName, field = 'title') {
+function foggySearch(
+  value: string | number,
+  tableName: string,
+  field: string = 'title'
+) {
   return new Promise(async (resolve) => {
     const sql = `SELECT * FROM ${tableName} WHERE ${field} LIKE ?`;
     const results = await mysql(sql, [value]);

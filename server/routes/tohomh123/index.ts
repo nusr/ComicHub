@@ -1,8 +1,8 @@
 import util from './utils';
 import axios from '../../utils/axios';
 import configData from '../../shared/config';
-import puppeteer from '../../utils/puppeteer';
-export default async function tuHao(ctx) {
+
+export default async function tuHao(ctx: any) {
   const { type, name: realName, page: pageSize } = ctx.request.query;
   const name = decodeURIComponent(realName);
   let temp;

@@ -1,11 +1,13 @@
 import cheerio from 'cheerio';
 import urlModule from 'url';
 import urlConfig from '../../shared/urlConfig';
-const baseUrl = urlConfig.tohomh123.base;
 
-const getSearchList = (data) => {
+const baseUrl = urlConfig.tohomh123.base;
+import { ISearchItem, IChapterItem, IImageItem } from '../../service/type';
+
+const getSearchList = (data: string) => {
   const $ = cheerio.load(data);
-  const result = [];
+  const result: ISearchItem[] = [];
   const list = $('ul.mh-list > li');
   list.each(function() {
     const dom = $(this)
@@ -23,9 +25,9 @@ const getSearchList = (data) => {
   return result;
 };
 
-const getChapterList = (data) => {
+const getChapterList = (data: string) => {
   const $ = cheerio.load(data);
-  const chapters = [];
+  const chapters: IChapterItem[] = [];
   $('#chapterlistload li').each(function() {
     const dom = $(this)
       .find('a')
@@ -49,7 +51,7 @@ const getChapterList = (data) => {
   return chapters;
 };
 
-function fixNum(num) {
+function fixNum(num: number): string {
   if (num < 10) {
     return `000${num}`;
   } else if (num < 100) {
@@ -57,13 +59,13 @@ function fixNum(num) {
   } else if (num < 1000) {
     return `0${num}`;
   } else {
-    return num;
+    return num.toString();
   }
 }
 
-function getDownloadItem(data, pageSize) {
+function getDownloadItem(data: string, pageSize: number) {
   const link = data.match(/var pl = '([\s\S]*)';\s*var bqimg/)[1];
-  const result = [];
+  const result: IImageItem[] = [];
   const fileName = link.split('/').pop();
   const extName = fileName.split('.').pop();
   const baseUrl = link.slice(0, link.length - fileName.length);
@@ -76,9 +78,9 @@ function getDownloadItem(data, pageSize) {
   return result;
 }
 
-const getSearchUrl = (name) =>
+const getSearchUrl = (name: string): string =>
   `${baseUrl}/action/Search?keyword=${encodeURIComponent(name)}`;
-const getDownloadUrl = (name, page) => {
+const getDownloadUrl = (name: string, page: number): string => {
   const url = name;
   if (page === 1) {
     return url;

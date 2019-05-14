@@ -1,4 +1,4 @@
-const apiTemplate = async (ctx, next) => {
+const apiTemplate = async (ctx, next: () => Promise<any>) => {
   await next();
   if (ctx.request.path.startsWith('/api/')) {
     return ctx.res.ok({

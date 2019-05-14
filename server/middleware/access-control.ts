@@ -9,7 +9,7 @@ const reject = (ctx) => {
   };
 };
 
-const accessControl = async (ctx, next) => {
+const accessControl = async (ctx, next: () => Promise<any>) => {
   const ip = ctx.ips[0] || ctx.ip;
   const requestPath = ctx.request.path;
 

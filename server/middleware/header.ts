@@ -6,7 +6,7 @@ const headers = {
   'Cache-Control': `public, max-age=${config.cacheExpire}`,
 };
 
-const headerHandler = async (ctx, next) => {
+const headerHandler = async (ctx, next: () => Promise<any>) => {
   logger.info(`current request url: ${ctx.url}`);
   ctx.set(headers);
   ctx.set({

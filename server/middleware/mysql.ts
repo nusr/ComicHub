@@ -1,8 +1,10 @@
+import * as Koa from 'koa';
 import sleep from '../utils/wait';
 import downloadImage from '../utils/downloadImage';
 import parseUrl from '../utils/parseUrl';
 import mysqlService from '../service';
 import configData from '../shared/config';
+import { ISearchMysql, IChapterMysql } from '../service/type';
 
 function handleEmpty(stateType: string) {
   let dataResult: any;
@@ -18,20 +20,26 @@ function handleEmpty(stateType: string) {
   return dataResult;
 }
 
-function formatDownloadPath(dataResult, searchItem, chapterItem) {
+function formatDownloadPath(
+  dataResult: any,
+  searchItem: ISearchMysql,
+  chapterItem: IChapterMysql
+) {
   const dirPath = `${searchItem.title}/${chapterItem.title}`;
-  return dataResult.map((item) => {
-    return {
-      url: item.url,
-      fileName: `${dirPath}/${item.page}`,
-    };
-  });
+  return dataResult.map(
+    (item: any): any => {
+      return {
+        url: item.url,
+        fileName: `${dirPath}/${item.page}`,
+      };
+    }
+  );
 }
 
-function filterArray(data = []) {
-  const record = {};
-  const result = [];
-  data.forEach((item) => {
+function filterArray(data: any = []) {
+  const record: any = {};
+  const result: any = [];
+  data.forEach((item: any) => {
     if (!record[item.url]) {
       record[item.url] = 1;
       result.push(item);
@@ -40,7 +48,7 @@ function filterArray(data = []) {
   return result;
 }
 
-const mysqlHandler = async (ctx, next) => {
+const mysqlHandler = async (ctx: any, next: () => Promise<any>) => {
   const queryParams = parseUrl.parseUrl(ctx.originalUrl);
   // 是否使用数据库数据
   const noCache = +queryParams.cache === 1;
@@ -50,7 +58,7 @@ const mysqlHandler = async (ctx, next) => {
     const { type, name: realName } = queryParams;
     const name = decodeURIComponent(realName);
     if (type === configData.typeConfig.search) {
-      const result = await mysqlService.foggySearch(`%${name}%`, type);
+      const result: any = await mysqlService.foggySearch(`%${name}%`, type);
       if (result && result.length > 0) {
         ctx.body = result;
         ctx.response.set({
@@ -60,11 +68,11 @@ const mysqlHandler = async (ctx, next) => {
       }
     }
     if (type === configData.typeConfig.chapter) {
-      const searchItem = await mysqlService.searchOne(
+      const searchItem: any = await mysqlService.searchOne(
         name,
         configData.typeConfig.search
       );
-      const results = await mysqlService.searchItem(
+      const results: any = await mysqlService.searchItem(
         searchItem.id,
         type,
         'search_id'
@@ -78,17 +86,17 @@ const mysqlHandler = async (ctx, next) => {
       }
     }
     if (type === configData.typeConfig.download) {
-      const chapterItem = await mysqlService.searchOne(
+      const chapterItem: any = await mysqlService.searchOne(
         name,
         configData.typeConfig.chapter
       );
-      const results = await mysqlService.searchItem(
+      const results: any = await mysqlService.searchItem(
         chapterItem.id,
         type,
         'chapter_id'
       );
       if (results && results.length > 0) {
-        const searchItem = await mysqlService.searchOne(
+        const searchItem: any = await mysqlService.searchOne(
           chapterItem.search_id,
           configData.typeConfig.search,
           'id'
@@ -127,7 +135,7 @@ const mysqlHandler = async (ctx, next) => {
     }
     if (stateType === configData.typeConfig.chapter) {
       dataResult = filterArray(dataResult);
-      const searchResult = await mysqlService.searchOne(
+      const searchResult: any = await mysqlService.searchOne(
         searchUrl,
         configData.typeConfig.search
       );
@@ -145,11 +153,11 @@ const mysqlHandler = async (ctx, next) => {
     }
     if (stateType === configData.typeConfig.download) {
       dataResult = filterArray(dataResult);
-      const chapterItem = await mysqlService.searchOne(
+      const chapterItem: any = await mysqlService.searchOne(
         searchUrl,
         configData.typeConfig.chapter
       );
-      const searchItem = await mysqlService.searchOne(
+      const searchItem: any = await mysqlService.searchOne(
         chapterItem.search_id,
         configData.typeConfig.search,
         'id'

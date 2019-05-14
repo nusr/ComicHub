@@ -1,5 +1,7 @@
 import logger from '../utils/logger';
-const errorHandler = async (ctx, next) => {
+import * as Koa from 'koa';
+
+const errorHandler = async (ctx: Koa.Context, next: () => Promise<any>) => {
   try {
     await next();
   } catch (err) {
