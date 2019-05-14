@@ -4,6 +4,6 @@ import { IconProps } from 'antd/lib/icon';
 const scriptUrl = '';
 
 const IconFont: React.SFC<IconProps> = Icon.createFromIconfontCN({
-    scriptUrl,
+  scriptUrl,
 });
 export default IconFont;
