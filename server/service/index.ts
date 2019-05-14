@@ -1,5 +1,4 @@
-const mysql = require('../mysql');
-
+import mysql from '../mysql';
 function getAllData(tableName) {
     return new Promise(async (resolve) => {
         const sql = `SELECT * FROM ${tableName}`;
@@ -65,7 +64,7 @@ function foggySearch(value, tableName, field = 'title') {
     });
 }
 
-module.exports = {
+export default {
     getAllData,
     searchItem,
     addItem,

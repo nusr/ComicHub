@@ -1,5 +1,5 @@
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
 function makeDir(dirname) {
     if (fs.existsSync(dirname)) {
         return true;
@@ -11,4 +11,4 @@ function makeDir(dirname) {
     }
 }
 
-module.exports = makeDir;
+export default makeDir;

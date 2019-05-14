@@ -20,7 +20,7 @@ const statusCodes = {
     GATEWAY_TIME_OUT: 504,
 };
 
-module.exports = async (ctx, next) => {
+const responseHandler = async (ctx, next) => {
     ctx.res.statusCodes = statusCodes;
     ctx.statusCodes = ctx.res.statusCodes;
 
@@ -146,3 +146,4 @@ module.exports = async (ctx, next) => {
 
     await next();
 };
+export default responseHandler;

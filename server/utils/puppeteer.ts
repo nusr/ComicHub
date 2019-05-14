@@ -1,6 +1,5 @@
-const config = require('../shared/config');
-const puppeteer = require('puppeteer');
-
+import puppeteer from 'puppeteer';
+import config from '../shared/config';
 const options = {
     args: [
         '--no-sandbox',
@@ -16,7 +15,7 @@ const options = {
     userDataDir: './tmp',
 };
 
-module.exports = async () => {
+const puppeteerBrowser = async () => {
     let browser;
     if (config.puppeteerWSEndpoint) {
         browser = await puppeteer.connect({
@@ -33,3 +32,4 @@ module.exports = async () => {
 
     return browser;
 };
+export default puppeteerBrowser;

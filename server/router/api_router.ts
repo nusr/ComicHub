@@ -1,7 +1,7 @@
-const Router = require('koa-router');
-const router = new Router();
-const routes = require('./router');
+import Router from 'koa-router';
 
+import routes from './router';
+const router = new Router();
 router.get('/routes/:name?', (ctx) => {
     const allRoutes = Array.from(routes.stack);
     allRoutes.shift();
@@ -25,4 +25,4 @@ router.get('/routes/:name?', (ctx) => {
     ctx.body = { counter, result };
 });
 
-module.exports = router;
+export default router;

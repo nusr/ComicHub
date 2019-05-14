@@ -1,5 +1,4 @@
-const config = require('../shared/config');
-
+import config from '../shared/config';
 const reject = (ctx) => {
     ctx.response.status = 403;
     ctx.body = {
@@ -10,7 +9,7 @@ const reject = (ctx) => {
     };
 };
 
-module.exports = async (ctx, next) => {
+const accessControl = async (ctx, next) => {
     const ip = ctx.ips[0] || ctx.ip;
     const requestPath = ctx.request.path;
 
@@ -42,3 +41,4 @@ module.exports = async (ctx, next) => {
         }
     }
 };
+export default accessControl;

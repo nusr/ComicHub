@@ -1,11 +1,16 @@
-const Router = require('koa-router');
+import Router from 'koa-router';
+import path from 'path';
+import fs from 'fs';
+import mustache from 'mustache';
+import pidusage from 'pidusage';
+import logger from '../utils/logger';
+import config from '../shared/config';
+//router
+import testRouter from '../routes/test';
+import menuRouter from '../routes/menu';
+import tuHaoRouter from '../routes/tohomh123';
+
 const router = new Router();
-const path = require('path');
-const fs = require('fs');
-const logger = require('../utils/logger');
-const config = require('../shared/config');
-const pidusage = require('pidusage');
-const mustache = require('mustache');
 router.get('/', async (ctx) => {
     ctx.set({
         'Content-Type': 'text/html; charset=UTF-8',
@@ -24,7 +29,7 @@ router.get('/', async (ctx) => {
     ctx.set({
         'Cache-Control': 'no-cache',
     });
-    const filePath = path.resolve(__dirname, '../views/welcome.html');
+    const filePath = path.resolve(__dirname, '../../views/welcome.html');
     logger.info(filePath);
     const viewData = {
         showDebug,
@@ -59,10 +64,10 @@ router.get('/', async (ctx) => {
 });
 
 // test
-router.get('/test/:id', require('../routes/test'));
+router.get('/test/:id', testRouter);
 // 左侧菜单
-router.get('/menu', require('../routes/menu'));
+router.get('/menu', menuRouter);
 // 看漫画
-router.get('/manhuagui', require('../routes/manhuagui'));
-router.get('/tohomh123', require('../routes/tohomh123'));
-module.exports = router;
+// router.get('/manhuagui', require('../routes/manhuagui'));
+router.get('/tohomh123', tuHaoRouter);
+export default router;

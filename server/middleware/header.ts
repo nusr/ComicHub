@@ -1,12 +1,12 @@
-const logger = require('../utils/logger');
-const config = require('../shared/config');
+import config from '../shared/config';
+import logger from '../utils/logger';
 const headers = {
     'Access-Control-Allow-Methods': 'GET',
     'Content-Type': 'application/json; charset=utf-8',
     'Cache-Control': `public, max-age=${config.cacheExpire}`,
 };
 
-module.exports = async (ctx, next) => {
+const headerHandler = async (ctx, next) => {
     logger.info(`current request url: ${ctx.url}`);
     ctx.set(headers);
     ctx.set({
@@ -14,3 +14,4 @@ module.exports = async (ctx, next) => {
     });
     await next();
 };
+export default headerHandler;

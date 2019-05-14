@@ -1,4 +1,4 @@
-module.exports = async (ctx, next) => {
+const apiTemplate = async (ctx, next) => {
     await next();
     if (ctx.request.path.startsWith('/api/')) {
         return ctx.res.ok({
@@ -9,3 +9,4 @@ module.exports = async (ctx, next) => {
         });
     }
 };
+export default apiTemplate;

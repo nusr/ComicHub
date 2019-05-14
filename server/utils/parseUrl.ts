@@ -1,6 +1,5 @@
-const querystring = require('querystring');
-const url = require('url');
-
+import url from 'url';
+import querystring from 'querystring';
 function parseUrl(link) {
     const { query } = url.parse(link);
     return querystring.parse(query);
@@ -11,7 +10,7 @@ function getReferer(link) {
     return `${result.protocol}//${result.host}`;
 }
 
-module.exports = {
+export default {
     parseUrl,
     getReferer,
 };

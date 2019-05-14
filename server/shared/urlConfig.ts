@@ -1,5 +1,5 @@
 // disabled 为 true 表示功能尚未完成
-module.exports = {
+export default {
     manhuagui: {
         base: 'https://www.manhuagui.com',
         disabled: true,

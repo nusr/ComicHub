@@ -1,9 +1,9 @@
-const logger = require('./logger');
-const config = require('../shared/config');
-const SocksProxyAgent = require('socks-proxy-agent');
-const axiosRetry = require('axios-retry');
-const axios = require('axios');
-const tunnel = require('tunnel');
+import tunnel from 'tunnel';
+import axios from 'axios';
+import axiosRetry from 'axios-retry';
+import SocksProxyAgent from 'socks-proxy-agent';
+import logger from './logger';
+import config from '../shared/config';
 if (
     config.proxy &&
     config.proxy.protocol &&
@@ -80,4 +80,4 @@ axiosRetry(axios, {
 axios.defaults.headers.common['User-Agent'] = config.ua;
 axios.defaults.headers.common['X-APP'] = 'Comic';
 
-module.exports = axios;
+export default axios;

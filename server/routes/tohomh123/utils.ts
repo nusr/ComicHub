@@ -1,6 +1,6 @@
-const { resolve } = require('url');
-const cheerio = require('cheerio');
-const urlConfig = require('../../shared/urlConfig');
+import cheerio from 'cheerio';
+import urlModule from 'url';
+import urlConfig from '../../shared/urlConfig';
 const baseUrl = urlConfig.tohomh123;
 
 const getSearchList = (data) => {
@@ -12,7 +12,7 @@ const getSearchList = (data) => {
             .find('h2.title>a')
             .eq(0);
         const title = dom.text();
-        const url = resolve(baseUrl, dom.attr('href'));
+        const url = urlModule.resolve(baseUrl, dom.attr('href'));
         if (url) {
             result.push({
                 url,
@@ -30,7 +30,7 @@ const getChapterList = (data) => {
         const dom = $(this)
             .find('a')
             .eq(0);
-        const link = resolve(baseUrl, dom.attr('href'));
+        const link = urlModule.resolve(baseUrl, dom.attr('href'));
         const page = dom
             .find('span')
             .eq(0)
@@ -86,7 +86,7 @@ const getDownloadUrl = (name, page) => {
         return `${url}#p=${page}`;
     }
 };
-module.exports = {
+export default {
     getChapterList,
     getSearchList,
     getSearchUrl,

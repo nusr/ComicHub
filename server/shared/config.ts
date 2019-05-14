@@ -1,5 +1,5 @@
 const path = require('path');
-module.exports = {
+export default {
     connect: {
         port: process.env.PORT || 1200, // 监听端口
         socket: process.env.SOCKET || null, // 监听 Unix Socket, null 为禁用

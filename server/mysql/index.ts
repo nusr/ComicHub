@@ -1,7 +1,7 @@
-const mysql = require('mysql');
-const config = require('../shared/config');
+import mysql from 'mysql';
+import config from '../shared/config';
 
-function database(sql, data) {
+export default function database(sql, data) {
     return new Promise((resolve) => {
         const connection = mysql.createConnection(config.mysql);
         connection.connect();
@@ -14,5 +14,3 @@ function database(sql, data) {
         connection.end();
     });
 }
-
-module.exports = database;

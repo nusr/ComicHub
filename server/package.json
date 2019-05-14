@@ -4,11 +4,13 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "start": "node index.js",
-        "dev": "nodemon index.js",
+        "start": "node dist/index.js",
         "test": "NODE_ENV=test jest --coverage --runInBand --forceExit",
         "jest": "NODE_ENV=test jest --runInBand --forceExit",
-        "try": "node try.js"
+        "build": "tsc",
+        "watch-ts": "tsc -w",
+        "debug": "nodemon dist/index.js",
+        "tslint": "tslint -c tslint.json -p tsconfig.json"
     },
     "dependencies": {
         "axios": "0.18.0",
@@ -28,33 +30,29 @@
         "winston": "3.2.1"
     },
     "devDependencies": {
+        "@types/cheerio": "^0.22.11",
+        "@types/koa": "^2.0.48",
+        "@types/koa-mount": "^3.0.1",
+        "@types/koa-router": "^7.0.40",
+        "@types/mustache": "^0.8.32",
+        "@types/mysql": "^2.15.6",
+        "@types/node": "^12.0.1",
+        "@types/pidusage": "^2.0.1",
+        "@types/puppeteer": "^1.12.4",
+        "@types/sharp": "^0.22.2",
+        "@types/tunnel": "^0.0.0",
         "axios-mock-adapter": "1.16.0",
         "jest": "^24.8.0",
         "mockdate": "2.0.2",
         "nodemon": "1.19.0",
-        "supertest": "4.0.2"
+        "supertest": "4.0.2",
+        "ts-jest": "^24.0.2",
+        "ts-node": "^8.1.0",
+        "tslint": "^5.16.0",
+        "typescript": "^3.4.5"
     },
     "engines": {
         "node": ">=8.0.0"
-    },
-    "jest": {
-        "testMatch": [
-            "**/test/**/*.js"
-        ],
-        "testPathIgnorePatterns": [
-            "/node_modules/",
-            "/lib/"
-        ],
-        "coverageReporters": [
-            "text-summary",
-            "lcov"
-        ],
-        "collectCoverageFrom": [
-            "lib/**/*.js",
-            "!lib/routes/**/*.js"
-        ],
-        "bail": true,
-        "testEnvironment": "node"
     },
     "license": "MIT"
 }

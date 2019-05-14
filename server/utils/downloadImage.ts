@@ -1,12 +1,10 @@
-const axios = require('./axios');
-const config = require('../shared/config');
-const fs = require('fs');
-const md5 = require('./md5');
-const path = require('path');
-const webp = require('webp-converter');
-const sharp = require('sharp');
-const logger = require('../utils/logger');
-const makeDir = require('../utils/makeDir');
+import fs from 'fs';
+import path from 'path';
+import sharp from 'sharp';
+import logger from '../utils/logger';
+import makeDir from '../utils/makeDir';
+import config from '../shared/config';
+import axios from './axios';
 const getComicSite = (url) => {
     const temp = url.split('.');
     temp.pop();
@@ -54,5 +52,4 @@ function downloadImage(url, fileName, referer = 'https://www.manhuagui.com') {
         }
     });
 }
-
-module.exports = downloadImage;
+export default downloadImage;

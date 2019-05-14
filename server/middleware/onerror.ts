@@ -1,6 +1,5 @@
-const logger = require('../utils/logger');
-
-module.exports = async (ctx, next) => {
+import logger from '../utils/logger';
+const errorHandler = async (ctx, next) => {
     try {
         await next();
     } catch (err) {
@@ -22,3 +21,4 @@ module.exports = async (ctx, next) => {
         }
     }
 };
+export default errorHandler;

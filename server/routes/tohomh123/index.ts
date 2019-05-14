@@ -1,8 +1,8 @@
-const util = require('./utils');
-const axios = require('../../utils/axios');
-const configData = require('../../shared/config');
-const puppeteer = require('../../utils/puppeteer');
-module.exports = async (ctx) => {
+import util from './utils';
+import axios from '../../utils/axios';
+import configData from '../../shared/config';
+import puppeteer from '../../utils/puppeteer';
+export default async function tuHao(ctx) {
     const { type, name: realName, page: pageSize } = ctx.request.query;
     const name = decodeURIComponent(realName);
     let temp;
@@ -20,4 +20,4 @@ module.exports = async (ctx) => {
         temp = util.getDownloadItem(response.data, pageSize);
     }
     ctx.state.data = temp;
-};
+}

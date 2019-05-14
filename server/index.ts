@@ -6,23 +6,24 @@
 
  注意：ctx.request是context经过封装的请求对象，ctx.req是context提供的node.js原生HTTP请求对象，同理ctx.response是context经过封装的响应对象，ctx.res是context提供的node.js原生HTTP请求对象
  */
-const config = require('./shared/config');
-const Koa = require('koa');
-const fs = require('fs');
-const logger = require('./utils/logger');
-const onerror = require('./middleware/onerror');
-const header = require('./middleware/header');
-const mysql = require('./middleware/mysql');
-const debug = require('./middleware/debug');
-const accessControl = require('./middleware/access-control');
-const router = require('./router/router');
-const mount = require('koa-mount');
+import Koa from 'koa';
+import fs from 'fs';
+import mount from 'koa-mount';
+import config from './shared/config';
 
-// API related
+import logger from './utils/logger';
 
-const apiTemplate = require('./middleware/api-template');
-const api_router = require('./router/api_router');
-const apiResponseHandler = require('./middleware/api-response-handler');
+import errorHandler from './middleware/onerror';
+import header from './middleware/header';
+import mysql from './middleware/mysql';
+import debug from './middleware/debug';
+
+import accessControl from './middleware/access-control';
+import router from './router/router';
+
+import apiTemplate from './middleware/api-template';
+import api_router from './router/api_router';
+import apiResponseHandler from './middleware/api-response-handler';
 
 process.on('uncaughtException', (e) => {
     logger.error('uncaughtException: ' + e);
@@ -34,7 +35,7 @@ const app = new Koa();
 app.proxy = true;
 
 // global error handing
-app.use(onerror);
+app.use(errorHandler);
 
 // 1 set header
 app.use(header);
@@ -62,7 +63,7 @@ let server;
 if (config.connect.port) {
     server = app.listen(
         config.connect.port,
-        parseInt(config.listenInaddrAny) ? null : '127.0.0.1'
+        parseInt(config.listenInaddrAny, 10) ? null : '127.0.0.1'
     );
     logger.info('Running in http://localhost:' + config.connect.port);
 }
@@ -72,7 +73,7 @@ if (config.connect.socket) {
     }
     server = app.listen(
         config.connect.socket,
-        parseInt(config.listenInaddrAny) ? null : '127.0.0.1'
+        parseInt(config.listenInaddrAny, 10) ? null : '127.0.0.1'
     );
     logger.info('Listening Unix Socket ' + config.connect.socket);
     process.on('SIGINT', () => {
@@ -80,8 +81,7 @@ if (config.connect.socket) {
         process.exit();
     });
 }
-
-module.exports = {
+export default {
     server: server,
     app: app,
 };

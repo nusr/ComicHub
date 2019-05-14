@@ -1,16 +1,15 @@
-const { typeConfig } = require('../shared/config');
-const mysqlService = require('../service');
-const parseUrl = require('../utils/parseUrl');
-const downloadImage = require('../utils/downloadImage');
-const sleep = require('../utils/wait');
-
+import sleep from '../utils/wait';
+import downloadImage from '../utils/downloadImage';
+import parseUrl from '../utils/parseUrl';
+import mysqlService from '../service';
+import configData from '../shared/config';
 function handleEmpty(stateType) {
     let dataResult = '';
-    if (stateType === typeConfig.search) {
+    if (stateType === configData.typeConfig.search) {
         dataResult = {
             msg: '搜索不到该漫画，请更换搜索词！',
         };
-    } else if (stateType === typeConfig.chapter) {
+    } else if (stateType === configData.typeConfig.chapter) {
         dataResult = {
             msg: `爬取结果为空！`,
         };
@@ -40,7 +39,7 @@ function filterArray(data = []) {
     return result;
 }
 
-module.exports = async (ctx, next) => {
+const mysqlHandler = async (ctx, next) => {
     const queryParams = parseUrl.parseUrl(ctx.originalUrl);
     // 是否使用数据库数据
     const noCache = +queryParams.cache === 1;
@@ -49,7 +48,7 @@ module.exports = async (ctx, next) => {
     if (!noCache) {
         const { type, name: realName } = queryParams;
         const name = decodeURIComponent(realName);
-        if (type === typeConfig.search) {
+        if (type === configData.typeConfig.search) {
             const result = await mysqlService.foggySearch(`%${name}%`, type);
             if (result && result.length > 0) {
                 ctx.body = result;
@@ -59,10 +58,10 @@ module.exports = async (ctx, next) => {
                 return;
             }
         }
-        if (type === typeConfig.chapter) {
+        if (type === configData.typeConfig.chapter) {
             const searchItem = await mysqlService.searchOne(
                 name,
-                typeConfig.search
+                configData.typeConfig.search
             );
             const results = await mysqlService.searchItem(
                 searchItem.id,
@@ -77,10 +76,10 @@ module.exports = async (ctx, next) => {
                 return;
             }
         }
-        if (type === typeConfig.download) {
+        if (type === configData.typeConfig.download) {
             const chapterItem = await mysqlService.searchOne(
                 name,
-                typeConfig.chapter
+                configData.typeConfig.chapter
             );
             const results = await mysqlService.searchItem(
                 chapterItem.id,
@@ -90,7 +89,7 @@ module.exports = async (ctx, next) => {
             if (results && results.length > 0) {
                 const searchItem = await mysqlService.searchOne(
                     chapterItem.search_id,
-                    typeConfig.search,
+                    configData.typeConfig.search,
                     'id'
                 );
 
@@ -124,16 +123,16 @@ module.exports = async (ctx, next) => {
     }
     if (dataResult) {
         const searchUrl = ctx.state.url;
-        if (stateType === typeConfig.search) {
+        if (stateType === configData.typeConfig.search) {
             for (let item of dataResult) {
                 await mysqlService.addItem(item, stateType);
             }
         }
-        if (stateType === typeConfig.chapter) {
+        if (stateType === configData.typeConfig.chapter) {
             dataResult = filterArray(dataResult);
             const searchResult = await mysqlService.searchOne(
                 searchUrl,
-                typeConfig.search
+                configData.typeConfig.search
             );
             if (searchResult && searchResult.id) {
                 for (let item of dataResult) {
@@ -147,15 +146,15 @@ module.exports = async (ctx, next) => {
                 }
             }
         }
-        if (stateType === typeConfig.download) {
+        if (stateType === configData.typeConfig.download) {
             dataResult = filterArray(dataResult);
             const chapterItem = await mysqlService.searchOne(
                 searchUrl,
-                typeConfig.chapter
+                configData.typeConfig.chapter
             );
             const searchItem = await mysqlService.searchOne(
                 chapterItem.search_id,
-                typeConfig.search,
+                configData.typeConfig.search,
                 'id'
             );
             if (searchItem && chapterItem) {
@@ -189,3 +188,4 @@ module.exports = async (ctx, next) => {
 
     ctx.body = dataResult;
 };
+export default mysqlHandler;

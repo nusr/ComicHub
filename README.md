@@ -35,12 +35,6 @@ yarn start:renderer
 yarn start:main
 ```
 
-服务端运行
-
-```bash
-npm run start:server
-```
-
 ## 打包
 
 ```bash

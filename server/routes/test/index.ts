@@ -1,4 +1,4 @@
-module.exports = async (ctx) => {
+const Test = async (ctx) => {
     if (ctx.params.id === '0') {
         throw Error('Error test');
     }
@@ -17,3 +17,4 @@ module.exports = async (ctx) => {
         item: item,
     };
 };
+export default Test;

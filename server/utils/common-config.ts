@@ -1,7 +1,6 @@
-const cheerio = require('cheerio');
-const axios = require('./axios');
-
-function transElemText($, prop) {
+import cheerio from 'cheerio';
+import axios from './axios';
+export function transElemText($, prop) {
     const regex = new RegExp(/\$\((.*)\)/g);
     let result = prop;
     if (regex.test(result)) {
@@ -11,7 +10,7 @@ function transElemText($, prop) {
     return result;
 }
 
-function replaceParams(data, prop, $) {
+export function replaceParams(data, prop, $) {
     const regex = new RegExp(/%(.*)%/g);
     let result = prop;
     let group = regex.exec(prop);
@@ -26,7 +25,7 @@ function replaceParams(data, prop, $) {
     return result;
 }
 
-function getProp(data, prop, $) {
+export function getProp(data, prop, $) {
     let result = data;
     if (Array.isArray(prop)) {
         for (const e of prop) {
@@ -60,8 +59,4 @@ async function buildData(data) {
             .get(),
     };
 }
-
-module.exports = buildData;
-module.exports.transElemText = transElemText;
-module.exports.replaceParams = replaceParams;
-module.exports.getProp = getProp;
+export default buildData;
