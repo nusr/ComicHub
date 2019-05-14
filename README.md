@@ -1,6 +1,6 @@
 # comic-hub
 
-> PDF 漫画生成器。
+> Comic PDF Generator (漫画 PDF 生成器)
 
 ## 介绍
 
