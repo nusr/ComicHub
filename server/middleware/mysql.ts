@@ -3,8 +3,9 @@ import downloadImage from '../utils/downloadImage';
 import parseUrl from '../utils/parseUrl';
 import mysqlService from '../service';
 import configData from '../shared/config';
-function handleEmpty(stateType) {
-  let dataResult = '';
+
+function handleEmpty(stateType: string) {
+  let dataResult: any;
   if (stateType === configData.typeConfig.search) {
     dataResult = {
       msg: '搜索不到该漫画，请更换搜索词！',
@@ -66,7 +67,7 @@ const mysqlHandler = async (ctx, next) => {
       const results = await mysqlService.searchItem(
         searchItem.id,
         type,
-        (field = 'search_id')
+        'search_id'
       );
       if (results && results.length > 0) {
         ctx.body = results;
@@ -84,7 +85,7 @@ const mysqlHandler = async (ctx, next) => {
       const results = await mysqlService.searchItem(
         chapterItem.id,
         type,
-        (field = 'chapter_id')
+        'chapter_id'
       );
       if (results && results.length > 0) {
         const searchItem = await mysqlService.searchOne(

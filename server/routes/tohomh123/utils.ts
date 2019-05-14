@@ -1,7 +1,7 @@
 import cheerio from 'cheerio';
 import urlModule from 'url';
 import urlConfig from '../../shared/urlConfig';
-const baseUrl = urlConfig.tohomh123;
+const baseUrl = urlConfig.tohomh123.base;
 
 const getSearchList = (data) => {
   const $ = cheerio.load(data);

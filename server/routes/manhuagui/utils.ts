@@ -1,7 +1,8 @@
-const { resolve } = require('url');
-const cheerio = require('cheerio');
-const urlConfig = require('../../shared/urlConfig');
-const baseUrl = urlConfig.manhuagui;
+import urlModule from 'url';
+import cheerio from 'cheerio';
+import urlConfig from '../../shared/urlConfig';
+
+const baseUrl = urlConfig.manhuagui.base;
 
 const getSearchList = (data) => {
   const $ = cheerio.load(data);
@@ -12,7 +13,7 @@ const getSearchList = (data) => {
       .find('.book-detail > dl > dt')
       .eq(0);
     const linkDom = dom.find('a').eq(0);
-    const url = resolve(baseUrl, linkDom.attr('href'));
+    const url = urlModule.resolve(baseUrl, linkDom.attr('href'));
     const title = dom.text();
     const area = $(this)
       .find('div.book-detail > dl > dd:nth-child(3) > span:nth-child(2)')
@@ -51,7 +52,7 @@ const getChapterList = (data) => {
     const dom = $(this)
       .find('a')
       .eq(0);
-    const link = resolve(baseUrl, dom.attr('href'));
+    const link = urlModule.resolve(baseUrl, dom.attr('href'));
     const page = dom
       .find('i')
       .eq(0)

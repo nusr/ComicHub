@@ -30,7 +30,7 @@ export default {
     download: 'images',
     downloadAll: 'downloadAll',
   },
-  downloadBase: path.resolve(__dirname, '../../downloadResult'),
+  downloadBase: path.resolve(__dirname, '../../../downloadResult'), // 根目录下的文件夹
   convertImageExtname: ['.webp'],
   mysql: {
     host: 'localhost', // 数据库服务器所在的IP或域名
