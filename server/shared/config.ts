@@ -4,12 +4,11 @@ export default {
     port: process.env.PORT || 1200, // 监听端口
     socket: process.env.SOCKET || undefined, // 监听 Unix Socket, null 为禁用
   },
-  cacheExpire: parseInt(process.env.CACHE_EXPIRE) || 5 * 60, // 缓存时间，单位为秒
   userAgent:
     process.env.UA ||
     'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.131 Safari/537.36',
   listenInaddrAny: parseInt(process.env.LISTEN_INADDR_ANY, 10) || 1, // 是否允许公网连接，取值 0 1
-  requestRetry: parseInt(process.env.REQUEST_RETRY) || 2, // 请求失败重试次数
+  requestRetry: parseInt(process.env.REQUEST_RETRY, 10) || 2, // 请求失败重试次数
   // 是否显示 Debug 信息，取值 boolean 'false' 'key' ，取值为 'false' false 时永远不显示，取值为 'key' 时带上 ?debug=key 显示
   debugInfo: process.env.DEBUG_INFO || true,
   loggerLevel: process.env.LOGGER_LEVEL || 'info',

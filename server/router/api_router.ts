@@ -1,11 +1,11 @@
 import Router from 'koa-router';
-
+import * as Koa from 'koa';
 import routes from './router';
 const router = new Router();
-router.get('/routes/:name?', (ctx) => {
+router.get('/routes/:name?', (ctx: Koa.BaseContext) => {
   const allRoutes = Array.from(routes.stack);
   allRoutes.shift();
-  const result = {};
+  const result: any = {};
   let counter = 0;
 
   allRoutes.forEach((i) => {

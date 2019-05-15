@@ -25,13 +25,13 @@ if (
           options.httpAgent = tunnel.httpOverHttp({
             proxy: {
               host: config.proxy.host,
-              port: parseInt(config.proxy.port),
+              port: parseInt(config.proxy.port, 10),
             },
           });
           options.httpsAgent = tunnel.httpsOverHttp({
             proxy: {
               host: config.proxy.host,
-              port: parseInt(config.proxy.port),
+              port: parseInt(config.proxy.port, 10),
             },
           });
           break;
@@ -39,7 +39,7 @@ if (
           options.httpAgent = tunnel.httpOverHttps({
             proxy: {
               host: config.proxy.host,
-              port: parseInt(config.proxy.port),
+              port: parseInt(config.proxy.port, 10),
               proxyAuth: `${config.proxy.auth.username}:${
                 config.proxy.auth.password
               }`,
@@ -48,7 +48,7 @@ if (
           options.httpsAgent = tunnel.httpsOverHttps({
             proxy: {
               host: config.proxy.host,
-              port: parseInt(config.proxy.port),
+              port: parseInt(config.proxy.port, 10),
               proxyAuth: `${config.proxy.auth.username}:${
                 config.proxy.auth.password
               }`,

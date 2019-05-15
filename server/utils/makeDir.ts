@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-function makeDir(dirname) {
+function makeDir(dirname: string) {
   if (fs.existsSync(dirname)) {
     return true;
   } else {

@@ -1,5 +1,6 @@
 import config from '../shared/config';
-const reject = (ctx) => {
+import * as Koa from 'koa';
+const reject = (ctx: Koa.BaseContext) => {
   ctx.response.status = 403;
   ctx.body = {
     lastBuildDate: new Date().toUTCString(),
@@ -9,7 +10,10 @@ const reject = (ctx) => {
   };
 };
 
-const accessControl = async (ctx, next: () => Promise<any>) => {
+const accessControl = async (
+  ctx: Koa.BaseContext,
+  next: () => Promise<any>
+) => {
   const ip = ctx.ips[0] || ctx.ip;
   const requestPath = ctx.request.path;
 

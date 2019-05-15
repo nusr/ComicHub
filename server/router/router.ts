@@ -2,7 +2,7 @@ import Router from 'koa-router';
 import path from 'path';
 import fs from 'fs';
 import mustache from 'mustache';
-import pidusage from 'pidusage';
+import sourceUsed from 'pidusage';
 import logger from '../utils/logger';
 import config from '../shared/config';
 // router
@@ -24,7 +24,7 @@ router.get('/', async (ctx) => {
       config.debugInfo === true || config.debugInfo === ctx.query.debug;
   }
 
-  const stats = await pidusage(process.pid);
+  const stats = await sourceUsed(process.pid);
 
   ctx.set({
     'Cache-Control': 'no-cache',

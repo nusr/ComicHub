@@ -1,5 +1,13 @@
 import urlConfig from '../../shared/urlConfig';
-export default async function Menu(ctx) {
+import * as Koa from 'koa';
+const Menu = async (ctx: Koa.Context) => {
   ctx.state.type = 'menu';
-  ctx.state.data = urlConfig;
-}
+  ctx.state.data = Object.keys(urlConfig).map((key: string) => {
+    const item: any = urlConfig[key];
+    return {
+      ...item,
+      flag: key,
+    };
+  });
+};
+export default Menu;

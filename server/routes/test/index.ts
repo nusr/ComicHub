@@ -1,4 +1,5 @@
-const Test = async (ctx) => {
+import * as Koa from 'koa';
+const Test = async (ctx: Koa.BaseContext) => {
   if (ctx.params.id === '0') {
     throw Error('Error test');
   }

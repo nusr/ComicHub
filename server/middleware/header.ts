@@ -1,12 +1,14 @@
-import config from '../shared/config';
+import * as Koa from 'koa';
 import logger from '../utils/logger';
 const headers = {
   'Access-Control-Allow-Methods': 'GET',
   'Content-Type': 'application/json; charset=utf-8',
-  'Cache-Control': `public, max-age=${config.cacheExpire}`,
 };
 
-const headerHandler = async (ctx, next: () => Promise<any>) => {
+const headerHandler = async (
+  ctx: Koa.BaseContext,
+  next: () => Promise<any>
+) => {
   logger.info(`current request url: ${ctx.url}`);
   ctx.set(headers);
   ctx.set({

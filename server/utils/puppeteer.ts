@@ -16,7 +16,7 @@ const options = {
 };
 
 const puppeteerBrowser = async () => {
-  let browser;
+  let browser: any;
   if (config.puppeteerWSEndpoint) {
     browser = await puppeteer.connect({
       browserWSEndpoint: config.puppeteerWSEndpoint,

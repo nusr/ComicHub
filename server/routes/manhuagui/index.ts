@@ -1,9 +1,9 @@
-import util from './utils';
 import axios from '../../utils/axios';
+import util from './utils';
 import configData from '../../shared/config';
 import puppeteer from '../../utils/puppeteer';
-
-module.exports = async (ctx) => {
+import * as Koa from 'koa';
+const manHuaGui = async (ctx: Koa.BaseContext) => {
   const { type, name: realName, page: pageSize } = ctx.request.query;
   const name = decodeURIComponent(realName);
   let temp;
@@ -40,3 +40,4 @@ module.exports = async (ctx) => {
   }
   ctx.state.data = temp;
 };
+export default manHuaGui;

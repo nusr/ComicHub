@@ -62,7 +62,7 @@ const getChapterList = (data: string) => {
       chapters.push({
         url: link,
         title: dom.attr('title'),
-        page_size: parseInt(page),
+        page_size: parseInt(page, 10),
       });
     }
   });
@@ -85,7 +85,7 @@ const getDownloadUrl = (name: string, page: number): string => {
     return `${url}#p=${page}`;
   }
 };
-module.exports = {
+export default {
   getChapterList,
   getSearchList,
   getSearchUrl,

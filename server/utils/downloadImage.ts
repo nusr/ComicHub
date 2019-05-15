@@ -5,17 +5,21 @@ import logger from '../utils/logger';
 import makeDir from '../utils/makeDir';
 import config from '../shared/config';
 import axios from './axios';
-const getComicSite = (url) => {
+const getComicSite = (url: string): string => {
   const temp = url.split('.');
   temp.pop();
   return temp.pop();
 };
-const getExtName = (url) => {
+const getExtName = (url: string): string => {
   const extName = path.extname(url);
   return extName.match(/^\.\w+/gi)[0];
 };
 
-function downloadImage(url, fileName, referer = 'https://www.manhuagui.com') {
+function downloadImage(
+  url: string,
+  fileName: string,
+  referer: string = 'https://www.manhuagui.com'
+): void {
   const extName = getExtName(url);
   const filePath = path.join(
     config.downloadBase,

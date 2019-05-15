@@ -1,3 +1,4 @@
+import * as Koa from 'koa';
 /**
  * HTTP Status codes
  */
@@ -20,7 +21,10 @@ const statusCodes = {
   GATEWAY_TIME_OUT: 504,
 };
 
-const responseHandler = async (ctx, next: () => Promise<any>) => {
+const responseHandler = async (
+  ctx: Koa.BaseContext,
+  next: () => Promise<any>
+) => {
   ctx.res.statusCodes = statusCodes;
   ctx.statusCodes = ctx.res.statusCodes;
 

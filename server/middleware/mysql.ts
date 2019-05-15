@@ -48,7 +48,7 @@ function filterArray(data: any = []) {
   return result;
 }
 
-const mysqlHandler = async (ctx: any, next: () => Promise<any>) => {
+const mysqlHandler = async (ctx: Koa.BaseContext, next: () => Promise<any>) => {
   const queryParams = parseUrl.parseUrl(ctx.originalUrl);
   // 是否使用数据库数据
   const noCache = +queryParams.cache === 1;
