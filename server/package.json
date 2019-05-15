@@ -1,5 +1,5 @@
 {
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "postinstall": "npm run build",
     "start": "node dist/index.js",
@@ -16,6 +16,7 @@
     "axios-retry": "3.1.2",
     "cheerio": "1.0.0-rc.3",
     "koa": "2.7.0",
+    "koa-bodyparser": "^4.2.1",
     "koa-mount": "4.0.0",
     "koa-router": "7.4.0",
     "mustache": "^3.0.1",
@@ -31,6 +32,7 @@
   "devDependencies": {
     "@types/cheerio": "^0.22.11",
     "@types/koa": "^2.0.48",
+    "@types/koa-bodyparser": "^4.2.2",
     "@types/koa-mount": "^3.0.1",
     "@types/koa-router": "^7.0.40",
     "@types/mustache": "^0.8.32",

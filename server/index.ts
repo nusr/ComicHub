@@ -11,7 +11,7 @@ import mount from 'koa-mount';
 import config from './shared/config';
 
 import logger from './utils/logger';
-
+import bodyParser from 'koa-bodyparser';
 import errorHandler from './middleware/onerror';
 import header from './middleware/header';
 import mysql from './middleware/mysql';
@@ -49,6 +49,9 @@ app.use(debug);
 
 app.use(apiResponseHandler);
 app.use(apiTemplate);
+
+app.use(bodyParser());
+
 app.use(mysql);
 
 // router

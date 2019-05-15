@@ -21,6 +21,7 @@
     "router/*",
     "service/*",
     "shared/*",
-    "utils/*"
+    "utils/*",
+    "test/**/*"
   ]
 }

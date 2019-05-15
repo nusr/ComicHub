@@ -20,7 +20,8 @@
     "pack": "npm run build:renderer && npm run build:main-prod && electron-builder --dir",
     "dist": "electron-builder",
     "prettier": "prettier \"**/*.{ts,tsx,js,jsx,less,js,json,md}\" --write",
-    "lint-staged": "lint-staged"
+    "lint-staged": "lint-staged",
+    "format": "npm run lint && npm run prettier"
   },
   "devDependencies": {
     "awesome-typescript-loader": "^5.2.1",

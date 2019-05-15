@@ -1,7 +1,7 @@
 import * as Koa from 'koa';
 import logger from '../utils/logger';
 const headers = {
-  'Access-Control-Allow-Methods': 'GET',
+  'Access-Control-Allow-Methods': 'GET,HEAD,PUT,POST,DELETE,PATCH',
   'Content-Type': 'application/json; charset=utf-8',
 };
 

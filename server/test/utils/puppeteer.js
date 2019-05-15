@@ -4,7 +4,7 @@ describe('puppeteer', () => {
   it('puppeteer run', async () => {
     const browser = await puppeteer();
     const page = await browser.newPage();
-    await page.goto('https://github.com/nusr/comic', {
+    await page.goto('https://github.com/nusr/comic-downloader', {
       waitUntil: 'domcontentloaded',
     });
 

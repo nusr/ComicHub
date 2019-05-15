@@ -65,7 +65,7 @@ router.get('/', async (ctx) => {
 // test
 router.get('/test/:id', testRouter);
 // 左侧菜单
-router.get('/menu', menuRouter);
+router.post('/menu', menuRouter);
 // 看漫画
 // router.get('/manhuagui', require('../routes/manhuagui'));
 router.get('/tohomh123', tuHaoRouter);

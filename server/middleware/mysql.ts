@@ -124,6 +124,9 @@ const mysqlHandler = async (ctx: Koa.BaseContext, next: () => Promise<any>) => {
   let dataResult = ctx.state.data;
   const stateType = ctx.state.type;
   if (!stateType) {
+    if (dataResult) {
+      ctx.body = dataResult;
+    }
     return;
   }
   if (dataResult) {
