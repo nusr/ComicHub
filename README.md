@@ -1,10 +1,10 @@
-# comic-hub
+# comic-downloader
 
-> Comic PDF Generator (漫画 PDF 生成器)
+> Comic downloader (漫画下载器)
 
 ## 介绍
 
-comic-hub 是一款漫画生成器。爬取网站的图片，生成 PDF 文件。
+comic-downloader 是一款漫画下载器。爬取网站的图片，生成 PDF 文件。
 
 ## 装包
 
@@ -23,39 +23,30 @@ npm i
 
 ### 运行
 
-首先通过以下命令启动渲染进程(默认端口：8000)
+启动前端页面
 
 ```bash
-yarn start:reacter
+npm run start:react
 ```
 
-然后启动主进程
+启动服务端
 
 ```bash
-yarn start:electron
-```
-
-## 打包
-
-```bash
-npm run pack
-```
-
-如果想把代码打包成一个 dmg 文件或者 zip 文件，可以执行以下命令
-
-```bash
-npm run dist
+npm run start:server
 ```
 
 ## 功能
 
-1. [x] 服务端爬取漫画
-2. [x] Mysql 存储爬取链接
-3. [ ] 生成 PDF 文件
-4. [ ] 前端交互页面
-5. [ ] 打包成桌面应用
+1. [x] 下载一集漫画
+2. [x] 下载整个漫画
+3. [x] Mysql 存储爬取链接
+4. [ ] 生成 PDF 文件
+5. [ ] 前端交互页面
+6. [ ] 打包成桌面应用
 
 ## 支持漫画网站
+
+更多站点，敬请期待！
 
 1. [土豪漫画](https://www.manhuagui.com)
 
@@ -66,3 +57,7 @@ npm run dist
 ## 相关项目
 
 1. [work_crawler](https://github.com/kanasimi/work_crawler)
+
+## LICENSE
+
+[MIT](LICENSE)

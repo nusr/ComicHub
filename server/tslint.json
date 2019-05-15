@@ -1,6 +1,12 @@
 {
   "rules": {
-    "quotemark": [true, "single", "avoid-escape", "avoid-template"],
+    "quotemark": [
+      true,
+      "single",
+      "jsx-double",
+      "avoid-escape",
+      "avoid-template"
+    ],
     "class-name": true,
     "comment-format": [true, "check-space"],
     "indent": [true, "spaces"],

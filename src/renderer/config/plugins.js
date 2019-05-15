@@ -10,7 +10,7 @@ export default [
       routes: {
         exclude: [/components/],
       },
-      title: 'comic-hub',
+      title: 'comic-downloader',
     },
   ],
 ];
