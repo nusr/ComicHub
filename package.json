@@ -21,7 +21,8 @@
     "dist": "electron-builder",
     "prettier": "prettier \"**/*.{ts,tsx,js,jsx,less,js,json,md}\" --write",
     "lint-staged": "lint-staged",
-    "format": "npm run lint && npm run prettier"
+    "format": "npm run lint && npm run prettier",
+    "update-readme": "node server/dist/utils/generateMarkdown.js"
   },
   "devDependencies": {
     "awesome-typescript-loader": "^5.2.1",
@@ -61,7 +62,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint && npm run lint-staged"
+      "pre-commit": "npm run update-readme && npm run lint && npm run lint-staged"
     }
   },
   "lint-staged": {

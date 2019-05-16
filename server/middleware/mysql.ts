@@ -88,7 +88,7 @@ const mysqlHandler = async (ctx: Koa.Context, next: () => Promise<any>) => {
         configData.typeConfig.chapter
       );
       const results: any = await mysqlService.searchItem(
-        chapterItem.id,
+        chapterItem ? chapterItem.id : '',
         type,
         'chapter_id'
       );

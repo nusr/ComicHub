@@ -2,7 +2,7 @@
 export default {
   manhuagui: {
     base: 'https://www.manhuagui.com',
-    enabled: false,
+    enabled: true,
     name: '看漫画',
   },
   tohomh123: {

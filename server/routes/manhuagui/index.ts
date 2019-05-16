@@ -4,7 +4,9 @@ import configData from '../../shared/config';
 import puppeteer from '../../utils/puppeteer';
 import * as Koa from 'koa';
 import { IRequestData } from '../../type';
+import sleep from '../../utils/wait';
 
+const delay: number = 10000;
 const manHuaGui = async (ctx: Koa.BaseContext) => {
   const { type, name, page_size }: IRequestData = ctx.request.body;
   let temp;
@@ -18,23 +20,35 @@ const manHuaGui = async (ctx: Koa.BaseContext) => {
   }
   if (configData.typeConfig.download === type) {
     temp = [];
+    let pageIndex = 1;
     const browser = await puppeteer();
-    for (let i = 1; i <= page_size; i += 1) {
-      const page = await browser.newPage();
-      const downloadUrl = util.getDownloadUrl(name, i);
-      await page.goto(downloadUrl, {
-        waitUntil: 'networkidle2',
-      });
-      const imageItem = await page.evaluate(() =>
-        document.querySelector('#mangaFile')
+    const page = await browser.newPage();
+    page.setViewport({ width: 1366, height: 768 });
+    await page.goto(name, {
+      waitUntil: 'networkidle0',
+    });
+    const html = await page.evaluate(
+      () => document.querySelector('html').innerHTML
+    );
+    const imageSrc = util.getDownloadItem(html);
+    temp.push({
+      page: pageIndex,
+      url: imageSrc,
+    });
+    pageIndex += 1;
+    for (; pageIndex <= page_size; pageIndex += 1) {
+      const nextItem = await page.$('#next');
+      nextItem.click();
+      await sleep(500);
+      const html = await page.evaluate(
+        () => document.querySelector('html').innerHTML
       );
+      const imageSrc = util.getDownloadItem(html);
       temp.push({
-        page: i,
-        url: imageItem.src,
+        page: pageIndex,
+        url: imageSrc,
       });
-      await page.close();
     }
-
     await browser.close();
   }
   ctx.state.data = temp;

@@ -8,7 +8,8 @@ import config from '../shared/config';
 // router
 import testRouter from '../routes/test';
 import menuRouter from '../routes/menu';
-import tuHaoRouter from '../routes/tohomh123';
+import tohomh from '../routes/tohomh123';
+import manhuagui from '../routes/manhuagui';
 
 const router = new Router();
 router.get('/', async (ctx) => {
@@ -67,6 +68,6 @@ router.get('/test/:id', testRouter);
 // 左侧菜单
 router.get('/menu', menuRouter);
 // 看漫画
-// router.post('/manhuagui', require('../routes/manhuagui'));
-router.post('/tohomh123', tuHaoRouter);
+router.post('/manhuagui', manhuagui);
+router.post('/tohomh123', tohomh);
 export default router;

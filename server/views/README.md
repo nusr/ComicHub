@@ -50,8 +50,10 @@ npm run start:server
 
 更多站点，敬请期待！
 
-1. [看漫画](https://www.manhuagui.com)
-1. [土豪漫画](https://www.tohomh123.com)
+{{#siteList}}
+
+1. [{{ name }}]({{ &base }})
+   {{/siteList}}
 
 ## 常见问题
 
