@@ -2,7 +2,7 @@ import { Card, Layout } from 'antd';
 import { connect } from 'dva';
 import React, { useEffect } from 'react';
 import Notification from '../../components/Notification';
-import SearchBox from '../../components/SearchBox';
+import SearchBox from '../../components/SearchForm';
 import SearchResult from '../../components/SearchResult';
 import styles from './index.less';
 

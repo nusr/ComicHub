@@ -23,10 +23,10 @@ cnpm i
 
 ## 2. 数据库表结构
 
-见 [comic.sql](./comic.sql)
+见 [comic.sql](./comic.sql) 或者参考 [类型定义文件](../server/type/index.ts)
 
 ## 3. Electron 模板
 
 [electron-react-boilerplate](https://github.com/electron-react-boilerplate/examples/tree/master/examples/typescript) 的 React 版本不是 16.8+，不能使用 React Hooks。
 
-所有使用 Umi + Electron 模板，链接地址是 [https://github.com/wangtianlun/umi-electron-typescript](https://github.com/wangtianlun/umi-electron-typescript)
+所有使用了 Umi + Electron 模板，链接地址是 [https://github.com/wangtianlun/umi-electron-typescript](https://github.com/wangtianlun/umi-electron-typescript)

@@ -8,12 +8,18 @@ interface IFormData {
 
 interface IOptionData {
   value: string | number;
-  label: string;
+  name: string;
+  enabled: boolean;
 }
 
 const FormItem = Form.Item;
 
-function PastApplyEdit(props) {
+interface IProps {
+  menuList: IOptionData[];
+  form: any;
+}
+
+function SearchForm(props: IProps) {
   const { form, menuList } = props;
   const currentData: IFormData = {
     name: '',
@@ -28,10 +34,10 @@ function PastApplyEdit(props) {
     resetForm();
   }, []);
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    form.validateFields((err, fieldsValue) => {
-      if (err) {
+  function handleSubmit(event) {
+    event.preventDefault();
+    form.validateFields((error, fieldsValue: IFormData) => {
+      if (error) {
         return;
       }
       console.log(fieldsValue);
@@ -41,7 +47,7 @@ function PastApplyEdit(props) {
   return (
     <Form onSubmit={handleSubmit} layout="inline">
       <FormItem label="站点">
-        {form.getFieldDecorator('index.ts', {
+        {form.getFieldDecorator('type', {
           initialValue: currentData.type,
           rules: [{ required: true, message: '请选择站点' }],
         })(
@@ -73,7 +79,9 @@ function PastApplyEdit(props) {
     </Form>
   );
 }
-
-const wrapperForm = Form.create({ name: 'PastApplyEdit' })(PastApplyEdit);
+SearchForm.defaultProps = {
+  menuList: [],
+};
+const wrapperForm = Form.create({ name: 'SearchForm' })(SearchForm);
 
 export default wrapperForm;

@@ -4,8 +4,9 @@ import configData from '../../shared/config';
 import puppeteer from '../../utils/puppeteer';
 import * as Koa from 'koa';
 import { IRequestData } from '../../type';
+
 const manHuaGui = async (ctx: Koa.BaseContext) => {
-  const { type, name, page: pageSize }: IRequestData = ctx.request.body;
+  const { type, name, page_size }: IRequestData = ctx.request.body;
   let temp;
   if (configData.typeConfig.search === type) {
     const response = await axios.get(util.getSearchUrl(name));
@@ -18,7 +19,7 @@ const manHuaGui = async (ctx: Koa.BaseContext) => {
   if (configData.typeConfig.download === type) {
     temp = [];
     const browser = await puppeteer();
-    for (let i = 1; i <= pageSize; i += 1) {
+    for (let i = 1; i <= page_size; i += 1) {
       const page = await browser.newPage();
       const downloadUrl = util.getDownloadUrl(name, i);
       await page.goto(downloadUrl, {

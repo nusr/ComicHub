@@ -32,6 +32,10 @@ const getSearchList = (data: string) => {
       .find('div.book-detail > dl > dd:nth-child(3) > span:nth-child(3)')
       .eq(0)
       .text();
+    const cover = $(this)
+      .find('div.book-cover > a > img')
+      .eq(0)
+      .attr('src');
     if (url) {
       result.push({
         url,
@@ -40,6 +44,7 @@ const getSearchList = (data: string) => {
         author,
         introduce,
         category,
+        cover,
       });
     }
   });
