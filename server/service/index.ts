@@ -16,7 +16,11 @@ function searchItem(value: string | number, tableName: string, field = 'url') {
   });
 }
 
-function searchOne(value: string | number, tableName: string, field = 'url') {
+function searchOne(
+  value: string | number,
+  tableName: string,
+  field = 'url'
+): any {
   return new Promise(async (resolve) => {
     const sql = `SELECT * FROM ${tableName} WHERE ${field}=?`;
     const results: any = (await mysql(sql, [value])) || [];

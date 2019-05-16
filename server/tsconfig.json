@@ -22,6 +22,7 @@
     "service/*",
     "shared/*",
     "utils/*",
-    "test/**/*"
+    "test/**/*",
+    "type/*"
   ]
 }

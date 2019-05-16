@@ -3,7 +3,7 @@ import urlModule from 'url';
 import urlConfig from '../../shared/urlConfig';
 
 const baseUrl = urlConfig.tohomh123.base;
-import { ISearchItem, IChapterItem, IImageItem } from '../../service/type';
+import { ISearchItem, IChapterItem, IImageItem } from '../../type';
 
 const getSearchList = (data: string) => {
   const $ = cheerio.load(data);

@@ -1,7 +1,7 @@
 import urlModule from 'url';
 import cheerio from 'cheerio';
 import urlConfig from '../../shared/urlConfig';
-import { ISearchItem, IChapterItem, IImageItem } from '../../service/type';
+import { ISearchItem, IChapterItem, IImageItem } from '../../type';
 
 const baseUrl = urlConfig.manhuagui.base;
 

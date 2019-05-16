@@ -14,12 +14,11 @@ interface IOptionData {
 const FormItem = Form.Item;
 
 function PastApplyEdit(props) {
-  const { form } = props;
+  const { form, menuList } = props;
   const currentData: IFormData = {
     name: '',
     type: '',
   };
-  const siteList = [];
 
   function resetForm() {
     form.resetFields();
@@ -42,14 +41,14 @@ function PastApplyEdit(props) {
   return (
     <Form onSubmit={handleSubmit} layout="inline">
       <FormItem label="站点">
-        {form.getFieldDecorator('type', {
+        {form.getFieldDecorator('index.ts', {
           initialValue: currentData.type,
           rules: [{ required: true, message: '请选择站点' }],
         })(
           <Select placeholder="请选择状态" style={{ width: 170 }}>
-            {siteList.map((item: IOptionData) => (
+            {menuList.map((item: IOptionData) => (
               <Select.Option value={item.value} key={item.value}>
-                {item.label}
+                {item.name}
               </Select.Option>
             ))}
           </Select>

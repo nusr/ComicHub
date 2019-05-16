@@ -4,17 +4,17 @@ import downloadImage from '../utils/downloadImage';
 import parseUrl from '../utils/parseUrl';
 import mysqlService from '../service';
 import configData from '../shared/config';
-import { ISearchMysql, IChapterMysql } from '../service/type';
+import { ISearchMysql, IChapterMysql, IRequestData } from '../type';
 
 function handleEmpty(stateType: string) {
   let dataResult: any;
   if (stateType === configData.typeConfig.search) {
     dataResult = {
-      msg: '搜索不到该漫画，请更换搜索词！',
+      message: '搜索不到该漫画，请更换搜索词！',
     };
   } else if (stateType === configData.typeConfig.chapter) {
     dataResult = {
-      msg: '爬取结果为空！',
+      message: '爬取结果为空！',
     };
   }
   return dataResult;
@@ -48,27 +48,24 @@ function filterArray(data: any = []) {
   return result;
 }
 
-const mysqlHandler = async (ctx: Koa.BaseContext, next: () => Promise<any>) => {
-  const queryParams = parseUrl.parseUrl(ctx.originalUrl);
-  // 是否使用数据库数据
-  const noCache = +queryParams.cache === 1;
-  ctx.state.url = decodeURIComponent(queryParams.name);
-  ctx.state.type = queryParams.type;
-  if (!noCache) {
-    const { type, name: realName } = queryParams;
-    const name = decodeURIComponent(realName);
+const mysqlHandler = async (ctx: Koa.Context, next: () => Promise<any>) => {
+  const requestData: IRequestData = ctx.request.body;
+  ctx.state.url = requestData.name;
+  ctx.state.type = requestData.type;
+  if (!requestData.noCache) {
+    const { type, name } = requestData;
     if (type === configData.typeConfig.search) {
       const result: any = await mysqlService.foggySearch(`%${name}%`, type);
       if (result && result.length > 0) {
         ctx.body = result;
         ctx.response.set({
-          'Mysql-Table-Search-Cache': 'true',
+          'Mysql-Search-Table-Cache': 'true',
         });
         return;
       }
     }
     if (type === configData.typeConfig.chapter) {
-      const searchItem: any = await mysqlService.searchOne(
+      const searchItem: ISearchMysql = await mysqlService.searchOne(
         name,
         configData.typeConfig.search
       );
@@ -80,13 +77,13 @@ const mysqlHandler = async (ctx: Koa.BaseContext, next: () => Promise<any>) => {
       if (results && results.length > 0) {
         ctx.body = results;
         ctx.response.set({
-          'Mysql-Table-Chapter-Cache': 'true',
+          'Mysql-Chapter-Table-Cache': 'true',
         });
         return;
       }
     }
     if (type === configData.typeConfig.download) {
-      const chapterItem: any = await mysqlService.searchOne(
+      const chapterItem: IChapterMysql = await mysqlService.searchOne(
         name,
         configData.typeConfig.chapter
       );
@@ -96,7 +93,7 @@ const mysqlHandler = async (ctx: Koa.BaseContext, next: () => Promise<any>) => {
         'chapter_id'
       );
       if (results && results.length > 0) {
-        const searchItem: any = await mysqlService.searchOne(
+        const searchItem: ISearchMysql = await mysqlService.searchOne(
           chapterItem.search_id,
           configData.typeConfig.search,
           'id'
@@ -138,7 +135,7 @@ const mysqlHandler = async (ctx: Koa.BaseContext, next: () => Promise<any>) => {
     }
     if (stateType === configData.typeConfig.chapter) {
       dataResult = filterArray(dataResult);
-      const searchResult: any = await mysqlService.searchOne(
+      const searchResult: ISearchMysql = await mysqlService.searchOne(
         searchUrl,
         configData.typeConfig.search
       );
@@ -156,11 +153,11 @@ const mysqlHandler = async (ctx: Koa.BaseContext, next: () => Promise<any>) => {
     }
     if (stateType === configData.typeConfig.download) {
       dataResult = filterArray(dataResult);
-      const chapterItem: any = await mysqlService.searchOne(
+      const chapterItem: IChapterMysql = await mysqlService.searchOne(
         searchUrl,
         configData.typeConfig.chapter
       );
-      const searchItem: any = await mysqlService.searchOne(
+      const searchItem: ISearchMysql = await mysqlService.searchOne(
         chapterItem.search_id,
         configData.typeConfig.search,
         'id'

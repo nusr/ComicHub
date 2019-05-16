@@ -14,4 +14,14 @@ export default {
   },
   publicPath: './',
   routes,
+  treeShaking: true,
+  uglifyJSOptions: {
+    uglifyOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
+        warnings: false,
+      },
+    },
+  },
 };

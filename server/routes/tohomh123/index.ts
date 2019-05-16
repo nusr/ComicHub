@@ -1,22 +1,26 @@
 import util from './utils';
 import axios from '../../utils/axios';
 import configData from '../../shared/config';
+import * as Koa from 'koa';
+import { IRequestData } from '../../type';
 
-export default async function tuHao(ctx: any) {
-  const { type, name: realName, page: pageSize } = ctx.request.query;
-  const name = decodeURIComponent(realName);
-  let temp;
-  let response;
+export default async function tuHao(ctx: Koa.BaseContext) {
+  const {
+    type,
+    name: realName,
+    page: pageSize,
+  }: IRequestData = ctx.request.body;
+  let temp: any;
   if (configData.typeConfig.search === type) {
-    response = await axios.get(util.getSearchUrl(name));
+    const response = await axios.get(util.getSearchUrl(name));
     temp = util.getSearchList(response.data);
   }
   if (configData.typeConfig.chapter === type) {
-    response = await axios.get(name);
+    const response = await axios.get(name);
     temp = util.getChapterList(response.data);
   }
   if (configData.typeConfig.download === type) {
-    response = await axios.get(name);
+    const response = await axios.get(name);
     temp = util.getDownloadItem(response.data, pageSize);
   }
   ctx.state.data = temp;

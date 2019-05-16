@@ -1,4 +1,4 @@
-import { Layout } from 'antd';
+import { Card, Layout } from 'antd';
 import { connect } from 'dva';
 import React, { useEffect } from 'react';
 import Notification from '../../components/Notification';
@@ -6,10 +6,25 @@ import SearchBox from '../../components/SearchBox';
 import SearchResult from '../../components/SearchResult';
 import styles from './index.less';
 
-const { Header, Footer, Content } = Layout;
+const { Footer } = Layout;
+
+function getMenuList(data = {}) {
+  return Object.keys(data).map((key: string) => {
+    const item = data[key];
+    return {
+      value: key,
+      ...item,
+    };
+  });
+}
 
 function HomePage(props) {
-  const { dispatch } = props;
+  const {
+    dispatch,
+    menu: { list },
+  } = props;
+  const menuList = getMenuList(list);
+  console.log(menuList);
   console.log(props);
   useEffect(() => {
     dispatch({
@@ -17,17 +32,17 @@ function HomePage(props) {
     });
   }, []);
   return (
-    <Layout className={styles.mainLayout}>
-      <Header className={styles.header}>
+    <div className={styles.mainLayout}>
+      <Card className={styles.header}>
         <SearchBox />
-      </Header>
-      <Content className={styles.content}>
+      </Card>
+      <div className={styles.content}>
         <SearchResult />
-      </Content>
+      </div>
       <Footer className={styles.footer}>
         <Notification />
       </Footer>
-    </Layout>
+    </div>
   );
 }
 
