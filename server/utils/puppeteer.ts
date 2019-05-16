@@ -8,7 +8,7 @@ const options = {
     '--window-position=0,0',
     '--ignore-certifcate-errors',
     '--ignore-certifcate-errors-spki-list',
-    `--user-agent=${config.ua}`,
+    `--user-agent=${config.userAgent}`,
   ],
   headless: true,
   ignoreHTTPSErrors: true,

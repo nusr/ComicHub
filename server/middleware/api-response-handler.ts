@@ -28,7 +28,15 @@ const responseHandler = async (
   ctx.res.statusCodes = statusCodes;
   ctx.statusCodes = ctx.res.statusCodes;
 
-  ctx.res.success = ({ statusCode, data = undefined, message = undefined }) => {
+  ctx.res.success = ({
+    statusCode,
+    data = undefined,
+    message = undefined,
+  }: {
+    statusCode: any;
+    data: any;
+    message: any;
+  }) => {
     const status = 0;
 
     if (!!statusCode && statusCode < 400) {
@@ -64,7 +72,7 @@ const responseHandler = async (
   //     ctx.body = { status, code, data, message };
   // };
 
-  ctx.res.ok = (params = {}) => {
+  ctx.res.ok = (params: any = {}) => {
     ctx.res.success({
       ...params,
       statusCode: statusCodes.OK,

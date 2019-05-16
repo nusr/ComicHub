@@ -6,7 +6,7 @@ const config = require('../../shared/config');
 describe('axios', () => {
   it('axios headers', async () => {
     mock.onGet('/test').reply((axiosConfig) => {
-      expect(axiosConfig.headers['User-Agent']).toBe(config.ua);
+      expect(axiosConfig.headers['User-Agent']).toBe(config.userAgent);
       expect(axiosConfig.headers['X-APP']).toBe('Comic');
       return [
         200,

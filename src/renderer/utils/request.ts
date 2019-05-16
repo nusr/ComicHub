@@ -23,13 +23,14 @@ function checkStatus(response) {
   if (response.status >= 200 && response.status < 300) {
     return response;
   }
-  const errorText = codeMessage[response.status] || response.statusText;
   const error = new Error();
   error.name = response.status;
   error.message = `请求错误 ${response.status}: ${response.url}`;
   throw error;
 }
-
+const contentType = {
+  'Content-Type': 'application/json; charset=utf-8',
+};
 /**
  *
  * 请求数据，返回promise
@@ -51,7 +52,7 @@ export default function request(url: string, options = {}) {
     if (!(newOptions.body instanceof FormData)) {
       newOptions.headers = {
         Accept: 'application/json',
-        'Content-Type': 'application/json; charset=utf-8',
+        ...contentType,
         ...newOptions.headers,
       };
       newOptions.body = JSON.stringify(newOptions.body);

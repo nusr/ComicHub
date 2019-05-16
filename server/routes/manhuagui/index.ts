@@ -26,12 +26,12 @@ const manHuaGui = async (ctx: Koa.BaseContext) => {
       await page.goto(downloadUrl, {
         waitUntil: 'networkidle2',
       });
-      const downloadLink = await page.evaluate(
-        () => document.querySelector('#mangaFile').src
+      const imageItem = await page.evaluate(() =>
+        document.querySelector('#mangaFile')
       );
       temp.push({
         page: i,
-        url: downloadLink,
+        url: imageItem.src,
       });
       await page.close();
     }

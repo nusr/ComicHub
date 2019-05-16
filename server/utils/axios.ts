@@ -21,17 +21,23 @@ if (
           options.httpsAgent = new SocksProxyAgent(proxyUrl);
           break;
         case 'http':
-          process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0;
+          process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
           options.httpAgent = tunnel.httpOverHttp({
             proxy: {
               host: config.proxy.host,
               port: parseInt(config.proxy.port, 10),
+              headers: {
+                'User-Agent': config.userAgent,
+              },
             },
           });
           options.httpsAgent = tunnel.httpsOverHttp({
             proxy: {
               host: config.proxy.host,
               port: parseInt(config.proxy.port, 10),
+              headers: {
+                'User-Agent': config.userAgent,
+              },
             },
           });
           break;
@@ -43,6 +49,9 @@ if (
               proxyAuth: `${config.proxy.auth.username}:${
                 config.proxy.auth.password
               }`,
+              headers: {
+                'User-Agent': config.userAgent,
+              },
             },
           });
           options.httpsAgent = tunnel.httpsOverHttps({
@@ -52,6 +61,9 @@ if (
               proxyAuth: `${config.proxy.auth.username}:${
                 config.proxy.auth.password
               }`,
+              headers: {
+                'User-Agent': config.userAgent,
+              },
             },
           });
           break;
@@ -75,7 +87,7 @@ axiosRetry(axios, {
   },
 });
 
-axios.defaults.headers.common['User-Agent'] = config.ua;
+axios.defaults.headers.common['User-Agent'] = config.userAgent;
 axios.defaults.headers.common['X-APP'] = 'Comic';
 
 export default axios;
