@@ -1,7 +1,8 @@
 import crypto from 'crypto';
-export default function md5(date: any): string {
+
+export default function md5(content: any): string {
     return crypto
         .createHash('md5')
-        .update(date)
+        .update(content)
         .digest('hex');
 }

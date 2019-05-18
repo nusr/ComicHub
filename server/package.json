@@ -3,8 +3,8 @@
   "scripts": {
     "postinstall": "npm run build",
     "start": "node dist/index.js",
-    "test": "NODE_ENV=test jest --coverage --runInBand --forceExit",
-    "jest": "NODE_ENV=test jest --runInBand --forceExit",
+    "test": "NODE_ENV=test jest --coverage --runInBand --forceExit --detectOpenHandles",
+    "jest": "NODE_ENV=test jest --runInBand --forceExit --detectOpenHandles",
     "build": "tsc",
     "watch-ts": "tsc -w",
     "serve-debug": "nodemon --inspect dist/index.js",
@@ -31,6 +31,7 @@
   },
   "devDependencies": {
     "@types/cheerio": "^0.22.11",
+    "@types/jest": "^24.0.13",
     "@types/koa": "^2.0.48",
     "@types/koa-bodyparser": "^4.2.2",
     "@types/koa-mount": "^3.0.1",
