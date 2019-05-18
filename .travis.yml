@@ -1,0 +1,16 @@
+language: node_js
+
+node_js: stable
+
+before_install:
+    - npm i -g cnpm
+
+install:
+    - npm install
+    - cd server && cnpm i
+
+before_script:
+    - cd ..
+
+script:
+    - npm run test

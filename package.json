@@ -21,7 +21,10 @@
     "readme": "node server/dist/utils/generateMarkdown.js",
     "style": "stylelint 'src/**/*.less' --syntax less",
     "prettier": "node ./scripts/prettier.js",
-    "lint": "eslint --fix --ext .js,.jsx,.ts,.tsx src server"
+    "lint": "eslint --fix --ext .js,.jsx,.ts,.tsx src server",
+    "test:react": "NODE_ENV=test jest --coverage --runInBand --forceExit --detectOpenHandles",
+    "test:server": "npm run --prefix ./server test",
+    "test": "concurrently \"npm run test:react\" \"npm run test:server\""
   },
   "devDependencies": {
     "@types/jest": "^24.0.13",

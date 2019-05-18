@@ -4,7 +4,6 @@
     "postinstall": "npm run build",
     "start": "node dist/index.js",
     "test": "NODE_ENV=test jest --coverage --runInBand --forceExit --detectOpenHandles",
-    "jest": "NODE_ENV=test jest --runInBand --forceExit --detectOpenHandles",
     "build": "tsc",
     "watch-ts": "tsc -w",
     "serve-debug": "nodemon --inspect dist/index.js",
