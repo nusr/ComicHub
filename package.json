@@ -22,7 +22,8 @@
     "prettier": "prettier \"**/*.{ts,tsx,js,jsx,less,js,json,md}\" --write",
     "lint-staged": "lint-staged",
     "format": "npm run lint && npm run prettier",
-    "update-readme": "node server/dist/utils/generateMarkdown.js"
+    "update-readme": "node server/dist/utils/generateMarkdown.js",
+    "style": "stylelint 'src/**/*.less' --syntax less"
   },
   "devDependencies": {
     "awesome-typescript-loader": "^5.2.1",
@@ -35,6 +36,13 @@
     "husky": "^2.2.0",
     "lint-staged": "^8.1.6",
     "prettier": "1.17.1",
+    "stylelint": "^10.0.1",
+    "stylelint-config-css-modules": "^1.4.0",
+    "stylelint-config-prettier": "^5.2.0",
+    "stylelint-config-rational-order": "^0.1.2",
+    "stylelint-config-standard": "^18.3.0",
+    "stylelint-declaration-block-no-ignored-properties": "^2.1.0",
+    "stylelint-order": "^3.0.0",
     "ts-loader": "^6.0.0",
     "tslint": "^5.10.0",
     "typescript": "^3.2.4",
@@ -70,7 +78,8 @@
       "**/*.{ts,tsx,js,jsx,less,js,json,md}": [
         "npm run prettier",
         "git add"
-      ]
+      ],
+      "**/*.less": "stylelint --syntax less"
     },
     "ignore": [
       "**/release/**/*",
