@@ -1,5 +1,5 @@
 interface ICommon {
-    id?: number; // 铸剑
+    id?: number; // 主键
     create_time?: number; // 创建时间
 }
 

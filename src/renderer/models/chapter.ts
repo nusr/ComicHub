@@ -1,22 +1,21 @@
-import { getMenuList } from '../services';
+import { postItem } from '../services';
 
 export default {
-    namespace: 'menu',
+    namespace: 'chapter',
     state: {
         list: [],
     },
     effects: {
         *fetch({ payload }, { call, put }) {
-            const response = yield call(getMenuList, payload);
-            console.log(response);
+            const response = yield call(postItem, payload);
             yield put({
                 payload: response,
-                type: 'saveData',
+                type: 'saveDict',
             });
         },
     },
     reducers: {
-        saveData(state, { payload }) {
+        saveDict(state, { payload }) {
             return {
                 ...state,
                 list: payload,

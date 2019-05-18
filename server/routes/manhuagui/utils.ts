@@ -4,7 +4,12 @@ import urlConfig from '../../shared/urlConfig';
 import { ISearchItem, IChapterItem, IImageItem } from '../../type';
 
 const baseUrl = urlConfig.manhuagui.base;
-
+const fixTitle = (value: string): string => {
+    if (value) {
+        return value.slice(3);
+    }
+    return '';
+};
 const getSearchList = (data: string) => {
     const $ = cheerio.load(data);
     const result: ISearchItem[] = [];
@@ -40,10 +45,10 @@ const getSearchList = (data: string) => {
             result.push({
                 url,
                 title,
-                area,
-                author,
-                introduce,
-                category,
+                area: fixTitle(area),
+                author: fixTitle(author),
+                introduce: fixTitle(introduce),
+                category: fixTitle(category),
                 cover,
             });
         }

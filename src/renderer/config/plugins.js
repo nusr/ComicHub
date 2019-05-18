@@ -6,23 +6,12 @@ export default [
         {
             antd: true,
             dll: true,
-            dva: {
-                hmr: true,
-            },
+            dva: true,
             dynamicImport: true,
             routes: {
                 exclude: [/components/],
             },
-            title: 'comic-downloader',
-            ...(os.platform() === 'darwin'
-                ? {
-                    dll: {
-                        exclude: ['@babel/runtime'],
-                        include: ['dva', 'dva/router', 'dva/saga', 'dva/fetch'],
-                    },
-                    hardSource: false,
-                }
-                : {}),
+            title: 'Comic Downloader',
         },
     ],
 ];

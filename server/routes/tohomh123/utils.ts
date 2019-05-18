@@ -73,7 +73,13 @@ const getChapterList = (data: string) => {
 };
 
 function getDownloadItem(data: string, pageSize: number) {
-    const link: string = data.match(/var pl = '([\s\S]*)';\s*var bqimg/)[1];
+    const linkResult: any = data.match(/var pl = '([\s\S]*)';\s*var bqimg/);
+    let link;
+    if (linkResult && linkResult[1]) {
+        link = linkResult[1];
+    } else {
+        return;
+    }
     const result: IImageItem[] = [];
     const fileName: string = link.split('/').pop();
     const extName: string = fileName.split('.').pop();
@@ -99,6 +105,7 @@ function getDownloadUrl(name: string, page: number): string {
         return `${url}#p=${page}`;
     }
 }
+
 export default {
     getChapterList,
     getSearchList,

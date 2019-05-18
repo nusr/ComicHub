@@ -55,16 +55,17 @@ const mysqlHandler = async (ctx: Koa.Context, next: () => Promise<any>) => {
     ctx.state.type = requestData.type;
     if (!requestData.noCache) {
         const { type, name } = requestData;
-        if (type === configData.typeConfig.search) {
-            const result: any = await mysqlService.foggySearch(`%${name}%`, type);
-            if (result && result.length > 0) {
-                ctx.body = result;
-                ctx.response.set({
-                    'Mysql-Search-Table-Cache': 'true',
-                });
-                return;
-            }
-        }
+        /*        if (type === configData.typeConfig.search) {
+                    const result: any = await mysqlService.foggySearch(`%${name}%`, type)
+                    if (result && result.length > 0) {
+                        ctx.body = result;
+                        ctx.response.set({
+                            'Mysql-Search-Table-Cache': 'true',
+                        });
+                        return;
+                    }
+                }
+                */
         if (type === configData.typeConfig.chapter) {
             const searchItem: ISearchMysql = await mysqlService.searchOne(
                 name,
@@ -187,6 +188,10 @@ const mysqlHandler = async (ctx: Koa.Context, next: () => Promise<any>) => {
                     );
                 }
             }
+            dataResult = {
+                message: '下载成功！',
+                code: 200,
+            };
         }
     } else {
         dataResult = handleEmpty(stateType);

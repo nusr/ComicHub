@@ -1,8 +1,8 @@
 import { Button, Form, Input, Select } from 'antd';
 import React, { useEffect } from 'react';
 
-interface IFormData {
-    type: string;
+export interface IFormData {
+    url: string;
     name: string;
 }
 
@@ -17,13 +17,14 @@ const FormItem = Form.Item;
 interface IProps {
     menuList: IOptionData[];
     form: any;
+    handleFormSubmit: any;
 }
 
 function SearchForm(props: IProps) {
-    const { form, menuList } = props;
+    const { form, menuList, handleFormSubmit } = props;
     const currentData: IFormData = {
         name: '',
-        type: '',
+        url: '',
     };
 
     function resetForm() {
@@ -40,15 +41,17 @@ function SearchForm(props: IProps) {
             if (error) {
                 return;
             }
-            console.log(fieldsValue);
+            if (handleFormSubmit) {
+                handleFormSubmit(fieldsValue);
+            }
         });
     }
 
     return (
         <Form onSubmit={handleSubmit} layout="inline">
             <FormItem label="站点">
-                {form.getFieldDecorator('type', {
-                    initialValue: currentData.type,
+                {form.getFieldDecorator('url', {
+                    initialValue: currentData.url,
                     rules: [{ required: true, message: '请选择站点' }],
                 })(
                     <Select placeholder="请选择状态" style={{ width: 170 }}>
@@ -79,8 +82,10 @@ function SearchForm(props: IProps) {
         </Form>
     );
 }
+
 SearchForm.defaultProps = {
     menuList: [],
+    handleFormSubmit: null,
 };
 const wrapperForm = Form.create({ name: 'SearchForm' })(SearchForm);
 

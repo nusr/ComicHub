@@ -4,7 +4,7 @@ import configData from '../../shared/config';
 import * as Koa from 'koa';
 import { IRequestData } from '../../type';
 
-export default async function tuHao(ctx: Koa.BaseContext) {
+const tuHao = async (ctx: Koa.BaseContext) => {
     const { type, name, page_size }: IRequestData = ctx.request.body;
     let temp: any;
     if (configData.typeConfig.search === type) {
@@ -20,4 +20,5 @@ export default async function tuHao(ctx: Koa.BaseContext) {
         temp = util.getDownloadItem(response.data, page_size);
     }
     ctx.state.data = temp;
-}
+};
+export default tuHao;
