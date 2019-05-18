@@ -17,7 +17,7 @@
     "routes/**/*",
     "index.ts",
     "middleware/*",
-    "mysql/*",
+    "sql/*",
     "router/*",
     "service/*",
     "shared/*",

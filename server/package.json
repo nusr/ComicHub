@@ -1,9 +1,10 @@
 {
   "main": "dist/index.js",
   "scripts": {
-    "postinstall": "npm run build",
+    "postinstall": "npm run build && npm run readme",
+    "readme": "node ./dist/utils/generateMarkdown.js",
     "start": "node dist/index.js",
-    "test": "NODE_ENV=test jest --coverage --runInBand --forceExit --detectOpenHandles",
+    "test": "NODE_ENV=test jest --coverage --runInBand --forceExit --detectOpenHandles --passWithNoTests",
     "build": "tsc",
     "watch-ts": "tsc -w",
     "serve-debug": "nodemon --inspect dist/index.js",
@@ -29,6 +30,7 @@
     "winston": "3.2.1"
   },
   "devDependencies": {
+    "@types/better-sqlite3": "^5.4.0",
     "@types/cheerio": "^0.22.11",
     "@types/jest": "^24.0.13",
     "@types/koa": "^2.0.48",

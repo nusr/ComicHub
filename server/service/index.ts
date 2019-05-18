@@ -1,4 +1,4 @@
-import mysql from '../mysql';
+import mysql from '../sql/mysql';
 
 function getAllData(tableName: string) {
     return new Promise(resolve => {

@@ -6,7 +6,7 @@ before_install:
     - npm i -g cnpm
 
 install:
-    - npm install
+    - cnpm i
     - cd server && cnpm i
 
 before_script:
