@@ -1,7 +1,7 @@
 import * as Koa from 'koa';
 const debugHandler = async (ctx: Koa.BaseContext, next: () => Promise<any>) => {
-  ctx.debug.request++;
+    ctx.debug.request++;
 
-  await next();
+    await next();
 };
 export default debugHandler;

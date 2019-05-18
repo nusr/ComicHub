@@ -28,6 +28,7 @@ function checkStatus(response) {
   error.message = `请求错误 ${response.status}: ${response.url}`;
   throw error;
 }
+
 const contentType = {
   'Content-Type': 'application/json; charset=utf-8',
 };
@@ -63,16 +64,18 @@ export default function request(url: string, options = {}) {
       };
     }
   }
+  // @ts-ignore
   return fetch(url, newOptions)
     .then(checkStatus)
-    .then((response) => {
+    .then((response: any) => {
       return response.json();
     })
     .catch((error: Error) => {
+      const title = codeMessage[error.name] || error.name || '请求错误';
       notification.error({
         description: error.message,
         duration: 0,
-        message: error.name || '请求错误',
+        message: title,
       });
     });
 }

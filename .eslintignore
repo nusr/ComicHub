@@ -1,8 +1,7 @@
 # Created by .ignore support plugin (hsz.mobi)
 scripts
 docs
-server
 dist
 downloadResult
 node_modules
-
+server/types/*

@@ -24,8 +24,8 @@ import apiTemplate from './middleware/api-template';
 import api_router from './router/api_router';
 import apiResponseHandler from './middleware/api-response-handler';
 
-process.on('uncaughtException', (e) => {
-  logger.error('uncaughtException: ' + e);
+process.on('uncaughtException', e => {
+    logger.error('uncaughtException: ' + e);
 });
 
 logger.info('Comic start!');
@@ -43,7 +43,7 @@ app.use(accessControl);
 
 // 6 debug
 app.context.debug = {
-  request: 0,
+    request: 0,
 };
 app.use(debug);
 
@@ -63,21 +63,21 @@ app.use(mount('/api', api_router.routes())).use(api_router.allowedMethods());
 // connect
 let server;
 if (config.connect.port) {
-  server = app.listen(config.connect.port);
-  logger.info('Running in http://localhost:' + config.connect.port);
+    server = app.listen(config.connect.port);
+    logger.info('Running in http://localhost:' + config.connect.port);
 }
 if (config.connect.socket) {
-  if (fs.existsSync(config.connect.socket)) {
-    fs.unlinkSync(config.connect.socket);
-  }
-  server = app.listen(config.connect.socket);
-  logger.info('Listening Unix Socket ' + config.connect.socket);
-  process.on('SIGINT', () => {
-    fs.unlinkSync(config.connect.socket);
-    process.exit();
-  });
+    if (fs.existsSync(config.connect.socket)) {
+        fs.unlinkSync(config.connect.socket);
+    }
+    server = app.listen(config.connect.socket);
+    logger.info('Listening Unix Socket ' + config.connect.socket);
+    process.on('SIGINT', () => {
+        fs.unlinkSync(config.connect.socket);
+        process.exit();
+    });
 }
 export default {
-  server: server,
-  app: app,
+    server: server,
+    app: app,
 };

@@ -1,12 +1,12 @@
 const prettier = require('prettier');
 const fs = require('fs');
 const chalk = require('chalk');
-
 const prettierConfigPath = require.resolve('../.prettierrc');
 
 const files = process.argv.slice(2);
 
 let didError = false;
+
 files.forEach(file => {
   Promise.all([
     prettier.resolveConfig(file, {
@@ -20,7 +20,6 @@ files.forEach(file => {
         return;
       }
       const input = fs.readFileSync(file, 'utf8');
-
       const withParserOptions = {
         ...options,
         parser: fileInfo.inferredParser,

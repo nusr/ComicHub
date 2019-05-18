@@ -19,3 +19,6 @@ tmp
 result
 node_modules
 cache
+# 锁住版本会有问题
+yarn.lock
+package-lock.json

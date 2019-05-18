@@ -13,26 +13,29 @@
     "build:main-dev": "NODE_ENV=development webpack --config ./scripts/webpack.main.dev.js",
     "build:renderer": "APP_ROOT=src/renderer umi build",
     "watch": "tsc -w",
-    "lint:main": "tslint -c tslint.json -p tsconfig.json --fix",
-    "lint:server": "npm run --prefix ./server lint",
-    "lint": "concurrently \"npm run lint:main\" \"npm run lint:server\"",
     "debug:main": "electron --inspect=5858 -w ./dist/main/main.js",
     "pack": "npm run build:renderer && npm run build:main-prod && electron-builder --dir",
     "dist": "electron-builder",
-    "prettier": "prettier \"**/*.{ts,tsx,js,jsx,less,js,json,md}\" --write",
     "lint-staged": "lint-staged",
     "format": "npm run lint && npm run prettier",
     "update-readme": "node server/dist/utils/generateMarkdown.js",
-    "style": "stylelint 'src/**/*.less' --syntax less"
+    "style": "stylelint 'src/**/*.less' --syntax less",
+    "prettier": "node ./scripts/prettier.js",
+    "lint": "eslint --fix --ext .js,.jsx,.ts,.tsx src server"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^1.9.0",
     "awesome-typescript-loader": "^5.2.1",
+    "babel-eslint": "^10.0.1",
     "concurrently": "^4.1.0",
     "electron": "^5.0.1",
     "electron-builder": "^20.38.5",
     "electron-debug": "^3.0.0",
     "electron-webpack": "^2.6.2",
     "electron-webpack-ts": "^3.1.1",
+    "eslint": "^5.16.0",
+    "eslint-config-alloy": "2.0.0-alpha.2",
+    "eslint-config-prettier": "^4.3.0",
     "husky": "^2.2.0",
     "lint-staged": "^8.1.6",
     "prettier": "1.17.1",
@@ -43,9 +46,7 @@
     "stylelint-config-standard": "^18.3.0",
     "stylelint-declaration-block-no-ignored-properties": "^2.1.0",
     "stylelint-order": "^3.0.0",
-    "ts-loader": "^6.0.0",
-    "tslint": "^5.10.0",
-    "typescript": "^3.2.4",
+    "typescript": "^3.4.5",
     "umi": "^2.4.4",
     "umi-plugin-react": "^1.4.2",
     "wait-on": "^3.2.0",
@@ -70,13 +71,17 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run update-readme && npm run lint && npm run lint-staged"
+      "pre-commit": "npm run update-readme && npm run lint-staged"
     }
   },
   "lint-staged": {
     "linters": {
-      "**/*.{ts,tsx,js,jsx,less,js,json,md}": [
-        "npm run prettier",
+      "**/*.{ts,tsx,jsx,js,json,md}": [
+        "node ./scripts/lint-prettier.js",
+        "git add"
+      ],
+      "**/*.{ts,tsx,jsx,js}": [
+        "eslint --fix --ext .js,.jsx,.ts,.tsx",
         "git add"
       ],
       "**/*.less": "stylelint --syntax less"
@@ -92,6 +97,7 @@
     "Electron",
     "umi",
     "Comic",
+    "Downloader",
     "typescript"
   ],
   "author": {

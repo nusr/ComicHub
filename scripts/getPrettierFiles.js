@@ -1,19 +1,27 @@
 const glob = require('glob');
-
+const ignoreList = [
+  '**/node_modules/**',
+  'build/**',
+  'release/**',
+  '**/dist/**',
+  'downloadResult/**',
+  '**/logs/**',
+  '**/tmp**',
+];
 const getPrettierFiles = () => {
   let files = [];
   const jsFiles = glob.sync('src/**/*.js*', {
-    ignore: ['**/node_modules/**', 'build/**'],
+    ignore: ignoreList,
   });
   const tsFiles = glob.sync('src/**/*.ts*', {
-    ignore: ['**/node_modules/**', 'build/**'],
+    ignore: ignoreList,
   });
   const configFiles = glob.sync('config/**/*.js*', {
-    ignore: ['**/node_modules/**', 'build/**'],
+    ignore: ignoreList,
   });
   const scriptFiles = glob.sync('scripts/**/*.js');
   const lessFiles = glob.sync('src/**/*.less*', {
-    ignore: ['**/node_modules/**', 'build/**'],
+    ignore: ignoreList,
   });
   files = files.concat(jsFiles);
   files = files.concat(tsFiles);
