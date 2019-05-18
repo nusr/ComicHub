@@ -11,8 +11,8 @@ import menuRouter from '../routes/menu';
 import tohomh from '../routes/tohomh123';
 import manhuagui from '../routes/manhuagui';
 
-const router = new Router();
-router.get('/', async ctx => {
+const index = new Router();
+index.get('/', async ctx => {
     ctx.set({
         'Content-Type': 'text/html; charset=UTF-8',
     });
@@ -64,10 +64,10 @@ router.get('/', async ctx => {
 });
 
 // test
-router.get('/test/:id', testRouter);
+index.get('/test/:id', testRouter);
 // 左侧菜单
-router.get('/menu', menuRouter);
+index.get('/menu', menuRouter);
 // 看漫画
-router.post('/manhuagui', manhuagui);
-router.post('/tohomh123', tohomh);
-export default router;
+index.post('/manhuagui', manhuagui);
+index.post('/tohomh123', tohomh);
+export default index;

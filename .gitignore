@@ -11,3 +11,4 @@ yarn-error.log*
 /coverage
 .vscode
 .idea
+tmp
