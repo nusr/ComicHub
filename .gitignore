@@ -12,3 +12,4 @@ yarn-error.log*
 .vscode
 .idea
 tmp
+src/renderer/**/*.js*
