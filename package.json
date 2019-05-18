@@ -18,7 +18,7 @@
     "dist": "electron-builder",
     "lint-staged": "lint-staged",
     "format": "npm run lint && npm run prettier",
-    "update-readme": "node server/dist/utils/generateMarkdown.js",
+    "readme": "node server/dist/utils/generateMarkdown.js",
     "style": "stylelint 'src/**/*.less' --syntax less",
     "prettier": "node ./scripts/prettier.js",
     "lint": "eslint --fix --ext .js,.jsx,.ts,.tsx src server"
@@ -71,7 +71,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run update-readme && npm run lint-staged"
+      "pre-commit": "npm run readme && npm run lint-staged"
     }
   },
   "lint-staged": {

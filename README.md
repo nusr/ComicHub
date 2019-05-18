@@ -13,14 +13,21 @@ Koa + MySQL + Umi + Electron + React + Typescript 打造 。
 前端装包
 
 ```bash
-npm i
+$ npm i
+```
+
+安装 cnpm , 服务端装包要用
+
+```bash
+$ npm install -g cnpm --registry=https://registry.npm.taobao.org
 ```
 
 服务端装包
 
 ```bash
-cd server
-npm i
+# 使用 yarn 或 npm  安装 puppeteer 会报错
+$ cd server
+$ cnpm i
 ```
 
 ### 运行
@@ -28,13 +35,13 @@ npm i
 启动前端页面
 
 ```bash
-npm run start:react
+$ npm run start:react
 ```
 
 启动服务端
 
 ```bash
-npm run start:server
+$ npm run start:server
 ```
 
 ## 功能
