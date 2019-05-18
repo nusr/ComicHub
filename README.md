@@ -1,12 +1,14 @@
 # comic-downloader
 
+[![Build Status](https://travis-ci.org/nusr/comic-downloader.svg?branch=master)](https://travis-ci.org/nusr/comic-downloader)
+
 > Comic downloader (漫画下载器)
 
 ## 介绍
 
 comic-downloader 是一款漫画下载器。爬取网站的图片，生成 PDF 文件。
 
-Koa + MySQL + Umi + Electron + React + Typescript 打造 。
+Koa + MySQL + Umi + Electron + React + Typescript 倾力打造 。
 
 ## 装包
 
