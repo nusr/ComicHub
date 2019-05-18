@@ -5,6 +5,8 @@ import logger from '../utils/logger';
 import makeDir from '../utils/makeDir';
 import config from '../shared/config';
 import axios from './axios';
+import imageConverter from 'webp-converter';
+
 const getComicSite = (url: string): string => {
     const temp = url.split('.');
     temp.pop();
@@ -47,13 +49,21 @@ function downloadImage(
             sharp(filePath)
                 .jpeg()
                 .toFile(jpgPath)
-                .catch(error => {
-                    logger.error(error);
+                .catch((error: Error) => {
+                    if (error) {
+                        logger.error(error);
+                        imageConverter.dwebp(
+                            filePath,
+                            jpgPath,
+                            '-o',
+                            (convertError: Error) => {
+                                logger.error(convertError);
+                            }
+                        );
+                    }
                 });
-            /* webp.dwebp(filePath, jpgPath, '-o', (error) => {
-                 logger.error(error);
-             }); */
         }
     });
 }
+
 export default downloadImage;
