@@ -37,7 +37,7 @@ app.context.debug = {
 app.use(debug);
 
 app.use(apiResponseHandler);
-app.use(apiTemplate);
+// app.use(apiTemplate);
 
 app.use(bodyParser());
 

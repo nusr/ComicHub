@@ -1,6 +1,6 @@
 import { Card, Button, message } from 'antd';
 import { connect } from 'dva';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Fragment } from 'react';
 import CommonFooter from '../../components/CommonFooter';
 import SearchForm, { IFormData } from '../../components/SearchForm';
 import { searchColumns, chapterColumns, typeConfig } from './columns';
@@ -22,8 +22,9 @@ function HomePage(props) {
         dispatch,
         menuData = [],
         loading,
-        searchData = [],
-        chapterData,
+        searchList = [],
+        chapterList,
+        downloadResult,
     } = props;
     const [currentType, setCurrentType] = useState(typeConfig.search);
     const [selectedRows, setSelectedRows] = useState([]);
@@ -36,17 +37,13 @@ function HomePage(props) {
             type: 'menu/fetch',
         });
     }, []);
-    let columns = [];
-    if (currentType === typeConfig.search) {
-        columns = searchColumns;
-        dataSource = searchData;
-    }
-    if (currentType === typeConfig.chapter) {
-        columns = chapterColumns;
-        dataSource = chapterData;
+
+    function handleSelectRows(value) {
+        console.log(value);
+        setSelectedRows(value);
     }
 
-    function handleFormSubmit(value: IFormData) {
+    function handleSearchSubmit(value: IFormData) {
         console.log(value);
         if (value.name && value.url) {
             setCurrentUrl(value.url);
@@ -60,69 +57,95 @@ function HomePage(props) {
         }
     }
 
-    function handleSelectRows(value) {
-        console.log(value);
-        setSelectedRows(value);
+    function handleChapterSubmit() {
+        if (!selectedRows || selectedRows.length === 0) {
+            message.error(`请选择漫画！`);
+            return;
+        }
+        const item = selectedRows[0];
+        setCurrentType(typeConfig.chapter);
+        dispatch({
+            type: 'chapter/fetch',
+            payload: {
+                url: currentUrl,
+                name: item.url,
+                type: typeConfig.chapter,
+            },
+        });
     }
 
-    function handleCheckSubmit() {
+    function handleDownloadSubmit() {
+        if (!selectedRows || selectedRows.length === 0) {
+            message.error(`请选择章节！`);
+            return;
+        }
+        const item = selectedRows[0];
+        setCurrentType(typeConfig.download);
+        dispatch({
+            type: 'download/fetch',
+            payload: {
+                url: currentUrl,
+                name: item.url,
+                type: typeConfig.download,
+                page_size: item.page_size,
+            },
+        });
+    }
+
+    const getCurrentChild = () => {
         if (currentType === typeConfig.search) {
-            if (!selectedRows || selectedRows.length === 0) {
-                message.error(`请选择漫画！`);
-                return;
-            }
-            const item = selectedRows[0];
-            setCurrentType(typeConfig.chapter);
-            dispatch({
-                type: 'chapter/fetch',
-                payload: {
-                    url: currentUrl,
-                    name: item.url,
-                    type: typeConfig.chapter,
-                },
-            });
+            return (
+                <Fragment>
+                    <div className={styles.submit}>
+                        <Button type="primary" onClick={handleChapterSubmit}>
+                            提交
+                        </Button>
+                    </div>
+                    <DumpTable
+                        loading={loading}
+                        checkType={checkType}
+                        selectedRows={selectedRows}
+                        data={searchList}
+                        columns={searchColumns}
+                        onSelectRow={handleSelectRows}
+                    />
+                </Fragment>
+            );
         }
         if (currentType === typeConfig.chapter) {
-            if (!selectedRows || selectedRows.length === 0) {
-                message.error(`请选择章节！`);
-                return;
-            }
-            const item = selectedRows[0];
-            setCurrentType(typeConfig.download);
-            dispatch({
-                type: 'download/fetch',
-                payload: {
-                    url: currentUrl,
-                    name: item.url,
-                    type: typeConfig.download,
-                    page_size: item.page_size,
-                },
-            });
+            return (
+                <Fragment>
+                    <div className={styles.submit}>
+                        <Button type="primary" onClick={handleDownloadSubmit}>
+                            提交
+                        </Button>
+                    </div>
+                    <DumpTable
+                        loading={loading}
+                        checkType={checkType}
+                        selectedRows={selectedRows}
+                        data={chapterList}
+                        columns={chapterColumns}
+                        onSelectRow={handleSelectRows}
+                    />
+                </Fragment>
+            );
         }
-    }
-
+        if (currentType === typeConfig.download) {
+            return <div>{downloadResult ? '下载中。。。' : '下载成功'}</div>;
+        }
+        return null;
+    };
     return (
         <div className={styles.mainLayout}>
             <Card className={styles.header}>
                 <SearchForm
                     menuList={menuList}
-                    handleFormSubmit={handleFormSubmit}
+                    handleFormSubmit={handleSearchSubmit}
                 />
             </Card>
             <Card className={styles.content} bordered={false}>
-                <div className={styles.submit}>
-                    <Button type="primary" onClick={handleCheckSubmit}>
-                        提交
-                    </Button>
-                </div>
-                <DumpTable
-                    loading={loading}
-                    checkType={checkType}
-                    selectedRows={selectedRows}
-                    data={dataSource}
-                    columns={columns}
-                    onSelectRow={handleSelectRows}
-                />
+                {getCurrentChild()}
             </Card>
             <div className={styles.footer}>
                 <CommonFooter />
@@ -131,9 +154,10 @@ function HomePage(props) {
     );
 }
 
-export default connect(({ menu, loading, search, chapter }) => ({
+export default connect(({ menu, loading, search, chapter, download }) => ({
     menuData: menu.list,
     loading: loading.models.download,
-    searchData: search.list,
-    chapterData: chapter.list,
+    searchList: search.list,
+    chapterList: chapter.list,
+    downloadResult: download.result,
 }))(HomePage);

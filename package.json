@@ -15,7 +15,7 @@
         "debug:main": "electron --inspect=5858 -w ./dist/main/main.js",
         "pack": "npm run build:renderer && npm run build:main-prod && electron-builder --dir",
         "dist": "electron-builder",
-        "lint-staged": "lint-staged",
+        "lint-staged": "npm run readme &&  lint-staged",
         "format": "npm run lint && npm run style && npm run prettier",
         "style": "stylelint 'src/**/*.less' --syntax less --fix",
         "prettier": "node ./scripts/prettier.js",
@@ -76,7 +76,7 @@
     },
     "husky": {
         "hooks": {
-            "pre-commit": "npm run readme && npm run lint-staged",
+            "pre-commit": "npm run lint-staged",
             "pre-push": "npm run test"
         }
     },
@@ -87,7 +87,7 @@
                 "git add"
             ],
             "**/*.{ts,tsx,jsx,js}": [
-                "eslint --fix --ext .js,.jsx,.ts,.tsx",
+                "eslint --fix",
                 "git add"
             ],
             "**/*.less": [

@@ -7,11 +7,21 @@ export default {
         result: false,
     },
     effects: {
-        *fetch({ payload }, { call, put }) {
-            const response = yield call(postItem, payload);
-            if (response && response.code === 200) {
-                message.error(`下载成功！`);
-            }
+        * fetch({ payload }, { call, put }) {
+            const response: any = yield call(postItem, payload);
+            const checkCode: boolean = response && response.code === 200;
+            yield put({
+                payload: checkCode,
+                type: 'saveResult',
+            });
+        },
+    },
+    reducers: {
+        saveResult(state, { payload }) {
+            return {
+                ...state,
+                result: payload,
+            };
         },
     },
 };

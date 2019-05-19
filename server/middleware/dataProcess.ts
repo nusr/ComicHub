@@ -46,81 +46,77 @@ function filterArray(data: any = []) {
     return result;
 }
 
-// eslint-disable-next-line complexity
+/* eslint-disable */
 const mysqlHandler = async (ctx: Koa.Context, next: () => Promise<any>) => {
     const requestData: IRequestData = ctx.request.body;
-    ctx.state.url = requestData.name;
-    ctx.state.type = requestData.type;
-    if (!requestData.noCache) {
-        const { type, name } = requestData;
-        /*        if (type === configData.typeConfig.search) {
-                    const result: any = await mysqlService.foggySearch(`%${name}%`, type)
-                    if (result && result.length > 0) {
-                        ctx.body = result;
-                        ctx.response.set({
-                            'Mysql-Search-Table-Cache': 'true',
-                        });
-                        return;
-                    }
-                }
-                */
-        if (type === configData.typeConfig.chapter) {
-            const searchItem: ISearchMysql = await mysqlService.searchOne(
-                name,
-                configData.typeConfig.search
-            );
-            const results: any = await mysqlService.searchItem(
-                searchItem.id,
-                type,
-                'search_id'
-            );
-            if (results && results.length > 0) {
-                ctx.body = results;
-                ctx.response.set({
-                    'Mysql-Chapter-Table-Cache': 'true',
-                });
-                return;
-            }
-        }
-        if (type === configData.typeConfig.download) {
-            const chapterItem: IChapterMysql = await mysqlService.searchOne(
-                name,
-                configData.typeConfig.chapter
-            );
-            const results: any = await mysqlService.searchItem(
-                chapterItem ? chapterItem.id : '',
-                type,
-                'chapter_id'
-            );
-            if (results && results.length > 0) {
-                const searchItem: ISearchMysql = await mysqlService.searchOne(
-                    chapterItem.search_id,
-                    configData.typeConfig.search,
-                    'id'
-                );
-
-                const downloadList = formatDownloadPath(
-                    results,
-                    searchItem,
-                    chapterItem
-                );
-                for (const item of downloadList) {
-                    await sleep(100);
-                    downloadImage(
-                        item.url,
-                        item.fileName,
-                        parseUrl.getReferer(name)
-                    );
-                }
-                ctx.response.set({
-                    'Mysql-Table-Download-Cache': 'true',
-                });
-                ctx.body = results;
-                return;
-            }
+    const { type, name } = requestData;
+    ctx.state.url = name;
+    ctx.state.type = type;
+    if (!requestData.noCache && type === configData.typeConfig.search) {
+        const result: any = await mysqlService.foggySearch(`%${name}%`, type);
+        if (result && result.length > 0) {
+            ctx.body = result;
+            ctx.response.set({
+                'Mysql-Search-Table-Cache': 'true',
+            });
+            return;
         }
     }
+    if (type === configData.typeConfig.chapter) {
+        const searchItem: ISearchMysql = await mysqlService.searchOne(
+            name,
+            configData.typeConfig.search
+        );
+        const results: any = await mysqlService.searchItem(
+            searchItem.id,
+            type,
+            'search_id'
+        );
+        if (results && results.length > 0) {
+            ctx.body = results;
+            ctx.response.set({
+                'Mysql-Chapter-Table-Cache': 'true',
+            });
+            return;
+        }
+    }
+    if (type === configData.typeConfig.download) {
+        const chapterItem: IChapterMysql = await mysqlService.searchOne(
+            name,
+            configData.typeConfig.chapter
+        );
+        const results: any = await mysqlService.searchItem(
+            chapterItem ? chapterItem.id : '',
+            type,
+            'chapter_id'
+        );
+        if (results && results.length > 0) {
+            const searchItem: ISearchMysql = await mysqlService.searchOne(
+                chapterItem.search_id,
+                configData.typeConfig.search,
+                'id'
+            );
 
+            const downloadList = formatDownloadPath(
+                results,
+                searchItem,
+                chapterItem
+            );
+            for (const item of downloadList) {
+                await sleep(100);
+                downloadImage(
+                    item.url,
+                    item.fileName,
+                    parseUrl.getReferer(name)
+                );
+            }
+            ctx.response.set({
+                'Mysql-Table-Download-Cache': 'true',
+            });
+            ctx.body = results;
+            return;
+        }
+    }
     await next();
     let dataResult = ctx.state.data;
     const stateType = ctx.state.type;
