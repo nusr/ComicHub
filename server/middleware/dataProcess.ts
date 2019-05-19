@@ -26,14 +26,12 @@ function formatDownloadPath(
     chapterItem: IChapterMysql
 ) {
     const dirPath = `${searchItem.title}/${chapterItem.title}`;
-    return dataResult.map(
-        (item: any): any => {
-            return {
-                url: item.url,
-                fileName: `${dirPath}/${item.page}`,
-            };
-        }
-    );
+    return dataResult.map((item: any): any => {
+        return {
+            url: item.url,
+            fileName: `${dirPath}/${item.page}`,
+        };
+    });
 }
 
 function filterArray(data: any = []) {
@@ -108,7 +106,11 @@ const mysqlHandler = async (ctx: Koa.Context, next: () => Promise<any>) => {
                 );
                 for (const item of downloadList) {
                     await sleep(100);
-                    downloadImage(item.url, item.fileName, parseUrl.getReferer(name));
+                    downloadImage(
+                        item.url,
+                        item.fileName,
+                        parseUrl.getReferer(name)
+                    );
                 }
                 ctx.response.set({
                     'Mysql-Table-Download-Cache': 'true',

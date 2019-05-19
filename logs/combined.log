@@ -1,2 +1,0 @@
-{"message":"Request /test fail, retry attempt #1: Error: Request failed with status code 404","level":"error"}
-{"message":"Request /test fail, retry attempt #2: Error: Request failed with status code 404","level":"error"}

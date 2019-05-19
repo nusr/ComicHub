@@ -85,8 +85,7 @@ function getDownloadItem(data: string) {
     return src;
 }
 
-const getSearchUrl = (name: string): string =>
-    `${baseUrl}/s/${encodeURIComponent(name)}.html`;
+const getSearchUrl = (name: string): string => `${baseUrl}/s/${encodeURIComponent(name)}.html`;
 const getDownloadUrl = (name: string, page: number): string => {
     const url = name;
     if (page === 1) {

@@ -5,9 +5,9 @@ const errorHandler = async (ctx: Koa.BaseContext, next: () => Promise<any>) => {
     try {
         await next();
     } catch (err) {
-        logger.error(
-            `Error in ${ctx.request.path}: ${err instanceof Error ? err.stack : err}`
-        );
+        logger.error(`Error in ${ctx.request.path}: ${
+            err instanceof Error ? err.stack : err
+        }`);
         ctx.set({
             'Content-Type': 'text/html; charset=UTF-8',
         });

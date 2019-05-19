@@ -2,6 +2,8 @@
 
 > Comic downloader (漫画下载器)
 
+此项目正在加急开发中。。。
+
 ## 介绍
 
 comic-downloader 是一款漫画下载器。爬取网站的图片，生成 PDF 文件。

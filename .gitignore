@@ -12,4 +12,6 @@ yarn-error.log*
 .vscode
 .idea
 tmp
-src/renderer/**/*.js*
+yarn.lock
+package-lock.json
+log

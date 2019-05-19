@@ -27,9 +27,7 @@ const manHuaGui = async (ctx: Koa.BaseContext) => {
         await page.goto(name, {
             waitUntil: 'networkidle0',
         });
-        const html = await page.evaluate(
-            () => document.querySelector('html').innerHTML
-        );
+        const html = await page.evaluate(() => document.querySelector('html').innerHTML);
         const imageSrc = util.getDownloadItem(html);
         temp.push({
             page: pageIndex,
@@ -40,9 +38,7 @@ const manHuaGui = async (ctx: Koa.BaseContext) => {
             const nextItem = await page.$('#next');
             nextItem.click();
             await sleep(500);
-            const html = await page.evaluate(
-                () => document.querySelector('html').innerHTML
-            );
+            const html = await page.evaluate(() => document.querySelector('html').innerHTML);
             const imageSrc = util.getDownloadItem(html);
             temp.push({
                 page: pageIndex,

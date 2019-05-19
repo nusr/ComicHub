@@ -104,12 +104,15 @@ function HomePage(props) {
     return (
         <div className={styles.mainLayout}>
             <Card className={styles.header}>
-                <SearchForm menuList={menuList} handleFormSubmit={handleFormSubmit} />
+                <SearchForm
+                    menuList={menuList}
+                    handleFormSubmit={handleFormSubmit}
+                />
             </Card>
             <Card className={styles.content} bordered={false}>
                 <div className={styles.submit}>
                     <Button type="primary" onClick={handleCheckSubmit}>
-            提交
+                        提交
                     </Button>
                 </div>
                 <DumpTable

@@ -7,9 +7,9 @@ import config from '../shared/config';
 
 if (
     config.proxy &&
-  config.proxy.protocol &&
-  config.proxy.host &&
-  config.proxy.port
+    config.proxy.protocol &&
+    config.proxy.host &&
+    config.proxy.port
 ) {
     const proxyUrl = `${config.proxy.protocol}://${config.proxy.host}:${
         config.proxy.port
@@ -70,7 +70,9 @@ if (
                     break;
             }
             if (config.proxy.auth) {
-                options.headers['Proxy-Authorization'] = `Basic ${config.proxy.auth}`;
+                options.headers['Proxy-Authorization'] = `Basic ${
+                    config.proxy.auth
+                }`;
             }
             logger.info(`Proxy for ${options.url}`);
         }
@@ -81,9 +83,7 @@ axiosRetry(axios, {
     retries: config.requestRetry,
     retryCondition: () => true,
     retryDelay: (count, err) => {
-        logger.error(
-            `Request ${err.config.url} fail, retry attempt #${count}: ${err}`
-        );
+        logger.error(`Request ${err.config.url} fail, retry attempt #${count}: ${err}`);
         return 100;
     },
 });

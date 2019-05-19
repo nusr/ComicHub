@@ -1,5 +1,6 @@
 import Router from 'koa-router';
 import path from 'path';
+import * as Koa from 'koa';
 import fs from 'fs';
 import mustache from 'mustache';
 import sourceUsed from 'pidusage';
@@ -12,7 +13,7 @@ import tohomh from '../routes/tohomh123';
 import manhuagui from '../routes/manhuagui';
 
 const index = new Router();
-index.get('/', async ctx => {
+index.get('/', async (ctx: Koa.Context) => {
     ctx.set({
         'Content-Type': 'text/html; charset=UTF-8',
     });
@@ -22,7 +23,7 @@ index.get('/', async ctx => {
         showDebug = false;
     } else {
         showDebug =
-      config.debugInfo === true || config.debugInfo === ctx.query.debug;
+            config.debugInfo === true || config.debugInfo === ctx.query.debug;
     }
 
     const stats = await sourceUsed(process.pid);
@@ -30,7 +31,7 @@ index.get('/', async ctx => {
     ctx.set({
         'Cache-Control': 'no-cache',
     });
-    const filePath = path.resolve(__dirname, '../../views/welcome.html');
+    const filePath = path.resolve(__dirname, '../views/welcome.html');
     logger.info(filePath);
     const viewData = {
         showDebug,
@@ -42,8 +43,7 @@ index.get('/', async ctx => {
             {
                 name: '请求频率',
                 value:
-          ((ctx.debug.request / (stats.elapsed / 1000)) * 60).toFixed(3) +
-          ' 次/分钟',
+                    ((ctx.debug.request / (stats.elapsed / 1000)) * 60).toFixed(3) + ' 次/分钟',
             },
             {
                 name: '内存占用',

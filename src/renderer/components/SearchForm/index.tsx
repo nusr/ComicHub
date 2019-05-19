@@ -53,15 +53,13 @@ function SearchForm(props: IProps) {
                 {form.getFieldDecorator('url', {
                     initialValue: currentData.url,
                     rules: [{ required: true, message: '请选择站点' }],
-                })(
-                    <Select placeholder="请选择状态" style={{ width: 170 }}>
-                        {menuList.map((item: IOptionData) => (
-                            <Select.Option value={item.value} key={item.value}>
-                                {item.name}
-                            </Select.Option>
-                        ))}
-                    </Select>
-                )}
+                })(<Select placeholder="请选择状态" style={{ width: 170 }}>
+                    {menuList.map((item: IOptionData) => (
+                        <Select.Option value={item.value} key={item.value}>
+                            {item.name}
+                        </Select.Option>
+                    ))}
+                </Select>)}
             </FormItem>
             <FormItem label="关键词">
                 {form.getFieldDecorator('name', {
@@ -75,7 +73,7 @@ function SearchForm(props: IProps) {
                     type="primary"
                     style={{ marginRight: 16 }}
                 >
-          搜索
+                    搜索
                 </Button>
                 <Button onClick={resetForm}>重置</Button>
             </FormItem>
