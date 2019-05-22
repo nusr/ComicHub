@@ -1,20 +1,8 @@
 ## 1. 解决 puppeteer 安装失败
 
-Chromium 在墙外，需要翻墙。设置代理
+Chromium 在墙外，使用 Yarn 、Npm 会安装失败
 
-```bash
-npm config set proxy http://127.0.0.1:1087
-```
-
-安装 puppeteer
-
-```bash
-npm i --save puppeteer
-```
-
-或者使用 cnpm ，无需代理
-
-服务端装包
+服务端使用 cnpm 安装
 
 ```bash
 cd server

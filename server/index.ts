@@ -11,7 +11,8 @@ import mysql from './middleware/dataProcess';
 import debug from './middleware/debug';
 
 import accessControl from './middleware/accessControl';
-import index from './router';
+import router from './router';
+import apiRouter from './router/apiRouter';
 
 import apiTemplate from './middleware/apiTemplate';
 import apiResponseHandler from './middleware/apiResponseHandler';
@@ -37,13 +38,16 @@ app.context.debug = {
 app.use(debug);
 
 app.use(apiResponseHandler);
-// app.use(apiTemplate);
+app.use(apiTemplate);
 
 app.use(bodyParser());
 
 app.use(mysql);
 
-app.use(mount('/', index.routes())).use(index.allowedMethods());
+app.use(mount('/', router.routes())).use(router.allowedMethods());
+
+// API router
+app.use(mount('/api', apiRouter.routes())).use(apiRouter.allowedMethods());
 let server;
 if (config.connect.port) {
     server = app.listen(config.connect.port);

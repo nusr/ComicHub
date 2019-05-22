@@ -44,9 +44,9 @@ function HomePage(props) {
     }
 
     function handleSearchSubmit(value: IFormData) {
-        console.log(value);
         if (value.name && value.url) {
             setCurrentUrl(value.url);
+            setCurrentType(typeConfig.search);
             dispatch({
                 type: 'search/fetch',
                 payload: {
@@ -64,6 +64,7 @@ function HomePage(props) {
         }
         const item = selectedRows[0];
         setCurrentType(typeConfig.chapter);
+        setSelectedRows([]);
         dispatch({
             type: 'chapter/fetch',
             payload: {
@@ -81,6 +82,7 @@ function HomePage(props) {
         }
         const item = selectedRows[0];
         setCurrentType(typeConfig.download);
+        setSelectedRows([]);
         dispatch({
             type: 'download/fetch',
             payload: {

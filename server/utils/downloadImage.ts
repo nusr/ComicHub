@@ -56,8 +56,10 @@ function downloadImage(
                             filePath,
                             jpgPath,
                             '-o',
-                            (convertError: Error) => {
-                                logger.error(convertError);
+                            (status: number, convertError: Error) => {
+                                if (status !== 100) {
+                                    logger.error(convertError);
+                                }
                             }
                         );
                     }
