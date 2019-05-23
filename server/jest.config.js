@@ -5,9 +5,8 @@ module.exports = {
     coverageReporters: ['text-summary', 'lcov'],
     collectCoverageFrom: [
         'routes/**/*.ts',
-        'mysql.ts.ts',
         'middleware/*.ts',
-        'mysql/*.ts',
+        'sql/*.ts',
         'router/*.ts',
         'service/*.ts',
         'shared/*.ts',

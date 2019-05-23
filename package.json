@@ -16,9 +16,8 @@
         "pack": "npm run build:renderer && npm run build:main-prod && electron-builder --dir",
         "dist": "electron-builder",
         "lint-staged": "npm run readme &&  lint-staged",
-        "format": "npm run lint && npm run style && npm run prettier",
+        "format": "npm run lint && npm run style",
         "style": "stylelint 'src/**/*.less' --syntax less --fix",
-        "prettier": "node ./scripts/prettier.js",
         "lint": "eslint --fix --ext .js,.jsx,.ts,.tsx src server",
         "test:react": "NODE_ENV=test jest --coverage --runInBand --forceExit --detectOpenHandles --passWithNoTests",
         "test:server": "npm run --prefix ./server test",
@@ -42,7 +41,6 @@
         "husky": "^2.3.0",
         "jest": "^24.8.0",
         "lint-staged": "^8.1.7",
-        "prettier": "1.17.1",
         "stylelint": "^10.0.1",
         "stylelint-config-css-modules": "^1.4.0",
         "stylelint-config-prettier": "^5.2.0",
@@ -76,15 +74,11 @@
     },
     "husky": {
         "hooks": {
-            "pre-commit": "npm run lint-staged"
+            "pre-commit": "npm run test && npm run lint-staged"
         }
     },
     "lint-staged": {
         "linters": {
-            "**/*.{ts,tsx,jsx,js,json,md}": [
-                "node ./scripts/lint-prettier.js",
-                "git add"
-            ],
             "**/*.{ts,tsx,jsx,js}": [
                 "eslint --fix",
                 "git add"

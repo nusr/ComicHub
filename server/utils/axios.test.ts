@@ -1,5 +1,6 @@
 import axiosTest from './axios';
 import MockAdapter from 'axios-mock-adapter';
+import _ from 'lodash';
 
 const mock = new MockAdapter(axiosTest);
 import config from '../shared/config';
@@ -48,8 +49,8 @@ describe('axios', () => {
         try {
             await axiosTest.get('/test');
         } catch (error) {
-            expect(error.response.status).toBe(404);
-            expect(error.response.data.code).toBe(1);
+            expect(_.get(error, 'response.status')).toBe(404);
+            expect(_.get(error, 'response.data.code')).toBe(1);
         }
 
         // retries
