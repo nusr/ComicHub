@@ -102,10 +102,10 @@ class DumpTable extends Component<StandardTableProps, any> {
                     <Alert
                         message={
                             <Fragment>
-                                已选择{' '}
+                                已选择
                                 <a style={{ fontWeight: 600 }}>
                                     {selectedRowKeys.length}
-                                </a>{' '}
+                                </a>
                                 项&nbsp;&nbsp;
                                 {needTotalList.map(item => (
                                     <span
@@ -134,6 +134,7 @@ class DumpTable extends Component<StandardTableProps, any> {
                     />
                 </div>
                 <Table
+                    size="small"
                     rowSelection={rowSelection}
                     rowKey={rowKey}
                     dataSource={data}

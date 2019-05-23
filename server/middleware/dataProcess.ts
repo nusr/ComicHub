@@ -5,6 +5,7 @@ import parseUrl from '../utils/parseUrl';
 import mysqlService from '../service';
 import configData from '../shared/config';
 import { ISearchMysql, IChapterMysql, IRequestData } from '../type';
+import _ from 'lodash';
 
 function handleEmpty(stateType: string) {
     let dataResult: any;
@@ -52,14 +53,19 @@ const mysqlHandler = async (ctx: Koa.Context, next: () => Promise<any>) => {
     const { type, name } = requestData;
     ctx.state.url = name;
     ctx.state.type = type;
-    if (!requestData.noCache && type === configData.typeConfig.search) {
-        const result: any = await mysqlService.foggySearch(`%${name}%`, type);
-        if (result && result.length > 0) {
-            ctx.body = result;
-            ctx.response.set({
-                'Mysql-Search-Table-Cache': 'true',
-            });
-            return;
+    if (!requestData.noCache) {
+        if (type === configData.typeConfig.search) {
+            const result: any = await mysqlService.foggySearch(
+                `%${name}%`,
+                type
+            );
+            if (!_.isEmpty(result)) {
+                ctx.body = result;
+                ctx.response.set({
+                    'Mysql-Search-Table-Cache': 'true',
+                });
+                return;
+            }
         }
     }
     if (type === configData.typeConfig.chapter) {
@@ -68,11 +74,11 @@ const mysqlHandler = async (ctx: Koa.Context, next: () => Promise<any>) => {
             configData.typeConfig.search
         );
         const results: any = await mysqlService.searchItem(
-            searchItem.id,
+            _.get(searchItem, 'id'),
             type,
             'search_id'
         );
-        if (results && results.length > 0) {
+        if (!_.isEmpty(results)) {
             ctx.body = results;
             ctx.response.set({
                 'Mysql-Chapter-Table-Cache': 'true',
@@ -86,13 +92,13 @@ const mysqlHandler = async (ctx: Koa.Context, next: () => Promise<any>) => {
             configData.typeConfig.chapter
         );
         const results: any = await mysqlService.searchItem(
-            chapterItem ? chapterItem.id : '',
+            _.get(chapterItem, 'id'),
             type,
             'chapter_id'
         );
-        if (results && results.length > 0) {
+        if (!_.isEmpty(results)) {
             const searchItem: ISearchMysql = await mysqlService.searchOne(
-                chapterItem.search_id,
+                _.get(chapterItem, 'search_id'),
                 configData.typeConfig.search,
                 'id'
             );
@@ -139,7 +145,7 @@ const mysqlHandler = async (ctx: Koa.Context, next: () => Promise<any>) => {
                 searchUrl,
                 configData.typeConfig.search
             );
-            if (searchResult && searchResult.id) {
+            if (!_.isEmpty(_.get(searchResult, 'id'))) {
                 for (const item of dataResult) {
                     await mysqlService.addItem(
                         {
@@ -158,11 +164,11 @@ const mysqlHandler = async (ctx: Koa.Context, next: () => Promise<any>) => {
                 configData.typeConfig.chapter
             );
             const searchItem: ISearchMysql = await mysqlService.searchOne(
-                chapterItem.search_id,
+                _.get(chapterItem, 'search_id'),
                 configData.typeConfig.search,
                 'id'
             );
-            if (searchItem && chapterItem) {
+            if (!_.isEmpty(searchItem) && !_.isEmpty(chapterItem)) {
                 for (const item of dataResult) {
                     await mysqlService.addItem(
                         {

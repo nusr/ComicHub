@@ -1,13 +1,24 @@
-import { Card, Button, message } from 'antd';
+import { Card, Steps } from 'antd';
 import { connect } from 'dva';
-import React, { useEffect, useState, Fragment } from 'react';
+import React, { useEffect } from 'react';
 import CommonFooter from '../../components/CommonFooter';
-import SearchForm, { IFormData } from '../../components/SearchForm';
-import { searchColumns, chapterColumns, typeConfig } from './columns';
+import SearchForm from '../../components/SearchForm';
+import { typeConfig } from './columns';
 import styles from './index.less';
-import DumpTable from '../../components/DumpTable';
+import SearchResult from './SearchResult';
+import ChapterResult from './ChapterResult';
+import DownloadResult from './DownloadResult';
+import { SharedState, MenuItem, IFormData } from '../../type';
 
-function getMenuList(data = {}) {
+const { Step } = Steps;
+
+interface Props {
+    dispatch: any;
+    menuData: any;
+    shared: SharedState;
+}
+
+function getMenuList(data = {}): MenuItem[] {
     return Object.keys(data).map((key: string) => {
         const item = data[key];
         return {
@@ -17,36 +28,46 @@ function getMenuList(data = {}) {
     });
 }
 
-function HomePage(props) {
+function getCurrentStep(type: string): number {
+    switch (type) {
+        case typeConfig.search:
+            return 0;
+        case typeConfig.chapter:
+            return 1;
+        case typeConfig.download:
+            return 2;
+        default:
+            return 0;
+    }
+}
+
+function HomePage(props: Props) {
     const {
         dispatch,
-        menuData = [],
-        loading,
-        searchList = [],
-        chapterList,
-        downloadResult,
+        menuData = {},
+        shared: { currentType },
     } = props;
-    const [currentType, setCurrentType] = useState(typeConfig.search);
-    const [selectedRows, setSelectedRows] = useState([]);
-    const [currentUrl, setCurrentUrl] = useState('');
-    const menuList = getMenuList(menuData);
-    let checkType = 'radio';
-    let dataSource = [];
+    const menuList: MenuItem[] = getMenuList(menuData);
     useEffect(() => {
         dispatch({
             type: 'menu/fetch',
         });
+        dispatch({
+            type: 'shared/changeType',
+            payload: typeConfig.search,
+        });
     }, []);
-
-    function handleSelectRows(value) {
-        console.log(value);
-        setSelectedRows(value);
-    }
 
     function handleSearchSubmit(value: IFormData) {
         if (value.name && value.url) {
-            setCurrentUrl(value.url);
-            setCurrentType(typeConfig.search);
+            dispatch({
+                type: 'shared/changeUrl',
+                payload: value.url,
+            });
+            dispatch({
+                type: 'shared/changeType',
+                payload: typeConfig.search,
+            });
             dispatch({
                 type: 'search/fetch',
                 payload: {
@@ -57,84 +78,15 @@ function HomePage(props) {
         }
     }
 
-    function handleChapterSubmit() {
-        if (!selectedRows || selectedRows.length === 0) {
-            message.error(`请选择漫画！`);
-            return;
-        }
-        const item = selectedRows[0];
-        setCurrentType(typeConfig.chapter);
-        setSelectedRows([]);
-        dispatch({
-            type: 'chapter/fetch',
-            payload: {
-                url: currentUrl,
-                name: item.url,
-                type: typeConfig.chapter,
-            },
-        });
-    }
-
-    function handleDownloadSubmit() {
-        if (!selectedRows || selectedRows.length === 0) {
-            message.error(`请选择章节！`);
-            return;
-        }
-        const item = selectedRows[0];
-        setCurrentType(typeConfig.download);
-        setSelectedRows([]);
-        dispatch({
-            type: 'download/fetch',
-            payload: {
-                url: currentUrl,
-                name: item.url,
-                type: typeConfig.download,
-                page_size: item.page_size,
-            },
-        });
-    }
-
     const getCurrentChild = () => {
         if (currentType === typeConfig.search) {
-            return (
-                <Fragment>
-                    <div className={styles.submit}>
-                        <Button type="primary" onClick={handleChapterSubmit}>
-                            提交
-                        </Button>
-                    </div>
-                    <DumpTable
-                        loading={loading}
-                        checkType={checkType}
-                        selectedRows={selectedRows}
-                        data={searchList}
-                        columns={searchColumns}
-                        onSelectRow={handleSelectRows}
-                    />
-                </Fragment>
-            );
+            return <SearchResult />;
         }
         if (currentType === typeConfig.chapter) {
-            return (
-                <Fragment>
-                    <div className={styles.submit}>
-                        <Button type="primary" onClick={handleDownloadSubmit}>
-                            提交
-                        </Button>
-                    </div>
-                    <DumpTable
-                        loading={loading}
-                        checkType={checkType}
-                        selectedRows={selectedRows}
-                        data={chapterList}
-                        columns={chapterColumns}
-                        onSelectRow={handleSelectRows}
-                    />
-                </Fragment>
-            );
+            return <ChapterResult />;
         }
         if (currentType === typeConfig.download) {
-            return <div>{downloadResult ? '下载中。。。' : '下载成功'}</div>;
+            return <DownloadResult />;
         }
         return null;
     };
@@ -146,6 +98,17 @@ function HomePage(props) {
                     handleFormSubmit={handleSearchSubmit}
                 />
             </Card>
+            <Card bordered={false}>
+                <Steps
+                    className={styles.steps}
+                    labelPlacement="vertical"
+                    current={getCurrentStep(currentType)}
+                >
+                    <Step title="搜索漫画" />
+                    <Step title="选择章节" />
+                    <Step title="下载漫画" />
+                </Steps>
+            </Card>
             <Card className={styles.content} bordered={false}>
                 {getCurrentChild()}
             </Card>
@@ -156,10 +119,14 @@ function HomePage(props) {
     );
 }
 
-export default connect(({ menu, loading, search, chapter, download }) => ({
+HomePage.defaultProps = {
+    menuData: {},
+    loading: false,
+    shared: {},
+};
+
+export default connect(({ menu, loading, shared }) => ({
     menuData: menu.list,
-    loading: loading.models.download,
-    searchList: search.list,
-    chapterList: chapter.list,
-    downloadResult: download.result,
+    loading: loading.models.menu,
+    shared,
 }))(HomePage);

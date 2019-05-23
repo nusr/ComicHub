@@ -1,16 +1,7 @@
 import { Button, Form, Input, Select } from 'antd';
 import React, { useEffect } from 'react';
 
-export interface IFormData {
-    url: string;
-    name: string;
-}
-
-interface IOptionData {
-    value: string | number;
-    name: string;
-    enabled: boolean;
-}
+import { IFormData, IOptionData } from '../../type';
 
 const FormItem = Form.Item;
 
