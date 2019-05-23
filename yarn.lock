@@ -15979,10 +15979,10 @@ webpack@4.28.4:
     watchpack "^1.5.0"
     webpack-sources "^1.3.0"
 
-webpack@4.31.0:
-  version "4.31.0"
-  resolved "https://registry.npm.taobao.org/webpack/download/webpack-4.31.0.tgz#ae201d45f0571336e42d1c2b5c8ab56c4d3b0c63"
-  integrity sha1-riAdRfBXEzbkLRwrXIq1bE07DGM=
+webpack@4.32.2:
+  version "4.32.2"
+  resolved "https://registry.npm.taobao.org/webpack/download/webpack-4.32.2.tgz#3639375364a617e84b914ddb2c770aed511e5bc8"
+  integrity sha1-Njk3U2SmF+hLkU3bLHcK7VEeW8g=
   dependencies:
     "@webassemblyjs/ast" "1.8.5"
     "@webassemblyjs/helper-module-context" "1.8.5"
