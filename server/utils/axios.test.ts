@@ -8,7 +8,7 @@ describe('axios', () => {
     it('axios headers', async () => {
         mock.onGet('/test').reply(axiosConfig => {
             expect(axiosConfig.headers['User-Agent']).toBe(config.userAgent);
-            expect(axiosConfig.headers['X-APP']).toBe('comic-downloader');
+            expect(axiosConfig.headers['X-APP']).toBe('ComicHub');
             return [
                 200,
                 {

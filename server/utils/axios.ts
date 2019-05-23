@@ -89,6 +89,6 @@ axiosRetry(axios, {
 });
 
 axios.defaults.headers.common['User-Agent'] = config.userAgent;
-axios.defaults.headers.common['X-APP'] = 'comic-downloader';
+axios.defaults.headers.common['X-APP'] = 'ComicHub';
 
 export default axios;

@@ -1,7 +1,7 @@
 {
-    "name": "comic-downloader",
+    "name": "ComicHub",
     "version": "1.0.0",
-    "description": "comic-downloader",
+    "description": "ComicHub",
     "main": "./dist/main/main.js",
     "private": true,
     "scripts": {
@@ -71,7 +71,7 @@
         "directories": {
             "output": "release"
         },
-        "appId": "com.nusr.comic-downloader",
+        "appId": "com.nusr.ComicHub",
         "asar": false
     },
     "husky": {
@@ -100,7 +100,7 @@
             "**/build/**/*"
         ]
     },
-    "repository": "https://github.com/nusr/comic-downloader",
+    "repository": "https://github.com/nusr/ComicHub",
     "keywords": [
         "Electron",
         "umi",
