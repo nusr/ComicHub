@@ -1,7 +1,7 @@
 module.exports = {
     preset: 'ts-jest',
     testEnvironment: 'node',
-    testPathIgnorePatterns: ['/node_modules/'],
+    testPathIgnorePatterns: ['/node_modules/', '/dist/'],
     coverageReporters: ['text-summary', 'lcov'],
     collectCoverageFrom: [
         'routes/**/*.ts',
@@ -11,7 +11,7 @@ module.exports = {
         'service/*.ts',
         'shared/*.ts',
         'utils/*.ts',
-        'type/*.ts',
+        'type/*.ts'
     ],
-    bail: true,
+    bail: true
 };
