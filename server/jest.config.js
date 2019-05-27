@@ -7,11 +7,8 @@ module.exports = {
         'routes/**/*.ts',
         'middleware/*.ts',
         'sql/*.ts',
-        'router/*.ts',
         'service/*.ts',
-        'shared/*.ts',
-        'utils/*.ts',
-        'type/*.ts'
+        'utils/*.ts'
     ],
     bail: true
 };

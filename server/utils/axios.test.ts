@@ -13,8 +13,8 @@ describe('axios', () => {
             return [
                 200,
                 {
-                    code: 0,
-                },
+                    code: 0
+                }
             ];
         });
 
@@ -41,8 +41,8 @@ describe('axios', () => {
             return [
                 404,
                 {
-                    code: 1,
-                },
+                    code: 1
+                }
             ];
         });
 

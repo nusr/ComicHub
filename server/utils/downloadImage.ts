@@ -33,13 +33,14 @@ function downloadImage(
     const stream = fs.createWriteStream(filePath);
     // 转义链接中的中文参数
     const realUrl = encodeURI(url);
+    console.log(realUrl);
     axios({
         url: realUrl,
         responseType: 'stream',
         headers: {
             Referer: referer,
-            'User-Agent': config.userAgent,
-        },
+            'User-Agent': config.userAgent
+        }
     }).then(response => {
         response.data.pipe(stream);
     });
