@@ -5474,13 +5474,6 @@ eslint-config-alloy@2.0.0-alpha.2:
   resolved "https://registry.npm.taobao.org/eslint-config-alloy/download/eslint-config-alloy-2.0.0-alpha.2.tgz#1314c4d40ad10e1c2b273c7a375af1013271cbeb"
   integrity sha1-ExTE1ArRDhwrJzx6N1rxATJxy+s=
 
-eslint-config-prettier@^4.3.0:
-  version "4.3.0"
-  resolved "https://registry.npm.taobao.org/eslint-config-prettier/download/eslint-config-prettier-4.3.0.tgz#c55c1fcac8ce4518aeb77906984e134d9eb5a4f0"
-  integrity sha1-xVwfysjORRiut3kGmE4TTZ61pPA=
-  dependencies:
-    get-stdin "^6.0.0"
-
 eslint-config-react-app@3.0.8:
   version "3.0.8"
   resolved "https://registry.npm.taobao.org/eslint-config-react-app/download/eslint-config-react-app-3.0.8.tgz#6f606828ba30bafee7d744c41cd07a3fea8f3035"
@@ -11536,7 +11529,7 @@ prettier@1.15.3:
   resolved "https://registry.npm.taobao.org/prettier/download/prettier-1.15.3.tgz#1feaac5bdd181237b54dbe65d874e02a1472786a"
   integrity sha1-H+qsW90YEje1Tb5l2HTgKhRyeGo=
 
-prettier@1.17.1, prettier@^1.14.3:
+prettier@^1.14.3, prettier@^1.17.1:
   version "1.17.1"
   resolved "https://registry.npm.taobao.org/prettier/download/prettier-1.17.1.tgz#ed64b4e93e370cb8a25b9ef7fef3e4fd1c0995db"
   integrity sha1-7WS06T43DLiiW573/vPk/RwJlds=

@@ -1,6 +1,5 @@
 module.exports = {
     extends: [
-        'prettier',
         'eslint-config-alloy/react',
         'eslint-config-alloy/typescript',
     ],
