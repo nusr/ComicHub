@@ -1,9 +1,58 @@
-import { Button, message } from 'antd';
+import { Button, Avatar, message } from 'antd';
 import { connect } from 'dva';
 import React, { useState, Fragment } from 'react';
-import { searchColumns, typeConfig } from './columns';
+import { typeConfig, renderDate } from './config';
 import styles from './index.less';
 import DumpTable from '../../components/DumpTable';
+
+const searchColumns = [
+    {
+        title: 'ID',
+        dataIndex: 'id'
+    },
+    {
+        title: '名称',
+        dataIndex: 'title'
+    },
+    {
+        title: '作者',
+        dataIndex: 'author'
+    },
+    {
+        title: '链接',
+        dataIndex: 'url',
+        render: text => {
+            return <a
+                title={text}
+                target="_blank"
+                href={text}
+            >
+                {text}
+            </a>;
+        }
+    },
+
+    {
+        title: '地区',
+        dataIndex: 'area'
+    },
+    {
+        title: '分类',
+        dataIndex: 'category'
+    },
+    {
+        title: '封面',
+        dataIndex: 'cover',
+        render: (text: string) => {
+            return text ? (<Avatar src={text} />) : '';
+        }
+    },
+    {
+        title: '爬取时间',
+        dataIndex: 'create_time',
+        render: renderDate
+    }
+];
 
 function SearchResult(props) {
     const { dispatch, loading, searchList = [], currentUrl } = props;
@@ -24,15 +73,15 @@ function SearchResult(props) {
         setSelectedRows([]);
         dispatch({
             type: 'shared/changeType',
-            payload: typeConfig.chapter,
+            payload: typeConfig.chapter
         });
         dispatch({
             type: 'chapter/fetch',
             payload: {
                 url: currentUrl,
                 name: item.url,
-                type: typeConfig.chapter,
-            },
+                type: typeConfig.chapter
+            }
         });
     }
 
@@ -62,5 +111,5 @@ function SearchResult(props) {
 export default connect(({ loading, search, shared }) => ({
     loading: loading.models.search,
     searchList: search.list,
-    currentUrl: shared.currentUrl,
+    currentUrl: shared.currentUrl
 }))(SearchResult);

@@ -1,9 +1,42 @@
 import { Button, message } from 'antd';
 import { connect } from 'dva';
 import React, { useState, Fragment } from 'react';
-import { chapterColumns, searchColumns, typeConfig } from './columns';
+import { renderDate, typeConfig } from './config';
 import styles from './index.less';
 import DumpTable from '../../components/DumpTable';
+
+const chapterColumns = [
+    {
+        title: 'ID',
+        dataIndex: 'id'
+    },
+    {
+        title: '章节名',
+        dataIndex: 'title'
+    },
+    {
+        title: '链接',
+        dataIndex: 'url',
+        render: text => {
+            return <a
+                title={text}
+                target="_blank"
+                href={text}
+            >
+                {text}
+            </a>;
+        }
+    },
+    {
+        title: '章节图片数量',
+        dataIndex: 'page_size'
+    },
+    {
+        title: '爬取时间',
+        dataIndex: 'create_time',
+        render: renderDate
+    }
+];
 
 interface Props {
     dispatch: any;
@@ -30,7 +63,7 @@ function ChapterResult(props: Props) {
         const item = selectedRows[0];
         dispatch({
             type: 'shared/changeType',
-            payload: typeConfig.download,
+            payload: typeConfig.download
         });
         dispatch({
             type: 'download/fetch',
@@ -38,8 +71,8 @@ function ChapterResult(props: Props) {
                 url: currentUrl,
                 name: item.url,
                 type: typeConfig.download,
-                page_size: item.page_size,
-            },
+                page_size: item.page_size
+            }
         });
     }
 
@@ -57,9 +90,9 @@ function ChapterResult(props: Props) {
             <DumpTable
                 loading={loading}
                 checkType={checkType}
-                selectedRows={chapterColumns}
+                selectedRows={selectedRows}
                 data={chapterList}
-                columns={searchColumns}
+                columns={chapterColumns}
                 onSelectRow={handleSelectRows}
             />
         </Fragment>
@@ -69,5 +102,5 @@ function ChapterResult(props: Props) {
 export default connect(({ loading, chapter, shared }) => ({
     loading: loading.models.search,
     chapterList: chapter.list,
-    currentUrl: shared.currentUrl,
+    currentUrl: shared.currentUrl
 }))(ChapterResult);

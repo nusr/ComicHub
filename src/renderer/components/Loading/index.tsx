@@ -3,10 +3,15 @@ import styles from './index.less';
 
 const antIcon = <Icon type="loading" style={{ fontSize: 30 }} spin />;
 
-export default function() {
+function Loading(props) {
+    const { text = '' } = props;
     return (
         <div className={styles.loadingWrap}>
-            <Spin indicator={antIcon} className={styles.loadingIcon} />
+            <Spin indicator={antIcon} className={styles.loadingIcon}>
+                {text}
+            </Spin>
         </div>
     );
 }
+
+export default Loading;

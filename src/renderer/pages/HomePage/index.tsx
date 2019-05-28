@@ -3,7 +3,7 @@ import { connect } from 'dva';
 import React, { useEffect } from 'react';
 import CommonFooter from '../../components/CommonFooter';
 import SearchForm from '../../components/SearchForm';
-import { typeConfig } from './columns';
+import { typeConfig } from './config';
 import styles from './index.less';
 import SearchResult from './SearchResult';
 import ChapterResult from './ChapterResult';
