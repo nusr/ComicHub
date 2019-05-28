@@ -158,6 +158,7 @@ const mysqlHandler = async (ctx: Koa.Context, next: () => Promise<any>) => {
             }
         }
         if (stateType === configData.typeConfig.download) {
+            // 下载失败
             dataResult = filterArray(dataResult);
             const chapterItem: IChapterMysql = await mysqlService.searchOne(
                 searchUrl,
