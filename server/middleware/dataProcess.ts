@@ -26,7 +26,6 @@ function formatDownloadPath(
     searchItem: ISearchMysql,
     chapterItem: IChapterMysql
 ) {
-    // const dirPath = `${parseUrl.filterIllegalPath(searchItem.title)}/${parseUrl.filterIllegalPath(chapterItem.title)}`;
     const dirPath = `${searchItem.title}/${chapterItem.title}`;
     return dataResult.map((item: any): any => {
         return {
