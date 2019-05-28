@@ -12,7 +12,7 @@ function getAllData(tableName: string) {
 async function searchItem(
     value: string | number,
     tableName: string,
-    field = 'url'
+    field: string = 'url'
 ) {
     return new Promise(resolve => {
         const sql = `SELECT * FROM ${tableName} WHERE ${field}=?`;
@@ -25,7 +25,7 @@ async function searchItem(
 function searchOne(
     value: string | number,
     tableName: string,
-    field = 'url'
+    field: string = 'url'
 ): any {
     return new Promise(resolve => {
         const sql = `SELECT * FROM ${tableName} WHERE ${field}=?`;
@@ -37,7 +37,7 @@ function searchOne(
 
 function addItem(data: any, tableName: string) {
     return new Promise(resolve => {
-    // 判断是否存在
+        // 判断是否存在
         searchItem(data.url, tableName).then((results: any = []) => {
             if (results && results > 0) {
                 resolve(false);
@@ -46,7 +46,7 @@ function addItem(data: any, tableName: string) {
             const sql = `INSERT INTO ${tableName} SET ?`;
             const realData = {
                 ...data,
-                create_time: Number(new Date()),
+                create_time: Number(new Date())
             };
             mysql(sql, realData, (result: any = '') => {
                 resolve(result.insertId > 0);
@@ -94,5 +94,5 @@ export default {
     deleteItem,
     editItem,
     foggySearch,
-    searchOne,
+    searchOne
 };

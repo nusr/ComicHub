@@ -1,8 +1,8 @@
 import fs from 'fs';
 import path from 'path';
 import sharp from 'sharp';
-import logger from '../utils/logger';
-import makeDir from '../utils/makeDir';
+import logger from './logger';
+import makeDir from './makeDir';
 import config from '../shared/config';
 import axios from './axios';
 import imageConverter from 'webp-converter';
@@ -33,7 +33,6 @@ function downloadImage(
     const stream = fs.createWriteStream(filePath);
     // 转义链接中的中文参数
     const realUrl = encodeURI(url);
-    console.log(realUrl);
     axios({
         url: realUrl,
         responseType: 'stream',
@@ -43,6 +42,8 @@ function downloadImage(
         }
     }).then(response => {
         response.data.pipe(stream);
+    }).catch(error => {
+        logger.error(error);
     });
     stream.on('finish', () => {
         if (config.convertImageExtname.includes(parseDir.ext)) {

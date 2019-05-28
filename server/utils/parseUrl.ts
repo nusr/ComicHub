@@ -11,7 +11,13 @@ function getReferer(link: string): string {
     return `${result.protocol}//${result.host}`;
 }
 
+function filterIllegalPath(filePath: string): string {
+    let result = filePath.replace(/[^\da-z\u4e00-\u9fa5]/gi, '');
+    return result;
+}
+
 export default {
     parseUrl,
     getReferer,
+    filterIllegalPath
 };

@@ -11,11 +11,11 @@ function handleEmpty(stateType: string) {
     let dataResult: any;
     if (stateType === configData.typeConfig.search) {
         dataResult = {
-            message: '搜索不到该漫画，请更换搜索词！',
+            message: '搜索不到该漫画，请更换搜索词！'
         };
     } else if (stateType === configData.typeConfig.chapter) {
         dataResult = {
-            message: '爬取结果为空！',
+            message: '爬取结果为空！'
         };
     }
     return dataResult;
@@ -26,11 +26,12 @@ function formatDownloadPath(
     searchItem: ISearchMysql,
     chapterItem: IChapterMysql
 ) {
+    // const dirPath = `${parseUrl.filterIllegalPath(searchItem.title)}/${parseUrl.filterIllegalPath(chapterItem.title)}`;
     const dirPath = `${searchItem.title}/${chapterItem.title}`;
     return dataResult.map((item: any): any => {
         return {
             url: item.url,
-            fileName: `${dirPath}/${item.page}`,
+            fileName: `${dirPath}/${item.page}`
         };
     });
 }
@@ -50,50 +51,50 @@ function filterArray(data: any = []) {
 /* eslint-disable */
 const mysqlHandler = async (ctx: Koa.Context, next: () => Promise<any>) => {
     const requestData: IRequestData = ctx.request.body;
-    const { type, name } = requestData;
-    ctx.state.url = name;
-    ctx.state.type = type;
+    const { type: requestType, name: requestName } = requestData;
+    ctx.state.url = requestName;
+    ctx.state.type = requestType;
     if (!requestData.noCache) {
-        if (type === configData.typeConfig.search) {
+        if (requestType === configData.typeConfig.search) {
             const result: any = await mysqlService.foggySearch(
-                `%${name}%`,
-                type
+                `%${requestName}%`,
+                requestType
             );
             if (!_.isEmpty(result)) {
                 ctx.body = result;
                 ctx.response.set({
-                    'Mysql-Search-Table-Cache': 'true',
+                    'Mysql-Search-Table-Cache': 'true'
                 });
                 return;
             }
         }
     }
-    if (type === configData.typeConfig.chapter) {
+    if (requestType === configData.typeConfig.chapter) {
         const searchItem: ISearchMysql = await mysqlService.searchOne(
-            name,
+            requestName,
             configData.typeConfig.search
         );
         const results: any = await mysqlService.searchItem(
             _.get(searchItem, 'id'),
-            type,
+            requestType,
             'search_id'
         );
         if (!_.isEmpty(results)) {
             ctx.body = results;
             ctx.response.set({
-                'Mysql-Chapter-Table-Cache': 'true',
+                'Mysql-Chapter-Table-Cache': 'true'
             });
             return;
         }
     }
-    if (type === configData.typeConfig.download) {
+    if (requestType === configData.typeConfig.download) {
         const chapterItem: IChapterMysql = await mysqlService.searchOne(
-            name,
+            requestName,
             configData.typeConfig.chapter
         );
         const results: any = await mysqlService.searchItem(
             _.get(chapterItem, 'id'),
-            type,
+            requestType,
             'chapter_id'
         );
         if (!_.isEmpty(results)) {
@@ -113,13 +114,17 @@ const mysqlHandler = async (ctx: Koa.Context, next: () => Promise<any>) => {
                 downloadImage(
                     item.url,
                     item.fileName,
-                    parseUrl.getReferer(name)
+                    parseUrl.getReferer(requestName)
                 );
             }
             ctx.response.set({
-                'Mysql-Table-Download-Cache': 'true',
+                'Mysql-Table-Download-Cache': 'true'
             });
-            ctx.body = results;
+            ctx.body = {
+                message: '下载成功！',
+                code: 200,
+                data: results
+            };
             return;
         }
     }
@@ -145,17 +150,16 @@ const mysqlHandler = async (ctx: Koa.Context, next: () => Promise<any>) => {
                 searchUrl,
                 configData.typeConfig.search
             );
-            if (!_.isEmpty(_.get(searchResult, 'id'))) {
-                for (const item of dataResult) {
-                    await mysqlService.addItem(
-                        {
-                            search_id: searchResult.id,
-                            ...item,
-                        },
-                        stateType
-                    );
-                }
+            for (const item of dataResult) {
+                await mysqlService.addItem(
+                    {
+                        search_id: _.get(searchResult, 'id'),
+                        ...item
+                    },
+                    stateType
+                );
             }
+
         }
         if (stateType === configData.typeConfig.download) {
             // 下载失败
@@ -174,7 +178,7 @@ const mysqlHandler = async (ctx: Koa.Context, next: () => Promise<any>) => {
                     await mysqlService.addItem(
                         {
                             chapter_id: chapterItem.id,
-                            ...item,
+                            ...item
                         },
                         stateType
                     );
@@ -196,6 +200,7 @@ const mysqlHandler = async (ctx: Koa.Context, next: () => Promise<any>) => {
             dataResult = {
                 message: '下载成功！',
                 code: 200,
+                data: dataResult
             };
         }
     } else {

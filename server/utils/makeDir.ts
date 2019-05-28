@@ -1,8 +1,10 @@
 import fs from 'fs';
 import path from 'path';
 
-function makeDir(dirname: string): boolean {
-    if (!fs.existsSync(dirname)) {
+function makeDir(dirname: string) {
+    if (fs.existsSync(dirname)) {
+        return true;
+    } else {
         if (makeDir(path.dirname(dirname))) {
             fs.mkdirSync(dirname);
             return true;
