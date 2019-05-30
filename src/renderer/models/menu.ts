@@ -6,7 +6,7 @@ export default {
         list: [],
     },
     effects: {
-        *fetch({ payload }, { call, put }) {
+        * fetch({ payload }, { call, put }) {
             const response = yield call(getMenuList, payload);
             console.log(response);
             yield put({

@@ -6,7 +6,7 @@ export default {
         list: [],
     },
     effects: {
-        *fetch({ payload }, { call, put }) {
+        * fetch({ payload }, { call, put }) {
             const response = yield call(postItem, payload);
             yield put({
                 payload: response,
