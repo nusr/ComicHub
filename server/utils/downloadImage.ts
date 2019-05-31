@@ -46,8 +46,8 @@ function downloadImage(
         logger.error(error);
     });
     stream.on('finish', () => {
-        if (config.convertImageExtname.includes(parseDir.ext)) {
-            const jpgPath = path.join(parseDir.dir, `${parseDir.name}.jpg`);
+        if (!config.pdfSupportImage.includes(parseDir.ext)) {
+            const jpgPath = path.join(parseDir.dir, `${parseDir.name}${config.pdfSupportImage[0]}`);
             sharp(filePath)
                 .jpeg()
                 .toFile(jpgPath)
