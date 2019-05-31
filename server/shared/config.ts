@@ -33,6 +33,18 @@ export default {
     },
     downloadBase: path.resolve(__dirname, '../../../downloadResult'), // 根目录下的文件夹
     pdfSupportImage: ['.jpeg', '.png'], // pdfkit 只支持 png jpeg
+    bookConfig: {
+        author: 'Steve Xu',
+        imgWidth: 500,
+        imgCss: `img {
+                    max-width: 100%;
+                    text-align: center;
+                    vertical-align: middle;
+                }`,
+        bookType: 'pdf' // 'pdf' || 'epub'
+
+    },
+    epubConfig: {},
     mysql: {
         host: 'localhost', // 数据库服务器所在的IP或域名
         port: 3306,

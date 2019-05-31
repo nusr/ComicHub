@@ -1,21 +1,12 @@
 import cheerio from 'cheerio';
 import urlModule from 'url';
 import urlConfig from '../../shared/urlConfig';
+import { numToString } from '../../utils/parseUrl';
 
 const baseUrl = urlConfig.tohomh123.base;
 import { ISearchItem, IChapterItem, IImageItem } from '../../type';
 
-const numToString = (num: number): string => {
-    if (num < 10) {
-        return `000${num}`;
-    } else if (num < 100) {
-        return `00${num}`;
-    } else if (num < 1000) {
-        return `0${num}`;
-    } else {
-        return num.toString();
-    }
-};
+
 const getCoverUrl = (style: string): string => {
     const temp: string = style.match(/(\([\s\S]*\))/)[0];
     return temp.slice(1, -1);
@@ -39,7 +30,7 @@ const getSearchList = (data: string) => {
             result.push({
                 url,
                 title,
-                cover: realCover,
+                cover: realCover
             });
         }
     });
@@ -65,7 +56,7 @@ const getChapterList = (data: string) => {
             chapters.push({
                 url: link,
                 title: realTitle,
-                page_size: currentPage,
+                page_size: currentPage
             });
         }
     });
@@ -87,7 +78,7 @@ function getDownloadItem(data: string, pageSize: number) {
     for (let i = 1; i < pageSize; i++) {
         result.push({
             page: i,
-            url: `${baseUrl}${numToString(i - 1)}.${extName}`,
+            url: `${baseUrl}${numToString(i - 1)}.${extName}`
         });
     }
     return result;
@@ -111,5 +102,5 @@ export default {
     getSearchList,
     getSearchUrl,
     getDownloadUrl,
-    getDownloadItem,
+    getDownloadItem
 };

@@ -1,11 +1,10 @@
 import * as Koa from 'koa';
-import sleep from '../utils/wait';
-import downloadImage from '../utils/downloadImage';
-import parseUrl from '../utils/parseUrl';
 import mysqlService from '../service';
 import configData from '../shared/config';
 import { ISearchMysql, IChapterMysql, IRequestData } from '../type';
 import _ from 'lodash';
+
+import generateBook from '../utils/generateBook';
 
 function handleEmpty(stateType: string) {
     let dataResult: any;
@@ -21,19 +20,6 @@ function handleEmpty(stateType: string) {
     return dataResult;
 }
 
-function formatDownloadPath(
-    dataResult: any,
-    searchItem: ISearchMysql,
-    chapterItem: IChapterMysql
-) {
-    const dirPath = `${searchItem.title}/${chapterItem.title}`;
-    return dataResult.map((item: any): any => {
-        return {
-            url: item.url,
-            fileName: `${dirPath}/${item.page}`
-        };
-    });
-}
 
 function filterArray(data: any = []) {
     const record: any = {};
@@ -102,20 +88,8 @@ const mysqlHandler = async (ctx: Koa.Context, next: () => Promise<any>) => {
                 configData.typeConfig.search,
                 'id'
             );
+            await generateBook(results, searchItem, chapterItem, requestName);
 
-            const downloadList = formatDownloadPath(
-                results,
-                searchItem,
-                chapterItem
-            );
-            for (const item of downloadList) {
-                await sleep(100);
-                downloadImage(
-                    item.url,
-                    item.fileName,
-                    parseUrl.getReferer(requestName)
-                );
-            }
             ctx.response.set({
                 'Mysql-Table-Download-Cache': 'true'
             });
@@ -161,7 +135,6 @@ const mysqlHandler = async (ctx: Koa.Context, next: () => Promise<any>) => {
 
         }
         if (stateType === configData.typeConfig.download) {
-            // 下载失败
             dataResult = filterArray(dataResult);
             const chapterItem: IChapterMysql = await mysqlService.searchOne(
                 searchUrl,
@@ -182,19 +155,7 @@ const mysqlHandler = async (ctx: Koa.Context, next: () => Promise<any>) => {
                         stateType
                     );
                 }
-                const downloadList = formatDownloadPath(
-                    dataResult,
-                    searchItem,
-                    chapterItem
-                );
-                for (const item of downloadList) {
-                    await sleep(100);
-                    downloadImage(
-                        item.url,
-                        item.fileName,
-                        parseUrl.getReferer(searchUrl)
-                    );
-                }
+                await generateBook(dataResult, searchItem, chapterItem, searchUrl);
             }
             dataResult = {
                 message: '下载成功！',

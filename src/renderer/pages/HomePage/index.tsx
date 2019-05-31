@@ -98,6 +98,7 @@ function HomePage(props: Props) {
                     handleFormSubmit={handleSearchSubmit}
                 />
             </Card>
+
             <Card bordered={false}>
                 <Steps
                     className={styles.steps}

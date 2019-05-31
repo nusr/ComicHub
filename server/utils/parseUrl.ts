@@ -1,4 +1,7 @@
 import url from 'url';
+import _ from 'lodash';
+
+const maxLength = 5;
 
 function getReferer(link: string): string {
     const result = url.parse(link);
@@ -10,7 +13,20 @@ function filterIllegalPath(filePath: string): string {
     return result;
 }
 
-export default {
+function numToString(num: number): string {
+    if (!_.isNumber(num)) {
+        return '';
+    }
+    const temp: number = maxLength - num.toString().length;
+    if (temp <= 0) {
+        return num.toString();
+    }
+    const zero = new Array(temp).fill(0).join('');
+    return `${zero}${num}`;
+}
+
+export {
     getReferer,
-    filterIllegalPath
+    filterIllegalPath,
+    numToString
 };

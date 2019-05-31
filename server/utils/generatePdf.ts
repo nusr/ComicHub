@@ -1,42 +1,44 @@
 import fs from 'fs';
-import path from 'path';
 import PdfDoc from 'pdfkit';
 import logger from './logger';
 import configData from '../shared/config';
+import getBookInfo from './bookInfo';
+import { BookInfo } from '../type/utils';
 
 function generatePdf(dirName: string) {
-    const dirPath: string = path.resolve(__dirname, dirName);
+    if (!dirName) {
+        logger.info('下载路径为空！');
+        return;
+    }
+
+    const {
+        outputPath,
+        filePathList,
+        bookTitle
+    }: BookInfo = getBookInfo(dirName, 'pdf');
+
     const pdf: any = new PdfDoc();
-    const outputFile = `${dirPath}.pdf`;
-    pdf.pipe(fs.createWriteStream(outputFile));
+    pdf.pipe(fs.createWriteStream(outputPath));
 
+    pdf.info['Title'] = bookTitle;
+    pdf.info['Author'] = configData.bookConfig.author;
 
-    const pdfTitle = dirPath.split('/').pop();
-    pdf.info['Title'] = pdfTitle;
-    pdf.info['Author'] = 'stevexugc@gmail.com';
-
-    const files: string[] = fs.readdirSync(dirPath);
-    const filesData: any = [];
-    files.forEach((fileName: string) => {
-        const filePath = path.join(dirPath, fileName);
-        const extName = path.extname(filePath);
-        if (configData.pdfSupportImage.includes(extName)) {
-            filesData.push(fs.readFileSync(filePath));
-        }
-    });
-    for (let i = 0; i < filesData.length; i += 1) {
-        pdf.image(filesData[i], {
-            width: 500,
+    for (let i = 0; i < filePathList.length; i += 1) {
+        const item = filePathList[i];
+        const temp = fs.readFileSync(item);
+        pdf.image(temp, {
+            width: configData.bookConfig.imgWidth,
             'align': 'center',
             'valign': 'center'
         });
-        if (i !== filesData.length - 1) {
+        if (i !== filePathList.length - 1) {
             pdf.addPage();
         }
     }
     pdf.end();
-    logger.info(outputFile);
+    logger.info(outputPath);
 }
+
 
 export default generatePdf;
 
