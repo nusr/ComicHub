@@ -31,7 +31,7 @@ export default {
         download: 'images',
         downloadAll: 'downloadAll'
     },
-    downloadBase: path.resolve(__dirname, '../../../downloadResult'), // 根目录下的文件夹
+    downloadBase: path.resolve(__dirname, '../../../downloadResult'), // 下载根目录
     pdfSupportImage: ['.jpeg', '.png'], // pdfkit 只支持 png jpeg
     bookConfig: {
         author: 'Steve Xu',
@@ -41,7 +41,7 @@ export default {
                     text-align: center;
                     vertical-align: middle;
                 }`,
-        bookType: 'pdf' // 'pdf' || 'epub'
+        bookType: ['pdf', 'epub'] // 'pdf'  'epub'
 
     },
     epubConfig: {},

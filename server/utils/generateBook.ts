@@ -52,9 +52,11 @@ async function makeBook(
         getComicSite(requestUrl),
         dirPath
     );
-    if (configData.bookConfig.bookType === 'pdf') {
+    const bookType: string[] = configData.bookConfig.bookType;
+    if (bookType.includes('pdf')) {
         generatePdf(realPath);
-    } else {
+    }
+    if (bookType.includes('epub')) {
         await generateEpub(realPath);
     }
 }

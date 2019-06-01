@@ -24,12 +24,6 @@ const puppeteerBrowser = async () => {
     } else {
         browser = await puppeteer.launch(options);
     }
-    setTimeout(async () => {
-        if ((await browser.process()).signalCode) {
-            browser.close();
-        }
-    }, 5000);
-
     return browser;
 };
 export default puppeteerBrowser;
