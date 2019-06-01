@@ -1,34 +1,35 @@
 import fs from 'fs';
 import path from 'path';
-import sharp from 'sharp';
 import logger from './logger';
 import makeDir from './makeDir';
 import config from '../shared/config';
 import axios from './axios';
-import imageConverter from 'webp-converter';
+import _ from 'lodash';
+import { getComicSite } from './parseUrl';
+import convertImage from './convertImage';
 
-const getComicSite = (url: string): string => {
-    const temp = url.split('.');
-    temp.pop();
-    return temp.pop();
-};
-const getExtName = (url: string): string => {
+export function getExtName(url: string): string {
     const extName = path.extname(url);
-    return extName.match(/^\.\w+/gi)[0];
-};
+    const result = extName.match(/^\.\w+/gi);
+    return _.first(result) || '';
+}
 
-function downloadImage(
+export default function downloadImage(
     url: string,
     fileName: string,
     referer: string = 'https://www.manhuagui.com'
 ): void {
     const extName = getExtName(url);
+    if (!extName) {
+        return;
+    }
     const filePath = path.join(
         config.downloadBase,
         getComicSite(referer),
         fileName + extName
     );
     const parseDir = path.parse(filePath);
+    logger.info(parseDir);
     makeDir(parseDir.dir);
     const stream = fs.createWriteStream(filePath);
     // 转义链接中的中文参数
@@ -45,29 +46,15 @@ function downloadImage(
     }).catch(error => {
         logger.error(error);
     });
+
+    logger.info(`[Download Image Success] ${filePath}`);
+
     stream.on('finish', () => {
-        if (!config.pdfSupportImage.includes(parseDir.ext)) {
-            const jpgPath = path.join(parseDir.dir, `${parseDir.name}${config.pdfSupportImage[0]}`);
-            sharp(filePath)
-                .jpeg()
-                .toFile(jpgPath)
-                .catch((error: Error) => {
-                    if (error) {
-                        logger.error(error);
-                        imageConverter.dwebp(
-                            filePath,
-                            jpgPath,
-                            '-o',
-                            (status: number, convertError: Error) => {
-                                if (status !== 100) {
-                                    logger.error(convertError);
-                                }
-                            }
-                        );
-                    }
-                });
+        if (config.pdfSupportImage.includes(parseDir.ext)) {
+            return;
         }
+        const jpegPath = path.join(parseDir.dir, `${parseDir.name}${config.pdfSupportImage[0]}`);
+        convertImage(filePath, jpegPath);
     });
 }
 
-export default downloadImage;

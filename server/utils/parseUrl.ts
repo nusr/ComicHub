@@ -25,8 +25,14 @@ function numToString(num: number): string {
     return `${zero}${num}`;
 }
 
+function getComicSite(url: string): string {
+    const temp: string[] = url.split('.');
+    temp.pop();
+    return _.last(temp) || '';
+}
 export {
     getReferer,
     filterIllegalPath,
-    numToString
+    numToString,
+    getComicSite
 };

@@ -1,4 +1,4 @@
-import wait from './wait';
+import wait from '../wait';
 
 describe('wait', () => {
     it('wait 0.1 second', async () => {

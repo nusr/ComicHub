@@ -15,3 +15,5 @@ tmp
 yarn.lock
 package-lock.json
 log
+*.pdf
+*.epub

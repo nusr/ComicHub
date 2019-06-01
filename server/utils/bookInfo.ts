@@ -4,27 +4,26 @@ import configData from '../shared/config';
 import _ from 'lodash';
 
 import { BookInfo } from '../type/utils';
+import logger from './logger';
 
 function getBookInfo(dirName: string, extName: string = 'pdf'): BookInfo {
-    const dirPath: string = path.resolve(__dirname, dirName);
+    const outputPath = `${dirName}.${extName}`;
 
-    const outputPath = `${dirPath}.${extName}`;
+    const files: string[] = fs.readdirSync(dirName);
 
-    const files: string[] = fs.readdirSync(dirPath);
-
-    const bookTitle: any = _.last(_.split(dirPath, '/'));
+    const bookTitle: any = _.last(_.split(dirName, '/'));
     const filePathList: string[] = [];
     files.forEach((fileName: string) => {
-        const filePath = path.join(dirPath, fileName);
+        const filePath = path.join(dirName, fileName);
         const extName = path.extname(filePath);
-        if (configData.pdfSupportImage.includes(extName)) {
+        const list: string[] = configData.pdfSupportImage;
+        if (list.includes(extName)) {
             filePathList.push((filePath));
         }
     });
     return {
         outputPath,
         filePathList,
-        dirPath,
         bookTitle
     };
 }

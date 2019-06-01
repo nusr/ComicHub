@@ -4,10 +4,16 @@ import logger from './logger';
 import configData from '../shared/config';
 import getBookInfo from './bookInfo';
 import { BookInfo } from '../type/utils';
+import fs from 'fs';
 
-function generateEpub(dirName: string) {
+async function generateEpub(dirName: string) {
     if (!dirName) {
         logger.info('下载路径为空！');
+        return;
+    }
+
+    if (!fs.existsSync(dirName)) {
+        logger.info('下载路径为不存在！');
         return;
     }
     const {
@@ -27,11 +33,11 @@ function generateEpub(dirName: string) {
         publisher: configData.bookConfig.author,
         cover: _.first(filePathList),
         css: configData.bookConfig.imgCss,
-        verbose: true,
-        content
+        content,
+        verbose: process.env.NODE_ENV !== 'test'
     };
-    new EpubGen(option, outputPath);// eslint-disable-line
+    // @ts-ignore
+    await new EpubGen(option, outputPath);
 }
-
 
 export default generateEpub;
