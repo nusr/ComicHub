@@ -24,8 +24,3 @@ cnpm i
 ## 4. 不要直接修改 README.md 文件
 
 请修改 [../server/views/README.md](../server/views/README.md)
-
-## 5. PDF 转换为其他格式
-
-1. GUI 转换工具 [https://calibre-ebook.com/](https://calibre-ebook.com/)
-1. 命令行转换工具 [https://pandoc.org/index.html](https://pandoc.org/index.html)

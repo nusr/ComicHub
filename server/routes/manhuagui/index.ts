@@ -4,7 +4,6 @@ import configData from '../../shared/config';
 import puppeteer from '../../utils/puppeteer';
 import * as Koa from 'koa';
 import { IRequestData } from '../../type';
-import sleep from '../../utils/wait';
 
 const delay = 10000;
 const manHuaGui = async (ctx: Koa.BaseContext) => {
@@ -37,7 +36,7 @@ const manHuaGui = async (ctx: Koa.BaseContext) => {
         for (; pageIndex <= page_size; pageIndex += 1) {
             const nextItem = await page.$('#next');
             nextItem.click();
-            await sleep(500);
+            await page.waitFor(500);
             const html = await page.evaluate(() => document.querySelector('html').innerHTML);
             const imageSrc = util.getDownloadItem(html);
             temp.push({

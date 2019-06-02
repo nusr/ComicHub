@@ -53,54 +53,55 @@ const mysqlHandler = async (ctx: Koa.Context, next: () => Promise<any>) => {
                 return;
             }
         }
-    }
-    if (requestType === configData.typeConfig.chapter) {
-        const searchItem: ISearchMysql = await mysqlService.searchOne(
-            requestName,
-            configData.typeConfig.search
-        );
-        const results: any = await mysqlService.searchItem(
-            _.get(searchItem, 'id'),
-            requestType,
-            'search_id'
-        );
-        if (!_.isEmpty(results)) {
-            ctx.body = results;
-            ctx.response.set({
-                'Mysql-Chapter-Table-Cache': 'true'
-            });
-            return;
-        }
-    }
-    if (requestType === configData.typeConfig.download) {
-        const chapterItem: IChapterMysql = await mysqlService.searchOne(
-            requestName,
-            configData.typeConfig.chapter
-        );
-        const results: any = await mysqlService.searchItem(
-            _.get(chapterItem, 'id'),
-            requestType,
-            'chapter_id'
-        );
-        if (!_.isEmpty(results)) {
+        if (requestType === configData.typeConfig.chapter) {
             const searchItem: ISearchMysql = await mysqlService.searchOne(
-                _.get(chapterItem, 'search_id'),
-                configData.typeConfig.search,
-                'id'
+                requestName,
+                configData.typeConfig.search
             );
-            await generateBook(results, searchItem, chapterItem, requestName);
+            const results: any = await mysqlService.searchItem(
+                _.get(searchItem, 'id'),
+                requestType,
+                'search_id'
+            );
+            if (!_.isEmpty(results)) {
+                ctx.body = results;
+                ctx.response.set({
+                    'Mysql-Chapter-Table-Cache': 'true'
+                });
+                return;
+            }
+        }
+        if (requestType === configData.typeConfig.download) {
+            const chapterItem: IChapterMysql = await mysqlService.searchOne(
+                requestName,
+                configData.typeConfig.chapter
+            );
+            const results: any = await mysqlService.searchItem(
+                _.get(chapterItem, 'id'),
+                requestType,
+                'chapter_id'
+            );
+            if (!_.isEmpty(results)) {
+                const searchItem: ISearchMysql = await mysqlService.searchOne(
+                    _.get(chapterItem, 'search_id'),
+                    configData.typeConfig.search,
+                    'id'
+                );
+                await generateBook(results, searchItem, chapterItem, requestName);
 
-            ctx.response.set({
-                'Mysql-Table-Download-Cache': 'true'
-            });
-            ctx.body = {
-                message: '下载成功！',
-                code: 200,
-                data: results
-            };
-            return;
+                ctx.response.set({
+                    'Mysql-Table-Download-Cache': 'true'
+                });
+                ctx.body = {
+                    message: '下载成功！',
+                    code: 200,
+                    data: results
+                };
+                return;
+            }
         }
     }
+
     await next();
     let dataResult = ctx.state.data;
     const stateType = ctx.state.type;

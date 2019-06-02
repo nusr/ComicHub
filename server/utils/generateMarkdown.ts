@@ -3,13 +3,14 @@ import Path from 'path';
 import urlConfig from '../shared/urlConfig';
 import fs from 'fs';
 import logger from './logger';
+import { UrlConfigItem } from '../type/shared';
 
 function generateMarkdown() {
     const sourceFilePath = Path.resolve(__dirname, '../views/README.md');
     const template = fs.readFileSync(sourceFilePath, 'utf8');
     const result = Object.values(urlConfig);
     const resultMarkdown = mustache.render(template, {
-        siteList: result
+        siteList: result.filter((item: UrlConfigItem): boolean => item.enabled)
     });
     const resultFilePath = Path.resolve(__dirname, '../../README.md');
     fs.writeFile(resultFilePath, resultMarkdown, (error: Error) => {

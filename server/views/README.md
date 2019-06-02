@@ -1,6 +1,9 @@
-# ComicHub
+<h1 align="center">ComicHub</h1>
 
 > Comic downloader (漫画下载器)
+
+[![build status](https://img.shields.io/travis/nusr/ComicHub/master.svg?style=flat-square)](https://travis-ci.org/nusr/ComicHub)
+[![Test coverage](https://img.shields.io/codecov/c/github/nusr/ComicHub.svg?style=flat-square)](https://codecov.io/github/nusr/ComicHub?branch=master)
 
 初版尚未完成，功能不稳定。
 
@@ -56,7 +59,7 @@ $ npm run start:server
 1. [ ] 下载整部漫画
 1. [ ] 打包成桌面应用
 
-## 支持漫画网站
+## 支持的漫画网站
 
 更多站点，敬请期待！
 
@@ -65,13 +68,27 @@ $ npm run start:server
 1. [{{ name }}]({{ &base }})
    {{/siteList}}
 
-## 常见问题
+## 参与我们
 
-见 [FAQ](./docs/faq.md)
+欢迎提交 [issue](https://github.com/DIYgod/RSSHub/issues) 以及 Pull Requests 。
+
+## 新增漫画网站
+
+1. 查看 [/docs/joinUs.md](https://github.com/nusr/ComicHub/blob/master/docs/joinUs.md) 开发说明。
+1. 在 [/server/router/index.ts](https://github.com/nusr/ComicHub/blob/master/server/router/index.ts) 里添加路由。
+1. 在 [/server/routes/](https://github.com/nusr/ComicHub/tree/master/server/routes) 中的路由对应路径添加获取图片链接的脚本。
+
+## 支持更多电子书格式
+
+目前只支持 PDF、EPUB。
+请使用下列工具转换。
+
+1. GUI 转换工具 [https://calibre-ebook.com/](https://calibre-ebook.com/)
+1. 命令行转换工具 [https://pandoc.org/index.html](https://pandoc.org/index.html)
 
 ## 相关项目
 
-1. [work_crawler](https://github.com/kanasimi/work_crawler)
+1. [work_crawler](https://github.com/kanasimi/work_crawler)，看不懂这个仓库的代码
 
 ## LICENSE
 
