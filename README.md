@@ -1,6 +1,6 @@
 <h1 align="center">ComicHub</h1>
 
-> Comic downloader (漫画下载器)
+> 漫画下载器
 
 [![build status](https://img.shields.io/travis/nusr/ComicHub/master.svg?style=flat-square)](https://travis-ci.org/nusr/ComicHub)
 [![Test coverage](https://img.shields.io/codecov/c/github/nusr/ComicHub.svg?style=flat-square)](https://codecov.io/github/nusr/ComicHub?branch=master)
@@ -71,7 +71,7 @@ $ npm run start:server
 
 ## 参与我们
 
-欢迎提交 [issue](https://github.com/DIYgod/RSSHub/issues) 以及 Pull Requests 。
+欢迎提交 [issue](https://github.com/nusr/ComicHub/issues) 以及 Pull Requests 。
 
 ## 新增漫画网站
 
