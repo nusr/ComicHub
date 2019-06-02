@@ -86,7 +86,7 @@ $ npm run start:server
 1. GUI 转换工具 [https://calibre-ebook.com/](https://calibre-ebook.com/)
 1. 命令行转换工具 [https://pandoc.org/index.html](https://pandoc.org/index.html)
 
-## 相关项目
+## 类似项目
 
 1. [work_crawler](https://github.com/kanasimi/work_crawler)，看不懂这个仓库的代码
 

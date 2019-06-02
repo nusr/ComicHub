@@ -64,7 +64,9 @@ $ npm run start:server
 更多站点，敬请期待！
 
 1. [看漫画](https://www.manhuagui.com)
+
 1. [土豪漫画](https://www.tohomh123.com)
+
 1. [有妖气漫画](http://www.u17.com/)
 
 ## 参与我们
@@ -85,7 +87,7 @@ $ npm run start:server
 1. GUI 转换工具 [https://calibre-ebook.com/](https://calibre-ebook.com/)
 1. 命令行转换工具 [https://pandoc.org/index.html](https://pandoc.org/index.html)
 
-## 相关项目
+## 类似项目
 
 1. [work_crawler](https://github.com/kanasimi/work_crawler)，看不懂这个仓库的代码
 
