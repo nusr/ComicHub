@@ -22,38 +22,4 @@ describe('axios', () => {
         expect(response.status).toBe(200);
         expect(response.data.code).toBe(0);
     });
-
-    it('axios retry', async () => {
-        const requestRun = jest.fn();
-        let requestTime: any;
-
-        mock.onGet('/test').reply(() => {
-            requestRun();
-
-            // retryDelay
-            const now: any = new Date();
-            if (requestTime) {
-                expect(now - requestTime).toBeGreaterThanOrEqual(100);
-                expect(now - requestTime).toBeLessThan(120);
-            }
-            requestTime = new Date();
-
-            return [
-                404,
-                {
-                    code: 1
-                }
-            ];
-        });
-
-        try {
-            await axiosTest.get('/test');
-        } catch (error) {
-            expect(_.get(error, 'response.status')).toBe(404);
-            expect(_.get(error, 'response.data.code')).toBe(1);
-        }
-
-        // retries
-        expect(requestRun).toHaveBeenCalledTimes(config.requestRetry + 1);
-    });
 });
