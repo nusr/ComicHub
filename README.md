@@ -1,15 +1,13 @@
-<h1 align="center">ComicHub</h1>
+<h1 style="text-align:center">ComicHub</h1>
 
 > 下载漫画，生成 PDF
 
 [![build status](https://img.shields.io/travis/nusr/ComicHub/master.svg?style=flat-square)](https://travis-ci.org/nusr/ComicHub)
 [![Test coverage](https://img.shields.io/codecov/c/github/nusr/ComicHub.svg?style=flat-square)](https://codecov.io/github/nusr/ComicHub?branch=master)
 
-初版尚未完成，功能不稳定。
-
 ## 介绍
 
-ComicHub 是一款漫画下载器。爬取漫画网站的图片，生成 PDF、EPUB 文件。
+ComicHub 是一款漫画下载器。爬取漫画网站的图片，生成 PDF 和 EPUB 文件。
 
 Koa + MySQL + Umi + Electron + React + Typescript 打造 。
 
@@ -52,12 +50,12 @@ $ npm run start:server
 ## 功能
 
 1. [x] 下载一集漫画
-1. [x] MySQL 存储爬取链接
-1. [x] 前端交互页面
-1. [x] 生成 PDF 文件
-1. [x] 生成 EPUB 文件
-1. [ ] 下载整部漫画
-1. [ ] 打包成桌面应用
+2. [x] MySQL 存储爬取链接
+3. [x] 前端交互页面
+4. [x] 生成 PDF 文件
+5. [x] 生成 EPUB 文件
+6. [ ] 下载整部漫画
+7. [ ] 打包成桌面应用
 
 ## 支持的漫画网站
 

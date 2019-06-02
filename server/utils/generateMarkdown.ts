@@ -13,14 +13,8 @@ function generateMarkdown() {
         siteList: result.filter((item: UrlConfigItem): boolean => item.enabled)
     });
     const resultFilePath = Path.resolve(__dirname, '../../README.md');
-    fs.writeFile(resultFilePath, resultMarkdown, (error: Error) => {
-        if (error) {
-            console.log(error);
-        } else {
-            logger.info(`[Update README.md Success] ${resultFilePath}`);
-        }
-    });
-    return resultFilePath;
+    fs.writeFileSync(resultFilePath, resultMarkdown);
+    logger.info(`[Update README.md Success] ${resultFilePath}`);
 }
 
 generateMarkdown();

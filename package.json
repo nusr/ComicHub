@@ -80,16 +80,16 @@
     },
     "lint-staged": {
         "linters": {
-            "**/*.{json,md}": [
-                "prettier --write",
-                "git add"
-            ],
             "**/*.{ts,tsx,jsx,js}": [
                 "eslint --fix",
                 "git add"
             ],
             "**/*.less": [
                 "stylelint --syntax less --fix",
+                "git add"
+            ],
+            "**/*.{json,md}": [
+                "prettier --write",
                 "git add"
             ]
         },
