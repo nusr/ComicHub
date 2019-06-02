@@ -1,15 +1,13 @@
-<h1 align="center">ComicHub</h1>
+<h1 style="text-align:center">ComicHub</h1>
 
-> 漫画下载器
+> 下载漫画，生成 PDF
 
 [![build status](https://img.shields.io/travis/nusr/ComicHub/master.svg?style=flat-square)](https://travis-ci.org/nusr/ComicHub)
 [![Test coverage](https://img.shields.io/codecov/c/github/nusr/ComicHub.svg?style=flat-square)](https://codecov.io/github/nusr/ComicHub?branch=master)
 
-初版尚未完成，功能不稳定。
-
 ## 介绍
 
-ComicHub 是一款漫画下载器。爬取网站的图片，生成 PDF、EPUB 文件。
+ComicHub 是一款漫画下载器。爬取漫画网站的图片，生成 PDF 和 EPUB 文件。
 
 Koa + MySQL + Umi + Electron + React + Typescript 打造 。
 
@@ -52,12 +50,12 @@ $ npm run start:server
 ## 功能
 
 1. [x] 下载一集漫画
-1. [x] MySQL 存储爬取链接
-1. [x] 前端交互页面
-1. [x] 生成 PDF 文件
-1. [x] 生成 EPUB 文件
-1. [ ] 下载整部漫画
-1. [ ] 打包成桌面应用
+2. [x] MySQL 存储爬取链接
+3. [x] 前端交互页面
+4. [x] 生成 PDF 文件
+5. [x] 生成 EPUB 文件
+6. [ ] 下载整部漫画
+7. [ ] 打包成桌面应用
 
 ## 支持的漫画网站
 
@@ -68,20 +66,21 @@ $ npm run start:server
 1. [{{ name }}]({{ &base }})
    {{/siteList}}
 
-## 参与我们
-
-欢迎提交 [issue](https://github.com/nusr/ComicHub/issues) 以及 Pull Requests 。
-
 ## 新增漫画网站
 
 1. 查看 [/docs/joinUs.md](https://github.com/nusr/ComicHub/blob/master/docs/joinUs.md) 开发说明。
 1. 在 [/server/router/index.ts](https://github.com/nusr/ComicHub/blob/master/server/router/index.ts) 里添加路由。
-1. 在 [/server/routes/](https://github.com/nusr/ComicHub/tree/master/server/routes) 中的路由对应路径添加获取图片链接的脚本。
+1. 在 [/server/routes/](https://github.com/nusr/ComicHub/tree/master/server/routes) 中新增脚本。
+
+## 参与我们
+
+欢迎提交 [issue](https://github.com/nusr/ComicHub/issues) 以及 Pull Requests 。
+
+为了避免版权纠纷，只抓取免费漫画。
 
 ## 支持更多电子书格式
 
-目前只支持 PDF、EPUB。
-请使用下列工具转换。
+目前只支持 PDF、EPUB。更多格式请使用下列工具转换。
 
 1. GUI 转换工具 [https://calibre-ebook.com/](https://calibre-ebook.com/)
 1. 命令行转换工具 [https://pandoc.org/index.html](https://pandoc.org/index.html)

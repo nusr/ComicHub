@@ -15,7 +15,7 @@
         "debug:main": "electron --inspect=5858 -w ./dist/main/main.js",
         "pack": "npm run build:renderer && npm run build:main-prod && electron-builder --dir",
         "dist": "electron-builder",
-        "lint-staged": "npm run readme &&  lint-staged ",
+        "lint-staged": "npm run readme && lint-staged",
         "format": "npm run lint && npm run style && prettier \\\"**/*.{json,md}\\\" --write",
         "style": "stylelint 'src/**/*.less' --syntax less --fix",
         "lint": "eslint --fix --ext .js,.jsx,.ts,.tsx src server",

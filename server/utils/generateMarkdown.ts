@@ -6,7 +6,7 @@ import logger from './logger';
 import { UrlConfigItem } from '../type/shared';
 
 function generateMarkdown() {
-    const sourceFilePath = Path.resolve(__dirname, '../views/README.md');
+    const sourceFilePath = Path.resolve(__dirname, '../../docs/readmeTemplate.md');
     const template = fs.readFileSync(sourceFilePath, 'utf8');
     const result = Object.values(urlConfig);
     const resultMarkdown = mustache.render(template, {
