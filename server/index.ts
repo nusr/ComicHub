@@ -8,7 +8,6 @@ import bodyParser from 'koa-bodyparser';
 import errorHandler from './middleware/onerror';
 import header from './middleware/header';
 import mysql from './middleware/dataProcess';
-import debug from './middleware/debug';
 
 import accessControl from './middleware/accessControl';
 import router from './router';
@@ -35,7 +34,6 @@ app.use(accessControl);
 app.context.debug = {
     request: 0,
 };
-app.use(debug);
 
 app.use(apiResponseHandler);
 app.use(apiTemplate);

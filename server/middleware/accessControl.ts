@@ -41,6 +41,7 @@ const accessControl = async (
         }
 
         if (ctx.response.status !== 403) {
+            ctx.debug.request++;
             await next();
         }
     }
