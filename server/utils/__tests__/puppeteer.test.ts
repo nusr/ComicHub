@@ -5,7 +5,7 @@ describe('puppeteer', () => {
         const browser = await puppeteer();
         const page = await browser.newPage();
         await page.goto('https://github.com/nusr/ComicHub', {
-            waitUntil: 'domcontentloaded'
+            waitUntil: 'domcontentloaded',
         });
 
         const html = await page.evaluate(() => document.body.innerHTML);

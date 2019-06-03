@@ -39,13 +39,15 @@ export default function downloadImage(
         responseType: 'stream',
         headers: {
             Referer: referer,
-            'User-Agent': config.userAgent
-        }
-    }).then(response => {
-        response.data.pipe(stream);
-    }).catch(error => {
-        logger.error(error);
-    });
+            'User-Agent': config.userAgent,
+        },
+    })
+        .then(response => {
+            response.data.pipe(stream);
+        })
+        .catch(error => {
+            logger.error(error);
+        });
 
     logger.info(`[Download Image Success] ${filePath}`);
 
@@ -53,8 +55,10 @@ export default function downloadImage(
         if (config.pdfSupportImage.includes(parseDir.ext)) {
             return;
         }
-        const jpegPath = path.join(parseDir.dir, `${parseDir.name}${config.pdfSupportImage[0]}`);
+        const jpegPath = path.join(
+            parseDir.dir,
+            `${parseDir.name}${config.pdfSupportImage[0]}`
+        );
         convertImage(filePath, jpegPath);
     });
 }
-

@@ -2,7 +2,7 @@ const path = require('path');
 export default {
     connect: {
         port: process.env.PORT || 1200, // 监听端口
-        socket: process.env.SOCKET || null // 监听 Unix Socket, null 为禁用
+        socket: process.env.SOCKET || null, // 监听 Unix Socket, null 为禁用
     },
     userAgent:
         process.env.UA ||
@@ -19,9 +19,9 @@ export default {
         port: process.env.PROXY_PORT,
         auth: {
             username: process.env.PROXY_AUTH_USERNAME,
-            password: process.env.PROXY_AUTH_PASSWORD
+            password: process.env.PROXY_AUTH_PASSWORD,
         },
-        url_regex: process.env.PROXY_URL_REGEX || '.*'
+        url_regex: process.env.PROXY_URL_REGEX || '.*',
     },
     blacklist: process.env.BLACKLIST && process.env.BLACKLIST.split(','),
     whitelist: process.env.WHITELIST && process.env.WHITELIST.split(','),
@@ -29,7 +29,7 @@ export default {
         search: 'search',
         chapter: 'chapter',
         download: 'images',
-        downloadAll: 'downloadAll'
+        downloadAll: 'downloadAll',
     },
     downloadBase: path.resolve(__dirname, '../../../downloadResult'), // 下载根目录
     pdfSupportImage: ['.jpeg', '.png'], // pdfkit 只支持 png jpeg
@@ -41,8 +41,7 @@ export default {
                     text-align: center;
                     vertical-align: middle;
                 }`,
-        bookType: ['pdf', 'epub'] // 'pdf'  'epub'
-
+        bookType: ['pdf', 'epub'], // 'pdf'  'epub'
     },
     epubConfig: {},
     mysql: {
@@ -50,6 +49,6 @@ export default {
         port: 3306,
         user: 'root', // 用户名
         password: 'admin123456', // 密码
-        database: 'comic' // 数据库名
-    }
+        database: 'comic', // 数据库名
+    },
 };

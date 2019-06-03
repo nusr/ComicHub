@@ -8,59 +8,59 @@ import DumpTable from '../../components/DumpTable';
 const searchColumns = [
     {
         title: 'ID',
-        dataIndex: 'id'
+        dataIndex: 'id',
     },
     {
         title: '名称',
-        dataIndex: 'title'
+        dataIndex: 'title',
     },
     {
         title: '作者',
-        dataIndex: 'author'
+        dataIndex: 'author',
     },
     {
         title: '链接',
         dataIndex: 'url',
         render: text => {
-            return <a
-                title={text}
-                target="_blank"
-                href={text}
-            >
-                {text}
-            </a>;
-        }
+            return (
+                <a title={text} target="_blank" href={text}>
+                    {text}
+                </a>
+            );
+        },
     },
 
     {
         title: '地区',
-        dataIndex: 'area'
+        dataIndex: 'area',
     },
     {
         title: '分类',
-        dataIndex: 'category'
+        dataIndex: 'category',
     },
     {
         title: '封面',
         dataIndex: 'cover',
         render: (text: string) => {
-            return text ? (<Avatar src={text} />) : '';
-        }
+            return text ? <Avatar src={text} /> : '';
+        },
     },
     {
         title: '爬取时间',
         dataIndex: 'create_time',
-        render: renderDate
-    }
+        render: renderDate,
+    },
 ];
 
 function SearchResult(props) {
     const { dispatch, loading, searchList = [], currentUrl } = props;
     const [selectedRows, setSelectedRows] = useState([]);
     let checkType = 'radio';
+
     function handleSelectRows(value) {
         setSelectedRows(value);
     }
+
     function handleChapterSubmit() {
         if (!selectedRows || selectedRows.length === 0) {
             message.error(`请选择漫画！`);
@@ -70,17 +70,18 @@ function SearchResult(props) {
         setSelectedRows([]);
         dispatch({
             type: 'shared/changeType',
-            payload: typeConfig.chapter
+            payload: typeConfig.chapter,
         });
         dispatch({
             type: 'chapter/fetch',
             payload: {
                 url: currentUrl,
                 name: item.url,
-                type: typeConfig.chapter
-            }
+                type: typeConfig.chapter,
+            },
         });
     }
+
     return (
         <Fragment>
             <div className={styles.submit}>
@@ -107,5 +108,5 @@ function SearchResult(props) {
 export default connect(({ loading, search, shared }) => ({
     loading: loading.models.search,
     searchList: search.list,
-    currentUrl: shared.currentUrl
+    currentUrl: shared.currentUrl,
 }))(SearchResult);

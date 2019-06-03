@@ -1,4 +1,9 @@
-import { getReferer, filterIllegalPath, numToString, getComicSite } from '../parseUrl';
+import {
+    getReferer,
+    filterIllegalPath,
+    numToString,
+    getComicSite,
+} from '../parseUrl';
 
 describe('getReferer', () => {
     it('getReferer should return right referer', () => {
@@ -26,7 +31,6 @@ describe('filterIllegalPath', () => {
     });
 });
 
-
 describe('numToString', () => {
     it('numToString should return right string', () => {
         expect(numToString(3)).toBe('00003');
@@ -37,7 +41,6 @@ describe('numToString', () => {
         expect(numToString(333333)).toBe('333333');
     });
 });
-
 
 describe('getComicSite', () => {
     it('getComicSite should return right result', () => {
@@ -51,4 +54,3 @@ describe('getComicSite', () => {
         expect(getComicSite('com')).toBe('');
     });
 });
-

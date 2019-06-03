@@ -23,7 +23,7 @@ const tuHao = async (ctx: Koa.BaseContext) => {
         page.setViewport({ width: 1366, height: 768 });
         await page.goto(name, {
             waitUntil: 'networkidle0',
-            timeout: 0
+            timeout: 0,
         });
         const nextItem = await page.$('#cr_top > div > div.right > a:nth-child(4)');
         nextItem.click();

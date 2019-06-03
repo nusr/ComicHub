@@ -18,13 +18,13 @@ function getBookInfo(dirName: string, extName: string = 'pdf'): BookInfo {
         const extName = path.extname(filePath);
         const list: string[] = configData.pdfSupportImage;
         if (list.includes(extName)) {
-            filePathList.push((filePath));
+            filePathList.push(filePath);
         }
     });
     return {
         outputPath,
         filePathList,
-        bookTitle
+        bookTitle,
     };
 }
 

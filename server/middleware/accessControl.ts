@@ -7,7 +7,7 @@ const reject = (ctx: Koa.BaseContext) => {
         lastBuildDate: new Date().toUTCString(),
         updated: new Date().toISOString(),
         ttl: 24 * 60 * 60,
-        title: '没有访问权限. Access denied.'
+        title: '没有访问权限. Access denied.',
     };
 };
 

@@ -7,7 +7,6 @@ import { getReferer, numToString, getComicSite } from './parseUrl';
 import sleep from './wait';
 import downloadImage from './downloadImage';
 
-
 const getBookDir = (
     searchItem: ISearchMysql,
     chapterItem: IChapterMysql
@@ -22,28 +21,22 @@ const formatDownloadPath = (
     return dataResult.map((item: any): any => {
         return {
             url: item.url,
-            fileName: `${dirPath}/${numToString(item.page)}`
+            fileName: `${dirPath}/${numToString(item.page)}`,
         };
     });
 };
 
 async function makeBook(
-    results: any, searchItem: ISearchMysql,
-    chapterItem: IChapterMysql, requestName: string
+    results: any,
+    searchItem: ISearchMysql,
+    chapterItem: IChapterMysql,
+    requestName: string
 ) {
-    const downloadList = formatDownloadPath(
-        results,
-        searchItem,
-        chapterItem
-    );
+    const downloadList = formatDownloadPath(results, searchItem, chapterItem);
     const requestUrl = getReferer(requestName);
     for (const item of downloadList) {
         await sleep(200);
-        downloadImage(
-            item.url,
-            item.fileName,
-            requestUrl
-        );
+        downloadImage(item.url, item.fileName, requestUrl);
     }
 
     const dirPath: string = getBookDir(searchItem, chapterItem);

@@ -46,7 +46,7 @@ function addItem(data: any, tableName: string) {
             const sql = `INSERT INTO ${tableName} SET ?`;
             const realData = {
                 ...data,
-                create_time: Number(new Date())
+                create_time: Number(new Date()),
             };
             mysql(sql, realData, (result: any = '') => {
                 resolve(result.insertId > 0);
@@ -94,5 +94,5 @@ export default {
     deleteItem,
     editItem,
     foggySearch,
-    searchOne
+    searchOne,
 };

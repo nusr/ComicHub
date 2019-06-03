@@ -16,7 +16,6 @@ declare class epub_gen {
     makeCover(...args: any[]): void;
 
     render(...args: any[]): void;
-
 }
 
 declare namespace epub_gen {
@@ -33,8 +32,5 @@ declare namespace epub_gen {
         function makeCover(...args: any[]): void;
 
         function render(...args: any[]): void;
-
     }
-
 }
-

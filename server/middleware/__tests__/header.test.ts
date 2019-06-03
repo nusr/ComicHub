@@ -4,7 +4,6 @@ import koaServer from '../../index';
 const { server } = koaServer;
 const request = supertest(server);
 
-
 afterAll(() => {
     server.close();
 });

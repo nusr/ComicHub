@@ -1,8 +1,5 @@
 module.exports = {
-    extends: [
-        'eslint-config-alloy/react',
-        'eslint-config-alloy/typescript',
-    ],
+    extends: ['eslint-config-alloy/react', 'eslint-config-alloy/typescript'],
     env: {
         browser: true,
         node: true,

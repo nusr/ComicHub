@@ -9,5 +9,5 @@ export const typeConfig = {
     search: 'search',
     chapter: 'chapter',
     download: 'images',
-    downloadAll: 'downloadAll'
+    downloadAll: 'downloadAll',
 };

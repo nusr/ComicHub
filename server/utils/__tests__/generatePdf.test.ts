@@ -2,7 +2,6 @@ import generatePdf from '../generatePdf';
 import path from 'path';
 import fs from 'fs';
 
-
 describe('generatePdf', () => {
     it('generatePdf should create pdf success', () => {
         const testPath = path.join(__dirname, '../../routes');

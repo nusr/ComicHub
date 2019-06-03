@@ -16,7 +16,7 @@ function SearchForm(props: IProps) {
     const currentData: IFormData = {
         name: '',
         url: '',
-        noCache: false
+        noCache: false,
     };
 
     function resetForm() {
@@ -44,7 +44,7 @@ function SearchForm(props: IProps) {
             <FormItem label="站点">
                 {form.getFieldDecorator('url', {
                     initialValue: currentData.url,
-                    rules: [{ required: true, message: '请选择站点' }]
+                    rules: [{ required: true, message: '请选择站点' }],
                 })(<Select placeholder="请选择状态" style={{ width: 170 }}>
                     {menuList.map((item: IOptionData) => (
                         <Select.Option value={item.value} key={item.value}>
@@ -56,12 +56,12 @@ function SearchForm(props: IProps) {
             <FormItem label="关键词">
                 {form.getFieldDecorator('name', {
                     initialValue: currentData.name,
-                    rules: [{ required: true, message: '请输入关键词' }]
+                    rules: [{ required: true, message: '请输入关键词' }],
                 })(<Input placeholder="请输入关键词" />)}
             </FormItem>
             <FormItem label="MySQL">
                 {form.getFieldDecorator('noCache', {
-                    initialValue: currentData.noCache
+                    initialValue: currentData.noCache,
                 })(<Checkbox />)}
             </FormItem>
             <FormItem>
@@ -80,7 +80,7 @@ function SearchForm(props: IProps) {
 
 SearchForm.defaultProps = {
     menuList: [],
-    handleFormSubmit: null
+    handleFormSubmit: null,
 };
 const wrapperForm = Form.create({ name: 'SearchForm' })(SearchForm);
 

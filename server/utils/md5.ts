@@ -6,4 +6,3 @@ export default function md5(content: any): string {
         .update(content)
         .digest('hex');
 }
-

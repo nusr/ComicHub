@@ -16,14 +16,13 @@ async function generateEpub(dirName: string) {
         logger.info('下载路径为不存在！');
         return;
     }
-    const {
-        outputPath,
-        filePathList,
-        bookTitle
-    }: BookInfo = getBookInfo(dirName, 'epub');
+    const { outputPath, filePathList, bookTitle }: BookInfo = getBookInfo(
+        dirName,
+        'epub'
+    );
     const content = filePathList.map(item => {
         return {
-            data: `<img src="${item}" alt="comic"/>`
+            data: `<img src="${item}" alt="comic"/>`,
         };
     });
 
@@ -34,7 +33,7 @@ async function generateEpub(dirName: string) {
         cover: _.first(filePathList),
         css: configData.bookConfig.imgCss,
         content,
-        verbose: process.env.NODE_ENV !== 'test'
+        verbose: process.env.NODE_ENV !== 'test',
     };
     // @ts-ignore
     await new EpubGen(option, outputPath);

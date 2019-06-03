@@ -8,7 +8,7 @@ module.exports = {
         'middleware/*.ts',
         'sql/*.ts',
         'service/*.ts',
-        'utils/*.ts'
+        'utils/*.ts',
     ],
-    bail: true
+    bail: true,
 };

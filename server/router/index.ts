@@ -16,7 +16,7 @@ import u17 from '../routes/u17';
 const router = new Router();
 router.get('/', async (ctx: Koa.Context) => {
     ctx.set({
-        'Content-Type': 'text/html; charset=UTF-8'
+        'Content-Type': 'text/html; charset=UTF-8',
     });
 
     let showDebug;
@@ -30,7 +30,7 @@ router.get('/', async (ctx: Koa.Context) => {
     const stats = await sourceUsed(process.pid);
 
     ctx.set({
-        'Cache-Control': 'no-cache'
+        'Cache-Control': 'no-cache',
     });
     const filePath = path.resolve(__dirname, '../views/welcome.html');
     logger.info(filePath);
@@ -39,26 +39,26 @@ router.get('/', async (ctx: Koa.Context) => {
         debug: [
             {
                 name: '请求数',
-                value: ctx.debug.request
+                value: ctx.debug.request,
             },
             {
                 name: '请求频率',
                 value:
-                    ((ctx.debug.request / (stats.elapsed / 1000)) * 60).toFixed(3) + ' 次/分钟'
+                    ((ctx.debug.request / (stats.elapsed / 1000)) * 60).toFixed(3) + ' 次/分钟',
             },
             {
                 name: '内存占用',
-                value: stats.memory / 1000000 + ' MB'
+                value: stats.memory / 1000000 + ' MB',
             },
             {
                 name: 'CPU 占用',
-                value: stats.cpu + '%'
+                value: stats.cpu + '%',
             },
             {
                 name: '运行时间',
-                value: (stats.elapsed / 3600000).toFixed(2) + ' 小时'
-            }
-        ]
+                value: (stats.elapsed / 3600000).toFixed(2) + ' 小时',
+            },
+        ],
     };
     const template = fs.readFileSync(filePath, 'utf8');
     ctx.body = mustache.render(template, viewData);

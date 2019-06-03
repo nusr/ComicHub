@@ -20,9 +20,19 @@ const getSearchList = (data: string): ISearchItem[] => {
             .eq(0)
             .attr('src');
 
-        const author: string = $(this).find('div.info > h3 > a').eq(0).attr('title');
-        const introduce: string = $(this).find('div.info > p.text').eq(0).text();
-        const category: string = $(this).find('div.info > p.cf > i').eq(0).text().replace(/\s/gi, '');
+        const author: string = $(this)
+            .find('div.info > h3 > a')
+            .eq(0)
+            .attr('title');
+        const introduce: string = $(this)
+            .find('div.info > p.text')
+            .eq(0)
+            .text();
+        const category: string = $(this)
+            .find('div.info > p.cf > i')
+            .eq(0)
+            .text()
+            .replace(/\s/gi, '');
         if (url) {
             result.push({
                 url,
@@ -30,7 +40,7 @@ const getSearchList = (data: string): ISearchItem[] => {
                 cover,
                 author,
                 introduce: introduce.slice(3),
-                category
+                category,
             });
         }
     });
@@ -53,8 +63,10 @@ const getChapterList = (data: string): IChapterItem[] => {
         if (link) {
             chapters.push({
                 url: link,
-                title: title.slice(0, titleLen > 11 ? titleLen - 11 : titleLen).trim(),
-                page_size: currentPage
+                title: title
+                    .slice(0, titleLen > 11 ? titleLen - 11 : titleLen)
+                    .trim(),
+                page_size: currentPage,
             });
         }
     });
@@ -73,7 +85,7 @@ const getDownloadList = (data: string): IImageItem[] => {
         if (url) {
             result.push({
                 url,
-                page
+                page,
             });
             page += 1;
         }
@@ -85,10 +97,9 @@ function getSearchUrl(name: string): string {
     return `http://so.u17.com/all/${encodeURIComponent(name)}/m0_p1.html`;
 }
 
-
 export default {
     getChapterList,
     getSearchList,
     getSearchUrl,
-    getDownloadList
+    getDownloadList,
 };

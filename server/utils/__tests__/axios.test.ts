@@ -13,8 +13,8 @@ describe('axios', () => {
             return [
                 200,
                 {
-                    code: 0
-                }
+                    code: 0,
+                },
             ];
         });
 

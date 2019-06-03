@@ -10,16 +10,15 @@ function handleEmpty(stateType: string) {
     let dataResult: any;
     if (stateType === configData.typeConfig.search) {
         dataResult = {
-            message: '搜索不到该漫画，请更换搜索词！'
+            message: '搜索不到该漫画，请更换搜索词！',
         };
     } else if (stateType === configData.typeConfig.chapter) {
         dataResult = {
-            message: '爬取结果为空！'
+            message: '爬取结果为空！',
         };
     }
     return dataResult;
 }
-
 
 function filterArray(data: any = []) {
     const record: any = {};
@@ -48,7 +47,7 @@ const mysqlHandler = async (ctx: Koa.Context, next: () => Promise<any>) => {
             if (!_.isEmpty(result)) {
                 ctx.body = result;
                 ctx.response.set({
-                    'Mysql-Search-Table-Cache': 'true'
+                    'Mysql-Search-Table-Cache': 'true',
                 });
                 return;
             }
@@ -66,7 +65,7 @@ const mysqlHandler = async (ctx: Koa.Context, next: () => Promise<any>) => {
             if (!_.isEmpty(results)) {
                 ctx.body = results;
                 ctx.response.set({
-                    'Mysql-Chapter-Table-Cache': 'true'
+                    'Mysql-Chapter-Table-Cache': 'true',
                 });
                 return;
             }
@@ -87,15 +86,20 @@ const mysqlHandler = async (ctx: Koa.Context, next: () => Promise<any>) => {
                     configData.typeConfig.search,
                     'id'
                 );
-                await generateBook(results, searchItem, chapterItem, requestName);
+                await generateBook(
+                    results,
+                    searchItem,
+                    chapterItem,
+                    requestName
+                );
 
                 ctx.response.set({
-                    'Mysql-Table-Download-Cache': 'true'
+                    'Mysql-Table-Download-Cache': 'true',
                 });
                 ctx.body = {
                     message: '下载成功！',
                     code: 200,
-                    data: results
+                    data: results,
                 };
                 return;
             }
@@ -128,12 +132,11 @@ const mysqlHandler = async (ctx: Koa.Context, next: () => Promise<any>) => {
                 await mysqlService.addItem(
                     {
                         search_id: _.get(searchResult, 'id'),
-                        ...item
+                        ...item,
                     },
                     stateType
                 );
             }
-
         }
         if (stateType === configData.typeConfig.download) {
             dataResult = filterArray(dataResult);
@@ -151,17 +154,22 @@ const mysqlHandler = async (ctx: Koa.Context, next: () => Promise<any>) => {
                     await mysqlService.addItem(
                         {
                             chapter_id: chapterItem.id,
-                            ...item
+                            ...item,
                         },
                         stateType
                     );
                 }
-                await generateBook(dataResult, searchItem, chapterItem, searchUrl);
+                await generateBook(
+                    dataResult,
+                    searchItem,
+                    chapterItem,
+                    searchUrl
+                );
             }
             dataResult = {
                 message: '下载成功！',
                 code: 200,
-                data: dataResult
+                data: dataResult,
             };
         }
     } else {

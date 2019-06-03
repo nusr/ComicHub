@@ -2,10 +2,7 @@ import sharp from 'sharp';
 import logger from './logger';
 import imageConverter from 'webp-converter';
 
-export default function convertImage(
-    filePath: string,
-    jpegPath: string
-) {
+export default function convertImage(filePath: string, jpegPath: string) {
     sharp(filePath)
         .jpeg()
         .toFile(jpegPath)
@@ -29,4 +26,3 @@ export default function convertImage(
             );
         });
 }
-

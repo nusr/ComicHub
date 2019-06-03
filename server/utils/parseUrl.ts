@@ -30,9 +30,4 @@ function getComicSite(url: string): string {
     temp.pop();
     return _.last(temp) || '';
 }
-export {
-    getReferer,
-    filterIllegalPath,
-    numToString,
-    getComicSite
-};
+export { getReferer, filterIllegalPath, numToString, getComicSite };

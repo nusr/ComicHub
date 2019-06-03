@@ -15,11 +15,10 @@ function generatePdf(dirName: string) {
         return;
     }
 
-    const {
-        outputPath,
-        filePathList,
-        bookTitle
-    }: BookInfo = getBookInfo(dirName, 'pdf');
+    const { outputPath, filePathList, bookTitle }: BookInfo = getBookInfo(
+        dirName,
+        'pdf'
+    );
 
     const pdf: any = new PdfDoc();
     pdf.pipe(fs.createWriteStream(outputPath));
@@ -33,8 +32,8 @@ function generatePdf(dirName: string) {
 
         pdf.image(temp, {
             width: configData.bookConfig.imgWidth,
-            'align': 'center',
-            'valign': 'center'
+            align: 'center',
+            valign: 'center',
         });
         logger.info(`[Add Image Success] ${item}`);
         if (i !== filePathList.length - 1) {
@@ -47,4 +46,3 @@ function generatePdf(dirName: string) {
 }
 
 export default generatePdf;
-

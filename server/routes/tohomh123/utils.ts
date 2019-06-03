@@ -6,7 +6,6 @@ import { numToString } from '../../utils/parseUrl';
 const baseUrl = urlConfig.tohomh123.base;
 import { ISearchItem, IChapterItem, IImageItem } from '../../type';
 
-
 const getCoverUrl = (style: string): string => {
     const temp: string = style.match(/(\([\s\S]*\))/)[0];
     return temp.slice(1, -1);
@@ -30,7 +29,7 @@ const getSearchList = (data: string) => {
             result.push({
                 url,
                 title,
-                cover: realCover
+                cover: realCover,
             });
         }
     });
@@ -50,13 +49,16 @@ const getChapterList = (data: string) => {
             .eq(0)
             .text();
         const title: string = dom.text();
-        const realTitle: string = title.slice(0, title.length - pageString.length);
+        const realTitle: string = title.slice(
+            0,
+            title.length - pageString.length
+        );
         const currentPage = Number(pageString.match(/(\d+)/gi)[0]);
         if (link) {
             chapters.push({
                 url: link,
                 title: realTitle,
-                page_size: currentPage
+                page_size: currentPage,
             });
         }
     });
@@ -78,7 +80,7 @@ function getDownloadItem(data: string, pageSize: number) {
     for (let i = 1; i < pageSize; i++) {
         result.push({
             page: i,
-            url: `${baseUrl}${numToString(i - 1)}.${extName}`
+            url: `${baseUrl}${numToString(i - 1)}.${extName}`,
         });
     }
     return result;
@@ -102,5 +104,5 @@ export default {
     getSearchList,
     getSearchUrl,
     getDownloadUrl,
-    getDownloadItem
+    getDownloadItem,
 };

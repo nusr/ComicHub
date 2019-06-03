@@ -11,5 +11,5 @@ function DownloadResult(props) {
 }
 
 export default connect(({ download }) => ({
-    downloadResult: download.result
+    downloadResult: download.result,
 }))(DownloadResult);
