@@ -17,7 +17,7 @@ function generatePdf(dirName: string) {
 
     const { outputPath, filePathList, bookTitle }: BookInfo = getBookInfo(
         dirName,
-        'pdf'
+        'pdf',
     );
 
     const pdf: any = new PdfDoc();
@@ -43,6 +43,7 @@ function generatePdf(dirName: string) {
     pdf.end();
     logger.info(outputPath);
     logger.info(`Generate Pdf Success\nDone!`);
+    return outputPath;
 }
 
 export default generatePdf;

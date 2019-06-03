@@ -22,7 +22,7 @@ process.on('uncaughtException', e => {
 
 logger.info('Comic start!');
 
-const app = new Koa();
+const app: any = new Koa();
 app.proxy = true;
 
 app.use(errorHandler);
@@ -46,7 +46,7 @@ app.use(mount('/', router.routes())).use(router.allowedMethods());
 
 // API router
 app.use(mount('/api', apiRouter.routes())).use(apiRouter.allowedMethods());
-let server;
+let server: any;
 if (config.connect.port) {
     server = app.listen(config.connect.port);
     logger.info('Running in http://localhost:' + config.connect.port);

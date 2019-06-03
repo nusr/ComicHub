@@ -1,4 +1,4 @@
-import tunnel from 'tunnel';
+import tunnel, { HttpsProxyOptions } from 'tunnel';
 import axios from 'axios';
 import axiosRetry from 'axios-retry';
 import SocksProxyAgent from 'socks-proxy-agent';
@@ -16,6 +16,7 @@ if (
     }`;
     axios.interceptors.request.use(options => {
         if (new RegExp(config.proxy.url_regex).test(options.url)) {
+            let temp: any;
             switch (config.proxy.protocol) {
                 case 'socks':
                     options.httpAgent = new SocksProxyAgent(proxyUrl);
@@ -23,7 +24,7 @@ if (
                     break;
                 case 'http':
                     process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
-                    options.httpAgent = tunnel.httpOverHttp({
+                    temp = {
                         proxy: {
                             host: config.proxy.host,
                             port: parseInt(config.proxy.port, 10),
@@ -31,19 +32,12 @@ if (
                                 'User-Agent': config.userAgent,
                             },
                         },
-                    });
-                    options.httpsAgent = tunnel.httpsOverHttp({
-                        proxy: {
-                            host: config.proxy.host,
-                            port: parseInt(config.proxy.port, 10),
-                            headers: {
-                                'User-Agent': config.userAgent,
-                            },
-                        },
-                    });
+                    };
+                    options.httpAgent = tunnel.httpOverHttp(temp);
+                    options.httpsAgent = tunnel.httpsOverHttp(temp);
                     break;
                 case 'https':
-                    options.httpAgent = tunnel.httpOverHttps({
+                    temp = {
                         proxy: {
                             host: config.proxy.host,
                             port: parseInt(config.proxy.port, 10),
@@ -54,19 +48,9 @@ if (
                                 'User-Agent': config.userAgent,
                             },
                         },
-                    });
-                    options.httpsAgent = tunnel.httpsOverHttps({
-                        proxy: {
-                            host: config.proxy.host,
-                            port: parseInt(config.proxy.port, 10),
-                            proxyAuth: `${config.proxy.auth.username}:${
-                                config.proxy.auth.password
-                            }`,
-                            headers: {
-                                'User-Agent': config.userAgent,
-                            },
-                        },
-                    });
+                    };
+                    options.httpAgent = tunnel.httpOverHttps(temp);
+                    options.httpsAgent = tunnel.httpsOverHttps(temp);
                     break;
             }
             if (config.proxy.auth) {

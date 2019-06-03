@@ -3,8 +3,7 @@ import path from 'path';
 import configData from '../shared/config';
 import _ from 'lodash';
 
-import { BookInfo } from '../type/utils';
-import logger from './logger';
+import { BookInfo } from './type';
 
 function getBookInfo(dirName: string, extName: string = 'pdf'): BookInfo {
     const outputPath = `${dirName}.${extName}`;

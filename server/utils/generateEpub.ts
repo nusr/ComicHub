@@ -18,7 +18,7 @@ async function generateEpub(dirName: string) {
     }
     const { outputPath, filePathList, bookTitle }: BookInfo = getBookInfo(
         dirName,
-        'epub'
+        'epub',
     );
     const content = filePathList.map(item => {
         return {
@@ -37,6 +37,7 @@ async function generateEpub(dirName: string) {
     };
     // @ts-ignore
     await new EpubGen(option, outputPath);
+    return outputPath;
 }
 
 export default generateEpub;

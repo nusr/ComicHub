@@ -69,10 +69,12 @@ function HomePage(props: Props) {
                 payload: typeConfig.search,
             });
             dispatch({
-                type: 'search/fetch',
+                type: 'common/fetch',
                 payload: {
-                    ...value,
+                    url: value.url,
+                    name: value.name,
                     type: typeConfig.search,
+                    noCache: Number(!value.cache),
                 },
             });
         }

@@ -42,7 +42,7 @@ const searchColumns = [
         title: '封面',
         dataIndex: 'cover',
         render: (text: string) => {
-            return text ? <Avatar src={text} /> : '';
+            return text ? (<a target="_blank" href={text}><Avatar src={text} /></a>) : '';
         },
     },
     {
@@ -53,7 +53,7 @@ const searchColumns = [
 ];
 
 function SearchResult(props) {
-    const { dispatch, loading, searchList = [], currentUrl } = props;
+    const { dispatch, loading, list = [], shared: { currentUrl }} = props;
     const [selectedRows, setSelectedRows] = useState([]);
     let checkType = 'radio';
 
@@ -67,13 +67,12 @@ function SearchResult(props) {
             return;
         }
         const item = selectedRows[0];
-        setSelectedRows([]);
         dispatch({
             type: 'shared/changeType',
             payload: typeConfig.chapter,
         });
         dispatch({
-            type: 'chapter/fetch',
+            type: 'common/fetch',
             payload: {
                 url: currentUrl,
                 name: item.url,
@@ -97,7 +96,7 @@ function SearchResult(props) {
                 loading={loading}
                 checkType={checkType}
                 selectedRows={selectedRows}
-                data={searchList}
+                data={list}
                 columns={searchColumns}
                 onSelectRow={handleSelectRows}
             />
@@ -105,8 +104,8 @@ function SearchResult(props) {
     );
 }
 
-export default connect(({ loading, search, shared }) => ({
-    loading: loading.models.search,
-    searchList: search.list,
-    currentUrl: shared.currentUrl,
+export default connect(({ loading, common, shared }) => ({
+    loading: loading.models.common,
+    list: common.list,
+    shared,
 }))(SearchResult);

@@ -1,7 +1,7 @@
 import { postItem } from '../services';
 
 export default {
-    namespace: 'chapter',
+    namespace: 'common',
     state: {
         list: [],
     },
@@ -10,12 +10,12 @@ export default {
             const response = yield call(postItem, payload);
             yield put({
                 payload: response,
-                type: 'saveDict',
+                type: 'saveData',
             });
         },
     },
     reducers: {
-        saveDict(state, { payload }) {
+        saveData(state, { payload }) {
             return {
                 ...state,
                 list: payload,

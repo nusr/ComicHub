@@ -13,7 +13,7 @@ export interface MenuItem {
 export interface IFormData {
     url: string;
     name: string;
-    noCache: boolean;
+    cache: boolean;
 }
 
 export interface IOptionData {

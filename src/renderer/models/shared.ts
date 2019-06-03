@@ -16,6 +16,6 @@ export default {
                 ...state,
                 currentType: payload,
             };
-        },
+        }
     },
 };

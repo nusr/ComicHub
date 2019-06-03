@@ -16,7 +16,7 @@ function SearchForm(props: IProps) {
     const currentData: IFormData = {
         name: '',
         url: '',
-        noCache: false,
+        cache: false,
     };
 
     function resetForm() {
@@ -60,8 +60,8 @@ function SearchForm(props: IProps) {
                 })(<Input placeholder="请输入关键词" />)}
             </FormItem>
             <FormItem label="MySQL">
-                {form.getFieldDecorator('noCache', {
-                    initialValue: currentData.noCache,
+                {form.getFieldDecorator('cache', {
+                    initialValue: currentData.cache,
                 })(<Checkbox />)}
             </FormItem>
             <FormItem>

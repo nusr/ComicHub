@@ -9,13 +9,13 @@ import downloadImage from './downloadImage';
 
 const getBookDir = (
     searchItem: ISearchMysql,
-    chapterItem: IChapterMysql
+    chapterItem: IChapterMysql,
 ): string => `${searchItem.title}/${chapterItem.title}`;
 
 const formatDownloadPath = (
     dataResult: any,
     searchItem: ISearchMysql,
-    chapterItem: IChapterMysql
+    chapterItem: IChapterMysql,
 ) => {
     const dirPath: string = getBookDir(searchItem, chapterItem);
     return dataResult.map((item: any): any => {
@@ -30,7 +30,7 @@ async function makeBook(
     results: any,
     searchItem: ISearchMysql,
     chapterItem: IChapterMysql,
-    requestName: string
+    requestName: string,
 ) {
     const downloadList = formatDownloadPath(results, searchItem, chapterItem);
     const requestUrl = getReferer(requestName);
@@ -43,7 +43,7 @@ async function makeBook(
     const realPath = path.join(
         configData.downloadBase,
         getComicSite(requestUrl),
-        dirPath
+        dirPath,
     );
     const bookType: string[] = configData.bookConfig.bookType;
     if (bookType.includes('pdf')) {

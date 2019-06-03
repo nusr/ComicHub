@@ -39,17 +39,19 @@ const chapterColumns = [
 interface Props {
     dispatch: any;
     loading: boolean;
-    chapterList: any;
+    list: any;
     currentUrl: any;
 }
 
 function ChapterResult(props: Props) {
-    const { dispatch, loading, chapterList = [], currentUrl } = props;
+    const {
+        dispatch, loading,
+        list = [], currentUrl,
+    } = props;
     const [selectedRows, setSelectedRows] = useState([]);
     let checkType = 'radio';
 
     function handleSelectRows(value) {
-        console.log(value);
         setSelectedRows(value);
     }
 
@@ -89,7 +91,7 @@ function ChapterResult(props: Props) {
                 loading={loading}
                 checkType={checkType}
                 selectedRows={selectedRows}
-                data={chapterList}
+                data={list}
                 columns={chapterColumns}
                 onSelectRow={handleSelectRows}
             />
@@ -97,8 +99,8 @@ function ChapterResult(props: Props) {
     );
 }
 
-export default connect(({ loading, chapter, shared }) => ({
-    loading: loading.models.search,
-    chapterList: chapter.list,
+export default connect(({ loading, common, shared }) => ({
+    loading: loading.models.common,
+    list: common.list,
     currentUrl: shared.currentUrl,
 }))(ChapterResult);
