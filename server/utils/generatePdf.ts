@@ -3,7 +3,7 @@ import PdfDoc from 'pdfkit';
 import logger from './logger';
 import configData from '../shared/config';
 import getBookInfo from './bookInfo';
-import { BookInfo } from '../type/utils';
+import { BookInfo } from './type';
 
 function generatePdf(dirName: string) {
     if (!dirName) {

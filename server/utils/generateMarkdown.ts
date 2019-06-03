@@ -3,7 +3,7 @@ import Path from 'path';
 import urlConfig from '../shared/urlConfig';
 import fs from 'fs';
 import logger from './logger';
-import { UrlConfigItem } from '../type/shared';
+import { UrlConfigItem } from '../shared/type';
 
 function generateMarkdown() {
     const sourceFilePath = Path.resolve(__dirname, '../../docs/readmeTemplate.md');
