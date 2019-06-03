@@ -22,7 +22,6 @@ function generatePdf(dirName: string) {
 
     if (filePathList.length === 0) {
         logger.info('内容为空！');
-        return;
     }
     const pdf: any = new PdfDoc();
     pdf.pipe(fs.createWriteStream(outputPath));

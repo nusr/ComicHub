@@ -36,12 +36,6 @@ export default {
     bookConfig: {
         author: 'Steve Xu',
         imgWidth: 500,
-        imgCss: `img {
-                    max-width: 100%;
-                    text-align: center;
-                    vertical-align: middle;
-                }`,
-        bookType: ['pdf', 'epub'], // 'pdf'  'epub'
     },
     epubConfig: {},
     mysql: {
