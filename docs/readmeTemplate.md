@@ -1,9 +1,11 @@
 <h1 style="text-align:center">ComicHub</h1>
 
-> 下载漫画，生成 PDF
+> 漫画下载器
 
 [![build status](https://img.shields.io/travis/nusr/ComicHub/master.svg?style=flat-square)](https://travis-ci.org/nusr/ComicHub)
 [![Test coverage](https://img.shields.io/codecov/c/github/nusr/ComicHub.svg?style=flat-square)](https://codecov.io/github/nusr/ComicHub?branch=master)
+[![Known Vulnerabilities](https://snyk.io/test/github/nusr/ComicHub/badge.svg?targetFile=package.json)](https://snyk.io/test/github/nusr/ComicHub?targetFile=package.json)
+[![codebeat badge](https://codebeat.co/badges/d9f586aa-2e0a-4999-ad9a-4f51cb6f4fae)](https://codebeat.co/projects/github-com-nusr-comichub-master)
 
 ## 介绍
 
