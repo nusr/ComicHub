@@ -15,11 +15,15 @@ function generatePdf(dirName: string) {
         return;
     }
 
-    const { outputPath, filePathList, bookTitle }: BookInfo = getBookInfo(
+    const { outputPath, filePathList = [], bookTitle }: BookInfo = getBookInfo(
         dirName,
         'pdf',
     );
 
+    if (filePathList.length === 0) {
+        logger.info('内容为空！');
+        return;
+    }
     const pdf: any = new PdfDoc();
     pdf.pipe(fs.createWriteStream(outputPath));
 

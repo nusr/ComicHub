@@ -21,7 +21,7 @@ cnpm i
 
 ## 数据库表结构
 
-见 [comic.sql](./comic.sql)
+见 [comic.sql](comic.sql)
 
 字段说明参见 [../server/type/index.ts](../server/type/index.ts)
 

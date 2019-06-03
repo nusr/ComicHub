@@ -12,7 +12,7 @@
 
 ## 介绍
 
-ComicHub 是一款漫画下载器。爬取漫画网站的图片，生成 PDF 和 EPUB 文件。
+ComicHub 是一款漫画下载器。爬取漫画网站的图片，生成 PDF 文件。
 
 Koa + MySQL + Umi + Electron + React + Typescript 打造 。
 
@@ -58,9 +58,8 @@ $ npm run start:server
 2. [x] MySQL 存储爬取链接
 3. [x] 前端交互页面
 4. [x] 生成 PDF 文件
-5. [x] 生成 EPUB 文件
-6. [ ] 下载整部漫画
-7. [ ] 打包成桌面应用
+5. [ ] 下载整部漫画
+6. [ ] 打包成桌面应用
 
 ## 支持的漫画网站
 
@@ -85,7 +84,7 @@ $ npm run start:server
 
 ## 支持更多电子书格式
 
-目前只支持 PDF、EPUB。更多格式请使用下列工具转换。
+目前只支持 PDF 。更多格式请使用下列工具转换。
 
 1. GUI 转换工具 [https://calibre-ebook.com/](https://calibre-ebook.com/)
 1. 命令行转换工具 [https://pandoc.org/index.html](https://pandoc.org/index.html)

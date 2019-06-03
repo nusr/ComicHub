@@ -4,9 +4,9 @@ import fs from 'fs';
 
 describe('generatePdf', () => {
     it('generatePdf should create pdf success', () => {
-        const testPath = path.join(__dirname, '../../routes');
+        const testPath: string = path.join(__dirname, '../../routes');
         generatePdf(testPath);
-        expect(fs.existsSync(`${testPath}.pdf`)).toBe(true);
+        expect(fs.existsSync(`${testPath}.pdf`)).toBe(false);
     });
 
     it('generatePdf should create pdf fail', () => {

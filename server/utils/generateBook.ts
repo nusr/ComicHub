@@ -2,7 +2,6 @@ import path from 'path';
 import { IChapterMysql, ISearchMysql } from '../type';
 import configData from '../shared/config';
 import generatePdf from './generatePdf';
-import generateEpub from './generateEpub';
 import { getReferer, numToString, getComicSite } from './parseUrl';
 import sleep from './wait';
 import downloadImage from './downloadImage';
@@ -45,13 +44,8 @@ async function makeBook(
         getComicSite(requestUrl),
         dirPath,
     );
-    const bookType: string[] = configData.bookConfig.bookType;
-    if (bookType.includes('pdf')) {
-        generatePdf(realPath);
-    }
-    if (bookType.includes('epub')) {
-        await generateEpub(realPath);
-    }
+    return generatePdf(realPath);
+
 }
 
 export default makeBook;
