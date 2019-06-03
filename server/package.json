@@ -14,7 +14,7 @@
         "dev": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"yellow.bold,green.bold\"  \"npm run watch-ts\" \"npm run serve-debug\""
     },
     "dependencies": {
-        "axios": "0.18.0",
+        "axios": "^0.19.0",
         "axios-retry": "3.1.2",
         "cheerio": "1.0.0-rc.3",
         "epub-gen": "^0.1.0",
@@ -32,6 +32,7 @@
         "socks-proxy-agent": "4.0.2",
         "sqlite3": "^4.0.8",
         "tunnel": "0.0.6",
+        "typescript": "^3.5.1",
         "webp-converter": "^2.2.2",
         "winston": "3.2.1"
     },
@@ -42,10 +43,10 @@
         "@types/koa-bodyparser": "^4.2.2",
         "@types/koa-mount": "^3.0.1",
         "@types/koa-router": "^7.0.40",
-        "@types/lodash": "^4.14.130",
+        "@types/lodash": "^4.14.133",
         "@types/mustache": "^0.8.32",
         "@types/mysql": "^2.15.6",
-        "@types/node": "^12.0.1",
+        "@types/node": "^12.0.4",
         "@types/pdfkit": "^0.7.36",
         "@types/pidusage": "^2.0.1",
         "@types/puppeteer": "^1.12.4",
@@ -57,7 +58,7 @@
         "axios-mock-adapter": "1.16.0",
         "jest": "^24.8.0",
         "mockdate": "2.0.2",
-        "nodemon": "1.19.0",
+        "nodemon": "^1.19.1",
         "shelljs": "^0.8.3",
         "supertest": "4.0.2",
         "ts-jest": "^24.0.2",
