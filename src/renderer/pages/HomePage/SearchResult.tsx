@@ -58,12 +58,9 @@ function SearchResult(props) {
     const { dispatch, loading, searchList = [], currentUrl } = props;
     const [selectedRows, setSelectedRows] = useState([]);
     let checkType = 'radio';
-
     function handleSelectRows(value) {
-        console.log(value);
         setSelectedRows(value);
     }
-
     function handleChapterSubmit() {
         if (!selectedRows || selectedRows.length === 0) {
             message.error(`请选择漫画！`);
@@ -84,7 +81,6 @@ function SearchResult(props) {
             }
         });
     }
-
     return (
         <Fragment>
             <div className={styles.submit}>
