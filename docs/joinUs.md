@@ -1,5 +1,9 @@
 # 开发说明
 
+**第一次贡献代码？**
+
+请查看 [开源贡献指南](https://github.com/freeCodeCamp/how-to-contribute-to-open-source/blob/master/README-CN.md)。
+
 ## 不要直接修改 README.md 文件
 
 请修改 [../server/views/README.md](README.md)，**README** 使用 mustache 渲染生成。
