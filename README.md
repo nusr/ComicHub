@@ -7,6 +7,7 @@
 [![Test coverage](https://img.shields.io/codecov/c/github/nusr/ComicHub.svg?style=flat-square)](https://codecov.io/github/nusr/ComicHub?branch=master)
 [![Known Vulnerabilities](https://snyk.io/test/github/nusr/ComicHub/badge.svg?targetFile=package.json)](https://snyk.io/test/github/nusr/ComicHub?targetFile=package.json)
 [![codebeat badge](https://codebeat.co/badges/d9f586aa-2e0a-4999-ad9a-4f51cb6f4fae)](https://codebeat.co/projects/github-com-nusr-comichub-master)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fnusr%2FComicHub.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fnusr%2FComicHub?ref=badge_shield)
 
 ## 介绍
 
