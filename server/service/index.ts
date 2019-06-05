@@ -37,7 +37,7 @@ function searchOne(
 
 function addItem(data: any, tableName: string) {
     return new Promise(resolve => {
-        // 判断是否存在
+    // 判断是否存在
         searchItem(data.url, tableName).then((results: any = []) => {
             if (results && results > 0) {
                 resolve(false);

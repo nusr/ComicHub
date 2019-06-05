@@ -14,12 +14,7 @@ type StandardTableProps = {
     data: any;
     rowKey?: string;
     selectedRows: any[];
-    onChange?: (
-        pagination: PaginationConfig,
-        filters: Record<keyof any, string[]>,
-        sorter: SorterResult<any>,
-        extra?: TableCurrentDataSource<any>,
-    ) => void;
+    onChange?: any;
     loading?: boolean;
     checkType: string;
 }

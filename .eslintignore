@@ -5,3 +5,4 @@ dist
 downloadResult
 node_modules
 server/types/*
+src/renderer/global.ts

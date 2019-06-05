@@ -1,4 +1,5 @@
-const path = require('path');
+import path from 'path';
+
 export default {
     connect: {
         port: process.env.PORT || 1200, // 监听端口
