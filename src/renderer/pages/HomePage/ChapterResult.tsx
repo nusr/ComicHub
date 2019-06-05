@@ -4,6 +4,7 @@ import React, { useState, Fragment } from 'react';
 import { renderDate, typeConfig } from './config';
 import styles from './index.less';
 import DumpTable from '../../components/DumpTable';
+import { IChapterItem } from '../../type/sql';
 
 const chapterColumns = [
     {
@@ -39,19 +40,18 @@ const chapterColumns = [
 interface Props {
     dispatch: any;
     loading: boolean;
-    list: any;
-    currentUrl: any;
+    list: IChapterItem[];
+    currentUrl: string;
 }
 
-function ChapterResult(props: Props) {
-    const {
-        dispatch, loading,
-        list = [], currentUrl,
-    } = props;
-    const [selectedRows, setSelectedRows] = useState([]);
+const ChapterResult: React.FunctionComponent<Props> = ({
+    dispatch, loading,
+    list = [], currentUrl,
+}) => {
+    const [selectedRows, setSelectedRows] = useState<IChapterItem[]>([]);
     let checkType = 'radio';
 
-    function handleSelectRows(value) {
+    function handleSelectRows(value: IChapterItem[]) {
         setSelectedRows(value);
     }
 
@@ -97,7 +97,7 @@ function ChapterResult(props: Props) {
             />
         </Fragment>
     );
-}
+};
 
 export default connect(({ loading, common, shared }) => ({
     loading: loading.models.common,

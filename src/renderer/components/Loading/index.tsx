@@ -1,17 +1,19 @@
 import { Icon, Spin } from 'antd';
 import styles from './index.less';
 
-const antIcon = <Icon type="loading" style={{ fontSize: 30 }} spin />;
-
-function Loading(props) {
-    const { text = '' } = props;
+interface Props {
+    text: string;
+}
+const Loading: React.FunctionComponent<Props> = ({
+    text = '',
+}) => {
     return (
         <div className={styles.loadingWrap}>
-            <Spin indicator={antIcon} className={styles.loadingIcon}>
+            <Spin indicator={<Icon type="loading" style={{ fontSize: 30 }} spin />} className={styles.loadingIcon}>
                 {text}
             </Spin>
         </div>
     );
-}
+};
 
 export default Loading;

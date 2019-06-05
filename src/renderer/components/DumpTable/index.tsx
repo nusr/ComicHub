@@ -8,7 +8,7 @@ import {
     TableCurrentDataSource,
 } from 'antd/lib/table';
 
-export interface StandardTableProps {
+type StandardTableProps = {
     columns: any;
     onSelectRow: (row: any) => void;
     data: any;
@@ -18,7 +18,7 @@ export interface StandardTableProps {
         pagination: PaginationConfig,
         filters: Record<keyof any, string[]>,
         sorter: SorterResult<any>,
-        extra?: TableCurrentDataSource<any>
+        extra?: TableCurrentDataSource<any>,
     ) => void;
     loading?: boolean;
     checkType: string;
@@ -59,7 +59,7 @@ class DumpTable extends Component<StandardTableProps, any> {
             ...item,
             total: selectedRows.reduce(
                 (sum, val) => sum + parseFloat(val[item.dataIndex]),
-                0
+                0,
             ),
         }));
         const { onSelectRow } = this.props;

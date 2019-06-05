@@ -8,7 +8,7 @@ import styles from './index.less';
 import SearchResult from './SearchResult';
 import ChapterResult from './ChapterResult';
 import DownloadResult from './DownloadResult';
-import { SharedState, MenuItem, IFormData } from '../../type';
+import { SharedState, MenuItem, IFormData, IOptionData } from '../../type';
 
 const { Step } = Steps;
 
@@ -16,14 +16,16 @@ interface Props {
     dispatch: any;
     menuData: any;
     shared: SharedState;
+    loading: boolean;
 }
 
-function getMenuList(data = {}): MenuItem[] {
+function getMenuList(data = {}): IOptionData[] {
     return Object.keys(data).map((key: string) => {
         const item = data[key];
         return {
             value: key,
-            ...item,
+            name: item.name,
+            enabled: item.enabled,
         };
     });
 }
@@ -41,13 +43,13 @@ function getCurrentStep(type: string): number {
     }
 }
 
-function HomePage(props: Props) {
-    const {
-        dispatch,
-        menuData = {},
-        shared: { currentType },
-    } = props;
-    const menuList: MenuItem[] = getMenuList(menuData);
+const HomePage: React.FunctionComponent<Props> = ({
+    dispatch,
+    menuData = {},
+    shared: { currentType },
+}) => {
+
+    const menuList: IOptionData[] = getMenuList(menuData);
     useEffect(() => {
         dispatch({
             type: 'menu/fetch',
@@ -96,8 +98,8 @@ function HomePage(props: Props) {
         <div className={styles.mainLayout}>
             <Card className={styles.header}>
                 <SearchForm
-                    menuList={menuList}
                     handleFormSubmit={handleSearchSubmit}
+                    menuList={menuList}
                 />
             </Card>
 
@@ -120,12 +122,15 @@ function HomePage(props: Props) {
             </div>
         </div>
     );
-}
+};
 
 HomePage.defaultProps = {
     menuData: {},
     loading: false,
-    shared: {},
+    shared: {
+        currentUrl: '',
+        currentType: '',
+    },
 };
 
 export default connect(({ menu, loading, shared }) => ({

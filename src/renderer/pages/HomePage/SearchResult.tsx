@@ -4,6 +4,8 @@ import React, { useState, Fragment } from 'react';
 import { typeConfig, renderDate } from './config';
 import styles from './index.less';
 import DumpTable from '../../components/DumpTable';
+import { SharedState } from '../../type';
+import { ISearchItem } from '../../type/sql';
 
 const searchColumns = [
     {
@@ -21,7 +23,7 @@ const searchColumns = [
     {
         title: '链接',
         dataIndex: 'url',
-        render: text => {
+        render: (text: string) => {
             return (
                 <a title={text} target="_blank" href={text}>
                     {text}
@@ -52,12 +54,20 @@ const searchColumns = [
     },
 ];
 
-function SearchResult(props) {
-    const { dispatch, loading, list = [], shared: { currentUrl }} = props;
-    const [selectedRows, setSelectedRows] = useState([]);
+interface Props {
+    shared: SharedState;
+    list: ISearchItem[];
+    dispatch: any;
+    loading: boolean;
+}
+
+const SearchResult: React.FunctionComponent<Props> = ({
+    dispatch, loading, list = [], shared: { currentUrl },
+}) => {
+    const [selectedRows, setSelectedRows] = useState<ISearchItem[]>([]);
     let checkType = 'radio';
 
-    function handleSelectRows(value) {
+    function handleSelectRows(value: ISearchItem[]) {
         setSelectedRows(value);
     }
 
@@ -66,7 +76,7 @@ function SearchResult(props) {
             message.error(`请选择漫画！`);
             return;
         }
-        const item = selectedRows[0];
+        const item: ISearchItem = selectedRows[0];
         dispatch({
             type: 'shared/changeType',
             payload: typeConfig.chapter,
@@ -102,7 +112,7 @@ function SearchResult(props) {
             />
         </Fragment>
     );
-}
+};
 
 export default connect(({ loading, common, shared }) => ({
     loading: loading.models.common,

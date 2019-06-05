@@ -1,5 +1,6 @@
 import React from 'react';
 
-export default function Help() {
+const Help: React.FunctionComponent = () => {
     return <div>Help</div>;
-}
+};
+export default Help;

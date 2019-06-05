@@ -5,14 +5,15 @@ import { IFormData, IOptionData } from '../../type';
 
 const FormItem = Form.Item;
 
-interface IProps {
-    menuList: IOptionData[];
+interface Props {
+    menuList: any;
     form: any;
     handleFormSubmit: any;
 }
 
-function SearchForm(props: IProps) {
-    const { form, menuList, handleFormSubmit } = props;
+const SearchForm: React.FunctionComponent<Props> = ({
+    form, menuList = [], handleFormSubmit = null,
+}) => {
     const currentData: IFormData = {
         name: '',
         url: '',
@@ -29,7 +30,7 @@ function SearchForm(props: IProps) {
 
     function handleSubmit(event) {
         event.preventDefault();
-        form.validateFields((error, fieldsValue: IFormData) => {
+        form.validateFields((error: Error, fieldsValue: IFormData) => {
             if (error) {
                 return;
             }
@@ -76,12 +77,7 @@ function SearchForm(props: IProps) {
             </FormItem>
         </Form>
     );
-}
-
-SearchForm.defaultProps = {
-    menuList: [],
-    handleFormSubmit: null,
 };
-const wrapperForm = Form.create({ name: 'SearchForm' })(SearchForm);
 
-export default wrapperForm;
+export default Form.create({ name: 'SearchForm' })(SearchForm);
+
