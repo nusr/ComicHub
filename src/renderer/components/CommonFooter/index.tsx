@@ -4,7 +4,7 @@ import styles from './index.less';
 const CommonFooter: React.FunctionComponent = () => (
     <footer className={styles.container}>
             Copyright @
-        <a href="https://github.com/nusr" target="_blank">
+        <a href="https://github.com/nusr" target="_blank" rel="noopener noreferrer">
                 nusr
         </a>
     </footer>

@@ -27,9 +27,7 @@ const tuHao = async (ctx: Koa.BaseContext) => {
             waitUntil: 'networkidle0',
             timeout: 0,
         });
-        const nextItem = await page.$(
-            '#cr_top > div > div.right > a:nth-child(4)'
-        );
+        const nextItem = await page.$('#cr_top > div > div.right > a:nth-child(4)');
         nextItem.click();
 
         await page.waitFor(1000);
@@ -52,8 +50,7 @@ const tuHao = async (ctx: Koa.BaseContext) => {
 
         await page.waitFor(2000);
         // @ts-ignore
-        const html = await page.evaluate(() => document.querySelector('html').innerHTML
-        );
+        const html = await page.evaluate(() => document.querySelector('html').innerHTML);
 
         temp = util.getDownloadList(html);
         await browser.close();

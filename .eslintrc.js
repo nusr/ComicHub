@@ -1,9 +1,12 @@
+const intentSize = 4;
 module.exports = {
-    parser: '@typescript-eslint/parser',
+    parser: 'babel-eslint',
+    // parser: '@typescript-eslint/parser',
     extends: [
         'prettier',
         'prettier/@typescript-eslint',
         'plugin:@typescript-eslint/recommended',
+        'airbnb',
     ],
     plugins: ['@typescript-eslint', 'react'],
     env: {
@@ -22,20 +25,24 @@ module.exports = {
             globalReturn: false,
             impliedStrict: true,
             jsx: true,
+            modules: true,
         },
         requireConfigFile: false,
         allowImportExportEverywhere: false,
     },
     rules: {
-        // '@typescript-eslint/no-unused-vars': 'off',
-        'consistent-return':'error',
-        'no-plusplus': 'error',
-        'no-shadow': 'error',
-        'import/prefer-default-export': 'off',
+        'no-await-in-loop': 'warn',
+        'react/prop-types': 'warn',
+        'react/jsx-filename-extension': ['error', { 'extensions': ['.js', '.jsx', '.ts', '.tsx'] }],
+        'no-unused-vars': 'warn',
+        'import/no-unresolved': 'warn',
+        'import/no-extraneous-dependencies': 'off',
         'react/prefer-stateless-function': 'error',
         'react/no-array-index-key': 'error',
-        indent: ['error', 4],
-        '@typescript-eslint/indent': ['error', 4, { SwitchCase: 0 }],
+        'react/jsx-indent-props': ['error', intentSize],
+        'react/jsx-indent': ['error', intentSize],
+        indent: ['error', intentSize, { SwitchCase: 1 }],
+        '@typescript-eslint/indent': ['error', intentSize, { SwitchCase: 1 }],
         '@typescript-eslint/prefer-interface': 'off',
         '@typescript-eslint/explicit-function-return-type': 'off',
         '@typescript-eslint/no-explicit-any': 'off',
@@ -43,6 +50,7 @@ module.exports = {
         '@typescript-eslint/interface-name-prefix': 'off',
     },
     settings: {
+        'import/resolver': { node: { extensions: ['.js', '.ts', '.tsx', '.jsx'] } },
         react: {
             version: 'detect',
         },

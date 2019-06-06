@@ -24,10 +24,11 @@ const searchColumns = [
         title: '链接',
         dataIndex: 'url',
         render: (text: string) => (
-            <a title={text} target="_blank" href={text}>
+            <a title={text} target="_blank" href={text} rel="noopener noreferrer">
                 {text}
             </a>
         ),
+
     },
 
     {
@@ -41,14 +42,14 @@ const searchColumns = [
     {
         title: '封面',
         dataIndex: 'cover',
-        render: (text: string) =>
-            text ? (
-                <a target="_blank" href={text}>
+        render: (text: string) => (text
+            ? (
+                <a target="_blank" href={text} rel="noopener noreferrer">
                     <Avatar src={text} />
                 </a>
-            ) : (
-                ''
-            ),
+            )
+            : ''),
+
     },
     {
         title: '爬取时间',
@@ -70,7 +71,10 @@ const SearchResult: React.FunctionComponent<Props> = ({
     list = [],
     shared: { currentUrl },
 }) => {
-    const [selectedRows, setSelectedRows] = useState<ISearchItem[]>([]);
+    const [
+        selectedRows,
+        setSelectedRows,
+    ] = useState<ISearchItem[]>([]);
     const checkType = 'radio';
 
     function handleSelectRows(value: ISearchItem[]) {

@@ -15,7 +15,7 @@ const getSearchList = (data: string) => {
     const $ = cheerio.load(data);
     const result: ISearchItem[] = [];
     const list = $('ul.mh-list > li');
-    list.each(function(i, item) {
+    list.each((i, item) => {
         const dom = $(item)
             .find('h2.title>a')
             .eq(0);
@@ -40,7 +40,7 @@ const getSearchList = (data: string) => {
 const getChapterList = (data: string) => {
     const $ = cheerio.load(data);
     const chapters: IChapterItem[] = [];
-    $('#chapterlistload li').each(function(i, item) {
+    $('#chapterlistload li').each((i, item) => {
         const dom = $(item)
             .find('a')
             .eq(0);
@@ -50,10 +50,7 @@ const getChapterList = (data: string) => {
             .eq(0)
             .text();
         const title: string = dom.text();
-        const realTitle: string = title.slice(
-            0,
-            title.length - pageString.length
-        );
+        const realTitle: string = title.slice(0, title.length - pageString.length);
         const currentPage = Number(_.head(pageString.match(/(\d+)/gi)));
         if (link) {
             chapters.push({
@@ -68,11 +65,9 @@ const getChapterList = (data: string) => {
 
 function getDownloadItem(data: string, pageSize: number) {
     const linkResult: any = data.match(/var pl = '([\s\S]*)';\s*var bqimg/);
-    let link;
-    if (linkResult && linkResult[1]) {
-        link = linkResult[1];
-    } else {
-        return []
+    const [, link] = linkResult;
+    if (!link) {
+        return [];
     }
     const result: IImageItem[] = [];
     const fileName: string = _.last(link.split('/')) || '';

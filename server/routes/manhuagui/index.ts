@@ -6,7 +6,7 @@ import configData from '../../shared/config';
 import puppeteer from '../../utils/puppeteer';
 
 const manHuaGui = async (ctx: Koa.BaseContext) => {
-    const { type, name, page_size = 1 }: IRequestData = ctx.request.body;
+    const { type, name, page_size: pageSize }: IRequestData = ctx.request.body;
     let temp;
     if (configData.typeConfig.search === type) {
         const response = await axios.get(util.getSearchUrl(name));
@@ -36,7 +36,7 @@ const manHuaGui = async (ctx: Koa.BaseContext) => {
             url: imageSrc,
         });
         pageIndex += 1;
-        for (; pageIndex <= page_size; pageIndex += 1) {
+        for (; pageIndex <= pageSize; pageIndex += 1) {
             const nextItem = await page.$('#next');
             nextItem.click();
             await page.waitFor(500);

@@ -1,12 +1,12 @@
 import cheerio from 'cheerio';
-import _ from 'lodash'
+import _ from 'lodash';
 import { IChapterItem, IImageItem, ISearchItem } from '../../type';
 
 const getSearchList = (data: string): ISearchItem[] => {
     const $ = cheerio.load(data);
     const result: ISearchItem[] = [];
     const list = $('#comiclist > div > div.comiclist > ul > li');
-    list.each(function (i,item) {
+    list.each((i, item) => {
         const dom = $(item)
             .find('div.info > h3 > strong > a')
             .eq(0);
@@ -47,7 +47,7 @@ const getSearchList = (data: string): ISearchItem[] => {
 const getChapterList = (data: string): IChapterItem[] => {
     const $ = cheerio.load(data);
     const chapters: IChapterItem[] = [];
-    $('#chapter>li').each(function (i,item) {
+    $('#chapter>li').each((i, item) => {
         const dom = $(item)
             .find('a')
             .eq(0);
@@ -74,7 +74,7 @@ const getDownloadList = (data: string): IImageItem[] => {
     const result: IImageItem[] = [];
     const $ = cheerio.load(data);
     let page = 1;
-    $('#readvip > .mg_auto').each(function (i,item) {
+    $('#readvip > .mg_auto').each((i, item) => {
         const dom = $(item)
             .find('img.cur_pic.lazyload')
             .eq(0);

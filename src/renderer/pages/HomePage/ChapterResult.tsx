@@ -20,10 +20,11 @@ const chapterColumns = [
         title: '链接',
         dataIndex: 'url',
         render: (text: string) => (
-            <a title={text} target="_blank" href={text}>
+            <a title={text} target="_blank" href={text} rel="noopener noreferrer">
                 {text}
             </a>
         ),
+
     },
     {
         title: '章节图片数量',
@@ -54,7 +55,10 @@ const ChapterResult: React.FunctionComponent<Props> = ({
     list = [],
     shared: { currentUrl },
 }) => {
-    const [selectedRows, setSelectedRows] = useState<IChapterItem[]>([]);
+    const [
+        selectedRows,
+        setSelectedRows,
+    ] = useState<IChapterItem[]>([]);
     const checkType = 'radio';
 
     function handleSelectRows(value: IChapterItem[]) {

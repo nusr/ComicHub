@@ -5,7 +5,7 @@ import configData from '../../shared/config';
 import { IRequestData } from '../../type';
 
 const tuHao = async (ctx: Koa.BaseContext) => {
-    const { type, name, page_size }: IRequestData = ctx.request.body;
+    const { type, name, page_size: pageSize }: IRequestData = ctx.request.body;
     let temp: any;
     if (configData.typeConfig.search === type) {
         const response = await axios.get(util.getSearchUrl(name));
@@ -17,7 +17,7 @@ const tuHao = async (ctx: Koa.BaseContext) => {
     }
     if (configData.typeConfig.download === type) {
         const response = await axios.get(name);
-        temp = util.getDownloadItem(response.data, page_size);
+        temp = util.getDownloadItem(response.data, pageSize);
     }
     ctx.state.data = temp;
 };

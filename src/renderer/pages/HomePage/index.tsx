@@ -36,14 +36,14 @@ function getMenuList(data: any = {}) {
 
 function getCurrentStep(type: string): number {
     switch (type) {
-    case typeConfig.search:
-        return 0;
-    case typeConfig.chapter:
-        return 1;
-    case typeConfig.download:
-        return 2;
-    default:
-        return 0;
+        case typeConfig.search:
+            return 0;
+        case typeConfig.chapter:
+            return 1;
+        case typeConfig.download:
+            return 2;
+        default:
+            return 0;
     }
 }
 

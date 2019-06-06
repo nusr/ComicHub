@@ -14,7 +14,7 @@ const getSearchList = (data: string) => {
     const $ = cheerio.load(data);
     const result: ISearchItem[] = [];
     const list = $('.book-result>ul>li');
-    list.each(function (i,item) {
+    list.each((i, item) => {
         const dom = $(item)
             .find('.book-detail > dl > dt')
             .eq(0);
@@ -59,7 +59,7 @@ const getSearchList = (data: string) => {
 const getChapterList = (data: string) => {
     const $ = cheerio.load(data);
     const chapters: IChapterItem[] = [];
-    $('.chapter-list > ul >li').each(function (i,item) {
+    $('.chapter-list > ul >li').each((i, item) => {
         const dom = $(item)
             .find('a')
             .eq(0);
