@@ -23,40 +23,40 @@ if (
         if (new RegExp(config.proxy.url_regex).test(options.url)) {
             let temp: any;
             switch (config.proxy.protocol) {
-                case 'socks':
-                    options.httpAgent = new SocksProxyAgent(proxyUrl);
-                    options.httpsAgent = new SocksProxyAgent(proxyUrl);
-                    break;
-                case 'http':
-                    process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
-                    temp = {
-                        proxy: {
-                            host: config.proxy.host,
-                            port: Number(config.proxy.port),
-                            headers: {
-                                'User-Agent': config.userAgent,
-                            },
+            case 'socks':
+                options.httpAgent = new SocksProxyAgent(proxyUrl);
+                options.httpsAgent = new SocksProxyAgent(proxyUrl);
+                break;
+            case 'http':
+                process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+                temp = {
+                    proxy: {
+                        host: config.proxy.host,
+                        port: Number(config.proxy.port),
+                        headers: {
+                            'User-Agent': config.userAgent,
                         },
-                    };
-                    options.httpAgent = tunnel.httpOverHttp(temp);
-                    options.httpsAgent = tunnel.httpsOverHttp(temp);
-                    break;
-                case 'https':
-                    temp = {
-                        proxy: {
-                            host: config.proxy.host,
-                            port: Number(config.proxy.port),
-                            proxyAuth: `${config.proxy.auth.username}:${
-                                config.proxy.auth.password
-                            }`,
-                            headers: {
-                                'User-Agent': config.userAgent,
-                            },
+                    },
+                };
+                options.httpAgent = tunnel.httpOverHttp(temp);
+                options.httpsAgent = tunnel.httpsOverHttp(temp);
+                break;
+            case 'https':
+                temp = {
+                    proxy: {
+                        host: config.proxy.host,
+                        port: Number(config.proxy.port),
+                        proxyAuth: `${config.proxy.auth.username}:${
+                            config.proxy.auth.password
+                        }`,
+                        headers: {
+                            'User-Agent': config.userAgent,
                         },
-                    };
-                    options.httpAgent = tunnel.httpOverHttps(temp);
-                    options.httpsAgent = tunnel.httpsOverHttps(temp);
-                    break;
+                    },
+                };
+                options.httpAgent = tunnel.httpOverHttps(temp);
+                options.httpsAgent = tunnel.httpsOverHttps(temp);
+                break;
             }
             if (config.proxy.auth) {
                 options.headers['Proxy-Authorization'] = `Basic ${

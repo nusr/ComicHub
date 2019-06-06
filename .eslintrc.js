@@ -1,7 +1,11 @@
 module.exports = {
     // parser: 'babel-eslint',
     parser: '@typescript-eslint/parser',
-    extends: ['prettier', 'prettier/@typescript-eslint','plugin:@typescript-eslint/recommended'], // eslint:all
+    extends: [
+        'prettier',
+        'prettier/@typescript-eslint',
+        'plugin:@typescript-eslint/recommended',
+    ], // eslint:all
     plugins: ['@typescript-eslint', 'react'],
     env: {
         commonjs: true,
@@ -30,18 +34,19 @@ module.exports = {
     },
 
     rules: {
-        "indent":['error',4],
+        indent: ['error', 4],
         /**
          * 一个缩进必须用四个空格替代
          * @category Stylistic Issues
          * @fixable
          */
-        '@typescript-eslint/indent': ['error',4],
+        '@typescript-eslint/indent': ['error', 4, { SwitchCase: 0 }],
         '@typescript-eslint/prefer-interface': 'off',
-        '@typescript-eslint/explicit-function-return-type':'off',
-        "@typescript-eslint/no-explicit-any":'off',
-        "@typescript-eslint/camelcase":'off',
-        "@typescript-eslint/interface-name-prefix":'off'
+        '@typescript-eslint/explicit-function-return-type': 'off',
+        '@typescript-eslint/no-explicit-any': 'off',
+        '@typescript-eslint/camelcase': 'off',
+        '@typescript-eslint/interface-name-prefix': 'off',
+        '@typescript-eslint/no-unused-vars': 'off',
     },
     settings: {
         react: {

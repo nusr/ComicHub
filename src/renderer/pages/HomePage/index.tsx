@@ -8,7 +8,7 @@ import styles from './index.less';
 import SearchResult from './SearchResult';
 import ChapterResult from './ChapterResult';
 import DownloadResult from './DownloadResult';
-import { IFormData, IOptionData, SharedState } from '../../type';
+import { IFormData, SharedState } from '../../type';
 
 const { Step } = Steps;
 
@@ -17,7 +17,7 @@ type Props = {
     menuData: any;
     shared: SharedState;
     loading: boolean;
-}
+};
 type ConnectProps = {
     loading: any;
     menu: any;
@@ -36,14 +36,14 @@ function getMenuList(data: any = {}) {
 
 function getCurrentStep(type: string): number {
     switch (type) {
-        case typeConfig.search:
-            return 0;
-        case typeConfig.chapter:
-            return 1;
-        case typeConfig.download:
-            return 2;
-        default:
-            return 0;
+    case typeConfig.search:
+        return 0;
+    case typeConfig.chapter:
+        return 1;
+    case typeConfig.download:
+        return 2;
+    default:
+        return 0;
     }
 }
 
