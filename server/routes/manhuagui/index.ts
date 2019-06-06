@@ -41,11 +41,11 @@ const manHuaGui = async (ctx: Koa.BaseContext) => {
             nextItem.click();
             await page.waitFor(500);
             // @ts-ignore
-            const html = await page.evaluate(() => document.querySelector('html').innerHTML);
-            const imageSrc = util.getDownloadItem(html);
+            const otherHtml = await page.evaluate(() => document.querySelector('html').innerHTML);
+            const otherImage = util.getDownloadItem(otherHtml);
             temp.push({
                 page: pageIndex,
-                url: imageSrc,
+                url: otherImage,
             });
         }
         await browser.close();

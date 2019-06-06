@@ -54,9 +54,11 @@ const SearchForm: React.FunctionComponent<Props> = ({
                         },
                     ],
                 })(<Select placeholder="请选择状态" style={{ width: 170 }}>
-                    {menuList.map((item: IOptionData) => <Select.Option value={item.value} key={item.value}>
-                        {item.name}
-                    </Select.Option>)}
+                    {menuList.map((item: IOptionData) => (
+                        <Select.Option value={item.value} key={item.value}>
+                            {item.name}
+                        </Select.Option>
+                    ))}
                 </Select>)}
             </FormItem>
             <FormItem label="关键词">

@@ -13,7 +13,7 @@ const reject = (ctx: Koa.BaseContext) => {
 
 const accessControl = async (
     ctx: Koa.BaseContext,
-    next: () => Promise<any>,
+    next: () => Promise<any>
 ) => {
     const ip = ctx.ips[0] || ctx.ip;
     const requestPath = ctx.request.path;
@@ -24,23 +24,23 @@ const accessControl = async (
         if (config.whitelist) {
             if (
                 !(
-                    config.whitelist.indexOf(ip) !== -1
-                    || config.whitelist.indexOf(requestPath) !== -1
+                    config.whitelist.indexOf(ip) !== -1 ||
+                    config.whitelist.indexOf(requestPath) !== -1
                 )
             ) {
                 reject(ctx);
             }
         } else if (config.blacklist) {
             if (
-                config.blacklist.indexOf(ip) !== -1
-                    || config.blacklist.indexOf(requestPath) !== -1
+                config.blacklist.indexOf(ip) !== -1 ||
+                config.blacklist.indexOf(requestPath) !== -1
             ) {
                 reject(ctx);
             }
         }
 
         if (ctx.response.status !== 403) {
-            ctx.debug.request++;
+            ctx.debug.request += 1;
             await next();
         }
     }

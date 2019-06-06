@@ -12,7 +12,7 @@ const Test = async (ctx: Koa.BaseContext) => {
     }
     const item: TestItem[] = [];
 
-    for (let i = 1; i < 6; i++) {
+    for (let i = 1; i < 6; i += 1) {
         item.push({
             title: `Title${i}`,
             description: `Description${i}`,

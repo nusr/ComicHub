@@ -10,7 +10,7 @@ router.get('/routes/:name?', (ctx: Koa.Context) => {
     const result: any = {};
     let counter = 0;
 
-    allRoutes.forEach((i) => {
+    allRoutes.forEach(i => {
         const { path } = i;
         const top = path.split('/')[1];
 
@@ -20,7 +20,7 @@ router.get('/routes/:name?', (ctx: Koa.Context) => {
             } else {
                 result[top] = { routes: [path] };
             }
-            counter++;
+            counter += 1;
         }
     });
 

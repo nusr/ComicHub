@@ -8,11 +8,11 @@ import { BookInfo } from './type';
 function generatePdf(dirName: string) {
     if (!dirName) {
         logger.info('下载路径为空！');
-        return;
+        return ''
     }
     if (!fs.existsSync(dirName)) {
         logger.info('下载路径为不存在！');
-        return;
+        return ''
     }
 
     const { outputPath, filePathList = [], bookTitle }: BookInfo = getBookInfo(

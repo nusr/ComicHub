@@ -1,10 +1,10 @@
-import url from 'url';
+import urlModule from 'url';
 import _ from 'lodash';
 
 const maxLength = 5;
 
 function getReferer(link: string): string {
-    const result = url.parse(link);
+    const result = urlModule.parse(link);
     return `${result.protocol || ''}//${result.host || ''}`;
 }
 

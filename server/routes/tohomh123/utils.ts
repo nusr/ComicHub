@@ -1,20 +1,21 @@
 import cheerio from 'cheerio';
 import urlModule from 'url';
+import _ from 'lodash';
 import { IChapterItem, IImageItem, ISearchItem } from '../../type';
 import urlConfig from '../../shared/urlConfig';
 import { numToString } from '../../utils/parseUrl';
-import _ from 'lodash'
+
 const baseUrl = urlConfig.tohomh123.base;
 
 const getCoverUrl = (style: string): string => {
-    const temp: string = _.head(style.match(/(\([\s\S]*\))/)) || ''
+    const temp: string = _.head(style.match(/(\([\s\S]*\))/)) || '';
     return temp.slice(1, -1);
 };
 const getSearchList = (data: string) => {
     const $ = cheerio.load(data);
     const result: ISearchItem[] = [];
     const list = $('ul.mh-list > li');
-    list.each(function (i,item) {
+    list.each(function(i, item) {
         const dom = $(item)
             .find('h2.title>a')
             .eq(0);
@@ -39,7 +40,7 @@ const getSearchList = (data: string) => {
 const getChapterList = (data: string) => {
     const $ = cheerio.load(data);
     const chapters: IChapterItem[] = [];
-    $('#chapterlistload li').each(function (i,item) {
+    $('#chapterlistload li').each(function(i, item) {
         const dom = $(item)
             .find('a')
             .eq(0);
@@ -51,7 +52,7 @@ const getChapterList = (data: string) => {
         const title: string = dom.text();
         const realTitle: string = title.slice(
             0,
-            title.length - pageString.length,
+            title.length - pageString.length
         );
         const currentPage = Number(_.head(pageString.match(/(\d+)/gi)));
         if (link) {
@@ -71,16 +72,16 @@ function getDownloadItem(data: string, pageSize: number) {
     if (linkResult && linkResult[1]) {
         link = linkResult[1];
     } else {
-        return;
+        return []
     }
     const result: IImageItem[] = [];
-    const fileName: string = _.last(link.split('/')) || ''
-    const extName: string = _.last(fileName.split('.')) || ''
-    const baseUrl: string = link.slice(0, link.length - fileName.length);
-    for (let i = 1; i < pageSize; i++) {
+    const fileName: string = _.last(link.split('/')) || '';
+    const extName: string = _.last(fileName.split('.')) || '';
+    const tempUrl: string = link.slice(0, link.length - fileName.length);
+    for (let i = 1; i < pageSize; i += 1) {
         result.push({
             page: i,
-            url: `${baseUrl}${numToString(i - 1)}.${extName}`,
+            url: `${tempUrl}${numToString(i - 1)}.${extName}`,
         });
     }
     return result;

@@ -6,6 +6,7 @@ import styles from './index.less';
 import DumpTable from '../../components/DumpTable';
 import { IChapterItem } from '../../type/sql';
 import { SharedState } from '../../type';
+
 const chapterColumns = [
     {
         title: 'ID',

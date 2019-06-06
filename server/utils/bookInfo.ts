@@ -12,9 +12,9 @@ function getBookInfo(dirName: string, extName: string = 'pdf'): BookInfo {
     const filePathList: string[] = [];
     files.forEach((fileName: string) => {
         const filePath = path.join(dirName, fileName);
-        const extName = path.extname(filePath);
+        const temp = path.extname(filePath);
         const list: string[] = configData.pdfSupportImage;
-        if (list.includes(extName)) {
+        if (list.includes(temp)) {
             filePathList.push(filePath);
         }
     });

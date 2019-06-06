@@ -5,17 +5,12 @@ import SocksProxyAgent from 'socks-proxy-agent';
 import logger from './logger';
 import config from '../shared/config';
 
-function checkProxy(config: any): boolean {
-    const proxy: any = config.proxy
-    return proxy
-        && proxy.protocol
-        && proxy.host
-        && proxy.port;
+function checkProxy(data: any): boolean {
+    const { proxy } = data;
+    return proxy && proxy.protocol && proxy.host && proxy.port;
 }
 
-if (
-    checkProxy(config)
-) {
+if (checkProxy(config)) {
     const proxyUrl = `${config.proxy.protocol}://${config.proxy.host}:${
         config.proxy.port
     }`;
@@ -72,7 +67,9 @@ axiosRetry(axios, {
     retries: config.requestRetry,
     retryCondition: () => true,
     retryDelay: (count, err) => {
-        logger.error(`Request ${err.config.url} fail, retry attempt #${count}: ${err}`);
+        logger.error(
+            `Request ${err.config.url} fail, retry attempt #${count}: ${err}`
+        );
         return 100;
     },
 });

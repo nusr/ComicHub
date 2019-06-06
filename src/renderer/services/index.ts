@@ -1,8 +1,7 @@
 import request from '../utils/request';
 
 interface PostData {
-    url?: string;
-
+    url: string ;
     [index: string]: string;
 }
 
@@ -10,10 +9,10 @@ export async function getMenuList() {
     return request('/v1/menu');
 }
 
-export async function postItem(params: PostData = {}) {
-    const { url, ...rest } = params;
+export async function postItem(params: PostData) {
+    const { url = '', ...rest } = params;
     if (!url) {
-        return;
+        return null;
     }
     const realUrl = `/v1/${url}`;
     return request(realUrl, {
