@@ -23,6 +23,7 @@ type ConnectProps = {
     menu: any;
     shared: SharedState;
 };
+
 function getMenuList(data: any = {}) {
     return Object.keys(data).map((key: string) => {
         const item = data[key];
@@ -97,13 +98,12 @@ const HomePage: React.FunctionComponent<Props> = ({
         }
         return null;
     };
+    // @ts-ignore
+    const Search = () => <SearchForm handleFormSubmit={handleSearchSubmit} menuList={menuList} />;
     return (
         <div className={styles.mainLayout}>
             <Card className={styles.header}>
-                <SearchForm
-                    handleFormSubmit={handleSearchSubmit}
-                    menuList={menuList}
-                />
+                <Search />
             </Card>
 
             <Card bordered={false}>

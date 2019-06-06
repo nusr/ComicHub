@@ -25,8 +25,12 @@
         "test": "concurrently \"npm run test:react\" \"npm run test:server\"",
         "readme": "npm run --prefix ./server readme"
     },
+    "dependencies": {
+        "lodash": "^4.17.11"
+    },
     "devDependencies": {
         "@types/jest": "^24.0.13",
+        "@types/lodash": "^4.14.133",
         "@typescript-eslint/eslint-plugin": "^1.9.0",
         "@typescript-eslint/parser": "^1.9.0",
         "awesome-typescript-loader": "^5.2.1",

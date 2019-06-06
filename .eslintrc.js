@@ -32,10 +32,10 @@ module.exports = {
     },
     rules: {
         'no-await-in-loop': 'warn',
-        'react/prop-types': 'warn',
+        'react/prop-types': 'off',
         'react/jsx-filename-extension': ['error', { 'extensions': ['.js', '.jsx', '.ts', '.tsx'] }],
         'no-unused-vars': 'warn',
-        'import/no-unresolved': 'warn',
+        'import/no-unresolved': 'error',
         'import/no-extraneous-dependencies': 'off',
         'react/prefer-stateless-function': 'error',
         'react/no-array-index-key': 'error',

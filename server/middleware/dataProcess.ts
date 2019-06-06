@@ -42,7 +42,7 @@ const mysqlHandler = async (ctx: Koa.Context, next: () => Promise<any>) => {
         if (requestType === configData.typeConfig.search) {
             const result: any = await mysqlService.foggySearch(
                 `%${requestName}%`,
-                requestType
+                requestType,
             );
             if (!_.isEmpty(result)) {
                 ctx.body = result;
@@ -55,12 +55,12 @@ const mysqlHandler = async (ctx: Koa.Context, next: () => Promise<any>) => {
         if (requestType === configData.typeConfig.chapter) {
             const searchItem: ISearchMysql = await mysqlService.searchOne(
                 requestName,
-                configData.typeConfig.search
+                configData.typeConfig.search,
             );
             const results: any = await mysqlService.searchItem(
-                _.get(searchItem, 'id',''),
+                _.get(searchItem, 'id', ''),
                 requestType,
-                'search_id'
+                'search_id',
             );
             if (!_.isEmpty(results)) {
                 ctx.body = results;
@@ -73,24 +73,24 @@ const mysqlHandler = async (ctx: Koa.Context, next: () => Promise<any>) => {
         if (requestType === configData.typeConfig.download) {
             const chapterItem: IChapterMysql = await mysqlService.searchOne(
                 requestName,
-                configData.typeConfig.chapter
+                configData.typeConfig.chapter,
             );
             const results: any = await mysqlService.searchItem(
-                _.get(chapterItem, 'id',''),
+                _.get(chapterItem, 'id', ''),
                 requestType,
-                'chapter_id'
+                'chapter_id',
             );
             if (!_.isEmpty(results)) {
                 const searchItem: ISearchMysql = await mysqlService.searchOne(
-                    _.get(chapterItem, 'search_id',''),
+                    _.get(chapterItem, 'search_id', ''),
                     configData.typeConfig.search,
-                    'id'
+                    'id',
                 );
-                await generateBook(
+                const bookPath: string = await generateBook(
                     results,
                     searchItem,
                     chapterItem,
-                    requestName
+                    requestName,
                 );
 
                 ctx.response.set({
@@ -99,7 +99,7 @@ const mysqlHandler = async (ctx: Koa.Context, next: () => Promise<any>) => {
                 ctx.body = {
                     message: '下载成功！',
                     code: 200,
-                    data: results,
+                    data: bookPath,
                 };
                 return;
             }
@@ -126,7 +126,7 @@ const mysqlHandler = async (ctx: Koa.Context, next: () => Promise<any>) => {
             dataResult = filterArray(dataResult);
             const searchResult: ISearchMysql = await mysqlService.searchOne(
                 searchUrl,
-                configData.typeConfig.search
+                configData.typeConfig.search,
             );
             for (const item of dataResult) {
                 await mysqlService.addItem(
@@ -134,7 +134,7 @@ const mysqlHandler = async (ctx: Koa.Context, next: () => Promise<any>) => {
                         search_id: _.get(searchResult, 'id'),
                         ...item,
                     },
-                    stateType
+                    stateType,
                 );
             }
         }
@@ -142,12 +142,12 @@ const mysqlHandler = async (ctx: Koa.Context, next: () => Promise<any>) => {
             dataResult = filterArray(dataResult);
             const chapterItem: IChapterMysql = await mysqlService.searchOne(
                 searchUrl,
-                configData.typeConfig.chapter
+                configData.typeConfig.chapter,
             );
             const searchItem: ISearchMysql = await mysqlService.searchOne(
-                _.get(chapterItem, 'search_id',''),
+                _.get(chapterItem, 'search_id', ''),
                 configData.typeConfig.search,
-                'id'
+                'id',
             );
             if (!_.isEmpty(searchItem) && !_.isEmpty(chapterItem)) {
                 for (const item of dataResult) {
@@ -156,21 +156,22 @@ const mysqlHandler = async (ctx: Koa.Context, next: () => Promise<any>) => {
                             chapter_id: chapterItem.id,
                             ...item,
                         },
-                        stateType
+                        stateType,
                     );
                 }
-                await generateBook(
+                const bookPath: string = await generateBook(
                     dataResult,
                     searchItem,
                     chapterItem,
-                    searchUrl
+                    searchUrl,
                 );
+                dataResult = {
+                    message: '下载成功！',
+                    code: 200,
+                    data: bookPath,
+                };
             }
-            dataResult = {
-                message: '下载成功！',
-                code: 200,
-                data: dataResult,
-            };
+
         }
     } else {
         dataResult = handleEmpty(stateType);

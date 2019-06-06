@@ -14,9 +14,9 @@ type StandardTableProps = {
     checkType: string;
 }
 
-function initTotalList(columns) {
-    const totalList = [];
-    columns.forEach(column => {
+function initTotalList(columns: any) {
+    const totalList: any = [];
+    columns.forEach((column: any) => {
         if (column.needTotal) {
             totalList.push({ ...column, total: 0 });
         }
@@ -28,7 +28,7 @@ class DumpTable extends Component<StandardTableProps, any> {
     static defaultProps = {
         columns: [],
         data: [],
-        rowKey: 'id',
+        rowKey: (item: any) => item.id || item.url,
         onSelectRow: null,
         selectedRows: [],
     };
@@ -43,12 +43,12 @@ class DumpTable extends Component<StandardTableProps, any> {
         };
     }
 
-    handleRowSelectChange = (selectedRowKeys, selectedRows) => {
+    handleRowSelectChange = (selectedRowKeys: any, selectedRows: any) => {
         let { needTotalList } = this.state;
-        needTotalList = needTotalList.map(item => ({
+        needTotalList = needTotalList.map((item: any) => ({
             ...item,
             total: selectedRows.reduce(
-                (sum, val) => sum + parseFloat(val[item.dataIndex]),
+                (sum: any, val: any) => sum + parseFloat(val[item.dataIndex]),
                 0,
             ),
         }));
@@ -59,10 +59,10 @@ class DumpTable extends Component<StandardTableProps, any> {
 
         this.setState({ selectedRowKeys, needTotalList });
     };
-    handleTableChange = (pagination, filters, sorter) => {
+    handleTableChange = (pagination: any) => {
         const { onChange } = this.props;
         if (onChange) {
-            onChange(pagination, filters, sorter);
+            onChange(pagination);
         }
     };
     cleanSelectedKeys = () => {
@@ -80,7 +80,7 @@ class DumpTable extends Component<StandardTableProps, any> {
         const rowSelection: any = {
             selectedRowKeys,
             onChange: this.handleRowSelectChange,
-            getCheckboxProps: record => ({
+            getCheckboxProps: (record: any) => ({
                 disabled: record.disabled,
             }),
             type: checkType,
@@ -97,7 +97,7 @@ class DumpTable extends Component<StandardTableProps, any> {
                                     {selectedRowKeys.length}
                                 </a>
                                 项&nbsp;&nbsp;
-                                {needTotalList.map(item => (
+                                {needTotalList.map((item: any) => (
                                     <span
                                         style={{ marginLeft: 8 }}
                                         key={item.dataIndex}

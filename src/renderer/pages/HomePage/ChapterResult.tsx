@@ -112,5 +112,5 @@ const ChapterResult: React.FunctionComponent<Props> = ({
 export default connect(({ loading, common, shared }: ConnectProps) => ({
     loading: loading.models.common,
     list: common.list,
-    currentUrl: shared.currentUrl,
+    shared,
 }))(ChapterResult);

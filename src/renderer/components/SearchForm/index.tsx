@@ -2,15 +2,15 @@ import {
     Button, Checkbox, Form, Input, Select,
 } from 'antd';
 import React, { useEffect } from 'react';
-
+import _ from 'lodash';
 import { IFormData, IOptionData } from '../../type';
 
 const FormItem = Form.Item;
 
 type Props = {
-    menuList: any [];
-    form: any;
-    handleFormSubmit: any;
+    menuList?: any [];
+    form?: any;
+    handleFormSubmit?: any;
 }
 
 const SearchForm: React.FunctionComponent<Props> = ({
@@ -42,6 +42,14 @@ const SearchForm: React.FunctionComponent<Props> = ({
         });
     }
 
+    function filterOption(value: string, record: any) {
+        const temp: string = _.get(record, 'props.children');
+        if (_.isEmpty(value) || !_.isString(value)) {
+            return false;
+        }
+        return temp.includes(value);
+    }
+
     return (
         <Form onSubmit={handleSubmit} layout="inline">
             <FormItem label="站点">
@@ -54,7 +62,7 @@ const SearchForm: React.FunctionComponent<Props> = ({
                         },
                     ],
                 })(
-                    <Select placeholder="请选择状态" style={{ width: 170 }}>
+                    <Select showSearch placeholder="请选择状态" style={{ width: 170 }} filterOption={filterOption}>
                         {menuList.map((item: IOptionData) => (
                             <Select.Option value={item.value} key={item.value}>
                                 {item.name}
