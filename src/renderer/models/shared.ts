@@ -5,6 +5,7 @@ export default {
     state: {
         currentUrl: '',
         currentType: '',
+        params: {},
     },
     reducers: {
         changeUrl(state: SharedState, { payload }: { payload: string }) {
@@ -17,6 +18,12 @@ export default {
             return {
                 ...state,
                 currentType: payload,
+            };
+        },
+        changeParams(state: SharedState, { payload }: { payload: any }) {
+            return {
+                ...state,
+                params: payload,
             };
         },
     },

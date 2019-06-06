@@ -1,24 +1,20 @@
-import { Avatar, Button, message } from 'antd';
+import { Button, message } from 'antd';
 import { connect } from 'dva';
-import React, { Fragment, useState } from 'react';
-import { renderDate, typeConfig } from './config';
+import React, { Fragment, useEffect, useState } from 'react';
+import { renderDate, typeConfig } from '../config';
 import styles from './index.less';
 import DumpTable from '../../components/DumpTable';
+import { IChapterItem } from '../../type/sql';
 import { SharedState } from '../../type';
-import { ISearchItem } from '../../type/sql';
 
-const searchColumns = [
+const chapterColumns = [
     {
         title: 'ID',
         dataIndex: 'id',
     },
     {
-        title: '名称',
+        title: '章节名',
         dataIndex: 'title',
-    },
-    {
-        title: '作者',
-        dataIndex: 'author',
     },
     {
         title: '链接',
@@ -30,26 +26,9 @@ const searchColumns = [
         ),
 
     },
-
     {
-        title: '地区',
-        dataIndex: 'area',
-    },
-    {
-        title: '分类',
-        dataIndex: 'category',
-    },
-    {
-        title: '封面',
-        dataIndex: 'cover',
-        render: (text: string) => (text
-            ? (
-                <a target="_blank" href={text} rel="noopener noreferrer">
-                    <Avatar src={text} />
-                </a>
-            )
-            : ''),
-
+        title: '章节图片数量',
+        dataIndex: 'page_size',
     },
     {
         title: '爬取时间',
@@ -59,46 +38,55 @@ const searchColumns = [
 ];
 
 type Props = {
-    shared: SharedState;
-    list: ISearchItem[];
     dispatch: any;
     loading: boolean;
-}
+    list: IChapterItem[];
+    shared: SharedState;
+};
 
-const SearchResult: React.FunctionComponent<Props> = ({
+
+const ChapterResult: React.FunctionComponent<Props> = ({
     dispatch,
     loading,
     list = [],
-    shared: { currentUrl },
+    shared: { currentUrl, params },
 }) => {
     const [
         selectedRows,
         setSelectedRows,
-    ] = useState<ISearchItem[]>([]);
-    const checkType = 'radio';
+    ] = useState<IChapterItem[]>([]);
+    const checkType: string = 'radio';
 
-    function handleSelectRows(value: ISearchItem[]) {
+    useEffect(() => {
+        dispatch({
+            type: 'common/fetch',
+            payload: {
+                url: currentUrl,
+                name: params.name,
+                type: typeConfig.chapter,
+            },
+        });
+    }, []);
+
+    function handleSelectRows(value: IChapterItem[]) {
         setSelectedRows(value);
     }
 
     function handleChapterSubmit() {
         if (!selectedRows || selectedRows.length === 0) {
-            message.error('请选择漫画！');
+            message.error('请选择漫画章节！');
             return;
         }
-        const item: ISearchItem = selectedRows[0];
+        const item = selectedRows[0];
+
         dispatch({
-            type: 'shared/changeType',
-            payload: typeConfig.chapter,
-        });
-        dispatch({
-            type: 'common/fetch',
+            type: 'shared/changeParams',
             payload: {
-                url: currentUrl,
                 name: item.url,
-                type: typeConfig.chapter,
+                page_size: item.page_size,
             },
         });
+        // TODO 跳转
     }
 
     return (
@@ -117,7 +105,7 @@ const SearchResult: React.FunctionComponent<Props> = ({
                 checkType={checkType}
                 selectedRows={selectedRows}
                 data={list}
-                columns={searchColumns}
+                columns={chapterColumns}
                 onSelectRow={handleSelectRows}
             />
         </Fragment>
@@ -132,4 +120,4 @@ export default connect(({ loading, common, shared }: ConnectProps) => ({
     loading: loading.models.common,
     list: common.list,
     shared,
-}))(SearchResult);
+}))(ChapterResult);

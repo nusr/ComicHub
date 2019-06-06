@@ -1,39 +1,17 @@
-import { Card, Steps } from 'antd';
-import { connect } from 'dva';
-import React, { useEffect } from 'react';
+import { Card, Steps, Layout } from 'antd';
+import React, { useEffect, useState } from 'react';
 import CommonFooter from '../../components/CommonFooter';
-import SearchForm from '../../components/SearchForm';
-import { typeConfig } from './config';
+import CommonHeader from '../../components/CommonHeader';
+import { typeConfig } from '../config';
 import styles from './index.less';
-import SearchResult from './SearchResult';
-import ChapterResult from './ChapterResult';
-import DownloadResult from './DownloadResult';
-import { IFormData, SharedState } from '../../type';
 
+const { Header, Footer, Content } = Layout;
 const { Step } = Steps;
 
 type Props = {
-    dispatch: any;
-    menuData: any;
-    shared: SharedState;
-    loading: boolean;
+    children: React.ReactChild;
+    location: any;
 };
-type ConnectProps = {
-    loading: any;
-    menu: any;
-    shared: SharedState;
-};
-
-function getMenuList(data: any = {}) {
-    return Object.keys(data).map((key: string) => {
-        const item = data[key];
-        return {
-            value: key,
-            name: item.name,
-            enabled: item.enabled,
-        };
-    });
-}
 
 function getCurrentStep(type: string): number {
     switch (type) {
@@ -43,101 +21,52 @@ function getCurrentStep(type: string): number {
             return 1;
         case typeConfig.download:
             return 2;
+        case typeConfig.result:
+            return 3;
         default:
             return 0;
     }
 }
 
 const HomePage: React.FunctionComponent<Props> = ({
-    dispatch,
-    menuData = {},
-    shared: { currentType },
+    children,
+    location: {
+        pathname,
+    },
 }) => {
-    const menuList: any = getMenuList(menuData);
+    const [currentType, setCurrentType] = useState<string>('');
     useEffect(() => {
-        dispatch({
-            type: 'menu/fetch',
-        });
-        dispatch({
-            type: 'shared/changeType',
-            payload: typeConfig.search,
-        });
-    }, []);
-
-    function handleSearchSubmit(value: IFormData) {
-        if (value.name && value.url) {
-            dispatch({
-                type: 'shared/changeUrl',
-                payload: value.url,
-            });
-            dispatch({
-                type: 'shared/changeType',
-                payload: typeConfig.search,
-            });
-            dispatch({
-                type: 'common/fetch',
-                payload: {
-                    url: value.url,
-                    name: value.name,
-                    type: typeConfig.search,
-                    noCache: Number(!value.cache),
-                },
-            });
-        }
-    }
-
-    const getCurrentChild = () => {
-        if (currentType === typeConfig.search) {
-            return <SearchResult />;
-        }
-        if (currentType === typeConfig.chapter) {
-            return <ChapterResult />;
-        }
-        if (currentType === typeConfig.download) {
-            return <DownloadResult />;
-        }
-        return null;
-    };
-    // @ts-ignore
-    const Search = () => <SearchForm handleFormSubmit={handleSearchSubmit} menuList={menuList} />;
+        const [, temp] = pathname.split('/');
+        setCurrentType(temp);
+    }, [pathname]);
     return (
-        <div className={styles.mainLayout}>
-            <Card className={styles.header}>
-                <Search />
-            </Card>
-
-            <Card bordered={false}>
-                <Steps
-                    className={styles.steps}
-                    labelPlacement="vertical"
-                    current={getCurrentStep(currentType)}
-                >
-                    <Step title="搜索漫画" />
-                    <Step title="选择章节" />
-                    <Step title="下载漫画" />
-                </Steps>
-            </Card>
-            <Card className={styles.content} bordered={false}>
-                {getCurrentChild()}
-            </Card>
-            <div className={styles.footer}>
+        <Layout>
+            <Header>
+                <CommonHeader />
+            </Header>
+            <Content>
+                <Card>
+                    <Steps
+                        className={styles.steps}
+                        labelPlacement="vertical"
+                        current={getCurrentStep(currentType)}
+                    >
+                        <Step title="搜索漫画" />
+                        <Step title="选择章节" />
+                        <Step title="下载漫画" />
+                        <Step title="下载结果" />
+                    </Steps>
+                </Card>
+                <Card>
+                    {children}
+                </Card>
+            </Content>
+            <Footer>
                 <CommonFooter />
-            </div>
-        </div>
+            </Footer>
+        </Layout>
     );
 };
 
-HomePage.defaultProps = {
-    menuData: {},
-    loading: false,
-    shared: {
-        currentUrl: '',
-        currentType: '',
-    },
-};
 
-export default connect(({ menu, loading, shared }: ConnectProps) => ({
-    menuData: menu.list,
-    loading: loading.models.menu,
-    shared,
-}))(HomePage);
+export default HomePage;

@@ -1,6 +1,12 @@
+type Params = {
+    name: string;
+    page_size?: number;
+    noCache?: number;
+}
+
 export interface SharedState {
     currentUrl: string;
-    currentType: string;
+    params: Params
 }
 
 export interface MenuItem {

@@ -9,6 +9,7 @@ module.exports = {
         'airbnb',
     ],
     plugins: ['@typescript-eslint', 'react'],
+    root: true,
     env: {
         commonjs: true,
         browser: true,
@@ -34,8 +35,8 @@ module.exports = {
         'no-await-in-loop': 'warn',
         'react/prop-types': 'off',
         'react/jsx-filename-extension': ['error', { 'extensions': ['.js', '.jsx', '.ts', '.tsx'] }],
-        'no-unused-vars': 'warn',
-        'import/no-unresolved': 'error',
+        'no-unused-vars': 'error',
+        'import/no-unresolved': 'warn',
         'import/no-extraneous-dependencies': 'off',
         'react/prefer-stateless-function': 'error',
         'react/no-array-index-key': 'error',

@@ -1,20 +1,24 @@
-import { Button, message } from 'antd';
+import { Avatar, Button, message } from 'antd';
 import { connect } from 'dva';
-import React, { Fragment, useState } from 'react';
-import { renderDate, typeConfig } from './config';
+import React, { Fragment, useEffect, useState } from 'react';
+import { renderDate, typeConfig } from '../config';
 import styles from './index.less';
 import DumpTable from '../../components/DumpTable';
-import { IChapterItem } from '../../type/sql';
 import { SharedState } from '../../type';
+import { ISearchItem } from '../../type/sql';
 
-const chapterColumns = [
+const searchColumns = [
     {
         title: 'ID',
         dataIndex: 'id',
     },
     {
-        title: '章节名',
+        title: '名称',
         dataIndex: 'title',
+    },
+    {
+        title: '作者',
+        dataIndex: 'author',
     },
     {
         title: '链接',
@@ -26,9 +30,26 @@ const chapterColumns = [
         ),
 
     },
+
     {
-        title: '章节图片数量',
-        dataIndex: 'page_size',
+        title: '地区',
+        dataIndex: 'area',
+    },
+    {
+        title: '分类',
+        dataIndex: 'category',
+    },
+    {
+        title: '封面',
+        dataIndex: 'cover',
+        render: (text: string) => (text
+            ? (
+                <a target="_blank" href={text} rel="noopener noreferrer">
+                    <Avatar src={text} />
+                </a>
+            )
+            : ''),
+
     },
     {
         title: '爬取时间',
@@ -38,52 +59,53 @@ const chapterColumns = [
 ];
 
 type Props = {
+    shared: SharedState;
+    list: ISearchItem[];
     dispatch: any;
     loading: boolean;
-    list: IChapterItem[];
-    shared: SharedState;
-};
-type ConnectProps = {
-    loading: any;
-    common: any;
-    shared: SharedState;
-};
+}
 
-const ChapterResult: React.FunctionComponent<Props> = ({
+const SearchResult: React.FunctionComponent<Props> = ({
     dispatch,
     loading,
     list = [],
-    shared: { currentUrl },
+    shared: { currentUrl, params },
 }) => {
     const [
         selectedRows,
         setSelectedRows,
-    ] = useState<IChapterItem[]>([]);
-    const checkType = 'radio';
+    ] = useState<ISearchItem[]>([]);
+    const checkType: string = 'radio';
+    useEffect(() => {
+        dispatch({
+            type: 'common/fetch',
+            payload: {
+                url: currentUrl,
+                name: params.name,
+                type: typeConfig.search,
+                noCache: params.noCache,
+            },
+        });
+    }, []);
 
-    function handleSelectRows(value: IChapterItem[]) {
+
+    function handleSelectRows(value: ISearchItem[]) {
         setSelectedRows(value);
     }
 
     function handleChapterSubmit() {
         if (!selectedRows || selectedRows.length === 0) {
-            message.error('请选择漫画章节！');
+            message.error('请选择漫画！');
             return;
         }
-        const item = selectedRows[0];
+        const item: ISearchItem = selectedRows[0];
         dispatch({
-            type: 'shared/changeType',
-            payload: typeConfig.download,
-        });
-        dispatch({
-            type: 'download/fetch',
+            type: 'shared/changeParams',
             payload: {
-                url: currentUrl,
                 name: item.url,
-                type: typeConfig.download,
-                page_size: item.page_size,
             },
         });
+        // TODO 跳转
     }
 
     return (
@@ -102,15 +124,19 @@ const ChapterResult: React.FunctionComponent<Props> = ({
                 checkType={checkType}
                 selectedRows={selectedRows}
                 data={list}
-                columns={chapterColumns}
+                columns={searchColumns}
                 onSelectRow={handleSelectRows}
             />
         </Fragment>
     );
 };
-
+type ConnectProps = {
+    loading: any;
+    common: any;
+    shared: SharedState;
+};
 export default connect(({ loading, common, shared }: ConnectProps) => ({
     loading: loading.models.common,
     list: common.list,
     shared,
-}))(ChapterResult);
+}))(SearchResult);

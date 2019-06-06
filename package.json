@@ -26,7 +26,8 @@
         "readme": "npm run --prefix ./server readme"
     },
     "dependencies": {
-        "lodash": "^4.17.11"
+        "lodash": "^4.17.11",
+        "umi": "^2.7.2"
     },
     "devDependencies": {
         "@types/jest": "^24.0.13",
@@ -60,7 +61,6 @@
         "stylelint-order": "^3.0.0",
         "ts-jest": "^24.0.2",
         "typescript": "3.5.1",
-        "umi": "^2.4.4",
         "umi-plugin-react": "^1.4.2",
         "wait-on": "^3.2.0",
         "webpack": "4.33.0",

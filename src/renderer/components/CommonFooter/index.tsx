@@ -3,9 +3,10 @@ import styles from './index.less';
 
 const CommonFooter: React.FunctionComponent = () => (
     <footer className={styles.container}>
-            Copyright @
+        <span>Copyright&nbsp;@</span>
+        &nbsp;
         <a href="https://github.com/nusr" target="_blank" rel="noopener noreferrer">
-                nusr
+            nusr
         </a>
     </footer>
 );
