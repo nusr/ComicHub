@@ -1,10 +1,10 @@
 import fs from 'fs';
 import path from 'path';
+import _ from 'lodash';
 import logger from './logger';
 import makeDir from './makeDir';
 import config from '../shared/config';
 import axios from './axios';
-import _ from 'lodash';
 import { getComicSite } from './parseUrl';
 import convertImage from './convertImage';
 
@@ -17,7 +17,7 @@ export function getExtName(url: string): string {
 export default function downloadImage(
     url: string,
     fileName: string,
-    referer: string = 'https://www.manhuagui.com'
+    referer: string = 'https://www.manhuagui.com',
 ): void {
     const extName = getExtName(url);
     if (!extName) {
@@ -26,7 +26,7 @@ export default function downloadImage(
     const filePath = path.join(
         config.downloadBase,
         getComicSite(referer),
-        fileName + extName
+        fileName + extName,
     );
     const parseDir = path.parse(filePath);
     logger.info(parseDir);
@@ -42,10 +42,10 @@ export default function downloadImage(
             'User-Agent': config.userAgent,
         },
     })
-        .then(response => {
+        .then((response) => {
             response.data.pipe(stream);
         })
-        .catch(error => {
+        .catch((error) => {
             logger.error(error);
         });
 
@@ -57,7 +57,7 @@ export default function downloadImage(
         }
         const jpegPath = path.join(
             parseDir.dir,
-            `${parseDir.name}${config.pdfSupportImage[0]}`
+            `${parseDir.name}${config.pdfSupportImage[0]}`,
         );
         convertImage(filePath, jpegPath);
     });

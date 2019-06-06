@@ -27,11 +27,11 @@ export interface IImageItem {
 export interface ISearchMysql extends ISearchItem, ICommon {}
 
 export interface IChapterMysql extends IChapterItem, ICommon {
-    search_id?: number; // search 表 ID
+    search_id?: number; // Search 表 ID
 }
 
 export interface IImageMysql extends IImageItem, ICommon {
-    chapter_id?: number; // chapter 表 ID
+    chapter_id?: number; // Chapter 表 ID
 }
 
 export interface IRequestData {

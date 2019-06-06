@@ -1,10 +1,10 @@
 import Koa from 'koa';
 import fs from 'fs';
 import mount from 'koa-mount';
+import bodyParser from 'koa-bodyparser';
 import config from './shared/config';
 
 import logger from './utils/logger';
-import bodyParser from 'koa-bodyparser';
 import errorHandler from './middleware/onerror';
 import header from './middleware/header';
 import mysql from './middleware/dataProcess';
@@ -16,8 +16,8 @@ import apiRouter from './router/apiRouter';
 import apiTemplate from './middleware/apiTemplate';
 import apiResponseHandler from './middleware/apiResponseHandler';
 
-process.on('uncaughtException', e => {
-    logger.error('uncaughtException: ' + e);
+process.on('uncaughtException', (e) => {
+    logger.error(`uncaughtException: ${e}`);
 });
 
 logger.info('Comic start!');
@@ -49,20 +49,20 @@ app.use(mount('/api', apiRouter.routes())).use(apiRouter.allowedMethods());
 let server: any;
 if (config.connect.port) {
     server = app.listen(config.connect.port);
-    logger.info('Running in http://localhost:' + config.connect.port);
+    logger.info(`Running in http://localhost:${config.connect.port}`);
 }
 if (config.connect.socket) {
     if (fs.existsSync(config.connect.socket)) {
         fs.unlinkSync(config.connect.socket);
     }
     server = app.listen(config.connect.socket);
-    logger.info('Listening Unix Socket ' + config.connect.socket);
+    logger.info(`Listening Unix Socket ${config.connect.socket}`);
     process.on('SIGINT', () => {
         fs.unlinkSync(config.connect.socket);
         process.exit();
     });
 }
 export default {
-    server: server,
-    app: app,
+    server,
+    app,
 };

@@ -32,6 +32,7 @@ function checkStatus(response) {
 const contentType = {
     'Content-Type': 'application/json; charset=utf-8',
 };
+
 /**
  *
  * 请求数据，返回promise
@@ -44,11 +45,14 @@ export default function request(url: string, options = {}) {
     const defaultOptions = {
         credentials: 'include',
     };
-    const newOptions: any = { ...defaultOptions, ...options };
+    const newOptions: any = {
+        ...defaultOptions,
+        ...options,
+    };
     if (
-        newOptions.method === 'POST' ||
-        newOptions.method === 'PUT' ||
-        newOptions.method === 'DELETE'
+        newOptions.method === 'POST'
+        || newOptions.method === 'PUT'
+        || newOptions.method === 'DELETE'
     ) {
         if (!(newOptions.body instanceof FormData)) {
             newOptions.headers = {
@@ -67,9 +71,7 @@ export default function request(url: string, options = {}) {
     // @ts-ignore
     return fetch(url, newOptions)
         .then(checkStatus)
-        .then((response: any) => {
-            return response.json();
-        })
+        .then((response: any) => response.json())
         .catch((error: Error) => {
             const title = codeMessage[error.name] || error.name || '请求错误';
             notification.error({

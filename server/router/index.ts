@@ -6,7 +6,7 @@ import mustache from 'mustache';
 import sourceUsed from 'pidusage';
 import logger from '../utils/logger';
 import config from '../shared/config';
-// router
+// Router
 import testRouter from '../routes/test';
 import menuRouter from '../routes/menu';
 import tohomh from '../routes/tohomh123';
@@ -23,8 +23,7 @@ router.get('/', async (ctx: Koa.Context) => {
     if (!config.debugInfo || config.debugInfo === 'false') {
         showDebug = false;
     } else {
-        showDebug =
-            config.debugInfo === true || config.debugInfo === ctx.query.debug;
+        showDebug = config.debugInfo === true || config.debugInfo === ctx.query.debug;
     }
 
     const stats = await sourceUsed(process.pid);
@@ -44,19 +43,19 @@ router.get('/', async (ctx: Koa.Context) => {
             {
                 name: '请求频率',
                 value:
-                    ((ctx.debug.request / (stats.elapsed / 1000)) * 60).toFixed(3) + ' 次/分钟',
+                    `${(ctx.debug.request / (stats.elapsed / 1000) * 60).toFixed(3)} 次/分钟`,
             },
             {
                 name: '内存占用',
-                value: stats.memory / 1000000 + ' MB',
+                value: `${stats.memory / 1000000} MB`,
             },
             {
                 name: 'CPU 占用',
-                value: stats.cpu + '%',
+                value: `${stats.cpu}%`,
             },
             {
                 name: '运行时间',
-                value: (stats.elapsed / 3600000).toFixed(2) + ' 小时',
+                value: `${(stats.elapsed / 3600000).toFixed(2)} 小时`,
             },
         ],
     };
@@ -64,7 +63,7 @@ router.get('/', async (ctx: Koa.Context) => {
     ctx.body = mustache.render(template, viewData);
 });
 
-// test
+// Test
 router.get('/test/:id', testRouter);
 // 左侧菜单
 router.get('/menu', menuRouter);

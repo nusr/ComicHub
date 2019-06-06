@@ -1,14 +1,14 @@
 import mustache from 'mustache';
 import Path from 'path';
-import urlConfig from '../shared/urlConfig';
 import fs from 'fs';
+import urlConfig from '../shared/urlConfig';
 import logger from './logger';
 import { UrlConfigItem } from '../shared/type';
 
 function generateMarkdown() {
     const sourceFilePath = Path.resolve(
         __dirname,
-        '../../docs/readmeTemplate.md'
+        '../../docs/readmeTemplate.md',
     );
     const template = fs.readFileSync(sourceFilePath, 'utf8');
     const result = Object.values(urlConfig);

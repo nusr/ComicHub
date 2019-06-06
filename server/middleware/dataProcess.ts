@@ -1,8 +1,8 @@
 import * as Koa from 'koa';
+import _ from 'lodash';
 import mysqlService from '../service';
 import configData from '../shared/config';
-import { ISearchMysql, IChapterMysql, IRequestData } from '../type';
-import _ from 'lodash';
+import { IChapterMysql, IRequestData, ISearchMysql } from '../type';
 
 import generateBook from '../utils/generateBook';
 

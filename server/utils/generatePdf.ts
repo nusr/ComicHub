@@ -26,8 +26,8 @@ function generatePdf(dirName: string) {
     const pdf: any = new PdfDoc();
     pdf.pipe(fs.createWriteStream(outputPath));
 
-    pdf.info['Title'] = bookTitle;
-    pdf.info['Author'] = configData.bookConfig.author;
+    pdf.info.Title = bookTitle;
+    pdf.info.Author = configData.bookConfig.author;
 
     for (let i = 0; i < filePathList.length; i += 1) {
         const item = filePathList[i];
@@ -45,7 +45,7 @@ function generatePdf(dirName: string) {
     }
     pdf.end();
     logger.info(outputPath);
-    logger.info(`Generate Pdf Success\nDone!`);
+    logger.info('Generate Pdf Success\nDone!');
     return outputPath;
 }
 

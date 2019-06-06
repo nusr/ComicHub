@@ -1,7 +1,7 @@
+import * as Koa from 'koa';
 import util from './utils';
 import axios from '../../utils/axios';
 import configData from '../../shared/config';
-import * as Koa from 'koa';
 import { IRequestData } from '../../type';
 
 const tuHao = async (ctx: Koa.BaseContext) => {

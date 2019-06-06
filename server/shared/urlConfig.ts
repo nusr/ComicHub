@@ -1,4 +1,4 @@
-// enabled 为 true 表示功能完成
+// Enabled 为 true 表示功能完成
 export default {
     manhuagui: {
         base: 'https://www.manhuagui.com',

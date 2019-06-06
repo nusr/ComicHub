@@ -1,9 +1,8 @@
 import fs from 'fs';
 import path from 'path';
-import configData from '../shared/config';
 import _ from 'lodash';
-import logger from './logger';
 import { BookInfo } from './type';
+import configData from '../shared/config';
 
 function getBookInfo(dirName: string, extName: string = 'pdf'): BookInfo {
     const outputPath = `${dirName}.${extName}`;

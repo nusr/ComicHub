@@ -9,7 +9,7 @@ afterAll(() => {
 });
 
 describe('header', () => {
-    it(`header`, async () => {
+    it('header', async () => {
         const response: any = await request.get('/test/1');
         expect(response.headers['access-control-allow-origin']).toBe('127.0.0.1:1200');
         expect(response.headers['access-control-allow-methods']).toBe('GET,HEAD,PUT,POST,DELETE,PATCH');

@@ -6,7 +6,7 @@ export default {
         list: [],
     },
     effects: {
-        * fetch({ payload }, { call, put }) {
+        * fetch({ payload }: { payload: any }, { call, put }: { call: any; put: any }) {
             const response = yield call(getMenuList, payload);
             yield put({
                 payload: response,
@@ -15,7 +15,9 @@ export default {
         },
     },
     reducers: {
-        saveData(state, { payload }) {
+        saveData(state: {
+            list: any[];
+        }, { payload }: { payload: any }) {
             return {
                 ...state,
                 list: payload,

@@ -8,18 +8,22 @@ import styles from './index.less';
 import SearchResult from './SearchResult';
 import ChapterResult from './ChapterResult';
 import DownloadResult from './DownloadResult';
-import { SharedState, MenuItem, IFormData, IOptionData } from '../../type';
+import { IFormData, IOptionData, SharedState } from '../../type';
 
 const { Step } = Steps;
 
-interface Props {
+type Props = {
     dispatch: any;
     menuData: any;
     shared: SharedState;
     loading: boolean;
 }
-
-function getMenuList(data = {}): IOptionData[] {
+type ConnectProps = {
+    loading: any;
+    menu: any;
+    shared: SharedState;
+};
+function getMenuList(data: any = {}) {
     return Object.keys(data).map((key: string) => {
         const item = data[key];
         return {
@@ -48,8 +52,7 @@ const HomePage: React.FunctionComponent<Props> = ({
     menuData = {},
     shared: { currentType },
 }) => {
-
-    const menuList: IOptionData[] = getMenuList(menuData);
+    const menuList: any = getMenuList(menuData);
     useEffect(() => {
         dispatch({
             type: 'menu/fetch',
@@ -133,7 +136,7 @@ HomePage.defaultProps = {
     },
 };
 
-export default connect(({ menu, loading, shared }) => ({
+export default connect(({ menu, loading, shared }: ConnectProps) => ({
     menuData: menu.list,
     loading: loading.models.menu,
     shared,

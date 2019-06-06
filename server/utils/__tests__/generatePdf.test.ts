@@ -1,6 +1,6 @@
-import generatePdf from '../generatePdf';
 import path from 'path';
 import fs from 'fs';
+import generatePdf from '../generatePdf';
 
 describe('generatePdf', () => {
     it('generatePdf should create pdf success', () => {

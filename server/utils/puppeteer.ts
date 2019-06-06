@@ -1,5 +1,6 @@
 import puppeteer from 'puppeteer';
 import config from '../shared/config';
+
 const options = {
     args: [
         '--no-sandbox',

@@ -9,7 +9,7 @@ afterAll(() => {
 });
 
 describe('error', () => {
-    it(`error`, async () => {
+    it('error', async () => {
         const response: any = await request.get('/test/0');
         expect(response.text).toMatch(/Comic 发生了一些意外: <pre>Error: Error test/);
     });

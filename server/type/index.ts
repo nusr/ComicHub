@@ -27,16 +27,16 @@ export interface IImageItem {
 export interface ISearchMysql extends ISearchItem, ICommon {}
 
 export interface IChapterMysql extends IChapterItem, ICommon {
-    search_id?: number; // search 表 ID
+    search_id?: number; // Search 表 ID
 }
 
 export interface IImageMysql extends IImageItem, ICommon {
-    chapter_id?: number; // chapter 表 ID
+    chapter_id?: number; // Chapter 表 ID
 }
 
 export interface IRequestData {
-    name?: string; // 请求值
-    type?: string; // 请求类型
-    page_size?: number; // 章节图片数量
+    name: string; // 请求值
+    type: string; // 请求类型
+    page_size: number ; // 章节图片数量
     noCache?: boolean; // 使用不查找数据库 ,为 true 不查找
 }

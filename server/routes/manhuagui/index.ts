@@ -1,13 +1,12 @@
+import * as Koa from 'koa';
+import { IRequestData } from '../../type';
 import axios from '../../utils/axios';
 import util from './utils';
 import configData from '../../shared/config';
 import puppeteer from '../../utils/puppeteer';
-import * as Koa from 'koa';
-import { IRequestData } from '../../type';
 
-const delay = 10000;
 const manHuaGui = async (ctx: Koa.BaseContext) => {
-    const { type, name, page_size }: IRequestData = ctx.request.body;
+    const { type, name, page_size = 1 }: IRequestData = ctx.request.body;
     let temp;
     if (configData.typeConfig.search === type) {
         const response = await axios.get(util.getSearchUrl(name));
@@ -22,7 +21,10 @@ const manHuaGui = async (ctx: Koa.BaseContext) => {
         let pageIndex = 1;
         const browser = await puppeteer();
         const page = await browser.newPage();
-        page.setViewport({ width: 1366, height: 768 });
+        page.setViewport({
+            width: 1366,
+            height: 768,
+        });
         await page.goto(name, {
             waitUntil: 'networkidle0',
         });

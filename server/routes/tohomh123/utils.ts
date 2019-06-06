@@ -1,10 +1,10 @@
 import cheerio from 'cheerio';
 import urlModule from 'url';
+import { IChapterItem, IImageItem, ISearchItem } from 'index';
 import urlConfig from '../../shared/urlConfig';
 import { numToString } from '../../utils/parseUrl';
 
 const baseUrl = urlConfig.tohomh123.base;
-import { ISearchItem, IChapterItem, IImageItem } from '../../type';
 
 const getCoverUrl = (style: string): string => {
     const temp: string = style.match(/(\([\s\S]*\))/)[0];
@@ -14,7 +14,7 @@ const getSearchList = (data: string) => {
     const $ = cheerio.load(data);
     const result: ISearchItem[] = [];
     const list = $('ul.mh-list > li');
-    list.each(function() {
+    list.each(function () {
         const dom = $(this)
             .find('h2.title>a')
             .eq(0);
@@ -39,7 +39,7 @@ const getSearchList = (data: string) => {
 const getChapterList = (data: string) => {
     const $ = cheerio.load(data);
     const chapters: IChapterItem[] = [];
-    $('#chapterlistload li').each(function() {
+    $('#chapterlistload li').each(function () {
         const dom = $(this)
             .find('a')
             .eq(0);
@@ -51,7 +51,7 @@ const getChapterList = (data: string) => {
         const title: string = dom.text();
         const realTitle: string = title.slice(
             0,
-            title.length - pageString.length
+            title.length - pageString.length,
         );
         const currentPage = Number(pageString.match(/(\d+)/gi)[0]);
         if (link) {
@@ -94,9 +94,8 @@ function getDownloadUrl(name: string, page: number): string {
     const url: string = name;
     if (page === 1) {
         return url;
-    } else {
-        return `${url}#p=${page}`;
     }
+    return `${url}#p=${page}`;
 }
 
 export default {

@@ -4,7 +4,7 @@ import config from '../shared/config';
 export default function database(sql: string, data: any, callback: any) {
     const connection = mysql.createConnection(config.mysql);
     connection.connect();
-    connection.query(sql, data, function(error, results) {
+    connection.query(sql, data, (error, results) => {
         if (error) {
             throw error;
         }

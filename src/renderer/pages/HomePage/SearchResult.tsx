@@ -1,7 +1,7 @@
-import { Button, Avatar, message } from 'antd';
+import { Avatar, Button, message } from 'antd';
 import { connect } from 'dva';
-import React, { useState, Fragment } from 'react';
-import { typeConfig, renderDate } from './config';
+import React, { Fragment, useState } from 'react';
+import { renderDate, typeConfig } from './config';
 import styles from './index.less';
 import DumpTable from '../../components/DumpTable';
 import { SharedState } from '../../type';
@@ -23,13 +23,11 @@ const searchColumns = [
     {
         title: '链接',
         dataIndex: 'url',
-        render: (text: string) => {
-            return (
-                <a title={text} target="_blank" href={text}>
-                    {text}
-                </a>
-            );
-        },
+        render: (text: string) => (
+            <a title={text} target="_blank" href={text}>
+                {text}
+            </a>
+        ),
     },
 
     {
@@ -43,9 +41,14 @@ const searchColumns = [
     {
         title: '封面',
         dataIndex: 'cover',
-        render: (text: string) => {
-            return text ? (<a target="_blank" href={text}><Avatar src={text} /></a>) : '';
-        },
+        render: (text: string) =>
+            text ? (
+                <a target="_blank" href={text}>
+                    <Avatar src={text} />
+                </a>
+            ) : (
+                ''
+            ),
     },
     {
         title: '爬取时间',
@@ -54,7 +57,7 @@ const searchColumns = [
     },
 ];
 
-interface Props {
+type Props = {
     shared: SharedState;
     list: ISearchItem[];
     dispatch: any;
@@ -62,10 +65,13 @@ interface Props {
 }
 
 const SearchResult: React.FunctionComponent<Props> = ({
-    dispatch, loading, list = [], shared: { currentUrl },
+    dispatch,
+    loading,
+    list = [],
+    shared: { currentUrl },
 }) => {
     const [selectedRows, setSelectedRows] = useState<ISearchItem[]>([]);
-    let checkType = 'radio';
+    const checkType = 'radio';
 
     function handleSelectRows(value: ISearchItem[]) {
         setSelectedRows(value);
@@ -73,7 +79,7 @@ const SearchResult: React.FunctionComponent<Props> = ({
 
     function handleChapterSubmit() {
         if (!selectedRows || selectedRows.length === 0) {
-            message.error(`请选择漫画！`);
+            message.error('请选择漫画！');
             return;
         }
         const item: ISearchItem = selectedRows[0];
@@ -113,8 +119,12 @@ const SearchResult: React.FunctionComponent<Props> = ({
         </Fragment>
     );
 };
-
-export default connect(({ loading, common, shared }) => ({
+type ConnectProps = {
+    loading: any;
+    common: any;
+    shared: SharedState;
+};
+export default connect(({ loading, common, shared }: ConnectProps) => ({
     loading: loading.models.common,
     list: common.list,
     shared,

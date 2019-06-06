@@ -1,18 +1,20 @@
-import { Button, Form, Input, Select, Checkbox } from 'antd';
+import {
+    Button, Checkbox, Form, Input, Select,
+} from 'antd';
 import React, { useEffect } from 'react';
 
 import { IFormData, IOptionData } from '../../type';
 
 const FormItem = Form.Item;
 
-interface Props {
-    menuList: any;
+type Props = {
+    menuList: any [];
     form: any;
     handleFormSubmit: any;
 }
 
 const SearchForm: React.FunctionComponent<Props> = ({
-    form, menuList = [], handleFormSubmit = null,
+    form, menuList = [], handleFormSubmit,
 }) => {
     const currentData: IFormData = {
         name: '',
@@ -28,7 +30,7 @@ const SearchForm: React.FunctionComponent<Props> = ({
         resetForm();
     }, []);
 
-    function handleSubmit(event) {
+    function handleSubmit(event: React.SyntheticEvent) {
         event.preventDefault();
         form.validateFields((error: Error, fieldsValue: IFormData) => {
             if (error) {
@@ -45,19 +47,27 @@ const SearchForm: React.FunctionComponent<Props> = ({
             <FormItem label="站点">
                 {form.getFieldDecorator('url', {
                     initialValue: currentData.url,
-                    rules: [{ required: true, message: '请选择站点' }],
+                    rules: [
+                        {
+                            required: true,
+                            message: '请选择站点',
+                        },
+                    ],
                 })(<Select placeholder="请选择状态" style={{ width: 170 }}>
-                    {menuList.map((item: IOptionData) => (
-                        <Select.Option value={item.value} key={item.value}>
-                            {item.name}
-                        </Select.Option>
-                    ))}
+                    {menuList.map((item: IOptionData) => <Select.Option value={item.value} key={item.value}>
+                        {item.name}
+                    </Select.Option>)}
                 </Select>)}
             </FormItem>
             <FormItem label="关键词">
                 {form.getFieldDecorator('name', {
                     initialValue: currentData.name,
-                    rules: [{ required: true, message: '请输入关键词' }],
+                    rules: [
+                        {
+                            required: true,
+                            message: '请输入关键词',
+                        },
+                    ],
                 })(<Input placeholder="请输入关键词" />)}
             </FormItem>
             <FormItem label="MySQL">
@@ -80,4 +90,3 @@ const SearchForm: React.FunctionComponent<Props> = ({
 };
 
 export default Form.create({ name: 'SearchForm' })(SearchForm);
-

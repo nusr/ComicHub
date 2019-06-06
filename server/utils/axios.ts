@@ -1,20 +1,25 @@
-import tunnel, { HttpsProxyOptions } from 'tunnel';
+import tunnel from 'tunnel';
 import axios from 'axios';
 import axiosRetry from 'axios-retry';
 import SocksProxyAgent from 'socks-proxy-agent';
 import logger from './logger';
 import config from '../shared/config';
 
+function checkProxy(config: any): boolean {
+    const proxy: any = config.proxy
+    return proxy
+        && proxy.protocol
+        && proxy.host
+        && proxy.port;
+}
+
 if (
-    config.proxy &&
-    config.proxy.protocol &&
-    config.proxy.host &&
-    config.proxy.port
+    checkProxy(config)
 ) {
     const proxyUrl = `${config.proxy.protocol}://${config.proxy.host}:${
         config.proxy.port
     }`;
-    axios.interceptors.request.use(options => {
+    axios.interceptors.request.use((options: any) => {
         if (new RegExp(config.proxy.url_regex).test(options.url)) {
             let temp: any;
             switch (config.proxy.protocol) {
@@ -27,7 +32,7 @@ if (
                     temp = {
                         proxy: {
                             host: config.proxy.host,
-                            port: parseInt(config.proxy.port, 10),
+                            port: Number(config.proxy.port),
                             headers: {
                                 'User-Agent': config.userAgent,
                             },
@@ -40,7 +45,7 @@ if (
                     temp = {
                         proxy: {
                             host: config.proxy.host,
-                            port: parseInt(config.proxy.port, 10),
+                            port: Number(config.proxy.port),
                             proxyAuth: `${config.proxy.auth.username}:${
                                 config.proxy.auth.password
                             }`,

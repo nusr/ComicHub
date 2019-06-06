@@ -1,5 +1,5 @@
-import urlConfig from '../../shared/urlConfig';
 import * as Koa from 'koa';
+import urlConfig from '../../shared/urlConfig';
 
 const Menu = async (ctx: Koa.BaseContext) => {
     ctx.state.data = urlConfig;

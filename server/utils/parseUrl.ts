@@ -9,7 +9,7 @@ function getReferer(link: string): string {
 }
 
 function filterIllegalPath(filePath: string): string {
-    let result = filePath.replace(/[^\da-z\u4e00-\u9fa5]/gi, '');
+    const result = filePath.replace(/[^\da-z\u4e00-\u9fa5]/gi, '');
     return result;
 }
 
@@ -21,7 +21,8 @@ function numToString(num: number): string {
     if (temp <= 0) {
         return num.toString();
     }
-    const zero = new Array(temp).fill(0).join('');
+    const zero = new Array(temp).fill(0)
+        .join('');
     return `${zero}${num}`;
 }
 
@@ -30,4 +31,6 @@ function getComicSite(url: string): string {
     temp.pop();
     return _.last(temp) || '';
 }
-export { getReferer, filterIllegalPath, numToString, getComicSite };
+export {
+    getReferer, filterIllegalPath, numToString, getComicSite,
+};

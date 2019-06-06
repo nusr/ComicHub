@@ -10,8 +10,8 @@ router.get('/routes/:name?', (ctx: Koa.Context) => {
     const result: any = {};
     let counter = 0;
 
-    allRoutes.forEach(i => {
-        const path = i.path;
+    allRoutes.forEach((i) => {
+        const { path } = i;
         const top = path.split('/')[1];
 
         if (!ctx.params.name || top === ctx.params.name) {
@@ -24,7 +24,10 @@ router.get('/routes/:name?', (ctx: Koa.Context) => {
         }
     });
 
-    ctx.body = { counter, result };
+    ctx.body = {
+        counter,
+        result,
+    };
 });
 
 export default router;

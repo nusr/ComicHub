@@ -2,11 +2,6 @@
 import React, { Component, Fragment } from 'react';
 import { Table, Alert } from 'antd';
 import styles from './index.less';
-import {
-    PaginationConfig,
-    SorterResult,
-    TableCurrentDataSource,
-} from 'antd/lib/table';
 
 type StandardTableProps = {
     columns: any;

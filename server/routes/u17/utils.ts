@@ -1,15 +1,11 @@
 import cheerio from 'cheerio';
-import urlConfig from '../../shared/urlConfig';
-import { numToString } from '../../utils/parseUrl';
-
-const baseUrl = urlConfig.u17.base;
-import { ISearchItem, IChapterItem, IImageItem } from '../../type';
+import { IChapterItem, IImageItem, ISearchItem } from '../../type';
 
 const getSearchList = (data: string): ISearchItem[] => {
     const $ = cheerio.load(data);
     const result: ISearchItem[] = [];
     const list = $('#comiclist > div > div.comiclist > ul > li');
-    list.each(function() {
+    list.each(function () {
         const dom = $(this)
             .find('div.info > h3 > strong > a')
             .eq(0);
@@ -50,7 +46,7 @@ const getSearchList = (data: string): ISearchItem[] => {
 const getChapterList = (data: string): IChapterItem[] => {
     const $ = cheerio.load(data);
     const chapters: IChapterItem[] = [];
-    $('#chapter>li').each(function() {
+    $('#chapter>li').each(function () {
         const dom = $(this)
             .find('a')
             .eq(0);
@@ -77,7 +73,7 @@ const getDownloadList = (data: string): IImageItem[] => {
     const result: IImageItem[] = [];
     const $ = cheerio.load(data);
     let page = 1;
-    $('#readvip > .mg_auto').each(function() {
+    $('#readvip > .mg_auto').each(function () {
         const dom = $(this)
             .find('img.cur_pic.lazyload')
             .eq(0);

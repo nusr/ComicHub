@@ -3,7 +3,7 @@ import * as Koa from 'koa';
 interface TestItem {
     title: string;
     description: string;
-    pubDate: String;
+    pubDate: string;
 }
 
 const Test = async (ctx: Koa.BaseContext) => {
@@ -22,7 +22,7 @@ const Test = async (ctx: Koa.BaseContext) => {
     ctx.state.type = 'test';
     ctx.state.data = {
         title: `Test ${ctx.params.id}`,
-        item: item,
+        item,
     };
 };
 export default Test;

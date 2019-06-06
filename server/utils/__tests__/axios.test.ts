@@ -1,12 +1,12 @@
-import axiosTest from '../axios';
 import MockAdapter from 'axios-mock-adapter';
+import axiosTest from '../axios';
+import config from '../../shared/config';
 
 const mock = new MockAdapter(axiosTest);
-import config from '../../shared/config';
 
 describe('axios', () => {
     it('axios headers', async () => {
-        mock.onGet('/test').reply(axiosConfig => {
+        mock.onGet('/test').reply((axiosConfig) => {
             expect(axiosConfig.headers['User-Agent']).toBe(config.userAgent);
             expect(axiosConfig.headers['X-APP']).toBe('ComicHub');
             return [

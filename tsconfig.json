@@ -9,6 +9,7 @@
         "outDir": "dist",
         "baseUrl": "./",
         "jsx": "preserve",
+        "strict": true,
         "allowJs": true,
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,

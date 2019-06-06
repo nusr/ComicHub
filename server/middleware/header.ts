@@ -1,5 +1,6 @@
 import * as Koa from 'koa';
 import logger from '../utils/logger';
+
 const headers = {
     'Access-Control-Allow-Methods': 'GET,HEAD,PUT,POST,DELETE,PATCH',
     'Content-Type': 'application/json; charset=utf-8',
@@ -7,7 +8,7 @@ const headers = {
 
 const headerHandler = async (
     ctx: Koa.BaseContext,
-    next: () => Promise<any>
+    next: () => Promise<any>,
 ) => {
     logger.info(`current request url: ${ctx.url}`);
     ctx.set(headers);

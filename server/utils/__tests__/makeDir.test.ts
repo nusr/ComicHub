@@ -1,5 +1,5 @@
-import makeDir from '../makeDir';
 import fs from 'fs';
+import makeDir from '../makeDir';
 
 describe('makeDir', () => {
     it('makeDir tmp/makeDir', () => {

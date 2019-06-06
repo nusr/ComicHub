@@ -1,8 +1,8 @@
 import {
-    getReferer,
     filterIllegalPath,
-    numToString,
     getComicSite,
+    getReferer,
+    numToString,
 } from '../parseUrl';
 
 describe('getReferer', () => {

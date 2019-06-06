@@ -8,6 +8,8 @@
 
 请修改 [../server/views/README.md](README.md)，**README** 使用 mustache 渲染生成。
 
+添加爬取站点或者修改了 [readmeTemplate.md](readmeTemplate.md)，`git add` 前运行 `npm run readme`，刷新 **README.md** 。
+
 ## 解决 puppeteer 安装失败
 
 Chromium 在墙外，使用 Yarn 、Npm 会安装失败
@@ -27,7 +29,7 @@ cnpm i
 
 见 [comic.sql](comic.sql)
 
-字段说明参见 [../server/type/index.ts](../server/type/index.ts)
+字段说明参见 [../server/type/index.ts](../server/types/index.ts)
 
 ## Electron 模板
 

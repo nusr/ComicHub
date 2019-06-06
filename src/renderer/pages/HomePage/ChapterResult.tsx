@@ -1,11 +1,11 @@
 import { Button, message } from 'antd';
 import { connect } from 'dva';
-import React, { useState, Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import { renderDate, typeConfig } from './config';
 import styles from './index.less';
 import DumpTable from '../../components/DumpTable';
 import { IChapterItem } from '../../type/sql';
-
+import { SharedState } from '../../type';
 const chapterColumns = [
     {
         title: 'ID',
@@ -18,13 +18,11 @@ const chapterColumns = [
     {
         title: '链接',
         dataIndex: 'url',
-        render: text => {
-            return (
-                <a title={text} target="_blank" href={text}>
-                    {text}
-                </a>
-            );
-        },
+        render: (text: string) => (
+            <a title={text} target="_blank" href={text}>
+                {text}
+            </a>
+        ),
     },
     {
         title: '章节图片数量',
@@ -37,19 +35,26 @@ const chapterColumns = [
     },
 ];
 
-interface Props {
+type Props = {
     dispatch: any;
     loading: boolean;
     list: IChapterItem[];
-    currentUrl: string;
-}
+    shared: SharedState;
+};
+type ConnectProps = {
+    loading: any;
+    common: any;
+    shared: SharedState;
+};
 
 const ChapterResult: React.FunctionComponent<Props> = ({
-    dispatch, loading,
-    list = [], currentUrl,
+    dispatch,
+    loading,
+    list = [],
+    shared: { currentUrl },
 }) => {
     const [selectedRows, setSelectedRows] = useState<IChapterItem[]>([]);
-    let checkType = 'radio';
+    const checkType = 'radio';
 
     function handleSelectRows(value: IChapterItem[]) {
         setSelectedRows(value);
@@ -57,7 +62,7 @@ const ChapterResult: React.FunctionComponent<Props> = ({
 
     function handleChapterSubmit() {
         if (!selectedRows || selectedRows.length === 0) {
-            message.error(`请选择漫画章节！`);
+            message.error('请选择漫画章节！');
             return;
         }
         const item = selectedRows[0];
@@ -99,7 +104,7 @@ const ChapterResult: React.FunctionComponent<Props> = ({
     );
 };
 
-export default connect(({ loading, common, shared }) => ({
+export default connect(({ loading, common, shared }: ConnectProps) => ({
     loading: loading.models.common,
     list: common.list,
     currentUrl: shared.currentUrl,

@@ -1,7 +1,7 @@
 import urlModule from 'url';
 import cheerio from 'cheerio';
 import urlConfig from '../../shared/urlConfig';
-import { ISearchItem, IChapterItem, IImageItem } from '../../type';
+import { IChapterItem, ISearchItem } from '../../type';
 
 const baseUrl = urlConfig.manhuagui.base;
 const fixTitle = (value: string): string => {
@@ -14,7 +14,7 @@ const getSearchList = (data: string) => {
     const $ = cheerio.load(data);
     const result: ISearchItem[] = [];
     const list = $('.book-result>ul>li');
-    list.each(function() {
+    list.each(function () {
         const dom = $(this)
             .find('.book-detail > dl > dt')
             .eq(0);
@@ -59,7 +59,7 @@ const getSearchList = (data: string) => {
 const getChapterList = (data: string) => {
     const $ = cheerio.load(data);
     const chapters: IChapterItem[] = [];
-    $('.chapter-list > ul >li').each(function() {
+    $('.chapter-list > ul >li').each(function () {
         const dom = $(this)
             .find('a')
             .eq(0);
@@ -90,9 +90,8 @@ const getDownloadUrl = (name: string, page: number): string => {
     const url = name;
     if (page === 1) {
         return url;
-    } else {
-        return `${url}#p=${page}`;
     }
+    return `${url}#p=${page}`;
 };
 export default {
     getChapterList,

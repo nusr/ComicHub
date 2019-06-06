@@ -2,7 +2,7 @@ import path from 'path';
 import { IChapterMysql, ISearchMysql } from '../type';
 import configData from '../shared/config';
 import generatePdf from './generatePdf';
-import { getReferer, numToString, getComicSite } from './parseUrl';
+import { getComicSite, getReferer, numToString } from './parseUrl';
 import sleep from './wait';
 import downloadImage from './downloadImage';
 
@@ -17,12 +17,10 @@ const formatDownloadPath = (
     chapterItem: IChapterMysql,
 ) => {
     const dirPath: string = getBookDir(searchItem, chapterItem);
-    return dataResult.map((item: any): any => {
-        return {
-            url: item.url,
-            fileName: `${dirPath}/${numToString(item.page)}`,
-        };
-    });
+    return dataResult.map((item: any): any => ({
+        url: item.url,
+        fileName: `${dirPath}/${numToString(item.page)}`,
+    }));
 };
 
 async function makeBook(
@@ -45,7 +43,6 @@ async function makeBook(
         dirPath,
     );
     return generatePdf(realPath);
-
 }
 
 export default makeBook;

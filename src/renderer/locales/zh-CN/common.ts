@@ -1,3 +1,3 @@
 export default {
-    loadMore: '加载更多',
+    loading: '加载中',
 };

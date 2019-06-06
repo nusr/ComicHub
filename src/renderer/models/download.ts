@@ -1,5 +1,4 @@
 import { postItem } from '../services';
-import { message } from 'antd';
 
 export default {
     namespace: 'download',
@@ -7,7 +6,7 @@ export default {
         result: false,
     },
     effects: {
-        * fetch({ payload }, { call, put }) {
+        * fetch({ payload }: { payload: any }, { call, put }: { call: any; put: any }) {
             const response: any = yield call(postItem, payload);
             const checkCode: boolean = response && response.code === 200;
             yield put({
@@ -17,7 +16,7 @@ export default {
         },
     },
     reducers: {
-        saveResult(state, { payload }) {
+        saveResult(state: { result: boolean }, { payload }: { payload: boolean }) {
             return {
                 ...state,
                 result: payload,

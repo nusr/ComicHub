@@ -1,5 +1,6 @@
 import winston from 'winston';
 import config from '../shared/config';
+
 const logger = winston.createLogger({
     level: config.loggerLevel,
     format: winston.format.json(),
@@ -15,7 +16,7 @@ const logger = winston.createLogger({
 logger.add(new winston.transports.Console({
     format: winston.format.combine(
         winston.format.colorize(),
-        winston.format.simple()
+        winston.format.simple(),
     ),
     silent: process.env.NODE_ENV === 'test',
 }));
