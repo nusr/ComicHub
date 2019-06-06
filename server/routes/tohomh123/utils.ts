@@ -1,26 +1,26 @@
 import cheerio from 'cheerio';
 import urlModule from 'url';
-import { IChapterItem, IImageItem, ISearchItem } from 'index';
+import { IChapterItem, IImageItem, ISearchItem } from '../../type';
 import urlConfig from '../../shared/urlConfig';
 import { numToString } from '../../utils/parseUrl';
-
+import _ from 'lodash'
 const baseUrl = urlConfig.tohomh123.base;
 
 const getCoverUrl = (style: string): string => {
-    const temp: string = style.match(/(\([\s\S]*\))/)[0];
+    const temp: string = _.head(style.match(/(\([\s\S]*\))/)) || ''
     return temp.slice(1, -1);
 };
 const getSearchList = (data: string) => {
     const $ = cheerio.load(data);
     const result: ISearchItem[] = [];
     const list = $('ul.mh-list > li');
-    list.each(function () {
-        const dom = $(this)
+    list.each(function (i,item) {
+        const dom = $(item)
             .find('h2.title>a')
             .eq(0);
         const title: string = dom.text();
         const url: string = urlModule.resolve(baseUrl, dom.attr('href'));
-        const cover: string = $(this)
+        const cover: string = $(item)
             .find('.mh-cover')
             .eq(0)
             .attr('style');
@@ -39,8 +39,8 @@ const getSearchList = (data: string) => {
 const getChapterList = (data: string) => {
     const $ = cheerio.load(data);
     const chapters: IChapterItem[] = [];
-    $('#chapterlistload li').each(function () {
-        const dom = $(this)
+    $('#chapterlistload li').each(function (i,item) {
+        const dom = $(item)
             .find('a')
             .eq(0);
         const link: string = urlModule.resolve(baseUrl, dom.attr('href'));
@@ -53,7 +53,7 @@ const getChapterList = (data: string) => {
             0,
             title.length - pageString.length,
         );
-        const currentPage = Number(pageString.match(/(\d+)/gi)[0]);
+        const currentPage = Number(_.head(pageString.match(/(\d+)/gi)));
         if (link) {
             chapters.push({
                 url: link,
@@ -74,8 +74,8 @@ function getDownloadItem(data: string, pageSize: number) {
         return;
     }
     const result: IImageItem[] = [];
-    const fileName: string = link.split('/').pop();
-    const extName: string = fileName.split('.').pop();
+    const fileName: string = _.last(link.split('/')) || ''
+    const extName: string = _.last(fileName.split('.')) || ''
     const baseUrl: string = link.slice(0, link.length - fileName.length);
     for (let i = 1; i < pageSize; i++) {
         result.push({

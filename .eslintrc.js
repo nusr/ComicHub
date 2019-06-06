@@ -34,6 +34,7 @@ module.exports = {
     },
 
     rules: {
+        // '@typescript-eslint/no-unused-vars': 'off',
         indent: ['error', 4],
         /**
          * 一个缩进必须用四个空格替代
@@ -46,7 +47,6 @@ module.exports = {
         '@typescript-eslint/no-explicit-any': 'off',
         '@typescript-eslint/camelcase': 'off',
         '@typescript-eslint/interface-name-prefix': 'off',
-        '@typescript-eslint/no-unused-vars': 'off',
     },
     settings: {
         react: {

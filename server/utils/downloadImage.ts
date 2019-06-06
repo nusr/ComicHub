@@ -11,7 +11,7 @@ import convertImage from './convertImage';
 export function getExtName(url: string): string {
     const extName = path.extname(url);
     const result = extName.match(/^\.\w+/gi);
-    return _.first(result) || '';
+    return _.head(result) || '';
 }
 
 export default function downloadImage(

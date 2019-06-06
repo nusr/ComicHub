@@ -58,7 +58,7 @@ const mysqlHandler = async (ctx: Koa.Context, next: () => Promise<any>) => {
                 configData.typeConfig.search
             );
             const results: any = await mysqlService.searchItem(
-                _.get(searchItem, 'id'),
+                _.get(searchItem, 'id',''),
                 requestType,
                 'search_id'
             );
@@ -76,13 +76,13 @@ const mysqlHandler = async (ctx: Koa.Context, next: () => Promise<any>) => {
                 configData.typeConfig.chapter
             );
             const results: any = await mysqlService.searchItem(
-                _.get(chapterItem, 'id'),
+                _.get(chapterItem, 'id',''),
                 requestType,
                 'chapter_id'
             );
             if (!_.isEmpty(results)) {
                 const searchItem: ISearchMysql = await mysqlService.searchOne(
-                    _.get(chapterItem, 'search_id'),
+                    _.get(chapterItem, 'search_id',''),
                     configData.typeConfig.search,
                     'id'
                 );
@@ -145,7 +145,7 @@ const mysqlHandler = async (ctx: Koa.Context, next: () => Promise<any>) => {
                 configData.typeConfig.chapter
             );
             const searchItem: ISearchMysql = await mysqlService.searchOne(
-                _.get(chapterItem, 'search_id'),
+                _.get(chapterItem, 'search_id',''),
                 configData.typeConfig.search,
                 'id'
             );

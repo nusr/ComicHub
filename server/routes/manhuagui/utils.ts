@@ -14,30 +14,30 @@ const getSearchList = (data: string) => {
     const $ = cheerio.load(data);
     const result: ISearchItem[] = [];
     const list = $('.book-result>ul>li');
-    list.each(function () {
-        const dom = $(this)
+    list.each(function (i,item) {
+        const dom = $(item)
             .find('.book-detail > dl > dt')
             .eq(0);
         const linkDom = dom.find('a').eq(0);
         const url = urlModule.resolve(baseUrl, linkDom.attr('href'));
         const title = dom.text();
-        const area = $(this)
+        const area = $(item)
             .find('div.book-detail > dl > dd:nth-child(3) > span:nth-child(2)')
             .eq(0)
             .text();
-        const author = $(this)
+        const author = $(item)
             .find('div.book-detail > dl > dd:nth-child(4) > span')
             .eq(0)
             .text();
-        const introduce = $(this)
+        const introduce = $(item)
             .find('div.book-detail > dl > dd.intro > span')
             .eq(0)
             .text();
-        const category = $(this)
+        const category = $(item)
             .find('div.book-detail > dl > dd:nth-child(3) > span:nth-child(3)')
             .eq(0)
             .text();
-        const cover = $(this)
+        const cover = $(item)
             .find('div.book-cover > a > img')
             .eq(0)
             .attr('src');
@@ -59,8 +59,8 @@ const getSearchList = (data: string) => {
 const getChapterList = (data: string) => {
     const $ = cheerio.load(data);
     const chapters: IChapterItem[] = [];
-    $('.chapter-list > ul >li').each(function () {
-        const dom = $(this)
+    $('.chapter-list > ul >li').each(function (i,item) {
+        const dom = $(item)
             .find('a')
             .eq(0);
         const link = urlModule.resolve(baseUrl, dom.attr('href'));
@@ -72,7 +72,7 @@ const getChapterList = (data: string) => {
             chapters.push({
                 url: link,
                 title: dom.attr('title'),
-                page_size: parseInt(page, 10),
+                page_size: Number(page),
             });
         }
     });

@@ -41,13 +41,14 @@ app.use(apiTemplate);
 app.use(bodyParser());
 
 app.use(mysql);
-
+// @ts-ignore
 app.use(mount('/', router.routes())).use(router.allowedMethods());
 
-// API router
+// @ts-ignore
 app.use(mount('/api', apiRouter.routes())).use(apiRouter.allowedMethods());
 let server: any;
 if (config.connect.port) {
+    // @ts-ignore
     server = app.listen(config.connect.port);
     logger.info(`Running in http://localhost:${config.connect.port}`);
 }
@@ -58,7 +59,7 @@ if (config.connect.socket) {
     server = app.listen(config.connect.socket);
     logger.info(`Listening Unix Socket ${config.connect.socket}`);
     process.on('SIGINT', () => {
-        fs.unlinkSync(config.connect.socket);
+        fs.unlinkSync(config.connect.socket || '');
         process.exit();
     });
 }

@@ -27,16 +27,22 @@ const tuHao = async (ctx: Koa.BaseContext) => {
             waitUntil: 'networkidle0',
             timeout: 0,
         });
-        const nextItem = await page.$('#cr_top > div > div.right > a:nth-child(4)');
+        const nextItem = await page.$(
+            '#cr_top > div > div.right > a:nth-child(4)'
+        );
         nextItem.click();
 
         await page.waitFor(1000);
 
         await page.evaluate(() => {
+            // @ts-ignore
             let lastScrollTop: number = document.scrollingElement.scrollTop;
             const scroll = () => {
+                // @ts-ignore
                 document.scrollingElement.scrollTop += 200;
+                // @ts-ignore
                 if (document.scrollingElement.scrollTop !== lastScrollTop) {
+                    // @ts-ignore
                     lastScrollTop = document.scrollingElement.scrollTop;
                     requestAnimationFrame(scroll);
                 }
@@ -45,7 +51,9 @@ const tuHao = async (ctx: Koa.BaseContext) => {
         });
 
         await page.waitFor(2000);
-        const html = await page.evaluate(() => document.querySelector('html').innerHTML);
+        // @ts-ignore
+        const html = await page.evaluate(() => document.querySelector('html').innerHTML
+        );
 
         temp = util.getDownloadList(html);
         await browser.close();

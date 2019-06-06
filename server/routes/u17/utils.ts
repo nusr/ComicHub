@@ -1,30 +1,31 @@
 import cheerio from 'cheerio';
+import _ from 'lodash'
 import { IChapterItem, IImageItem, ISearchItem } from '../../type';
 
 const getSearchList = (data: string): ISearchItem[] => {
     const $ = cheerio.load(data);
     const result: ISearchItem[] = [];
     const list = $('#comiclist > div > div.comiclist > ul > li');
-    list.each(function () {
-        const dom = $(this)
+    list.each(function (i,item) {
+        const dom = $(item)
             .find('div.info > h3 > strong > a')
             .eq(0);
         const title: string = dom.attr('title');
         const url: string = dom.attr('href');
-        const cover: string = $(this)
+        const cover: string = $(item)
             .find('div.cover > a > img')
             .eq(0)
             .attr('src');
 
-        const author: string = $(this)
+        const author: string = $(item)
             .find('div.info > h3 > a')
             .eq(0)
             .attr('title');
-        const introduce: string = $(this)
+        const introduce: string = $(item)
             .find('div.info > p.text')
             .eq(0)
             .text();
-        const category: string = $(this)
+        const category: string = $(item)
             .find('div.info > p.cf > i')
             .eq(0)
             .text()
@@ -46,15 +47,15 @@ const getSearchList = (data: string): ISearchItem[] => {
 const getChapterList = (data: string): IChapterItem[] => {
     const $ = cheerio.load(data);
     const chapters: IChapterItem[] = [];
-    $('#chapter>li').each(function () {
-        const dom = $(this)
+    $('#chapter>li').each(function (i,item) {
+        const dom = $(item)
             .find('a')
             .eq(0);
         const link: string = dom.attr('href');
         const title: string = dom.attr('title');
-        const innerText: string = $(this).text();
+        const innerText: string = $(item).text();
         const pageString: string = innerText.slice(dom.text().length);
-        const currentPage = Number(pageString.match(/(\d+)/gi)[0]);
+        const currentPage = Number(_.head(pageString.match(/(\d+)/gi)));
         const titleLen: number = title.length;
         if (link) {
             chapters.push({
@@ -73,8 +74,8 @@ const getDownloadList = (data: string): IImageItem[] => {
     const result: IImageItem[] = [];
     const $ = cheerio.load(data);
     let page = 1;
-    $('#readvip > .mg_auto').each(function () {
-        const dom = $(this)
+    $('#readvip > .mg_auto').each(function (i,item) {
+        const dom = $(item)
             .find('img.cur_pic.lazyload')
             .eq(0);
         const url: string = dom.attr('src');
