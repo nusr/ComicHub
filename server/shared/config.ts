@@ -36,12 +36,12 @@ export default {
     pdfSupportImage: [
         '.jpeg',
         '.png',
+        '.jpg',
     ], // Pdfkit 只支持 png jpeg
     bookConfig: {
         author: 'Steve Xu',
         imgWidth: 500,
     },
-    epubConfig: {},
     mysql: {
         host: 'localhost', // 数据库服务器所在的IP或域名
         port: 3306,

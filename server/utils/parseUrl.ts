@@ -1,7 +1,7 @@
 import urlModule from 'url';
 import _ from 'lodash';
 
-const maxLength = 5;
+const maxLength = 4;
 
 function getReferer(link: string): string {
     const result = urlModule.parse(link);
@@ -19,7 +19,7 @@ function numToString(num: number): string {
     }
     const temp: number = maxLength - num.toString().length;
     if (temp <= 0) {
-        return num.toString();
+        return _.toString(num);
     }
     const zero = new Array(temp).fill(0)
         .join('');
@@ -31,6 +31,7 @@ function getComicSite(url: string): string {
     temp.pop();
     return _.last(temp) || '';
 }
+
 export {
     getReferer, filterIllegalPath, numToString, getComicSite,
 };

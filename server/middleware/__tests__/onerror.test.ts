@@ -1,8 +1,9 @@
-import supertest from 'supertest';
+// @ts-ignore
+import superTest from 'supertest';
 import koaServer from '../../index';
 
 const { server } = koaServer;
-const request = supertest(server);
+const request = superTest(server);
 
 afterAll(() => {
     server.close();
