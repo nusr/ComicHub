@@ -17,7 +17,7 @@
         "lint": "eslint --ext .js,.jsx,.ts,.tsx src server --fix",
         "test:react": "umi test --coverage --runInBand --forceExit --detectOpenHandles --passWithNoTests",
         "test:server": "npm run --prefix ./server test",
-        "test": "concurrently \"npm run test:react\" \"npm run test:server\"",
+        "test": "npm run test:react && npm run test:server",
         "readme": "npm run --prefix ./server readme"
     },
     "dependencies": {
