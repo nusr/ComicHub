@@ -2,7 +2,6 @@
     "name": "ComicHub",
     "version": "1.0.0",
     "description": "ComicHub",
-    "main": "./dist/main/main.js",
     "private": true,
     "scripts": {
         "start": "umi dev",
@@ -16,7 +15,7 @@
         "prettier": "prettier \"**/*.{ts,tsx,js,jsx,json,md}\" --write",
         "style": "stylelint 'src/**/*.less' --syntax less --fix",
         "lint": "eslint --ext .js,.jsx,.ts,.tsx src server --fix",
-        "test:react": "umi test  --coverage --runInBand --forceExit --detectOpenHandles --passWithNoTests",
+        "test:react": "umi test",
         "test:server": "npm run --prefix ./server test",
         "test": "concurrently \"npm run test:react\" \"npm run test:server\"",
         "readme": "npm run --prefix ./server readme"

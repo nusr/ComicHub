@@ -13,7 +13,7 @@ type Props = {
     location: any;
 };
 
-function getCurrentStep(type: string): number {
+export function getCurrentStep(type: string = ''): number {
     switch (type) {
         case typeConfig.search:
             return 0;

@@ -1,5 +1,4 @@
 module.exports = {
-    testMatch: ['src/**/*.test.ts'],
     testPathIgnorePatterns: [
         '/node_modules/',
         '/server/',
@@ -7,6 +6,6 @@ module.exports = {
         '/downloadResult/',
     ],
     coverageReporters: ['text-summary', 'lcov'],
-    collectCoverageFrom: ['src/**/*.ts'],
+    collectCoverageFrom: ['src/**/*.ts', 'src/**/*.tsx'],
     testURL: 'http://localhost:8080',
 };
