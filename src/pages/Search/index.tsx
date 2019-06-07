@@ -3,11 +3,11 @@ import { connect } from 'dva';
 import router from 'umi/router';
 import SearchForm from '../../components/SearchForm';
 import { IFormData } from '../../type';
-import { typeConfig } from '@/pages/config';
+import { typeConfig } from '../config';
 
 type Props = {
     dispatch: any;
-    menuData: any;
+    list: any;
 };
 
 function getMenuList(data: any = {}) {
@@ -23,9 +23,9 @@ function getMenuList(data: any = {}) {
 
 const HomePage: React.FunctionComponent<Props> = ({
     dispatch,
-    menuData = {},
+    list,
 }) => {
-    const menuList: any = getMenuList(menuData);
+    const menuList: any = getMenuList(list);
     useEffect(() => {
         dispatch({
             type: 'menu/fetch',
@@ -52,6 +52,14 @@ const HomePage: React.FunctionComponent<Props> = ({
     // @ts-ignore
     return <SearchForm handleFormSubmit={handleSearchSubmit} menuList={menuList} />;
 };
+type ConnectProps = {
+    loading: any,
+    menu: {
+        list: any[]
+    }
+}
 
-
-export default connect()(HomePage);
+export default connect(({ loading, menu }: ConnectProps) => ({
+    loading: loading.models.menu,
+    list: menu.list,
+}))(HomePage);

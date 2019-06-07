@@ -21,7 +21,9 @@ cd server
 cnpm i
 ```
 
-## 使用 puppeteer 爬取
+## 使用 puppeteer
+
+页面动态渲染生成，使用 puppeteer 爬取图片。
 
 参见 [../server/routes/u17/index.ts](../server/routes/u17/index.ts) ，或者搜索整个项目 **puppeteer** 。
 
@@ -30,11 +32,3 @@ cnpm i
 见 [comic.sql](comic.sql)
 
 字段说明参见 [../server/type/index.ts](../server/types/index.ts)
-
-## Electron 模板
-
-[electron-react-boilerplate](https://github.com/electron-react-boilerplate/examples/tree/master/examples/typescript) 的 React 版本不是 16.8+，不能使用 React Hooks。
-
-所以使用了 Umi + Electron 模板，链接地址是 [https://github.com/wangtianlun/umi-electron-typescript](https://github.com/wangtianlun/umi-electron-typescript)
-
-服务端参考了 [https://github.com/DIYgod/RSSHub](https://github.com/DIYgod/RSSHub)。
