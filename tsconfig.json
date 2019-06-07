@@ -1,24 +1,17 @@
 {
     "compilerOptions": {
-        "target": "ES5",
+        "target": "esnext",
+        "module": "esnext",
         "moduleResolution": "node",
-        "module": "commonjs",
-        "lib": ["dom", "es2015", "es2016", "es2017"],
-        "noImplicitAny": false,
+        "importHelpers": true,
+        "jsx": "react",
+        "esModuleInterop": true,
         "sourceMap": true,
-        "outDir": "dist",
-        "baseUrl": "./",
-        "jsx": "preserve",
+        "baseUrl": ".",
         "strict": true,
-        "allowJs": true,
-        "emitDecoratorMetadata": true,
-        "experimentalDecorators": true,
-        "strictPropertyInitialization": false,
-        "noEmit": false,
         "paths": {
-            "*": ["node_modules/*"]
-        }
-    },
-    "include": ["src/**/*"],
-    "extends": "./node_modules/electron-webpack/tsconfig-base.json"
+            "@/*": ["src/*"]
+        },
+        "allowSyntheticDefaultImports": true
+    }
 }

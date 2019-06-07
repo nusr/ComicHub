@@ -5,43 +5,38 @@
     "main": "./dist/main/main.js",
     "private": true,
     "scripts": {
-        "start:electron": "concurrently \"npm run start:react\" \"wait-on http://localhost:8000 && npm run start:electron\"",
-        "start": "APP_ROOT=src/renderer PORT=3000 umi dev",
+        "start": "umi dev",
         "start:server": "npm run --prefix ./server dev",
-        "build:main-prod": "NODE_ENV=production webpack --config ./scripts/webpack.main.prod.js",
-        "build:main-dev": "NODE_ENV=development webpack --config ./scripts/webpack.main.dev.js",
-        "build:renderer": "APP_ROOT=src/renderer umi build",
+        "build:react": "umi build",
+        "build:server": "npm run --prefix ./server build",
+        "build": "npm run build:react && npm run build:server",
         "watch": "tsc -w",
-        "debug:main": "electron --inspect=5858 -w ./dist/main/main.js",
-        "pack": "npm run build:renderer && npm run build:main-prod && electron-builder --dir",
-        "dist": "electron-builder",
         "lint-staged": "lint-staged",
         "format": "npm run lint && npm run style && npm run prettier",
         "prettier": "prettier \"**/*.{ts,tsx,js,jsx,json,md}\" --write",
         "style": "stylelint 'src/**/*.less' --syntax less --fix",
         "lint": "eslint --ext .js,.jsx,.ts,.tsx src server --fix",
-        "test:react": "NODE_ENV=test jest --coverage --runInBand --forceExit --detectOpenHandles --passWithNoTests",
+        "test:react": "umi test  --coverage --runInBand --forceExit --detectOpenHandles --passWithNoTests",
         "test:server": "npm run --prefix ./server test",
         "test": "concurrently \"npm run test:react\" \"npm run test:server\"",
         "readme": "npm run --prefix ./server readme"
     },
     "dependencies": {
+        "antd": "^3.19.2",
+        "dva": "^2.4.1",
         "lodash": "^4.17.11",
+        "react": "^16.8.6",
+        "react-dom": "^16.8.6",
         "umi": "^2.7.2"
     },
     "devDependencies": {
         "@types/jest": "^24.0.13",
         "@types/lodash": "^4.14.133",
+        "@types/react-test-renderer": "^16.8.1",
         "@typescript-eslint/eslint-plugin": "^1.9.0",
         "@typescript-eslint/parser": "^1.9.0",
-        "awesome-typescript-loader": "^5.2.1",
         "babel-eslint": "^10.0.1",
         "concurrently": "^4.1.0",
-        "electron": "^5.0.1",
-        "electron-builder": "^20.38.5",
-        "electron-debug": "^3.0.0",
-        "electron-webpack": "^2.6.2",
-        "electron-webpack-ts": "^3.1.1",
         "eslint": "^5.16.0",
         "eslint-config-airbnb": "^17.1.0",
         "eslint-config-prettier": "^4.3.0",
@@ -49,9 +44,9 @@
         "eslint-plugin-jsx-a11y": "^6.2.1",
         "eslint-plugin-react": "^7.13.0",
         "husky": "^2.3.0",
-        "jest": "^24.8.0",
         "lint-staged": "^8.2.0",
         "prettier": "^1.17.1",
+        "react-test-renderer": "^16.8.6",
         "stylelint": "^10.0.1",
         "stylelint-config-css-modules": "^1.4.0",
         "stylelint-config-prettier": "^5.2.0",
@@ -59,28 +54,7 @@
         "stylelint-config-standard": "^18.3.0",
         "stylelint-declaration-block-no-ignored-properties": "^2.1.0",
         "stylelint-order": "^3.0.0",
-        "ts-jest": "^24.0.2",
-        "typescript": "3.5.1",
-        "umi-plugin-react": "^1.4.2",
-        "wait-on": "^3.2.0",
-        "webpack": "4.33.0",
-        "webpack-cli": "^3.2.1",
-        "webpack-merge": "^4.2.1"
-    },
-    "build": {
-        "files": [
-            "dist/",
-            "node_modules/",
-            "package.json"
-        ],
-        "mac": {
-            "category": "Comic"
-        },
-        "directories": {
-            "output": "release"
-        },
-        "appId": "com.nusr.ComicHub",
-        "asar": false
+        "umi-plugin-react": "^1.4.2"
     },
     "husky": {
         "hooks": {
@@ -104,14 +78,12 @@
             ]
         },
         "ignore": [
-            "**/release/**/*",
             "**/dist/**/*",
             "**/build/**/*"
         ]
     },
     "repository": "https://github.com/nusr/ComicHub",
     "keywords": [
-        "Electron",
         "umi",
         "Comic",
         "Downloader",
@@ -120,14 +92,6 @@
     "author": {
         "name": "Steve Xu",
         "email": "stevexugc@gmail.com"
-    },
-    "electronWebpack": {
-        "main": {
-            "sourceDirectory": "src/main"
-        },
-        "renderer": {
-            "sourceDirectory": null
-        }
     },
     "license": "MIT"
 }

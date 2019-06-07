@@ -1,6 +1,6 @@
 node_modules
 dist
-src/renderer/pages/.umi
+src/pages/.umi
 release
 downloadResult
 # misc
@@ -17,3 +17,5 @@ package-lock.json
 log
 *.pdf
 *.epub
+logs
+**/logs
