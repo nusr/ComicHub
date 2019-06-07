@@ -1,6 +1,7 @@
 import Koa from 'koa';
 import fs from 'fs';
 import mount from 'koa-mount';
+import _ from 'lodash';
 import bodyParser from 'koa-bodyparser';
 import config from './shared/config';
 
@@ -47,10 +48,13 @@ app.use(mount('/', router.routes())).use(router.allowedMethods());
 // @ts-ignore
 app.use(mount('/api', apiRouter.routes())).use(apiRouter.allowedMethods());
 let server: any;
-if (config.connect.port) {
-    // @ts-ignore
-    server = app.listen(config.connect.port);
-    logger.info(`Running in http://localhost:${config.connect.port}`);
+let koaPort: number | string = config.connect.port;
+if (koaPort) {
+    if (process.env.NODE_ENV === 'test') {
+        koaPort = _.random(5000, 8000);
+    }
+    server = app.listen(koaPort);
+    logger.info(`Running in http://localhost:${koaPort}`);
 }
 if (config.connect.socket) {
     if (fs.existsSync(config.connect.socket)) {

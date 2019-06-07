@@ -29,7 +29,6 @@ export default function downloadImage(
         fileName + extName,
     );
     const parseDir = path.parse(filePath);
-    logger.info(parseDir);
     makeDir(parseDir.dir);
     const stream = fs.createWriteStream(filePath);
     // 转义链接中的中文参数
@@ -44,13 +43,8 @@ export default function downloadImage(
     })
         .then((response) => {
             response.data.pipe(stream);
-        })
-        .catch((error) => {
-            logger.error(error);
         });
-
     logger.info(`[Download Image Success] ${filePath}`);
-
     stream.on('finish', () => {
         if (config.pdfSupportImage.includes(parseDir.ext)) {
             return;
