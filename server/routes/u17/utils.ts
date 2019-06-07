@@ -1,6 +1,7 @@
 import cheerio from 'cheerio';
 import _ from 'lodash';
 import { IChapterItem, IImageItem, ISearchItem } from '../../type';
+import toNum from '../../utils/toNum';
 
 const getSearchList = (data: string): ISearchItem[] => {
     const $ = cheerio.load(data);
@@ -55,8 +56,7 @@ const getChapterList = (data: string): IChapterItem[] => {
         const title: string = dom.attr('title');
         const innerText: string = $(item).text();
         const pageString: string = innerText.slice(dom.text().length);
-        // @ts-ignore
-        const currentPage = parseInt(_.head(pageString.match(/(\d+)/gi)), 10);
+        const currentPage = toNum(_.head(pageString.match(/(\d+)/gi)));
         const titleLen: number = title.length;
         if (link) {
             chapters.push({

@@ -1,10 +1,10 @@
 import tunnel from 'tunnel';
 import axios from 'axios';
 import axiosRetry from 'axios-retry';
-// @ts-ignore
 import SocksProxyAgent from 'socks-proxy-agent';
 import logger from './logger';
 import config from '../shared/config';
+import toNum from './toNum';
 
 function checkProxy(data: any): boolean {
     const { proxy } = data;
@@ -29,8 +29,7 @@ if (checkProxy(config)) {
                     temp = {
                         proxy: {
                             host: config.proxy.host,
-                            // @ts-ignore
-                            port: parseInt(config.proxy.port, 10),
+                            port: toNum(config.proxy.port),
                             headers: {
                                 'User-Agent': config.userAgent,
                             },
@@ -43,8 +42,7 @@ if (checkProxy(config)) {
                     temp = {
                         proxy: {
                             host: config.proxy.host,
-                            // @ts-ignore
-                            port: parseInt(config.proxy.port,10),
+                            port: toNum(config.proxy.port),
                             proxyAuth: `${config.proxy.auth.username}:${
                                 config.proxy.auth.password
                                 }`,

@@ -4,6 +4,7 @@ import _ from 'lodash';
 import { IChapterItem, IImageItem, ISearchItem } from '../../type';
 import urlConfig from '../../shared/urlConfig';
 import { numToString } from '../../utils/parseUrl';
+import toNum from '../../utils/toNum';
 
 const baseUrl = urlConfig.tohomh123.base;
 
@@ -51,8 +52,7 @@ const getChapterList = (data: string) => {
             .text();
         const title: string = dom.text();
         const realTitle: string = title.slice(0, title.length - pageString.length);
-        // @ts-ignore
-        const currentPage = parseInt(_.head(pageString.match(/(\d+)/gi)), 10);
+        const currentPage = toNum(_.head(pageString.match(/(\d+)/gi)));
         if (link) {
             chapters.push({
                 url: link,

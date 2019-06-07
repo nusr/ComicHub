@@ -2,6 +2,7 @@ import urlModule from 'url';
 import cheerio from 'cheerio';
 import urlConfig from '../../shared/urlConfig';
 import { IChapterItem, ISearchItem } from '../../type';
+import toNum from '../../utils/toNum';
 
 const baseUrl = urlConfig.manhuagui.base;
 const fixTitle = (value: string): string => {
@@ -72,7 +73,7 @@ const getChapterList = (data: string) => {
             chapters.push({
                 url: link,
                 title: dom.attr('title'),
-                page_size: parseInt(page, 10),
+                page_size: toNum(page),
             });
         }
     });

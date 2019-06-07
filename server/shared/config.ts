@@ -1,5 +1,5 @@
 import path from 'path';
-
+import toNum from '../utils/toNum';
 
 export default {
     connect: {
@@ -10,8 +10,7 @@ export default {
         process.env.UA
         || 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.131 Safari/537.36',
     listenInOutAddress: process.env.LISTEN_IN_OUT_ADDRESS || 1, // 是否允许公网连接，取值 0 1
-    // @ts-ignore
-    requestRetry: parseInt(process.env.REQUEST_RETRY, 10) || 2, // 请求失败重试次数
+    requestRetry: toNum(process.env.REQUEST_RETRY) || 2, // 请求失败重试次数
     // 是否显示 Debug 信息，取值 boolean 'false' 'key' ，取值为 'false' false 时永远不显示，取值为 'key' 时带上 ?debug=key 显示
     debugInfo: process.env.DEBUG_INFO || true,
     loggerLevel: process.env.LOGGER_LEVEL || 'info',

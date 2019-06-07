@@ -32,6 +32,7 @@ module.exports = {
         allowImportExportEverywhere: false,
     },
     rules: {
+        'import/prefer-default-export': 'warn',
         'no-await-in-loop': 'warn',
         'react/prop-types': 'off',
         'react/jsx-filename-extension': ['error', { 'extensions': ['.js', '.jsx', '.ts', '.tsx'] }],

@@ -57,35 +57,3 @@ export function webpmux_strip(
     option: any,
     callback: any
 ): void;
-
-export namespace cwebp {
-    const prototype: {};
-}
-
-export namespace dwebp {
-    const prototype: {};
-}
-
-export namespace gwebp {
-    const prototype: {};
-}
-
-export namespace webpmux_add {
-    const prototype: {};
-}
-
-export namespace webpmux_animate {
-    const prototype: {};
-}
-
-export namespace webpmux_extract {
-    const prototype: {};
-}
-
-export namespace webpmux_getframe {
-    const prototype: {};
-}
-
-export namespace webpmux_strip {
-    const prototype: {};
-}
