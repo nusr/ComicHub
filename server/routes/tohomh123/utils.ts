@@ -51,7 +51,8 @@ const getChapterList = (data: string) => {
             .text();
         const title: string = dom.text();
         const realTitle: string = title.slice(0, title.length - pageString.length);
-        const currentPage = Number(_.head(pageString.match(/(\d+)/gi)));
+        // @ts-ignore
+        const currentPage = parseInt(_.head(pageString.match(/(\d+)/gi)), 10);
         if (link) {
             chapters.push({
                 url: link,
@@ -73,10 +74,10 @@ function getDownloadItem(data: string, pageSize: number) {
     const fileName: string = _.last(link.split('/')) || '';
     const extName: string = _.last(fileName.split('.')) || '';
     const tempUrl: string = link.slice(0, link.length - fileName.length);
-    for (let i = 1; i < pageSize; i += 1) {
+    for (let i = 0; i < pageSize; i += 1) {
         result.push({
-            page: i,
-            url: `${tempUrl}${numToString(i - 1)}.${extName}`,
+            page: i + 1,
+            url: `${tempUrl}${numToString(i)}.${extName}`,
         });
     }
     return result;

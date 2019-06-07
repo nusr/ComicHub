@@ -55,7 +55,8 @@ const getChapterList = (data: string): IChapterItem[] => {
         const title: string = dom.attr('title');
         const innerText: string = $(item).text();
         const pageString: string = innerText.slice(dom.text().length);
-        const currentPage = Number(_.head(pageString.match(/(\d+)/gi)));
+        // @ts-ignore
+        const currentPage = parseInt(_.head(pageString.match(/(\d+)/gi)), 10);
         const titleLen: number = title.length;
         if (link) {
             chapters.push({

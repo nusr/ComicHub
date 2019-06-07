@@ -1,5 +1,6 @@
 import path from 'path';
 
+
 export default {
     connect: {
         port: process.env.PORT || 1200, // 监听端口
@@ -9,7 +10,8 @@ export default {
         process.env.UA
         || 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.131 Safari/537.36',
     listenInOutAddress: process.env.LISTEN_IN_OUT_ADDRESS || 1, // 是否允许公网连接，取值 0 1
-    requestRetry: Number(process.env.REQUEST_RETRY) || 2, // 请求失败重试次数
+    // @ts-ignore
+    requestRetry: parseInt(process.env.REQUEST_RETRY, 10) || 2, // 请求失败重试次数
     // 是否显示 Debug 信息，取值 boolean 'false' 'key' ，取值为 'false' false 时永远不显示，取值为 'key' 时带上 ?debug=key 显示
     debugInfo: process.env.DEBUG_INFO || true,
     loggerLevel: process.env.LOGGER_LEVEL || 'info',
@@ -36,11 +38,13 @@ export default {
     pdfSupportImage: [
         '.jpeg',
         '.png',
-        '.jpg',
     ], // Pdfkit 只支持 png jpeg
     bookConfig: {
         author: 'Steve Xu',
-        imgWidth: 500,
+        imageWidth: 520,
+        imageHeight: 700,
+        paddingTop: 50,
+        paddingLeft: 50,
     },
     mysql: {
         host: 'localhost', // 数据库服务器所在的IP或域名

@@ -14,11 +14,11 @@ export function getExtName(url: string): string {
     return _.head(result) || '';
 }
 
-export default function downloadImage(
+function downloadImage(
     url: string,
     fileName: string,
     referer: string = 'https://www.manhuagui.com',
-): void {
+) {
     const extName = getExtName(url);
     if (!extName) {
         return;
@@ -31,21 +31,8 @@ export default function downloadImage(
     const parseDir = path.parse(filePath);
     makeDir(parseDir.dir);
     const stream = fs.createWriteStream(filePath);
-    // 转义链接中的中文参数
-    const realUrl = encodeURI(url);
-    axios({
-        url: realUrl,
-        responseType: 'stream',
-        headers: {
-            Referer: referer,
-            'User-Agent': config.userAgent,
-        },
-    })
-        .then((response) => {
-            response.data.pipe(stream);
-        });
-    logger.info(`[Download Image Success] ${filePath}`);
     stream.on('finish', () => {
+        logger.info(`[Download Image Success] ${filePath}`);
         if (config.pdfSupportImage.includes(parseDir.ext)) {
             return;
         }
@@ -55,4 +42,18 @@ export default function downloadImage(
         );
         convertImage(filePath, jpegPath);
     });
+    // 转义链接中的中文参数
+    const realUrl = encodeURI(url);
+    axios({
+        url: realUrl,
+        responseType: 'stream',
+        headers: {
+            Referer: referer,
+            'User-Agent': config.userAgent,
+        },
+    }).then((response) => {
+        response.data.pipe(stream);
+    });
 }
+
+export default downloadImage;

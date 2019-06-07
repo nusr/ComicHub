@@ -5,13 +5,15 @@ import configData from '../shared/config';
 import getBookInfo from './bookInfo';
 import { BookInfo } from './type';
 
+const { bookConfig } = configData;
+
 function generatePdf(dirName: string) {
     if (!dirName) {
         logger.info('下载路径为空！');
         return '';
     }
     if (!fs.existsSync(dirName)) {
-        logger.info('下载路径为不存在！');
+        logger.info(`下载路径为 ${dirName}不存在！`);
         return '';
     }
 
@@ -27,14 +29,15 @@ function generatePdf(dirName: string) {
     pdf.pipe(fs.createWriteStream(outputPath));
 
     pdf.info.Title = bookTitle;
-    pdf.info.Author = configData.bookConfig.author;
+    pdf.info.Author = bookConfig.author;
 
     for (let i = 0; i < filePathList.length; i += 1) {
         const item = filePathList[i];
         const temp = fs.readFileSync(item);
 
-        pdf.image(temp, {
-            width: configData.bookConfig.imgWidth,
+        pdf.image(temp, bookConfig.paddingLeft, bookConfig.paddingTop, {
+            width: bookConfig.imageWidth,
+            height: bookConfig.imageHeight,
             align: 'center',
             valign: 'center',
         });

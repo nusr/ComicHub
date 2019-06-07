@@ -72,7 +72,7 @@ const getChapterList = (data: string) => {
             chapters.push({
                 url: link,
                 title: dom.attr('title'),
-                page_size: Number(page),
+                page_size: parseInt(page, 10),
             });
         }
     });

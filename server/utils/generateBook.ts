@@ -6,6 +6,8 @@ import { getComicSite, getReferer, numToString } from './parseUrl';
 import sleep from './wait';
 import downloadImage from './downloadImage';
 
+const CONVERT_DELAY: number = 100;
+
 const getBookDir = (
     searchItem: ISearchMysql,
     chapterItem: IChapterMysql,
@@ -33,10 +35,12 @@ async function makeBook(
     const requestUrl = getReferer(requestName);
     // eslint-disable-next-line
     for (const item of downloadList) {
-        await sleep(200);
-        downloadImage(item.url, item.fileName, requestUrl);
+        await downloadImage(item.url, item.fileName, requestUrl);
+        await sleep(CONVERT_DELAY * 2);
     }
-
+    // 等待下载图片的转换
+    // FIXME 可能出现图片尚未转换完成，PDF 已经生成了
+    await sleep(CONVERT_DELAY * 15);
     const dirPath: string = getBookDir(searchItem, chapterItem);
     const realPath = path.join(
         configData.downloadBase,

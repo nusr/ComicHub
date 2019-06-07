@@ -1,4 +1,5 @@
 import sharp from 'sharp';
+// @ts-ignore
 import imageConverter from 'webp-converter';
 import logger from './logger';
 

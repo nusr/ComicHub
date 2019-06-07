@@ -24,6 +24,7 @@
         "shared/*",
         "utils/*",
         "test/**/*",
-        "type/*"
+        "type/*",
+        "../node_modules/@types/node/globals.d.ts"
     ]
 }

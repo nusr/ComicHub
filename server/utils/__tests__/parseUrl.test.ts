@@ -33,6 +33,7 @@ describe('filterIllegalPath', () => {
 
 describe('numToString', () => {
     it('numToString should return right string', () => {
+        expect(numToString(0)).toBe('0000');
         expect(numToString(3)).toBe('0003');
         expect(numToString(33)).toBe('0033');
         expect(numToString(333)).toBe('0333');

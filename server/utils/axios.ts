@@ -1,6 +1,7 @@
 import tunnel from 'tunnel';
 import axios from 'axios';
 import axiosRetry from 'axios-retry';
+// @ts-ignore
 import SocksProxyAgent from 'socks-proxy-agent';
 import logger from './logger';
 import config from '../shared/config';
@@ -24,10 +25,12 @@ if (checkProxy(config)) {
                     break;
                 case 'http':
                     process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+
                     temp = {
                         proxy: {
                             host: config.proxy.host,
-                            port: Number(config.proxy.port),
+                            // @ts-ignore
+                            port: parseInt(config.proxy.port, 10),
                             headers: {
                                 'User-Agent': config.userAgent,
                             },
@@ -40,7 +43,8 @@ if (checkProxy(config)) {
                     temp = {
                         proxy: {
                             host: config.proxy.host,
-                            port: Number(config.proxy.port),
+                            // @ts-ignore
+                            port: parseInt(config.proxy.port,10),
                             proxyAuth: `${config.proxy.auth.username}:${
                                 config.proxy.auth.password
                                 }`,
@@ -67,7 +71,7 @@ if (checkProxy(config)) {
 /* eslint-enable */
 axiosRetry(axios, {
     retries: config.requestRetry,
-    retryCondition: () => true,
+    // retryCondition: () => true,
     retryDelay: (count, err) => {
         logger.error(`Request ${err.config.url} fail, retry attempt #${count}: ${err}`);
         return 100;
