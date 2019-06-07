@@ -31,10 +31,10 @@ const DownloadResult: React.FunctionComponent<Props> = ({
     let temp: React.ReactNode = <Loading />;
     if (result) {
         temp = (
-            <span>
-下载成功，下载地址为：
+            <div>
+                <span>下载成功，下载地址为：</span>
                 <span className={styles.downloadPath}>{downloadPath}</span>
-            </span>
+            </div>
         );
     }
     return (

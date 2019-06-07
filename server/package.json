@@ -5,7 +5,7 @@
         "readme": "ts-node utils/generateMarkdown.ts",
         "build": "npm run build-ts && npm run copy-static-assets",
         "start": "node dist/index.js",
-        "test": "NODE_ENV=test jest --coverage --runInBand --forceExit --detectOpenHandles --passWithNoTests",
+        "test": "umi test",
         "watch-test": "NODE_ENV=test jest --watchAll --coverage --runInBand --forceExit --detectOpenHandles --passWithNoTests",
         "build-ts": "tsc",
         "watch-ts": "tsc -w",

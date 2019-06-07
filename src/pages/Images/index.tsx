@@ -1,5 +1,6 @@
 import { Button, message } from 'antd';
 import { connect } from 'dva';
+import router from 'umi/router';
 import React, { Fragment, useEffect, useState } from 'react';
 import { renderDate, typeConfig } from '../config';
 import styles from './index.less';
@@ -86,7 +87,7 @@ const ChapterResult: React.FunctionComponent<Props> = ({
                 page_size: item.page_size,
             },
         });
-        // TODO 跳转
+        router.push(`/${typeConfig.result}`);
     }
 
     return (

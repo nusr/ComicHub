@@ -1,5 +1,6 @@
 import { Avatar, Button, message } from 'antd';
 import { connect } from 'dva';
+import router from 'umi/router';
 import React, { Fragment, useEffect, useState } from 'react';
 import { renderDate, typeConfig } from '../config';
 import styles from './index.less';
@@ -105,7 +106,7 @@ const SearchResult: React.FunctionComponent<Props> = ({
                 name: item.url,
             },
         });
-        // TODO 跳转
+        router.push(`/${typeConfig.download}`);
     }
 
     return (

@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
 import { connect } from 'dva';
+import router from 'umi/router';
 import SearchForm from '../../components/SearchForm';
 import { IFormData } from '../../type';
+import { typeConfig } from '@/pages/config';
 
 type Props = {
     dispatch: any;
@@ -43,7 +45,7 @@ const HomePage: React.FunctionComponent<Props> = ({
                     noCache: Number(!value.cache),
                 },
             });
-            // TODO 跳转
+            router.push(`/${typeConfig.chapter}`);
         }
     }
 

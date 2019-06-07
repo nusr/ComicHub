@@ -15,7 +15,7 @@
         "prettier": "prettier \"**/*.{ts,tsx,js,jsx,json,md}\" --write",
         "style": "stylelint 'src/**/*.less' --syntax less --fix",
         "lint": "eslint --ext .js,.jsx,.ts,.tsx src server --fix",
-        "test:react": "umi test",
+        "test:react": "umi test --coverage --runInBand --forceExit --detectOpenHandles --passWithNoTests",
         "test:server": "npm run --prefix ./server test",
         "test": "concurrently \"npm run test:react\" \"npm run test:server\"",
         "readme": "npm run --prefix ./server readme"
@@ -43,6 +43,7 @@
         "eslint-plugin-jsx-a11y": "^6.2.1",
         "eslint-plugin-react": "^7.13.0",
         "husky": "^2.3.0",
+        "jest": "^24.8.0",
         "lint-staged": "^8.2.0",
         "prettier": "^1.17.1",
         "react-test-renderer": "^16.8.6",
@@ -53,6 +54,7 @@
         "stylelint-config-standard": "^18.3.0",
         "stylelint-declaration-block-no-ignored-properties": "^2.1.0",
         "stylelint-order": "^3.0.0",
+        "ts-jest": "^24.0.2",
         "umi-plugin-react": "^1.4.2"
     },
     "husky": {

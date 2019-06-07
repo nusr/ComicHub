@@ -6,6 +6,7 @@ module.exports = {
         '/downloadResult/',
     ],
     coverageReporters: ['text-summary', 'lcov'],
-    collectCoverageFrom: ['src/**/*.ts', 'src/**/*.tsx'],
+    collectCoverageFrom: ['src/**/*.{ts,tsx}'],
+    bail: true,
     testURL: 'http://localhost:8080',
 };
