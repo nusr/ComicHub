@@ -24,11 +24,11 @@
         "lodash": "^4.17.11",
         "react": "^16.8.6",
         "react-dom": "^16.8.6",
-        "umi": "^2.7.2"
+        "umi": "^2.7.3"
     },
     "devDependencies": {
         "@types/jest": "^24.0.13",
-        "@types/lodash": "^4.14.133",
+        "@types/lodash": "^4.14.134",
         "@types/react-test-renderer": "^16.8.1",
         "@typescript-eslint/eslint-plugin": "^1.9.0",
         "@typescript-eslint/parser": "^1.9.0",
@@ -42,9 +42,9 @@
         "husky": "^2.3.0",
         "jest": "^24.8.0",
         "lint-staged": "^8.2.0",
-        "prettier": "^1.17.1",
+        "prettier": "^1.18.2",
         "react-test-renderer": "^16.8.6",
-        "stylelint": "^10.0.1",
+        "stylelint": "^10.1.0",
         "stylelint-config-css-modules": "^1.4.0",
         "stylelint-config-prettier": "^5.2.0",
         "stylelint-config-rational-order": "^0.1.2",
@@ -52,7 +52,7 @@
         "stylelint-declaration-block-no-ignored-properties": "^2.1.0",
         "stylelint-order": "^3.0.0",
         "ts-jest": "^24.0.2",
-        "umi-plugin-react": "^1.4.2"
+        "umi-plugin-react": "^1.8.2"
     },
     "husky": {
         "hooks": {
