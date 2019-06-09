@@ -29,7 +29,6 @@
         "socks-proxy-agent": "4.0.2",
         "sqlite3": "^4.0.8",
         "tunnel": "0.0.6",
-        "webp-converter": "^2.2.2",
         "winston": "3.2.1"
     },
     "devDependencies": {

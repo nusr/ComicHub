@@ -31,7 +31,7 @@ function downloadImage(
     const parseDir = path.parse(filePath);
     makeDir(parseDir.dir);
     const stream = fs.createWriteStream(filePath);
-    stream.on('finish', () => {
+    stream.on('finish', async () => {
         logger.info(`[Download Image Success] ${filePath}`);
         if (config.pdfSupportImage.includes(parseDir.ext)) {
             return;
@@ -40,7 +40,10 @@ function downloadImage(
             parseDir.dir,
             `${parseDir.name}${config.pdfSupportImage[0]}`,
         );
-        convertImage(filePath, jpegPath);
+        const result: boolean = await convertImage(filePath, jpegPath);
+        if (!result) {
+            await convertImage(filePath, jpegPath);
+        }
     });
     // 转义链接中的中文参数
     const realUrl = encodeURI(url);
