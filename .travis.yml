@@ -4,6 +4,7 @@ node_js: 10
 
 before_install:
     - npm i -g cnpm
+    - npm i -g codecov
 
 install:
     - cnpm i
@@ -15,7 +16,6 @@ before_script:
 script:
     - npm run lint
     - npm run test
-    - npm install codecov -g
 
 after_script:
     - codecov
