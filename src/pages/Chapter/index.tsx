@@ -10,51 +10,49 @@ import { ISearchItem } from '../../type/sql';
 
 const searchColumns = [
     {
-        title: 'ID',
         dataIndex: 'id',
+        title: 'ID',
     },
     {
-        title: '名称',
         dataIndex: 'title',
+        title: '名称',
     },
     {
-        title: '作者',
         dataIndex: 'author',
+        title: '作者',
     },
     {
-        title: '链接',
         dataIndex: 'url',
+        title: '链接',
         render: (text: string) => (
             <a title={text} target="_blank" href={text} rel="noopener noreferrer">
                 {text}
             </a>
         ),
-
     },
 
     {
-        title: '地区',
         dataIndex: 'area',
+        title: '地区',
     },
     {
-        title: '分类',
         dataIndex: 'category',
+        title: '分类',
     },
     {
-        title: '封面',
         dataIndex: 'cover',
-        render: (text: string) => (text
-            ? (
-                <a target="_blank" href={text} rel="noopener noreferrer">
-                    <Avatar src={text} />
-                </a>
-            )
-            : ''),
-
+        title: '封面',
+        render: (text: string) => (text ? (
+            <a target="_blank" href={text} rel="noopener noreferrer">
+                <Avatar src={text} />
+            </a>
+        ) : (
+            ''
+        )),
     },
     {
-        title: '爬取时间',
         dataIndex: 'create_time',
+        title: '爬取时间',
         render: renderDate,
     },
 ];
@@ -64,7 +62,7 @@ type Props = {
     list: ISearchItem[];
     dispatch: any;
     loading: boolean;
-}
+};
 
 const SearchResult: React.FunctionComponent<Props> = ({
     dispatch,
@@ -72,11 +70,8 @@ const SearchResult: React.FunctionComponent<Props> = ({
     list = [],
     shared: { currentUrl, params },
 }) => {
-    const [
-        selectedRows,
-        setSelectedRows,
-    ] = useState<ISearchItem[]>([]);
-    const checkType: string = 'radio';
+    const [selectedRows, setSelectedRows] = useState<ISearchItem[]>([]);
+    const checkType = 'radio';
     useEffect(() => {
         dispatch({
             type: 'common/fetch',
@@ -88,7 +83,6 @@ const SearchResult: React.FunctionComponent<Props> = ({
             },
         });
     }, []);
-
 
     function handleSelectRows(value: ISearchItem[]) {
         setSelectedRows(value);

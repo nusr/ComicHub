@@ -1,5 +1,6 @@
 import * as Koa from 'koa';
 import logger from '../utils/logger';
+import statusCodes from './config';
 
 const errorHandler = async (ctx: Koa.BaseContext, next: () => Promise<any>) => {
     try {
@@ -14,10 +15,10 @@ const errorHandler = async (ctx: Koa.BaseContext, next: () => Promise<any>) => {
         ctx.body = `Comic 发生了一些意外: <pre>${
             err instanceof Error ? err.stack : err
         }</pre>`;
-        if (err.status === 401) {
-            ctx.status = 401;
+        if (err.status === statusCodes.UNAUTHORIZED) {
+            ctx.status = statusCodes.UNAUTHORIZED;
         } else {
-            ctx.status = 404;
+            ctx.status = statusCodes.NOT_FOUND;
         }
     }
 };

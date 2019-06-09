@@ -13,8 +13,8 @@ type Props = {
 
 const DownloadResult: React.FunctionComponent<Props> = ({
     download: {
-        result,
         downloadPath,
+        result,
     }, dispatch, shared: { currentUrl, params },
 }) => {
     useEffect(() => {

@@ -27,4 +27,8 @@ const puppeteerBrowser = async () => {
     }
     return browser;
 };
+export const DESKTOP_WINDOW_SIZE = {
+    width: 1366,
+    height: 768,
+};
 export default puppeteerBrowser;

@@ -10,16 +10,16 @@ import { SharedState } from '../../type';
 
 const chapterColumns = [
     {
-        title: 'ID',
         dataIndex: 'id',
+        title: 'ID',
     },
     {
-        title: '章节名',
         dataIndex: 'title',
+        title: '章节名',
     },
     {
-        title: '链接',
         dataIndex: 'url',
+        title: '链接',
         render: (text: string) => (
             <a title={text} target="_blank" href={text} rel="noopener noreferrer">
                 {text}
@@ -28,12 +28,12 @@ const chapterColumns = [
 
     },
     {
-        title: '章节图片数量',
         dataIndex: 'page_size',
+        title: '章节图片数量',
     },
     {
-        title: '爬取时间',
         dataIndex: 'create_time',
+        title: '爬取时间',
         render: renderDate,
     },
 ];

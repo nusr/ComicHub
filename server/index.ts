@@ -68,6 +68,6 @@ if (config.connect.socket) {
     });
 }
 export default {
-    server,
     app,
+    server,
 };

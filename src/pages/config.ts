@@ -6,9 +6,9 @@ export const renderDate = (date: number): string => {
 };
 
 export const typeConfig = {
-    search: 'search',
     chapter: 'chapter',
-    download: 'images',
-    result: 'result',
     downloadAll: 'downloadAll',
+    download: 'images',
+    search: 'search',
+    result: 'result',
 };

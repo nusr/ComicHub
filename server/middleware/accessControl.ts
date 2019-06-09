@@ -1,8 +1,10 @@
 import * as Koa from 'koa';
 import config from '../shared/config';
+import statusCodes from './config';
 
+const FAIL_MATCH: number = -1;
 const reject = (ctx: Koa.BaseContext) => {
-    ctx.response.status = 403;
+    ctx.response.status = statusCodes.FORBIDDEN;
     ctx.body = {
         lastBuildDate: new Date().toUTCString(),
         updated: new Date().toISOString(),
@@ -24,22 +26,22 @@ const accessControl = async (
         if (config.whitelist) {
             if (
                 !(
-                    config.whitelist.indexOf(ip) !== -1
-                    || config.whitelist.indexOf(requestPath) !== -1
+                    config.whitelist.indexOf(ip) !== FAIL_MATCH
+                    || config.whitelist.indexOf(requestPath) !== FAIL_MATCH
                 )
             ) {
                 reject(ctx);
             }
         } else if (config.blacklist) {
             if (
-                config.blacklist.indexOf(ip) !== -1
-                || config.blacklist.indexOf(requestPath) !== -1
+                config.blacklist.indexOf(ip) !== FAIL_MATCH
+                || config.blacklist.indexOf(requestPath) !== FAIL_MATCH
             ) {
                 reject(ctx);
             }
         }
 
-        if (ctx.response.status !== 403) {
+        if (ctx.response.status !== statusCodes.FORBIDDEN) {
             ctx.debug.request += 1;
             await next();
         }

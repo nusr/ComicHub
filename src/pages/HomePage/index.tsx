@@ -1,4 +1,4 @@
-import { Card, Steps, Layout } from 'antd';
+import { Card, Layout, Steps } from 'antd';
 import React, { useEffect, useState } from 'react';
 import CommonFooter from '../../components/CommonFooter';
 import CommonHeader from '../../components/CommonHeader';

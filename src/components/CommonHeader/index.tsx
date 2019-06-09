@@ -1,6 +1,6 @@
+import { Icon, Tooltip } from 'antd';
 import React from 'react';
 import Link from 'umi/link';
-import { Icon, Tooltip } from 'antd';
 import styles from './index.less';
 
 type Props = {};

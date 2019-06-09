@@ -28,11 +28,12 @@ if (checkProxy(config)) {
 
                     temp = {
                         proxy: {
-                            host: config.proxy.host,
-                            port: toNum(config.proxy.port),
                             headers: {
                                 'User-Agent': config.userAgent,
                             },
+                            host: config.proxy.host,
+                            port: toNum(config.proxy.port),
+
                         },
                     };
                     options.httpAgent = tunnel.httpOverHttp(temp);
@@ -41,14 +42,16 @@ if (checkProxy(config)) {
                 case 'https':
                     temp = {
                         proxy: {
+                            headers: {
+                                'User-Agent': config.userAgent,
+                            },
                             host: config.proxy.host,
+
                             port: toNum(config.proxy.port),
                             proxyAuth: `${config.proxy.auth.username}:${
                                 config.proxy.auth.password
                                 }`,
-                            headers: {
-                                'User-Agent': config.userAgent,
-                            },
+
                         },
                     };
                     options.httpAgent = tunnel.httpOverHttps(temp);

@@ -3,7 +3,7 @@ import _ from 'lodash';
 import mysqlService from '../service';
 import configData from '../shared/config';
 import { IChapterMysql, IRequestData, ISearchMysql } from '../type';
-
+import statusCodes from './config';
 import generateBook from '../utils/generateBook';
 
 function handleEmpty(stateType: string) {
@@ -98,7 +98,7 @@ const mysqlHandler = async (ctx: Koa.Context, next: () => Promise<any>) => {
                 });
                 ctx.body = {
                     message: '下载成功！',
-                    code: 200,
+                    code: statusCodes.OK,
                     data: bookPath,
                 };
                 return;
@@ -167,7 +167,7 @@ const mysqlHandler = async (ctx: Koa.Context, next: () => Promise<any>) => {
                 );
                 dataResult = {
                     message: '下载成功！',
-                    code: 200,
+                    code: statusCodes.OK,
                     data: bookPath,
                 };
             }

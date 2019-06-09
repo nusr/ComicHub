@@ -14,9 +14,9 @@ function getMenuList(data: any = {}) {
     return Object.keys(data).map((key: string) => {
         const item = data[key];
         return {
-            value: key,
             name: item.name,
             enabled: item.enabled,
+            value: key,
         };
     });
 }
