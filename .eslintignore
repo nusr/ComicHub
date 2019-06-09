@@ -8,4 +8,4 @@ server/types/*
 src/global.ts
 logs
 tmp
-typing.d.ts
+src/typing.d.ts

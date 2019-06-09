@@ -40,7 +40,7 @@
         "@types/lodash": "^4.14.134",
         "@types/mustache": "^0.8.32",
         "@types/mysql": "^2.15.6",
-        "@types/node": "^12.0.7",
+        "@types/node": "^12.0.4",
         "@types/pdfkit": "^0.7.36",
         "@types/pidusage": "^2.0.1",
         "@types/puppeteer": "^1.12.4",
@@ -55,5 +55,6 @@
         "supertest": "4.0.2",
         "ts-node": "^8.1.0",
         "typescript": "^3.5.1"
-    }
+    },
+    "__npminstall_done": false
 }
