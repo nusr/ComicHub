@@ -3,8 +3,7 @@ import dotEnv from 'dotenv';
 import fs from 'fs';
 import toNum from '../utils/toNum';
 
-const envConfig: any = dotEnv.parse(fs.readFileSync(path.join(__dirname, '../../.env')));
-console.log(envConfig);
+const envConfig: any = dotEnv.parse(fs.readFileSync(path.join(__dirname, '../../../.env')));
 export default {
     connect: {
         port: envConfig.SERVER_PORT || 1200, // 监听端口
