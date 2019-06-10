@@ -32,3 +32,7 @@ cnpm i
 见 [comic.sql](comic.sql)
 
 字段说明参见 [../server/type/index.ts](../server/types/index.ts)
+
+## 开发配置
+
+使用环境变量用作配置，绝大部分配置都可以在 [../.env](../.env) 中进行配置。前端和服务端的配置均在里面。
