@@ -6,7 +6,7 @@
 
 ## 不要直接修改 README.md 文件
 
-请修改 [../server/views/README.md](README.md)，**README** 使用 mustache 渲染生成。
+请修改 [readmeTemplate.md](readmeTemplate.md)，**README.md** 使用 mustache 渲染生成。
 
 添加爬取站点或者修改了 [readmeTemplate.md](readmeTemplate.md)，`git add` 前运行 `npm run readme`，刷新 **README.md** 。
 
@@ -36,3 +36,7 @@ cnpm i
 ## 开发配置
 
 使用环境变量用作配置，绝大部分配置都可以在 [../.env](../.env) 中进行配置。前端和服务端的配置均在里面。
+
+服务端配置文件: [../server/shared/config.ts](../server/shared/config.ts)
+
+前端 Webpack 配置文件夹: [../config](../config)
