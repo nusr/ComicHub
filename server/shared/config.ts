@@ -3,7 +3,11 @@ import dotEnv from 'dotenv';
 import fs from 'fs';
 import toNum from '../utils/toNum';
 
-const envConfig: any = dotEnv.parse(fs.readFileSync(path.join(__dirname, '../../../.env')));
+let envPath: string = path.join(process.cwd(), '../.env');
+if (process.env.NODE_ENV === 'test') {
+    envPath = path.join(process.cwd(), './.env');
+}
+const envConfig: any = dotEnv.parse(fs.readFileSync(envPath));
 export default {
     connect: {
         port: envConfig.SERVER_PORT || 1200, // 监听端口
@@ -36,7 +40,7 @@ export default {
         download: 'images',
         downloadAll: 'downloadAll',
     },
-    downloadBase: envConfig.DOWNLOAD_IMAGE_BASE || path.resolve(__dirname, '../../../downloadResult'), // 下载根目录
+    downloadBase: envConfig.DOWNLOAD_IMAGE_BASE || path.join(process.cwd(), '../downloadResult'), // 下载根目录
     pdfSupportImage: [
         '.jpeg',
         '.png',

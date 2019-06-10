@@ -31,7 +31,7 @@ router.get('/', async (ctx: Koa.Context) => {
     ctx.set({
         'Cache-Control': 'no-cache',
     });
-    const filePath = path.resolve(__dirname, '../views/welcome.html');
+    const filePath = path.join(process.cwd(), './views/welcome.html');
     logger.info(filePath);
     const viewData = {
         showDebug,

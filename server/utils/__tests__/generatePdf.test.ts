@@ -4,7 +4,7 @@ import generatePdf from '../generatePdf';
 
 describe('generatePdf', () => {
     it('generatePdf should create pdf success', () => {
-        const testPath: string = path.join(__dirname, '../../routes');
+        const testPath: string = path.join(process.cwd(), './server/routes');
         generatePdf(testPath);
         expect(fs.existsSync(`${testPath}.pdf`)).toBe(true);
     });

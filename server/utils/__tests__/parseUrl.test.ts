@@ -15,7 +15,7 @@ describe('getReferer', () => {
     });
     it('getReferer should return //', () => {
         expect(getReferer('test.com')).toBe('//');
-        expect(getReferer('www.test.com/11')).toBe('//');
+        expect(getReferer('test.com/11')).toBe('//');
         expect(getReferer('11')).toBe('//');
         expect(getReferer('aa')).toBe('//');
         expect(getReferer('////')).toBe('//');

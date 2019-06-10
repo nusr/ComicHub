@@ -8,6 +8,7 @@
 [![codebeat badge](https://codebeat.co/badges/d9f586aa-2e0a-4999-ad9a-4f51cb6f4fae)](https://codebeat.co/projects/github-com-nusr-comichub-master)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/9600f74529c7446292b20527855f6aea)](https://www.codacy.com/app/nusr/ComicHub?utm_source=github.com&utm_medium=referral&utm_content=nusr/ComicHub&utm_campaign=Badge_Grade)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fnusr%2FComicHub.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fnusr%2FComicHub?ref=badge_shield)
+![GitHub last commit (branch)](https://img.shields.io/github/last-commit/nusr/ComicHub/master.svg)
 ![GitHub commit activity the past week, 4 weeks, year](https://img.shields.io/github/commit-activity/y/nusr/ComicHub.svg)
 ![GitHub top language](https://img.shields.io/github/languages/top/nusr/ComicHub.svg)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/nusr/ComicHub.svg)
