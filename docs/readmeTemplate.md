@@ -22,24 +22,26 @@ Koa + MySQL + Umi + Electron + React + Typescript 打造 。
 
 ## 装包
 
-前端装包
+配置淘宝镜像，加快下载速度
+
+** 不推荐使用 cnpm 安装依赖 **
+
+```bash
+$ npm i -g nrm # Mac 用户加上 sudo
+$ nrm use taobao
+```
+
+前端安装依赖
 
 ```bash
 $ npm install
 ```
 
-安装 cnpm , 服务端装包要用
+服务端安装依赖
 
 ```bash
-$ npm install -g cnpm --registry=https://registry.npm.taobao.org
-```
-
-服务端装包
-
-```bash
-# 使用 yarn 或 npm  安装 puppeteer 会报错
 $ cd server
-$ cnpm install
+$ npm install
 ```
 
 ### 运行

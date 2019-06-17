@@ -10,17 +10,6 @@
 
 添加爬取站点或者修改了 [readmeTemplate.md](readmeTemplate.md)，`git add` 前运行 `npm run readme`，刷新 **README.md** 。
 
-## 解决 puppeteer 安装失败
-
-Chromium 在墙外，使用 Yarn 、Npm 会安装失败
-
-服务端使用 cnpm 安装
-
-```bash
-cd server
-cnpm i
-```
-
 ## 使用 puppeteer
 
 页面动态渲染生成，使用 puppeteer 爬取图片。
