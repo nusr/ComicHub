@@ -1,5 +1,5 @@
 import mysql from 'mysql';
-import config from '../shared/config';
+import config from '../shared';
 
 export default function database(sql: string, data: any, callback: any): void {
     const connection = mysql.createConnection(config.mysql);

@@ -5,7 +5,7 @@ import fs from 'fs';
 import mustache from 'mustache';
 import sourceUsed from 'pidusage';
 import logger from '../utils/logger';
-import config from '../shared/config';
+import config from '../shared';
 // Router
 import testRouter from '../routes/test';
 import menuRouter from '../routes/menu';

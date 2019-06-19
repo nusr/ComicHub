@@ -32,7 +32,12 @@ const responseHandler = async (
             message,
         };
     };
-
+    ctx.res.ok = (params: any = {}) => {
+        ctx.res.success({
+            ...params,
+            statusCode: statusCodes.OK,
+        });
+    };
     /*
          * Ctx.res.fail = ({ statusCode, code, data = null, message = null }) => {
          *     const status = -1;
@@ -69,12 +74,6 @@ const responseHandler = async (
          * };
          */
 
-    ctx.res.ok = (params: any = {}) => {
-        ctx.res.success({
-            ...params,
-            statusCode: statusCodes.OK,
-        });
-    };
 
     /*
          * Ctx.res.noContent = (params = {}) => {

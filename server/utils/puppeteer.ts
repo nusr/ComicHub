@@ -1,5 +1,5 @@
 import puppeteer from 'puppeteer';
-import config from '../shared/config';
+import config from '../shared';
 
 const options = {
     args: [

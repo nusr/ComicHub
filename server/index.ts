@@ -3,7 +3,7 @@ import fs from 'fs';
 import mount from 'koa-mount';
 import _ from 'lodash';
 import bodyParser from 'koa-bodyparser';
-import config from './shared/config';
+import config from './shared';
 
 import logger from './utils/logger';
 import errorHandler from './middleware/onerror';
@@ -12,9 +12,7 @@ import mysql from './middleware/dataProcess';
 
 import accessControl from './middleware/accessControl';
 import router from './router';
-import apiRouter from './router/apiRouter';
 
-import apiTemplate from './middleware/apiTemplate';
 import apiResponseHandler from './middleware/apiResponseHandler';
 
 process.on('uncaughtException', (e) => {
@@ -37,16 +35,12 @@ app.context.debug = {
 };
 
 app.use(apiResponseHandler);
-app.use(apiTemplate);
 
 app.use(bodyParser());
 
 app.use(mysql);
 // @ts-ignore
 app.use(mount('/', router.routes())).use(router.allowedMethods());
-
-// @ts-ignore
-app.use(mount('/api', apiRouter.routes())).use(apiRouter.allowedMethods());
 let server: any;
 let koaPort: number | string = config.connect.port;
 if (koaPort) {

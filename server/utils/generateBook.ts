@@ -1,6 +1,6 @@
 import path from 'path';
 import { IChapterMysql, ISearchMysql } from '../type';
-import configData from '../shared/config';
+import configData from '../shared';
 import generatePdf from './generatePdf';
 import { getComicSite, getReferer, numToString } from './parseUrl';
 import sleep from './wait';

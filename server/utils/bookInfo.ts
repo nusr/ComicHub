@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import _ from 'lodash';
 import { BookInfo } from './type';
-import configData from '../shared/config';
+import { pdfSupportImage } from '../shared';
 
 function getBookInfo(dirName: string, extName: string = 'pdf'): BookInfo {
     const outputPath = `${dirName}.${extName}`;
@@ -13,8 +13,7 @@ function getBookInfo(dirName: string, extName: string = 'pdf'): BookInfo {
     files.forEach((fileName: string) => {
         const filePath = path.join(dirName, fileName);
         const temp = path.extname(filePath);
-        const list: string[] = configData.pdfSupportImage;
-        if (list.includes(temp)) {
+        if (pdfSupportImage.includes(temp)) {
             filePathList.push(filePath);
         }
     });

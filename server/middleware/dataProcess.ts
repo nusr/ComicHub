@@ -1,18 +1,18 @@
 import * as Koa from 'koa';
 import _ from 'lodash';
 import mysqlService from '../service';
-import configData from '../shared/config';
+import { apiType } from '../shared';
 import { IChapterMysql, IRequestData, ISearchMysql } from '../type';
 import statusCodes from './config';
 import generateBook from '../utils/generateBook';
 
 function handleEmpty(stateType: string) {
     let dataResult: any;
-    if (stateType === configData.typeConfig.search) {
+    if (stateType === apiType.search) {
         dataResult = {
             message: '搜索不到该漫画，请更换搜索词！',
         };
-    } else if (stateType === configData.typeConfig.chapter) {
+    } else if (stateType === apiType.chapter) {
         dataResult = {
             message: '爬取结果为空！',
         };
@@ -35,11 +35,11 @@ function filterArray(data: any = []) {
 /* eslint-disable */
 const mysqlHandler = async (ctx: Koa.Context, next: () => Promise<any>) => {
     const requestData: IRequestData = ctx.request.body;
-    const { type: requestType, name: requestName } = requestData;
+    const {type: requestType, name: requestName} = requestData;
     ctx.state.url = requestName;
     ctx.state.type = requestType;
     if (!requestData.noCache) {
-        if (requestType === configData.typeConfig.search) {
+        if (requestType === apiType.search) {
             const result: any = await mysqlService.foggySearch(
                 `%${requestName}%`,
                 requestType,
@@ -52,10 +52,10 @@ const mysqlHandler = async (ctx: Koa.Context, next: () => Promise<any>) => {
                 return;
             }
         }
-        if (requestType === configData.typeConfig.chapter) {
+        if (requestType === apiType.chapter) {
             const searchItem: ISearchMysql = await mysqlService.searchOne(
                 requestName,
-                configData.typeConfig.search,
+                apiType.search,
             );
             const results: any = await mysqlService.searchItem(
                 _.get(searchItem, 'id', ''),
@@ -70,10 +70,10 @@ const mysqlHandler = async (ctx: Koa.Context, next: () => Promise<any>) => {
                 return;
             }
         }
-        if (requestType === configData.typeConfig.download) {
+        if (requestType === apiType.download) {
             const chapterItem: IChapterMysql = await mysqlService.searchOne(
                 requestName,
-                configData.typeConfig.chapter,
+                apiType.chapter,
             );
             const results: any = await mysqlService.searchItem(
                 _.get(chapterItem, 'id', ''),
@@ -83,7 +83,7 @@ const mysqlHandler = async (ctx: Koa.Context, next: () => Promise<any>) => {
             if (!_.isEmpty(results)) {
                 const searchItem: ISearchMysql = await mysqlService.searchOne(
                     _.get(chapterItem, 'search_id', ''),
-                    configData.typeConfig.search,
+                    apiType.search,
                     'id',
                 );
                 const bookPath: string = await generateBook(
@@ -117,16 +117,16 @@ const mysqlHandler = async (ctx: Koa.Context, next: () => Promise<any>) => {
     }
     if (dataResult) {
         const searchUrl = ctx.state.url;
-        if (stateType === configData.typeConfig.search) {
+        if (stateType === apiType.search) {
             for (const item of dataResult) {
                 await mysqlService.addItem(item, stateType);
             }
         }
-        if (stateType === configData.typeConfig.chapter) {
+        if (stateType === apiType.chapter) {
             dataResult = filterArray(dataResult);
             const searchResult: ISearchMysql = await mysqlService.searchOne(
                 searchUrl,
-                configData.typeConfig.search,
+                apiType.search,
             );
             for (const item of dataResult) {
                 await mysqlService.addItem(
@@ -138,15 +138,15 @@ const mysqlHandler = async (ctx: Koa.Context, next: () => Promise<any>) => {
                 );
             }
         }
-        if (stateType === configData.typeConfig.download) {
+        if (stateType === apiType.download) {
             dataResult = filterArray(dataResult);
             const chapterItem: IChapterMysql = await mysqlService.searchOne(
                 searchUrl,
-                configData.typeConfig.chapter,
+                apiType.chapter,
             );
             const searchItem: ISearchMysql = await mysqlService.searchOne(
                 _.get(chapterItem, 'search_id', ''),
-                configData.typeConfig.search,
+                apiType.search,
                 'id',
             );
             if (!_.isEmpty(searchItem) && !_.isEmpty(chapterItem)) {

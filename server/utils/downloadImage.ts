@@ -3,7 +3,7 @@ import path from 'path';
 import _ from 'lodash';
 import logger from './logger';
 import makeDir from './makeDir';
-import config from '../shared/config';
+import config, { pdfSupportImage } from '../shared';
 import axios from './axios';
 import { getComicSite } from './parseUrl';
 import convertImage from './convertImage';
@@ -33,12 +33,12 @@ function downloadImage(
     const stream = fs.createWriteStream(filePath);
     stream.on('finish', async () => {
         logger.info(`[Download Image Success] ${filePath}`);
-        if (config.pdfSupportImage.includes(parseDir.ext)) {
+        if (pdfSupportImage.includes(parseDir.ext)) {
             return;
         }
         const jpegPath = path.join(
             parseDir.dir,
-            `${parseDir.name}${config.pdfSupportImage[0]}`,
+            `${parseDir.name}${pdfSupportImage[0]}`,
         );
         const result: boolean = await convertImage(filePath, jpegPath);
         if (!result) {

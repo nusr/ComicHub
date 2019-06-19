@@ -1,5 +1,5 @@
 import * as Koa from 'koa';
-import config from '../shared/config';
+import config from '../shared';
 import statusCodes from './config';
 
 const FAIL_MATCH: number = -1;

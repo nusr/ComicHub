@@ -1,11 +1,10 @@
 import fs from 'fs';
 import PdfDoc from 'pdfkit';
 import logger from './logger';
-import configData from '../shared/config';
+import { bookConfig } from '../shared';
 import getBookInfo from './bookInfo';
 import { BookInfo } from './type';
 
-const { bookConfig } = configData;
 
 function generatePdf(dirName: string) {
     if (!dirName) {

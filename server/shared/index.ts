@@ -8,6 +8,28 @@ if (process.env.NODE_ENV === 'test') {
     envPath = path.join(process.cwd(), './.env');
 }
 const envConfig: any = dotEnv.parse(fs.readFileSync(envPath));
+const bookConfig = {
+    author: 'Steve Xu',
+    imageWidth: 520,
+    imageHeight: 700,
+    paddingTop: 50,
+    paddingLeft: 50,
+};
+const apiType = {
+    search: 'search',
+    chapter: 'chapter',
+    download: 'images',
+    downloadAll: 'downloadAll',
+};
+const pdfSupportImage: string[] = [
+    '.jpeg',
+    '.png',
+]; // Pdfkit 只支持 png jpeg
+export {
+    bookConfig,
+    pdfSupportImage,
+    apiType,
+};
 export default {
     connect: {
         port: envConfig.SERVER_PORT || 1200, // 监听端口
@@ -34,24 +56,7 @@ export default {
     },
     blacklist: envConfig.SERVER_BLACKLIST && envConfig.SERVER_BLACKLIST.split(','),
     whitelist: envConfig.SERVER_WHITELIST && envConfig.SERVER_WHITELIST.split(','),
-    typeConfig: {
-        search: 'search',
-        chapter: 'chapter',
-        download: 'images',
-        downloadAll: 'downloadAll',
-    },
     downloadBase: envConfig.DOWNLOAD_IMAGE_BASE || path.join(process.cwd(), '../downloadResult'), // 下载根目录
-    pdfSupportImage: [
-        '.jpeg',
-        '.png',
-    ], // Pdfkit 只支持 png jpeg
-    bookConfig: {
-        author: 'Steve Xu',
-        imageWidth: 520,
-        imageHeight: 700,
-        paddingTop: 50,
-        paddingLeft: 50,
-    },
     mysql: {
         host: envConfig.MYSQL_HOST || 'localhost', // 数据库服务器所在的IP或域名
         port: envConfig.MYSQL_PORT || 3306,

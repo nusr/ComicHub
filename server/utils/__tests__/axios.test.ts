@@ -1,6 +1,6 @@
 import MockAdapter from 'axios-mock-adapter';
 import axiosTest from '../axios';
-import config from '../../shared/config';
+import config from '../../shared';
 import statusCodes from '../../middleware/config';
 
 const mock = new MockAdapter(axiosTest);

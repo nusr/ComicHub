@@ -1,21 +1,21 @@
 import * as Koa from 'koa';
 import util from './utils';
 import axios from '../../utils/axios';
-import configData from '../../shared/config';
+import { apiType } from '../../shared';
 import { IRequestData } from '../../type';
 
 const tuHao = async (ctx: Koa.BaseContext) => {
     const { type, name, page_size: pageSize }: IRequestData = ctx.request.body;
     let temp: any;
-    if (configData.typeConfig.search === type) {
+    if (apiType.search === type) {
         const response = await axios.get(util.getSearchUrl(name));
         temp = util.getSearchList(response.data);
     }
-    if (configData.typeConfig.chapter === type) {
+    if (apiType.chapter === type) {
         const response = await axios.get(name);
         temp = util.getChapterList(response.data);
     }
-    if (configData.typeConfig.download === type) {
+    if (apiType.download === type) {
         const response = await axios.get(name);
         temp = util.getDownloadItem(response.data, pageSize);
     }

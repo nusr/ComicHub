@@ -1,22 +1,22 @@
 import * as Koa from 'koa';
 import util from './utils';
 import axios from '../../utils/axios';
-import configData from '../../shared/config';
+import { apiType } from '../../shared';
 import { IRequestData } from '../../type';
 import puppeteer from '../../utils/puppeteer';
 
 const tuHao = async (ctx: Koa.BaseContext) => {
     const { type, name }: IRequestData = ctx.request.body;
     let temp: any;
-    if (configData.typeConfig.search === type) {
+    if (apiType.search === type) {
         const response = await axios.get(util.getSearchUrl(name));
         temp = util.getSearchList(response.data);
     }
-    if (configData.typeConfig.chapter === type) {
+    if (apiType.chapter === type) {
         const response = await axios.get(name);
         temp = util.getChapterList(response.data);
     }
-    if (configData.typeConfig.download === type) {
+    if (apiType.download === type) {
         const browser = await puppeteer();
         const page = await browser.newPage();
         page.setViewport({

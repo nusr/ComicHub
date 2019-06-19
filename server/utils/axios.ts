@@ -3,7 +3,7 @@ import axios from 'axios';
 import axiosRetry from 'axios-retry';
 import SocksProxyAgent from 'socks-proxy-agent';
 import logger from './logger';
-import config from '../shared/config';
+import config from '../shared';
 import toNum from './toNum';
 
 function checkProxy(data: any): boolean {
