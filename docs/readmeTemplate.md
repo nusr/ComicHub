@@ -97,7 +97,7 @@ $ npm run start:server
 
 ## 类似项目
 
-1. [work_crawler](https://github.com/kanasimi/work_crawler)，看不懂这个仓库的代码
+1. [work_crawler](https://github.com/kanasimi/work_crawler)
 
 ## LICENSE
 
