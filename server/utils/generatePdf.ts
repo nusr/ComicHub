@@ -8,11 +8,11 @@ import { BookInfo } from './type';
 
 function generatePdf(dirName: string) {
     if (!dirName) {
-        logger.info('下载路径为空！');
+        logger.error('下载路径为空！');
         return '';
     }
     if (!fs.existsSync(dirName)) {
-        logger.info(`下载路径为 ${dirName}不存在！`);
+        logger.error(`下载路径为 ${dirName}不存在！`);
         return '';
     }
 
@@ -22,7 +22,7 @@ function generatePdf(dirName: string) {
     );
 
     if (filePathList.length === 0) {
-        logger.info('内容为空！');
+        logger.error('内容为空！');
     }
     const pdf: any = new PdfDoc();
     pdf.pipe(fs.createWriteStream(outputPath));
