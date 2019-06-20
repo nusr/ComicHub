@@ -8,7 +8,7 @@
         "start:server": "npm run --prefix ./server dev",
         "build:react": "umi build",
         "build:server": "npm run --prefix ./server build",
-        "build": "npm run build:react && npm run build:server",
+        "build": "npm run build:server && npm run build:react",
         "watch": "tsc -w",
         "lint-staged": "lint-staged",
         "format": "npm run lint && npm run style && npm run prettier",
@@ -19,29 +19,29 @@
         "readme": "npm run --prefix ./server readme"
     },
     "dependencies": {
-        "antd": "^3.19.3",
+        "antd": "^3.19.6",
         "dva": "^2.4.1",
         "lodash": "^4.17.11",
         "react": "^16.8.6",
         "react-dom": "^16.8.6",
-        "umi": "^2.7.3"
+        "umi": "^2.8.3"
     },
     "devDependencies": {
-        "@types/jest": "^24.0.13",
+        "@types/jest": "^24.0.15",
         "@types/lodash": "^4.14.134",
-        "@types/react-test-renderer": "^16.8.1",
+        "@types/react-test-renderer": "^16.8.2",
         "@typescript-eslint/eslint-plugin": "^1.10.2",
         "@typescript-eslint/parser": "^1.10.2",
-        "babel-eslint": "^10.0.1",
+        "babel-eslint": "^10.0.2",
         "eslint": "^5.16.0",
         "eslint-config-airbnb": "^17.1.0",
-        "eslint-config-prettier": "^4.3.0",
+        "eslint-config-prettier": "^5.0.0",
         "eslint-plugin-import": "^2.17.3",
         "eslint-plugin-jsx-a11y": "^6.2.1",
         "eslint-plugin-react": "^7.13.0",
-        "husky": "^2.3.0",
+        "husky": "^2.4.1",
         "jest": "^24.8.0",
-        "lint-staged": "^8.2.0",
+        "lint-staged": "^8.2.1",
         "prettier": "^1.18.2",
         "react-test-renderer": "^16.8.6",
         "stylelint": "^10.1.0",
@@ -52,7 +52,7 @@
         "stylelint-declaration-block-no-ignored-properties": "^2.1.0",
         "stylelint-order": "^3.0.0",
         "ts-jest": "^24.0.2",
-        "umi-plugin-react": "^1.8.2"
+        "umi-plugin-react": "^1.9.1"
     },
     "husky": {
         "hooks": {

@@ -1,11 +1,8 @@
-import os from 'os';
-
 export default [
     [
         'umi-plugin-react',
         {
             antd: true,
-            dll: true,
             dva: true,
             dynamicImport: { webpackChunkName: true },
             locale: {
@@ -23,15 +20,10 @@ export default [
                 ],
             },
             title: 'Comic Downloader',
-            ...(os.platform() === 'darwin'
-                ? {
-                    dll: {
-                        include: ['dva', 'dva/router', 'dva/saga', 'dva/fetch', 'lodash'],
-                        exclude: ['@babel/runtime'],
-                    },
-                    hardSource: false,
-                }
-                : {}),
+            dll: {
+                include: ['dva', 'dva/router', 'dva/saga', 'dva/fetch', 'lodash'],
+                exclude: ['@babel/runtime'],
+            },
         },
     ],
 ];

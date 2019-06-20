@@ -24,7 +24,7 @@ Koa + MySQL + Umi + Electron + React + Typescript 打造 。
 
 配置淘宝镜像，加快下载速度
 
-** 不推荐使用 cnpm 安装依赖 **
+**不推荐使用 cnpm 安装依赖**
 
 ```bash
 $ npm i -g nrm # Mac 用户加上 sudo
