@@ -1,5 +1,6 @@
 import { Button, message } from 'antd';
 import { connect } from 'dva';
+import { FormattedMessage } from 'umi-plugin-locale';
 import router from 'umi/router';
 import React, { Fragment, useEffect, useState } from 'react';
 import { renderDate, typeConfig } from '../config';
@@ -15,11 +16,11 @@ const chapterColumns = [
     },
     {
         dataIndex: 'title',
-        title: '章节名',
+        title: <FormattedMessage id="page.Images.table.title" />,
     },
     {
         dataIndex: 'url',
-        title: '链接',
+        title: <FormattedMessage id="page.Chapter.table.url" />,
         render: (text: string) => (
             <a title={text} target="_blank" href={text} rel="noopener noreferrer">
                 {text}
@@ -29,11 +30,11 @@ const chapterColumns = [
     },
     {
         dataIndex: 'page_size',
-        title: '章节图片数量',
+        title: <FormattedMessage id="page.Images.table.page_size" />,
     },
     {
         dataIndex: 'create_time',
-        title: '爬取时间',
+        title: <FormattedMessage id="page.Chapter.table.create_time" />,
         render: renderDate,
     },
 ];
@@ -75,7 +76,7 @@ const ChapterResult: React.FunctionComponent<Props> = ({
 
     function handleChapterSubmit() {
         if (!selectedRows || selectedRows.length === 0) {
-            message.error('请选择漫画章节！');
+            message.error(<FormattedMessage id="page.Images.select.tip" />);
             return;
         }
         const item = selectedRows[0];
@@ -98,7 +99,8 @@ const ChapterResult: React.FunctionComponent<Props> = ({
                     onClick={handleChapterSubmit}
                     disabled={selectedRows.length === 0}
                 >
-                    提交
+                    <FormattedMessage id="component.button.submit" />
+,
                 </Button>
             </div>
             <DumpTable

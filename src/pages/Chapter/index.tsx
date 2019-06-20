@@ -1,6 +1,7 @@
 import { Avatar, Button, message } from 'antd';
 import { connect } from 'dva';
 import router from 'umi/router';
+import { FormattedMessage } from 'umi-plugin-locale';
 import React, { Fragment, useEffect, useState } from 'react';
 import { renderDate, typeConfig } from '../config';
 import styles from './index.less';
@@ -15,15 +16,15 @@ const searchColumns = [
     },
     {
         dataIndex: 'title',
-        title: '名称',
+        title: <FormattedMessage id="page.Chapter.table.title" />,
     },
     {
         dataIndex: 'author',
-        title: '作者',
+        title: <FormattedMessage id="page.Chapter.table.author" />,
     },
     {
         dataIndex: 'url',
-        title: '链接',
+        title: <FormattedMessage id="page.Chapter.table.url" />,
         render: (text: string) => (
             <a title={text} target="_blank" href={text} rel="noopener noreferrer">
                 {text}
@@ -33,15 +34,15 @@ const searchColumns = [
 
     {
         dataIndex: 'area',
-        title: '地区',
+        title: <FormattedMessage id="page.Chapter.table.area" />,
     },
     {
         dataIndex: 'category',
-        title: '分类',
+        title: <FormattedMessage id="page.Chapter.table.category" />,
     },
     {
         dataIndex: 'cover',
-        title: '封面',
+        title: <FormattedMessage id="page.Chapter.table.cover" />,
         render: (text: string) => (text ? (
             <a target="_blank" href={text} rel="noopener noreferrer">
                 <Avatar src={text} />
@@ -52,7 +53,7 @@ const searchColumns = [
     },
     {
         dataIndex: 'create_time',
-        title: '爬取时间',
+        title: <FormattedMessage id="page.Chapter.table.create_time" />,
         render: renderDate,
     },
 ];
@@ -90,7 +91,7 @@ const SearchResult: React.FunctionComponent<Props> = ({
 
     function handleChapterSubmit() {
         if (!selectedRows || selectedRows.length === 0) {
-            message.error('请选择漫画！');
+            message.error(<FormattedMessage id="page.Chapter.select.tip" />);
             return;
         }
         const item: ISearchItem = selectedRows[0];
@@ -111,7 +112,7 @@ const SearchResult: React.FunctionComponent<Props> = ({
                     onClick={handleChapterSubmit}
                     disabled={selectedRows.length === 0}
                 >
-                    提交
+                    <FormattedMessage id="component.button.submit" />
                 </Button>
             </div>
             <DumpTable

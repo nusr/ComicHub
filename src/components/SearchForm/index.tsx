@@ -1,6 +1,7 @@
 import {
     Button, Checkbox, Form, Input, Select,
 } from 'antd';
+import { FormattedMessage, formatMessage } from 'umi-plugin-locale';
 import React, { useEffect } from 'react';
 import _ from 'lodash';
 import { IFormData, IOptionData } from '../../type';
@@ -52,17 +53,22 @@ const SearchForm: React.FunctionComponent<Props> = ({
 
     return (
         <Form onSubmit={handleSubmit} layout="inline">
-            <FormItem label="站点">
+            <FormItem label={<FormattedMessage id="component.SearchForm.site.label" />}>
                 {form.getFieldDecorator('url', {
                     initialValue: currentData.url,
                     rules: [
                         {
                             required: true,
-                            message: '请选择站点',
+                            message: <FormattedMessage id="component.SearchForm.site.message" />,
                         },
                     ],
                 })(
-                    <Select showSearch placeholder="请选择状态" style={{ width: 170 }} filterOption={filterOption}>
+                    <Select
+                        showSearch
+                        placeholder={<FormattedMessage id="component.SearchForm.site.message" />}
+                        style={{ width: 170 }}
+                        filterOption={filterOption}
+                    >
                         {menuList.map((item: IOptionData) => (
                             <Select.Option value={item.value} key={item.value}>
                                 {item.name}
@@ -71,16 +77,16 @@ const SearchForm: React.FunctionComponent<Props> = ({
                     </Select>,
                 )}
             </FormItem>
-            <FormItem label="关键词">
+            <FormItem label={<FormattedMessage id="component.SearchForm.keyword.label" />}>
                 {form.getFieldDecorator('name', {
                     initialValue: currentData.name,
                     rules: [
                         {
                             required: true,
-                            message: '请输入关键词',
+                            message: <FormattedMessage id="component.SearchForm.keyword.label" />,
                         },
                     ],
-                })(<Input placeholder="请输入关键词" />)}
+                })(<Input placeholder={formatMessage({ id: 'component.SearchForm.keyword.label' })} />)}
             </FormItem>
             <FormItem label="MySQL">
                 {form.getFieldDecorator('cache', {
@@ -93,7 +99,7 @@ const SearchForm: React.FunctionComponent<Props> = ({
                     type="primary"
                     style={{ marginRight: 16 }}
                 >
-                    搜索
+                    <FormattedMessage id="component.button.search" />
                 </Button>
                 <Button onClick={resetForm}>重置</Button>
             </FormItem>

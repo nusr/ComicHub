@@ -1,6 +1,7 @@
 /* eslint-disable */
 import React, { Component, Fragment } from 'react';
 import { Table, Alert } from 'antd';
+import { FormattedMessage } from 'umi-plugin-locale';
 import styles from './index.less';
 
 type StandardTableProps = {
@@ -92,18 +93,18 @@ class DumpTable extends Component<StandardTableProps, any> {
                     <Alert
                         message={
                             <Fragment>
-                                已选择
+                                <FormattedMessage id='component.DumpTable.selected'/>
                                 <a style={{ fontWeight: 600 }}>
                                     {selectedRowKeys.length}
                                 </a>
-                                项&nbsp;&nbsp;
+                                <FormattedMessage id='component.DumpTable.single'/>&nbsp;&nbsp;
                                 {needTotalList.map((item: any) => (
                                     <span
                                         style={{ marginLeft: 8 }}
                                         key={item.dataIndex}
                                     >
                                         {item.title}
-                                        总计&nbsp;
+                                        <FormattedMessage id='component.DumpTable.total'/>&nbsp;
                                         <span style={{ fontWeight: 600 }}>
                                             {item.render
                                                 ? item.render(item.total)
@@ -115,7 +116,7 @@ class DumpTable extends Component<StandardTableProps, any> {
                                     onClick={this.cleanSelectedKeys}
                                     style={{ marginLeft: 24 }}
                                 >
-                                    清空
+                                    <FormattedMessage id='component.DumpTable.clear'/>
                                 </a>
                             </Fragment>
                         }

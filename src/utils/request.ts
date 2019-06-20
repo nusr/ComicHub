@@ -1,7 +1,8 @@
 import { notification } from 'antd';
 import fetch from 'dva/fetch';
-
-const codeMessage = {
+import { formatMessage } from 'umi-plugin-locale';
+// TODO locale
+const codeMessage: any = {
     200: '服务器成功返回请求的数据。',
     201: '新建或修改数据成功。',
     202: '一个请求已经进入后台排队（异步任务）。',
@@ -19,7 +20,7 @@ const codeMessage = {
     504: '网关超时。',
 };
 
-function checkStatus(response) {
+function checkStatus(response: any) {
     if (response.status >= 200 && response.status < 300) {
         return response;
     }
@@ -73,7 +74,7 @@ export default function request(url: string, options = {}) {
         .then(checkStatus)
         .then((response: any) => response.json())
         .catch((error: Error) => {
-            const title = codeMessage[error.name] || error.name || '请求错误';
+            const title = codeMessage[error.name] || error.name || formatMessage({ id: 'utils.request.error' });
             notification.error({
                 description: error.message,
                 duration: 0,

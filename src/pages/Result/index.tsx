@@ -1,5 +1,6 @@
 import { connect } from 'dva';
 import React, { useEffect } from 'react';
+import { FormattedMessage } from 'umi-plugin-locale';
 import Loading from '../../components/Loading';
 import { typeConfig } from '../config';
 import { SharedState } from '../../type';
@@ -32,7 +33,7 @@ const DownloadResult: React.FunctionComponent<Props> = ({
     if (result) {
         temp = (
             <div>
-                <span>下载成功，下载地址为：</span>
+                <span><FormattedMessage id="page.Result.download.success" /></span>
                 <span className={styles.downloadPath}>{downloadPath}</span>
             </div>
         );

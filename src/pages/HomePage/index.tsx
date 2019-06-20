@@ -1,5 +1,6 @@
 import { Card, Layout, Steps } from 'antd';
 import React, { useEffect, useState } from 'react';
+import { FormattedMessage } from 'umi-plugin-locale';
 import CommonFooter from '../../components/CommonFooter';
 import CommonHeader from '../../components/CommonHeader';
 import { typeConfig } from '../config';
@@ -51,10 +52,10 @@ const HomePage: React.FunctionComponent<Props> = ({
                         labelPlacement="vertical"
                         current={getCurrentStep(currentType)}
                     >
-                        <Step title="搜索漫画" />
-                        <Step title="选择章节" />
-                        <Step title="下载漫画" />
-                        <Step title="下载结果" />
+                        <Step title={<FormattedMessage id="page.HomePage.step0" />} />
+                        <Step title={<FormattedMessage id="page.HomePage.step1" />} />
+                        <Step title={<FormattedMessage id="page.HomePage.step2" />} />
+                        <Step title={<FormattedMessage id="page.HomePage.step3" />} />
                     </Steps>
                 </Card>
                 <Card>
