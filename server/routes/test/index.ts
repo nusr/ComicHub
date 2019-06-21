@@ -19,7 +19,6 @@ const Test = async (ctx: Koa.BaseContext) => {
             pubDate: new Date().toUTCString(),
         });
     }
-    ctx.state.type = 'test';
     ctx.state.data = {
         title: `Test ${ctx.params.id}`,
         item,

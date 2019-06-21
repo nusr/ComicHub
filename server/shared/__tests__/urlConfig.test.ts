@@ -20,7 +20,7 @@ describe('Test Base Url', () => {
         });
         const list: string[] = await page.evaluate(() => {
             const arr: any = Array.prototype.slice.apply(document.querySelectorAll('img'));
-            return arr.map((v: any) => v.src);
+            return arr.map((v: HTMLImageElement) => v.src);
         });
         expect(list.length).toBeGreaterThan(0);
     };

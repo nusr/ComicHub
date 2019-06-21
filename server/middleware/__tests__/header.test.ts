@@ -1,4 +1,3 @@
-// @ts-ignore
 import superTest from 'supertest';
 import koaServer from '../../index';
 
