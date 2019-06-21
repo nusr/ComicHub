@@ -11,11 +11,10 @@
         "outDir": "../dist",
         "baseUrl": ".",
         "paths": {
-            "*": ["node_modules/*", "types/*"]
+            "*": ["node_modules/*"]
         }
     },
     "include": [
-        "views/*",
         "routes/**/*",
         "index.ts",
         "middleware/*",
@@ -24,7 +23,6 @@
         "service/*",
         "shared/*",
         "utils/*",
-        "test/**/*",
         "type/*"
     ]
 }

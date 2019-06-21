@@ -1,8 +1,9 @@
-import puppeteer from '../puppeteer';
+import Puppeteer from '../puppeteer';
 
+const DELAY_TIME: number = 50000;
 describe('puppeteer', () => {
     it('puppeteer run success', async () => {
-        const browser = await puppeteer();
+        const browser = await Puppeteer();
         const page = await browser.newPage();
         await page.goto('https://github.com/nusr/ComicHub', {
             waitUntil: 'domcontentloaded',
@@ -12,5 +13,5 @@ describe('puppeteer', () => {
         expect(html.length).toBeGreaterThan(0);
 
         await browser.close();
-    }, 500000);
+    }, DELAY_TIME);
 });

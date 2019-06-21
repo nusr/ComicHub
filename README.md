@@ -24,7 +24,7 @@ Koa + MySQL + Umi + Electron + React + Typescript 打造 。
 
 配置淘宝镜像，加快下载速度
 
-** 不推荐使用 cnpm 安装依赖 **
+**不推荐使用 cnpm 安装依赖**
 
 ```bash
 $ npm i -g nrm # Mac 用户加上 sudo
@@ -66,6 +66,7 @@ $ npm run start:server
 4. [x] 生成 PDF 文件
 5. [ ] 下载整部漫画
 6. [ ] 打包成桌面应用
+7. [ ] 多语言
 
 ## 支持的漫画网站
 

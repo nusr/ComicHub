@@ -32,6 +32,7 @@ module.exports = {
         allowImportExportEverywhere: false,
     },
     rules: {
+        'no-console': 'error', // 可以使用 console
         'import/prefer-default-export': 'warn',
         'no-await-in-loop': 'warn',
         'react/prop-types': 'off',
