@@ -4,11 +4,12 @@
         "esModuleInterop": true,
         "target": "ESNext",
         "noImplicitAny": true,
+        "strict": true,
+        "alwaysStrict": true,
         "moduleResolution": "node",
         "sourceMap": true,
         "outDir": "../dist",
         "baseUrl": ".",
-        "strict": true,
         "paths": {
             "*": ["node_modules/*", "types/*"]
         }
