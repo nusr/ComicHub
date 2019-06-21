@@ -12,5 +12,5 @@ describe('puppeteer', () => {
         expect(html.length).toBeGreaterThan(0);
 
         await browser.close();
-    }, 50000);
+    }, 500000);
 });
