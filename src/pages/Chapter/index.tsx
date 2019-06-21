@@ -3,7 +3,7 @@ import { connect } from 'dva';
 import router from 'umi/router';
 import { FormattedMessage } from 'umi-plugin-locale';
 import React, { Fragment, useEffect, useState } from 'react';
-import { renderDate, typeConfig } from '../config';
+import { renderDate, typeConfig } from '../../utils';
 import styles from './index.less';
 import DumpTable from '../../components/DumpTable';
 import { SharedState } from '../../type';

@@ -3,7 +3,7 @@ import { connect } from 'dva';
 import { FormattedMessage } from 'umi-plugin-locale';
 import router from 'umi/router';
 import React, { Fragment, useEffect, useState } from 'react';
-import { renderDate, typeConfig } from '../config';
+import { renderDate, typeConfig } from '../../utils';
 import styles from './index.less';
 import DumpTable from '../../components/DumpTable';
 import { IChapterItem } from '../../type/sql';
@@ -16,7 +16,7 @@ const chapterColumns = [
     },
     {
         dataIndex: 'title',
-        title: <FormattedMessage id="page.Images.table.title" />,
+        title: <FormattedMessage id="page.Chapter.table.title" />,
     },
     {
         dataIndex: 'url',

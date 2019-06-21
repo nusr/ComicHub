@@ -94,10 +94,12 @@ class DumpTable extends Component<StandardTableProps, any> {
                         message={
                             <Fragment>
                                 <FormattedMessage id='component.DumpTable.selected'/>
+                                &nbsp;
                                 <a style={{ fontWeight: 600 }}>
                                     {selectedRowKeys.length}
                                 </a>
-                                <FormattedMessage id='component.DumpTable.single'/>&nbsp;&nbsp;
+                                &nbsp;
+                                <FormattedMessage id='component.DumpTable.single'/>&nbsp;
                                 {needTotalList.map((item: any) => (
                                     <span
                                         style={{ marginLeft: 8 }}

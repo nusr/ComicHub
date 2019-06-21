@@ -11,8 +11,7 @@ export default {
     'page.Chapter.table.cover': '封面',
     'page.Chapter.table.create_time': '爬取时间',
     'page.Chapter.select.tip': '请选择漫画！',
-    'page.Result.download.success': '请选择漫画！',
-    'page.Images.table.title': '名称',
+    'page.Result.download.success': '下载成功！',
     'page.Images.table.page_size': '章节图片数量',
     'page.Images.select.tip': '请选择漫画章节！',
 };

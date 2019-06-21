@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { FormattedMessage } from 'umi-plugin-locale';
 import CommonFooter from '../../components/CommonFooter';
 import CommonHeader from '../../components/CommonHeader';
-import { typeConfig } from '../config';
+import { typeConfig } from '../../utils';
 import styles from './index.less';
 
 const { Header, Footer, Content } = Layout;
@@ -41,14 +41,13 @@ const HomePage: React.FunctionComponent<Props> = ({
         setCurrentType(temp);
     }, [pathname]);
     return (
-        <Layout>
+        <Layout className={styles.container}>
             <Header>
                 <CommonHeader />
             </Header>
             <Content>
                 <Card>
                     <Steps
-                        className={styles.steps}
                         labelPlacement="vertical"
                         current={getCurrentStep(currentType)}
                     >

@@ -1,3 +1,3 @@
 export default {
-    loading: 'loading...',
+    'utils.request.error': 'Bad Request!',
 };

@@ -1,14 +1,13 @@
 @import '~antd/lib/style/themes/default.less';
 
-.mainLayout {
+.container {
     :global {
+        .ant-steps-item-title {
+            white-space: pre;
+        }
+
         .ant-layout-header {
-            background-color: #fff;
+            padding: 0 @form-item-margin-bottom;
         }
     }
 }
-
-.submit {
-    padding-bottom: @form-item-margin-bottom;
-}
-

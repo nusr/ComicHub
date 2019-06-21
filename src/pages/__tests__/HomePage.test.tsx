@@ -1,6 +1,6 @@
 import 'jest';
 import { getCurrentStep } from '../HomePage';
-import { typeConfig } from '../config';
+import { typeConfig } from '../../utils';
 
 describe('getCurrentStep', () => {
     it('getCurrentStep Should Right Result', () => {

@@ -6,10 +6,9 @@
     "scripts": {
         "start": "umi dev",
         "start:server": "npm run --prefix ./server dev",
+        "build": "npm run build:server && npm run build:react",
         "build:react": "umi build",
         "build:server": "npm run --prefix ./server build",
-        "build": "npm run build:server && npm run build:react",
-        "watch": "tsc -w",
         "lint-staged": "lint-staged",
         "format": "npm run lint && npm run style && npm run prettier",
         "prettier": "prettier \"**/*.{ts,tsx,js,jsx,json,md}\" --write",

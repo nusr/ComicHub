@@ -3,7 +3,7 @@ import { connect } from 'dva';
 import router from 'umi/router';
 import SearchForm from '../../components/SearchForm';
 import { IFormData } from '../../type';
-import { typeConfig } from '../config';
+import { typeConfig } from '../../utils';
 
 type Props = {
     dispatch: any;

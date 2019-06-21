@@ -75,9 +75,12 @@ export default function request(url: string, options = {}) {
         .then((response: any) => response.json())
         .catch((error: Error) => {
             const title = codeMessage[error.name] || error.name || formatMessage({ id: 'utils.request.error' });
+            if (process.env.NODE_ENV === 'development') {
+                return;
+            }
             notification.error({
                 description: error.message,
-                duration: 0,
+                duration: 3,
                 message: title,
             });
         });

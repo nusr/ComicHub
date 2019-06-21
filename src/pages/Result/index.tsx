@@ -2,7 +2,7 @@ import { connect } from 'dva';
 import React, { useEffect } from 'react';
 import { FormattedMessage } from 'umi-plugin-locale';
 import Loading from '../../components/Loading';
-import { typeConfig } from '../config';
+import { typeConfig } from '../../utils';
 import { SharedState } from '../../type';
 import styles from './index.less';
 
