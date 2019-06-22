@@ -1,6 +1,6 @@
 import Puppeteer from '../puppeteer';
 
-const DELAY_TIME: number = 50000;
+const DELAY_TIME: number = 100000;
 describe('puppeteer', () => {
     it('puppeteer run success', async () => {
         const browser = await Puppeteer();
