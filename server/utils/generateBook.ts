@@ -33,7 +33,6 @@ async function makeBook(
 ) {
     const downloadList = formatDownloadPath(results, searchItem, chapterItem);
     const requestUrl = getReferer(requestName);
-    // eslint-disable-next-line
     for (const item of downloadList) {
         await downloadImage(item.url, item.fileName, requestUrl);
         await sleep(CONVERT_DELAY * 2);

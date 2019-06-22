@@ -31,20 +31,18 @@ function downloadImage(
     const parseDir = path.parse(filePath);
     makeDir(parseDir.dir);
     const stream = fs.createWriteStream(filePath);
+
     stream.on('finish', async () => {
         logger.info(`[Download Image Success] ${filePath}`);
         if (pdfSupportImage.includes(parseDir.ext)) {
             return;
         }
-        const jpegPath = path.join(
-            parseDir.dir,
-            `${parseDir.name}${pdfSupportImage[0]}`,
-        );
-        const result: boolean = await convertImage(filePath, jpegPath);
+        const result: boolean = await convertImage(filePath);
         if (!result) {
-            await convertImage(filePath, jpegPath);
+            await convertImage(filePath);
         }
     });
+
     // 转义链接中的中文参数
     const realUrl = encodeURI(url);
     axios({

@@ -32,6 +32,7 @@ module.exports = {
         allowImportExportEverywhere: false,
     },
     rules: {
+        'no-restricted-syntax': 'off',
         'no-console': 'error', // 可以使用 console
         'import/prefer-default-export': 'warn',
         'no-await-in-loop': 'warn',
