@@ -33,14 +33,17 @@ function generatePdf(dirName: string) {
     for (let i = 0; i < filePathList.length; i += 1) {
         const item = filePathList[i];
         const temp = fs.readFileSync(item);
-
-        pdf.image(temp, bookConfig.paddingLeft, bookConfig.paddingTop, {
-            width: bookConfig.imageWidth,
-            height: bookConfig.imageHeight,
-            align: 'center',
-            valign: 'center',
-        });
-        logger.info(`[Add Image Success] ${item}`);
+        try {
+            pdf.image(temp, bookConfig.paddingLeft, bookConfig.paddingTop, {
+                width: bookConfig.imageWidth,
+                height: bookConfig.imageHeight,
+                align: 'center',
+                valign: 'center',
+            });
+            logger.info(`[Add Image Success] ${item}`);
+        } catch (error) {
+            logger.error(error);
+        }
         if (i !== filePathList.length - 1) {
             pdf.addPage();
         }

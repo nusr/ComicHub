@@ -2,11 +2,10 @@ import path from 'path';
 import { IChapterMysql, ISearchMysql } from '../type';
 import configData from '../shared';
 import generatePdf from './generatePdf';
+import logger from './logger';
 import { getComicSite, getReferer, numToString } from './parseUrl';
-import sleep from './wait';
-import downloadImage from './downloadImage';
-
-const CONVERT_DELAY: number = 100;
+import downloadImage, { checkExtName } from './downloadImage';
+import convertImage from './convertImage';
 
 const getBookDir = (
     searchItem: ISearchMysql,
@@ -34,12 +33,19 @@ async function makeBook(
     const downloadList = formatDownloadPath(results, searchItem, chapterItem);
     const requestUrl = getReferer(requestName);
     for (const item of downloadList) {
-        await downloadImage(item.url, item.fileName, requestUrl);
-        await sleep(CONVERT_DELAY * 2);
+        try {
+            const filePath: string = await downloadImage(item.url, item.fileName, requestUrl);
+            if (!checkExtName(filePath)) {
+                logger.info(filePath);
+                const result: any = await convertImage(filePath);
+                if (result) {
+                    await convertImage(filePath);
+                }
+            }
+        } catch (error) {
+            logger.error(error);
+        }
     }
-    // 等待下载图片的转换
-    // FIXME 可能出现图片尚未转换完成，PDF 已经生成了
-    await sleep(CONVERT_DELAY * 15);
     const dirPath: string = getBookDir(searchItem, chapterItem);
     const realPath = path.join(
         configData.downloadBase,

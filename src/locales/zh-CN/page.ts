@@ -1,8 +1,8 @@
 export default {
     'page.HomePage.step0': '搜索漫画',
-    'page.HomePage.step1': '选择章节',
-    'page.HomePage.step2': '下载漫画',
-    'page.HomePage.step3': '下载结果',
+    'page.HomePage.step1': '选择漫画',
+    'page.HomePage.step2': '选择章节',
+    'page.HomePage.step3': '下载漫画',
     'page.Chapter.table.title': '名称',
     'page.Chapter.table.author': '作者',
     'page.Chapter.table.url': '链接',

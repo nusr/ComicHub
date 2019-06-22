@@ -100,7 +100,6 @@ const ChapterResult: React.FunctionComponent<Props> = ({
                     disabled={selectedRows.length === 0}
                 >
                     <FormattedMessage id="component.button.submit" />
-,
                 </Button>
             </div>
             <DumpTable

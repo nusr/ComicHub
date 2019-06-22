@@ -30,11 +30,14 @@ const DownloadResult: React.FunctionComponent<Props> = ({
         });
     }, []);
     let temp: React.ReactNode = <Loading />;
+
     if (result) {
         temp = (
-            <div>
-                <span><FormattedMessage id="page.Result.download.success" /></span>
-                <span className={styles.downloadPath}>{downloadPath}</span>
+            <div className={styles.pdf}>
+                <div><FormattedMessage id="page.Result.download.success" /></div>
+                <div className={styles.downloadPath}>
+                    {downloadPath}
+                </div>
             </div>
         );
     }

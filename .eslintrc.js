@@ -52,12 +52,6 @@ module.exports = {
         '@typescript-eslint/no-explicit-any': 'off',
         '@typescript-eslint/camelcase': 'off',
         '@typescript-eslint/interface-name-prefix': 'off',
-        // 'sort-imports': ['error', {
-        //     'ignoreCase': false,
-        //     'ignoreDeclarationSort': false,
-        //     'ignoreMemberSort': false,
-        //     'memberSyntaxSortOrder': ['none', 'all', 'multiple', 'single'],
-        // }],
     },
     settings: {
         'import/resolver': { node: { extensions: ['.js', '.ts', '.tsx', '.jsx'] } },

@@ -1,6 +1,6 @@
 import React from 'react';
-import { formatMessage, setLocale, getLocale } from 'umi-plugin-locale';
-import { Menu, Icon, Dropdown } from 'antd';
+import { formatMessage, getLocale, setLocale } from 'umi-plugin-locale';
+import { Dropdown, Icon, Menu } from 'antd';
 import styles from './index.less';
 
 type ObjectType = {

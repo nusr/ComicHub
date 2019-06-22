@@ -3,7 +3,7 @@ import plugins from './plugins';
 
 export default {
     history: 'hash',
-    outputPath: 'dist/views',
+    outputPath: 'dist',
     plugins,
     proxy: {
         '/v1': {

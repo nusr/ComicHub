@@ -1,8 +1,8 @@
 export default {
     'page.HomePage.step0': 'Search Comic',
-    'page.HomePage.step1': 'Select Chapter',
-    'page.HomePage.step2': 'Download Comic',
-    'page.HomePage.step3': 'Download Result',
+    'page.HomePage.step1': 'Select Comic',
+    'page.HomePage.step2': 'Select Chapter',
+    'page.HomePage.step3': 'Download Comic',
     'page.Chapter.table.title': 'Title',
     'page.Chapter.table.author': 'Author',
     'page.Chapter.table.url': 'Link',

@@ -6,7 +6,6 @@ import makeDir from './makeDir';
 import config, { pdfSupportImage } from '../shared';
 import axios from './axios';
 import { getComicSite } from './parseUrl';
-import convertImage from './convertImage';
 
 export function getExtName(url: string): string {
     const extName = path.extname(url);
@@ -14,47 +13,52 @@ export function getExtName(url: string): string {
     return _.head(result) || '';
 }
 
+export function checkExtName(filePath: string): boolean {
+    const parseDir = path.parse(filePath);
+    return pdfSupportImage.includes(parseDir.ext);
+}
+
 function downloadImage(
     url: string,
     fileName: string,
     referer: string = 'https://www.manhuagui.com',
-) {
-    const extName = getExtName(url);
-    if (!extName) {
-        return;
-    }
-    const filePath = path.join(
-        config.downloadBase,
-        getComicSite(referer),
-        fileName + extName,
-    );
-    const parseDir = path.parse(filePath);
-    makeDir(parseDir.dir);
-    const stream = fs.createWriteStream(filePath);
-
-    stream.on('finish', async () => {
-        logger.info(`[Download Image Success] ${filePath}`);
-        if (pdfSupportImage.includes(parseDir.ext)) {
+): Promise<any> {
+    return new Promise(((resolve) => {
+        const extName = getExtName(url);
+        if (!extName) {
+            resolve('');
             return;
         }
-        const result: boolean = await convertImage(filePath);
-        if (!result) {
-            await convertImage(filePath);
-        }
-    });
-
-    // 转义链接中的中文参数
-    const realUrl = encodeURI(url);
-    axios({
-        url: realUrl,
-        responseType: 'stream',
-        headers: {
-            Referer: referer,
-            'User-Agent': config.userAgent,
-        },
-    }).then((response) => {
-        response.data.pipe(stream);
-    });
+        const filePath = path.join(
+            config.downloadBase,
+            getComicSite(referer),
+            fileName + extName,
+        );
+        // 已经下载的图片不再下载
+        // if (fs.existsSync(filePath)) {
+        //     resolve(filePath);
+        //     return;
+        // }
+        const parseDir = path.parse(filePath);
+        makeDir(parseDir.dir);
+        const stream = fs.createWriteStream(filePath);
+        stream.on('finish', () => {
+            logger.info(`[Download Image Success] ${filePath}`);
+            resolve(filePath);
+        });
+        // 转义链接中的中文参数
+        const realUrl = encodeURI(url);
+        axios({
+            url: realUrl,
+            responseType: 'stream',
+            headers: {
+                Referer: referer,
+                'User-Agent': config.userAgent,
+            },
+        }).then((response) => {
+            response.data.pipe(stream);
+        });
+    }));
 }
 
 export default downloadImage;
