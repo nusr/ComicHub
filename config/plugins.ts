@@ -7,7 +7,7 @@ export default [
             dynamicImport: { webpackChunkName: true },
             locale: {
                 enable: true,
-                default: 'zh-CN',
+                default: process.env.DEFAULT_LANGUAGE || 'zh-CN',
                 baseNavigator: true,
             },
             routes: {

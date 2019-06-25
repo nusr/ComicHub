@@ -24,7 +24,8 @@ export interface IImageItem {
     page: number; // 章节中第几张图片
 }
 
-export interface ISearchMysql extends ISearchItem, ICommon {}
+export interface ISearchMysql extends ISearchItem, ICommon {
+}
 
 export interface IChapterMysql extends IChapterItem, ICommon {
     search_id?: number; // Search 表 ID
@@ -37,6 +38,10 @@ export interface IImageMysql extends IImageItem, ICommon {
 export interface IRequestData {
     name: string; // 请求值
     type: string; // 请求类型
-    page_size: number ; // 章节图片数量
+    page_size: number; // 章节图片数量
     noCache?: boolean; // 使用不查找数据库 ,为 true 不查找
+}
+
+export interface IObject {
+    [key: string]: string;
 }

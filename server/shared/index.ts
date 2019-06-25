@@ -31,6 +31,7 @@ export {
     apiType,
 };
 export default {
+    language: envConfig.DEFAULT_LANGUAGE || 'zh-CN',
     connect: {
         port: envConfig.SERVER_PORT || 1200, // 监听端口
         socket: envConfig.SERVER_SOCKET || null, // 监听 Unix Socket, null 为禁用
