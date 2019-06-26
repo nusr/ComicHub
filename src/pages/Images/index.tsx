@@ -6,7 +6,7 @@ import React, { Fragment, useEffect, useState } from 'react';
 import { renderDate, typeConfig } from '../../utils';
 import styles from './index.less';
 import DumpTable from '../../components/DumpTable';
-import { IChapterItem } from '../../type/sql';
+import { IChapterItem } from '../../../server/type';
 import { SharedState } from '../../type';
 
 const chapterColumns = [

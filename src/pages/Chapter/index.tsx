@@ -7,7 +7,7 @@ import { renderDate, typeConfig } from '../../utils';
 import styles from './index.less';
 import DumpTable from '../../components/DumpTable';
 import { SharedState } from '../../type';
-import { ISearchItem } from '../../type/sql';
+import { ISearchItem } from '../../../server/type';
 
 const searchColumns = [
     {
