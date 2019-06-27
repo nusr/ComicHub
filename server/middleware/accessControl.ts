@@ -1,15 +1,17 @@
 import * as Koa from 'koa';
 import config from '../shared';
 import statusCodes from './config';
+import { getLanguageData } from '../locales';
 
 const FAIL_MATCH: number = -1;
+const LINK_TIME: number = 24 * 60 * 60;
 const reject = (ctx: Koa.BaseContext) => {
     ctx.response.status = statusCodes.FORBIDDEN;
     ctx.body = {
         lastBuildDate: new Date().toUTCString(),
         updated: new Date().toISOString(),
-        ttl: 24 * 60 * 60,
-        title: '没有访问权限. Access denied.',
+        ttl: LINK_TIME,
+        title: getLanguageData('middleware.accessControl.deny'),
     };
 };
 

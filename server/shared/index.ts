@@ -7,7 +7,12 @@ let envPath: string = path.join(process.cwd(), '../.env');
 if (process.env.NODE_ENV === 'test') {
     envPath = path.join(process.cwd(), './.env');
 }
-const envConfig: any = dotEnv.parse(fs.readFileSync(envPath));
+let envConfig: any;
+try {
+    envConfig = dotEnv.parse(fs.readFileSync(envPath));
+} catch (error) {
+    envConfig = {};
+}
 const bookConfig = {
     author: 'Steve Xu',
     imageWidth: 520,

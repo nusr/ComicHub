@@ -1,6 +1,7 @@
 import * as Koa from 'koa';
 import logger from '../utils/logger';
 import statusCodes from './config';
+import { getLanguageData } from '../locales';
 
 const errorHandler = async (ctx: Koa.BaseContext, next: () => Promise<any>) => {
     try {
@@ -12,7 +13,7 @@ const errorHandler = async (ctx: Koa.BaseContext, next: () => Promise<any>) => {
         ctx.set({
             'Content-Type': 'text/html; charset=UTF-8',
         });
-        ctx.body = `Comic 发生了一些意外: <pre>${
+        ctx.body = `${getLanguageData('middleware.onerror.error')}: <pre>${
             err instanceof Error ? err.stack : err
         }</pre>`;
         if (err.status === statusCodes.UNAUTHORIZED) {

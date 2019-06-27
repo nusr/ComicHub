@@ -5,16 +5,17 @@ import { apiType } from '../shared';
 import { IChapterMysql, IRequestData, ISearchMysql } from '../type';
 import statusCodes from './config';
 import generateBook from '../utils/generateBook';
+import { getLanguageData } from '../locales';
 
 function handleEmpty(stateType: string) {
     let dataResult: any;
     if (stateType === apiType.search) {
         dataResult = {
-            message: '搜索不到该漫画，请更换搜索词！',
+            message: getLanguageData('middleware.dataProcess.search.empty'),
         };
     } else if (stateType === apiType.chapter) {
         dataResult = {
-            message: '爬取结果为空！',
+            message: getLanguageData('middleware.dataProcess.chapter.empty'),
         };
     }
     return dataResult;
@@ -35,7 +36,7 @@ function filterArray(data: any = []) {
 /* eslint-disable */
 const mysqlHandler = async (ctx: Koa.Context, next: () => Promise<any>) => {
     const requestData: IRequestData = ctx.request.body;
-    const {type: requestType, name: requestName} = requestData;
+    const { type: requestType, name: requestName } = requestData;
     ctx.state.url = requestName;
     ctx.state.type = requestType;
     if (!requestData.noCache) {
@@ -97,7 +98,7 @@ const mysqlHandler = async (ctx: Koa.Context, next: () => Promise<any>) => {
                     'Mysql-Table-Download-Cache': 'true',
                 });
                 ctx.body = {
-                    message: '下载成功！',
+                    message: getLanguageData('middleware.dataProcess.success'),
                     code: statusCodes.OK,
                     data: bookPath,
                 };
@@ -166,7 +167,7 @@ const mysqlHandler = async (ctx: Koa.Context, next: () => Promise<any>) => {
                     searchUrl,
                 );
                 dataResult = {
-                    message: '下载成功！',
+                    message: getLanguageData('middleware.dataProcess.success'),
                     code: statusCodes.OK,
                     data: bookPath,
                 };

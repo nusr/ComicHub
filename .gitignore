@@ -21,3 +21,5 @@ log
 logs
 **/logs
 
+.env
+.env.*

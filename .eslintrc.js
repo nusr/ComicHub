@@ -34,7 +34,7 @@ module.exports = {
     rules: {
         'no-restricted-syntax': 'off',
         'no-console': 'error', // 可以使用 console
-        'import/prefer-default-export': 'warn',
+        'import/prefer-default-export': 'off',
         'no-await-in-loop': 'warn',
         'react/prop-types': 'off',
         'react/jsx-filename-extension': ['error', { 'extensions': ['.js', '.jsx', '.ts', '.tsx'] }],
