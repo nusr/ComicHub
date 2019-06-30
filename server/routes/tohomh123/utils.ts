@@ -87,18 +87,9 @@ function getSearchUrl(name: string): string {
     return `${baseUrl}/action/Search?keyword=${encodeURIComponent(name)}`;
 }
 
-function getDownloadUrl(name: string, page: number): string {
-    const url: string = name;
-    if (page === 1) {
-        return url;
-    }
-    return `${url}#p=${page}`;
-}
-
 export default {
     getChapterList,
     getSearchList,
     getSearchUrl,
-    getDownloadUrl,
     getDownloadItem,
 };

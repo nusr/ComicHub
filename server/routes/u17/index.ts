@@ -5,6 +5,7 @@ import { apiType } from '../../shared';
 import { IRequestData } from '../../type';
 import puppeteer from '../../utils/puppeteer';
 
+const WAIT_TIME: number = 1000;
 const tuHao = async (ctx: Koa.BaseContext) => {
     const { type, name }: IRequestData = ctx.request.body;
     let temp: any;
@@ -30,7 +31,7 @@ const tuHao = async (ctx: Koa.BaseContext) => {
         const nextItem = await page.$('#cr_top > div > div.right > a:nth-child(4)');
         nextItem.click();
 
-        await page.waitFor(1000);
+        await page.waitFor(WAIT_TIME);
 
         await page.evaluate(() => {
             // @ts-ignore
@@ -48,7 +49,7 @@ const tuHao = async (ctx: Koa.BaseContext) => {
             scroll();
         });
 
-        await page.waitFor(2000);
+        await page.waitFor(WAIT_TIME * 2);
         // @ts-ignore
         const html = await page.evaluate(() => document.querySelector('html').innerHTML);
 

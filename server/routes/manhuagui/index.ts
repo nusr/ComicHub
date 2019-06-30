@@ -19,9 +19,9 @@ const manHuaGui = async (ctx: Koa.BaseContext) => {
     }
     if (apiType.download === type) {
         temp = [];
-        let pageIndex = 1;
-        const browser = await puppeteer();
-        const page = await browser.newPage();
+        let pageIndex: number = 1;
+        const browser: any = await puppeteer();
+        const page: any = await browser.newPage();
         page.setViewport(DESKTOP_WINDOW_SIZE);
         await page.goto(name, {
             waitUntil: 'networkidle0',
