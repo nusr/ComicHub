@@ -1,9 +1,9 @@
-import common from './zh-CN/common';
 import component from './zh-CN/component';
 import page from './zh-CN/page';
+import utils from './zh-CN/utils';
 
 export default {
-    ...common,
     ...component,
     ...page,
+    ...utils,
 };

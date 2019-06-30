@@ -1,9 +1,9 @@
-import common from './en-US/common';
 import component from './en-US/component';
 import page from './en-US/page';
+import utils from './en-US/utils';
 
 export default {
-    ...common,
     ...component,
     ...page,
+    ...utils,
 };

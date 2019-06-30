@@ -32,9 +32,9 @@ module.exports = {
         allowImportExportEverywhere: false,
     },
     rules: {
-        'no-restricted-syntax': 'off',
-        'no-console': 'error', // 可以使用 console
-        'import/prefer-default-export': 'off',
+        'no-restricted-syntax': 'warn',
+        'no-console': 'error',
+        'import/prefer-default-export': 'warn',
         'no-await-in-loop': 'warn',
         'react/prop-types': 'off',
         'react/jsx-filename-extension': ['error', { 'extensions': ['.js', '.jsx', '.ts', '.tsx'] }],

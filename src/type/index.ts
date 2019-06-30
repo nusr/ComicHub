@@ -12,7 +12,6 @@ export interface SharedState {
 export interface MenuItem {
     value: string;
     enabled: boolean;
-    base: string;
     name: string;
 }
 

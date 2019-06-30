@@ -4,14 +4,14 @@ import {
 import { FormattedMessage, formatMessage } from 'umi-plugin-locale';
 import React, { useEffect } from 'react';
 import _ from 'lodash';
-import { IFormData, IOptionData } from '../../type';
+import { IFormData, IOptionData, MenuItem } from '../../type';
 
 const FormItem = Form.Item;
 
 type Props = {
-    menuList?: any [];
+    menuList: MenuItem [];
     form?: any;
-    handleFormSubmit?: any;
+    handleFormSubmit: (data: IFormData) => void;
 }
 
 const SearchForm: React.FunctionComponent<Props> = ({

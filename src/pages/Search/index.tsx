@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'dva';
 import router from 'umi/router';
 import SearchForm from '../../components/SearchForm';
-import { IFormData } from '../../type';
+import { IFormData, MenuItem } from '../../type';
 import { typeConfig } from '../../utils';
 
 type Props = {
@@ -10,8 +10,8 @@ type Props = {
     list: any;
 };
 
-function getMenuList(data: any = {}) {
-    return Object.keys(data).map((key: string) => {
+function getMenuList(data: any = {}): MenuItem[] {
+    return Object.keys(data).map((key: string): MenuItem => {
         const item = data[key];
         return {
             name: item.name,
@@ -25,7 +25,7 @@ const HomePage: React.FunctionComponent<Props> = ({
     dispatch,
     list,
 }) => {
-    const menuList: any = getMenuList(list);
+    const menuList: MenuItem[] = getMenuList(list);
     useEffect(() => {
         dispatch({
             type: 'menu/fetch',
