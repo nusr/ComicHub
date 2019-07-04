@@ -13,7 +13,7 @@ const options = {
     ],
     headless: true,
     ignoreHTTPSErrors: true,
-    userDataDir: '../tmp',
+    userDataDir: './tmp',
 };
 
 const puppeteerBrowser = async () => {
