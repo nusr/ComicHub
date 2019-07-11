@@ -5,7 +5,7 @@ import { apiType } from '../../shared';
 import { IRequestData } from '../../type';
 import puppeteer from '../../utils/puppeteer';
 
-const WAIT_TIME: number = 1000;
+const WAIT_TIME = 1000;
 const tuHao = async (ctx: Koa.BaseContext) => {
     const { type, name }: IRequestData = ctx.request.body;
     let temp: any;

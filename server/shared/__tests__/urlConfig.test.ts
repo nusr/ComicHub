@@ -1,7 +1,7 @@
 import Puppeteer from '../../utils/puppeteer';
 import urlConfig from '../urlConfig';
 
-const DELAY_TIME: number = 100000;
+const DELAY_TIME = 100000;
 describe('Test Base Url', () => {
     let page: any;
     let browser: any;

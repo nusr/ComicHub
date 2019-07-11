@@ -74,7 +74,7 @@ const getChapterList = (data: string): IChapterItem[] => {
 const getDownloadList = (data: string): IImageItem[] => {
     const result: IImageItem[] = [];
     const $ = cheerio.load(data);
-    let page:number = 1;
+    let page = 1;
     $('#readvip > .mg_auto').each((i, item) => {
         const dom = $(item)
             .find('img.cur_pic.lazyload')

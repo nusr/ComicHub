@@ -4,7 +4,7 @@ import config from '../../shared';
 import statusCodes from '../../middleware/config';
 
 const mock = new MockAdapter(axiosTest);
-const SUCCESS_CODE: number = 0;
+const SUCCESS_CODE = 0;
 describe('axios', () => {
     it('axios headers', async () => {
         mock.onGet('/test').reply((axiosConfig) => {

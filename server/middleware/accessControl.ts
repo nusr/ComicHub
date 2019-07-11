@@ -3,7 +3,7 @@ import config from '../shared';
 import statusCodes from './config';
 import { getLanguageData } from '../locales';
 
-const FAIL_MATCH: number = -1;
+const FAIL_MATCH = -1;
 const LINK_TIME: number = 24 * 60 * 60;
 const reject = (ctx: Koa.BaseContext) => {
     ctx.response.status = statusCodes.FORBIDDEN;

@@ -18,7 +18,7 @@ const responseHandler = async (
         data: any;
         message: any;
     }) => {
-        const status:number = 0;
+        const status = 0;
 
         if (Boolean(statusCode) && statusCode < statusCode.BAD_REQUEST) {
             ctx.status = statusCode;

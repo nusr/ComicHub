@@ -6,7 +6,7 @@ type Params = {
 
 export interface SharedState {
     currentUrl: string;
-    params: Params
+    params: Params;
 }
 
 export interface MenuItem {

@@ -5,7 +5,7 @@ import util from './utils';
 import { apiType } from '../../shared';
 import puppeteer, { DESKTOP_WINDOW_SIZE } from '../../utils/puppeteer';
 
-const DELAY_TIME: number = 500;
+const DELAY_TIME = 500;
 const manHuaGui = async (ctx: Koa.BaseContext) => {
     const { type, name, page_size: pageSize }: IRequestData = ctx.request.body;
     let temp;
@@ -19,7 +19,7 @@ const manHuaGui = async (ctx: Koa.BaseContext) => {
     }
     if (apiType.download === type) {
         temp = [];
-        let pageIndex: number = 1;
+        let pageIndex = 1;
         const browser: any = await puppeteer();
         const page: any = await browser.newPage();
         page.setViewport(DESKTOP_WINDOW_SIZE);

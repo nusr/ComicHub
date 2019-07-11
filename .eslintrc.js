@@ -1,7 +1,6 @@
 const intentSize = 4;
 module.exports = {
-    parser: 'babel-eslint',
-    // parser: '@typescript-eslint/parser',
+    parser: '@typescript-eslint/parser',
     extends: [
         'prettier',
         'prettier/@typescript-eslint',
@@ -32,6 +31,7 @@ module.exports = {
         allowImportExportEverywhere: false,
     },
     rules: {
+        'camelcase': 'off',
         'no-restricted-syntax': 'warn',
         'no-console': 'error',
         'import/prefer-default-export': 'warn',

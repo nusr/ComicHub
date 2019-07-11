@@ -57,7 +57,7 @@ const ChapterResult: React.FunctionComponent<Props> = ({
         selectedRows,
         setSelectedRows,
     ] = useState<IChapterItem[]>([]);
-    const checkType: string = 'radio';
+    const checkType = 'radio';
 
     useEffect(() => {
         dispatch({

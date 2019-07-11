@@ -53,10 +53,10 @@ const HomePage: React.FunctionComponent<Props> = ({
     return <SearchForm handleFormSubmit={handleSearchSubmit} menuList={menuList} />;
 };
 type ConnectProps = {
-    loading: any,
+    loading: any;
     menu: {
-        list: any[]
-    }
+        list: any[];
+    };
 }
 
 export default connect(({ loading, menu }: ConnectProps) => ({

@@ -5,7 +5,7 @@ import enUS from './en-US';
 import { IObject } from '../type';
 
 type LanguageMap = {
-    [key: string]: IObject
+    [key: string]: IObject;
 }
 const languageMap: LanguageMap = {
     'zh-CN': zhCN,
