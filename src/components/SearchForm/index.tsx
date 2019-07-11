@@ -3,7 +3,6 @@ import {
 } from 'antd';
 import { FormattedMessage, formatMessage } from 'umi-plugin-locale';
 import React, { useEffect } from 'react';
-import _ from 'lodash';
 import { IFormData, IOptionData, MenuItem } from '../../type';
 
 const FormItem = Form.Item;
@@ -44,10 +43,10 @@ const SearchForm: React.FunctionComponent<Props> = ({
     }
 
     function filterOption(value: string, record: any) {
-        const temp: string = _.get(record, 'props.children');
-        if (_.isEmpty(value) || !_.isString(value)) {
+        if (!value) {
             return false;
         }
+        const temp: string = record.props.children;
         return temp.includes(value);
     }
 

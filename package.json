@@ -14,8 +14,8 @@
         "prettier": "prettier \"**/*.{ts,tsx,js,jsx,json,md}\" --write",
         "style": "stylelint 'src/**/*.less' --syntax less --fix",
         "lint": "eslint --ext .js,.jsx,.ts,.tsx src server --fix",
-        "test": "umi test --coverage --runInBand --forceExit --detectOpenHandles --passWithNoTests",
-        "test:watch": "umi test --watchAll --coverage --runInBand --forceExit --detectOpenHandles --passWithNoTests",
+        "test": "umi test --runInBand --forceExit --detectOpenHandles --passWithNoTests",
+        "test:watch": "umi test --watchAll --runInBand --forceExit --detectOpenHandles --passWithNoTests",
         "readme": "npm run --prefix ./server readme"
     },
     "dependencies": {
