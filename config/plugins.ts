@@ -21,7 +21,7 @@ export default [
             },
             title: 'Comic Downloader',
             dll: {
-                include: ['dva', 'dva/router', 'dva/saga', 'dva/fetch', 'lodash'],
+                include: ['dva', 'dva/router', 'dva/saga', 'dva/fetch'],
                 exclude: ['@babel/runtime'],
             },
         },
