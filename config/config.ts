@@ -1,9 +1,10 @@
 import routes from './routes';
 import plugins from './plugins';
 
+// const NODE_ENV: string = process.env.NODE_ENV as string;
 export default {
     history: 'hash',
-    outputPath: 'dist',
+    // outputPath: 'server/dist/views',
     plugins,
     proxy: {
         '/v1': {
@@ -12,7 +13,7 @@ export default {
             target: 'http://localhost:1200',
         },
     },
-    publicPath: './',
+    // publicPath: NODE_ENV === 'production' ? ' ' : './',
     routes,
     treeShaking: true,
     uglifyJSOptions: {

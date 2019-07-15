@@ -12,7 +12,6 @@ router.get('/', async (ctx: Koa.Context) => {
     ctx.set({
         'Cache-Control': 'no-cache',
     });
-
     ctx.body = {
         request: ctx.debug.request,
     };
