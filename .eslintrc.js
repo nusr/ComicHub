@@ -34,7 +34,7 @@ module.exports = {
         'camelcase': 'off',
         'no-restricted-syntax': 'warn',
         'no-console': 'error',
-        'import/prefer-default-export': 'warn',
+        'import/prefer-default-export': 'off',
         'no-await-in-loop': 'warn',
         'react/prop-types': 'off',
         'react/jsx-filename-extension': ['error', { 'extensions': ['.js', '.jsx', '.ts', '.tsx'] }],

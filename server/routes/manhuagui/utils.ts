@@ -11,7 +11,7 @@ const fixTitle = (value: string): string => {
     }
     return '';
 };
-const getSearchList = (data: string) => {
+const getSearchList = (data: string): ISearchItem[] => {
     const $ = cheerio.load(data);
     const result: ISearchItem[] = [];
     const list = $('.book-result>ul>li');
@@ -57,7 +57,7 @@ const getSearchList = (data: string) => {
     return result;
 };
 
-const getChapterList = (data: string) => {
+const getChapterList = (data: string): IChapterItem[] => {
     const $ = cheerio.load(data);
     const chapters: IChapterItem[] = [];
     $('.chapter-list > ul >li').each((i, item) => {
@@ -80,10 +80,9 @@ const getChapterList = (data: string) => {
     return chapters;
 };
 
-function getDownloadItem(data: string) {
+function getDownloadItem(data: string): string {
     const $ = cheerio.load(data);
-    const src = $('#mangaFile').attr('src');
-    return src;
+    return $('#mangaFile').attr('src');
 }
 
 const getSearchUrl = (name: string): string => `${baseUrl}/s/${encodeURIComponent(name)}.html`;

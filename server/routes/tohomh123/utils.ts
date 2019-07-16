@@ -12,7 +12,8 @@ const getCoverUrl = (style: string): string => {
     const temp: string = _.head(style.match(/(\([\s\S]*\))/)) || '';
     return temp.slice(1, -1);
 };
-const getSearchList = (data: string) => {
+
+function getSearchList(data: string): ISearchItem[] {
     const $ = cheerio.load(data);
     const result: ISearchItem[] = [];
     const list = $('ul.mh-list > li');
@@ -36,9 +37,9 @@ const getSearchList = (data: string) => {
         }
     });
     return result;
-};
+}
 
-const getChapterList = (data: string) => {
+const getChapterList = (data: string): IChapterItem[] => {
     const $ = cheerio.load(data);
     const chapters: IChapterItem[] = [];
     $('#chapterlistload li').each((i, item) => {
@@ -64,7 +65,7 @@ const getChapterList = (data: string) => {
     return chapters;
 };
 
-function getDownloadItem(data: string, pageSize: number) {
+function getDownloadItem(data: string, pageSize: number): IImageItem[] {
     const linkResult: any = data.match(/var pl = '([\s\S]*)';\s*var bqimg/);
     const [, link] = linkResult;
     if (!link) {
