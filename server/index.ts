@@ -40,7 +40,7 @@ app.use(bodyParser());
 app.use(mysql);
 // @ts-ignore
 app.use(mount('/', router.routes())).use(router.allowedMethods());
-let koaPort: number | string = config.serverPort;
+let koaPort: number = config.serverPort;
 if (process.env.NODE_ENV === 'test') {
     koaPort = _.random(5000, 8000);
 }

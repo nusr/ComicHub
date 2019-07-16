@@ -32,10 +32,10 @@ module.exports = {
     },
     rules: {
         'camelcase': 'off',
-        'no-restricted-syntax': 'warn',
+        'no-restricted-syntax': 'off',
         'no-console': 'error',
         'import/prefer-default-export': 'off',
-        'no-await-in-loop': 'warn',
+        'no-await-in-loop': 'off',
         'react/prop-types': 'off',
         'react/jsx-filename-extension': ['error', { 'extensions': ['.js', '.jsx', '.ts', '.tsx'] }],
         'no-unused-vars': 'error',
