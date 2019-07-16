@@ -1,5 +1,4 @@
 import Koa from 'koa';
-import fs from 'fs';
 import mount from 'koa-mount';
 import _ from 'lodash';
 import bodyParser from 'koa-bodyparser';
@@ -41,26 +40,13 @@ app.use(bodyParser());
 app.use(mysql);
 // @ts-ignore
 app.use(mount('/', router.routes())).use(router.allowedMethods());
-let server: any;
-let koaPort: number | string = config.connect.port;
-if (koaPort) {
-    if (process.env.NODE_ENV === 'test') {
-        koaPort = _.random(5000, 8000);
-    }
-    server = app.listen(koaPort);
-    logger.info(`Running in http://localhost:${koaPort}`);
+let koaPort: number | string = config.serverPort;
+if (process.env.NODE_ENV === 'test') {
+    koaPort = _.random(5000, 8000);
 }
-if (config.connect.socket) {
-    if (fs.existsSync(config.connect.socket)) {
-        fs.unlinkSync(config.connect.socket);
-    }
-    server = app.listen(config.connect.socket);
-    logger.info(`Listening Unix Socket ${config.connect.socket}`);
-    process.on('SIGINT', () => {
-        fs.unlinkSync(config.connect.socket || '');
-        process.exit();
-    });
-}
+const server: any = app.listen(koaPort);
+logger.info(`Running in http://localhost:${koaPort}`);
+
 export default {
     app,
     server,
