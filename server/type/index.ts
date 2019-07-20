@@ -16,7 +16,7 @@ export interface ISearchItem {
 export interface IChapterItem {
     url: string; // 链接
     title: string; // 章节名
-    page_size: number; // 章节图片数量
+    page_size?: number; // 章节图片数量
 }
 
 export interface IImageItem {
