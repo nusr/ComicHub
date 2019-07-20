@@ -11,7 +11,7 @@ afterAll(() => {
 
 describe('error', () => {
     it('error', async () => {
-        const response: any = await request.get('/test/0');
+        const response: superTest.Response = await request.get('/test/0');
         // eslint-disable-next-line
         expect(response.text).toMatch(eval(`/${getLanguageData('middleware.onerror.error')}: <pre>Error: Error test/`));
     });

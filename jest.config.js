@@ -1,9 +1,9 @@
 module.exports = {
+    testMatch: ['**/__tests__/**/*.[jt]s?(x)', '**/?(*.)+(spec|test).[jt]s?(x)'],
     testPathIgnorePatterns: [
         '/node_modules/',
         '/server/node_modules/',
     ],
-    coverageReporters: ['text-summary', 'lcov'],
     collectCoverageFrom: ['src/**/*.{ts,tsx}', 'server/**/*.{ts,tsx}'],
     coveragePathIgnorePatterns: [
         '/node_modules/',

@@ -28,13 +28,11 @@ function getSearchList(data: string): ISearchItem[] {
             .eq(0)
             .attr('style');
         const realCover: string = getCoverUrl(cover);
-        if (url) {
-            result.push({
-                url,
-                title,
-                cover: realCover,
-            });
-        }
+        result.push({
+            url,
+            title,
+            cover: realCover,
+        });
     });
     return result;
 }

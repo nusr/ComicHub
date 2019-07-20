@@ -31,16 +31,14 @@ const getSearchList = (data: string): ISearchItem[] => {
             .eq(0)
             .text()
             .replace(/\s/gi, '');
-        if (url) {
-            result.push({
-                url,
-                title,
-                cover,
-                author,
-                introduce: introduce.slice(3),
-                category,
-            });
-        }
+        result.push({
+            url,
+            title,
+            cover,
+            author,
+            introduce: introduce.slice(3),
+            category,
+        });
     });
     return result;
 };
@@ -58,15 +56,13 @@ const getChapterList = (data: string): IChapterItem[] => {
         const pageString: string = innerText.slice(dom.text().length);
         const currentPage = toNum(_.head(pageString.match(/(\d+)/gi)));
         const titleLen: number = title.length;
-        if (link) {
-            chapters.push({
-                url: link,
-                title: title
-                    .slice(0, titleLen > 11 ? titleLen - 11 : titleLen)
-                    .trim(),
-                page_size: currentPage,
-            });
-        }
+        chapters.push({
+            url: link,
+            title: title
+                .slice(0, titleLen > 11 ? titleLen - 11 : titleLen)
+                .trim(),
+            page_size: currentPage,
+        });
     });
     return chapters;
 };
@@ -80,13 +76,11 @@ const getDownloadList = (data: string): IImageItem[] => {
             .find('img.cur_pic.lazyload')
             .eq(0);
         const url: string = dom.attr('src');
-        if (url) {
-            result.push({
-                url,
-                page,
-            });
-            page += 1;
-        }
+        result.push({
+            url,
+            page,
+        });
+        page += 1;
     });
     return result;
 };

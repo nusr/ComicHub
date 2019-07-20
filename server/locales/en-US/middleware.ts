@@ -3,4 +3,5 @@ export default {
     'middleware.dataProcess.search.empty': '',
     'middleware.dataProcess.chapter.empty': '',
     'middleware.dataProcess.failure': '',
+    'middleware.dataProcess.paramsFail': 'params error!',
 };

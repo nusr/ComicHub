@@ -4,5 +4,6 @@ export default {
     'middleware.dataProcess.chapter.empty': '爬取章节为空，请重新选择漫画！',
     'middleware.dataProcess.success': '下载漫画，生成PDF成功！',
     'middleware.onerror.error': 'ComicHub 发生了一些意外',
+    'middleware.dataProcess.paramsFail': '参数错误！',
 
 };

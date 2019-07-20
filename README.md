@@ -57,7 +57,7 @@ ComicHub 是一款漫画下载器。爬取漫画网站的图片，生成 PDF 文
 
 1. [土豪漫画](https://www.tohomh123.com)
 
-1. [有妖气漫画](http://www.u17.com/)
+1. [有妖气漫画](http://www.u17.com)
 
 ## 装包
 

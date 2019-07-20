@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import configData from '../shared';
 import zhCN from './zh-CN';
 import enUS from './en-US';
@@ -13,5 +12,9 @@ const languageMap: LanguageMap = {
 };
 
 export function getLanguageData(id: string, language: string = configData.language): string {
-    return _.get(languageMap[language], id, '');
+    const data: IObject = languageMap[language];
+    if (data && data[id]) {
+        return data[id];
+    }
+    return '';
 }

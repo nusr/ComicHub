@@ -2,31 +2,37 @@ import * as Koa from 'koa';
 import _ from 'lodash';
 import mysqlService from '../service';
 import { apiType } from '../shared';
-import { IChapterMysql, IRequestData, ISearchMysql } from '../type';
+import {
+    IChapterMysql, IRequestData, ISearchMysql, IObject,
+} from '../type';
 import statusCodes from './config';
 import generateBook from '../utils/generateBook';
 import { getLanguageData } from '../locales';
 
-function handleEmpty(stateType: string) {
-    let dataResult: any;
+type EmptyData = {
+    message: string;
+}
+const { NODE_ENV } = process.env;
+const REQUEST_WHITE_LIST: string[] = ['/menu', '/test'];
+
+function handleEmpty(stateType: string): EmptyData {
+    const dataResult: EmptyData = {
+        message: '',
+    };
     if (stateType === apiType.search) {
-        dataResult = {
-            message: getLanguageData('middleware.dataProcess.search.empty'),
-        };
+        dataResult.message = getLanguageData('middleware.dataProcess.search.empty');
     } else if (stateType === apiType.chapter) {
-        dataResult = {
-            message: getLanguageData('middleware.dataProcess.chapter.empty'),
-        };
+        dataResult.message = getLanguageData('middleware.dataProcess.chapter.empty');
     }
     return dataResult;
 }
 
-function filterArray(data: any = []) {
-    const record: any = {};
-    const result: any = [];
+function filterArray<T>(data: T[] = []): T[] {
+    const record: IObject = {};
+    const result: T[] = [];
     data.forEach((item: any) => {
-        if (!record[item.url]) {
-            record[item.url] = 1;
+        if (item.url && !record[item.url]) {
+            record[item.url] = '1';
             result.push(item);
         }
     });
@@ -36,10 +42,17 @@ function filterArray(data: any = []) {
 /* eslint-disable */
 const mysqlHandler = async (ctx: Koa.Context, next: () => Promise<any>) => {
     const requestData: IRequestData = ctx.request.body;
-    const { type: requestType, name: requestName } = requestData;
+    const { type: requestType = '', name: requestName = '' } = requestData;
+    const checkRequestUrl: boolean = !REQUEST_WHITE_LIST.includes(ctx.url) && (!requestName || !requestType);
+    if (checkRequestUrl) {
+        ctx.body = {
+            message: getLanguageData('middleware.dataProcess.paramsFail'),
+        };
+        return;
+    }
     ctx.state.url = requestName;
     ctx.state.type = requestType;
-    if (!requestData.noCache) {
+    if (!requestData.noCache && NODE_ENV !== 'test') {
         if (requestType === apiType.search) {
             const result: any = await mysqlService.foggySearch(
                 `%${requestName}%`,
@@ -116,7 +129,7 @@ const mysqlHandler = async (ctx: Koa.Context, next: () => Promise<any>) => {
         }
         return;
     }
-    if (dataResult) {
+    if (dataResult && NODE_ENV !== 'test') {
         const searchUrl = ctx.state.url;
         if (stateType === apiType.search) {
             for (const item of dataResult) {

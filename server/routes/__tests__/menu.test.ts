@@ -11,7 +11,7 @@ afterAll(() => {
 
 describe('Test /menu Api', () => {
     it('/menu should result right result', async () => {
-        const response: any = await request.get('/menu');
+        const response: superTest.Response = await request.get('/menu');
         expect(response.text).toBe(JSON.stringify(urlConfig));
     });
 });

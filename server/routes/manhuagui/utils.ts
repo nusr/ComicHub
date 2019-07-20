@@ -42,17 +42,15 @@ const getSearchList = (data: string): ISearchItem[] => {
             .find('div.book-cover > a > img')
             .eq(0)
             .attr('src');
-        if (url) {
-            result.push({
-                url,
-                title,
-                area: fixTitle(area),
-                author: fixTitle(author),
-                introduce: fixTitle(introduce),
-                category: fixTitle(category),
-                cover,
-            });
-        }
+        result.push({
+            url,
+            title,
+            area: fixTitle(area),
+            author: fixTitle(author),
+            introduce: fixTitle(introduce),
+            category: fixTitle(category),
+            cover,
+        });
     });
     return result;
 };
@@ -69,13 +67,11 @@ const getChapterList = (data: string): IChapterItem[] => {
             .find('i')
             .eq(0)
             .text();
-        if (link) {
-            chapters.push({
-                url: link,
-                title: dom.attr('title'),
-                page_size: toNum(page),
-            });
-        }
+        chapters.push({
+            url: link,
+            title: dom.attr('title'),
+            page_size: toNum(page),
+        });
     });
     return chapters;
 };
