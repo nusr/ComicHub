@@ -1,5 +1,6 @@
 module.exports = {
     testMatch: ['**/__tests__/**/*.[jt]s?(x)', '**/?(*.)+(spec|test).[jt]s?(x)'],
+    // testMatch: ['**/middleware/**/*.test.ts'],
     testPathIgnorePatterns: [
         '/node_modules/',
         '/server/node_modules/',

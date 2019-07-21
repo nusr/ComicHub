@@ -43,7 +43,7 @@ function filterArray<T>(data: T[] = []): T[] {
 const mysqlHandler = async (ctx: Koa.Context, next: () => Promise<any>) => {
     const requestData: IRequestData = ctx.request.body;
     const { type: requestType = '', name: requestName = '' } = requestData;
-    const checkRequestUrl: boolean = !REQUEST_WHITE_LIST.includes(ctx.url) && (!requestName || !requestType);
+    const checkRequestUrl: boolean = !REQUEST_WHITE_LIST.some((item: string): boolean => ctx.url.startsWith(item)) && (!requestName || !requestType);
     if (checkRequestUrl) {
         ctx.body = {
             message: getLanguageData('middleware.dataProcess.paramsFail'),
