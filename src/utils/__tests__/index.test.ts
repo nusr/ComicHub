@@ -12,7 +12,6 @@ describe('addZero', () => {
 describe('renderDate', () => {
     it('renderDate should return right result', () => {
         expect(renderDate('2019-7-10')).toBe('2019-07-10 00:00:00');
-        expect(renderDate(1562688000000)).toBe('2019-07-10 00:00:00');
     });
     it('renderDate should handle error input', () => {
         expect(renderDate('veve')).toBe('');
