@@ -8,7 +8,7 @@ import styles from './index.less';
 type Props = {};
 
 const CommonHeader: React.FunctionComponent<Props> = () => (
-    <div className={styles.container}>
+    <>
         <Link to="/">
             <h1 className={styles.title}>ComicHub</h1>
         </Link>
@@ -18,6 +18,6 @@ const CommonHeader: React.FunctionComponent<Props> = () => (
                 <Icon type="question-circle" />
             </Tooltip>
         </div>
-    </div>
+    </>
 );
 export default CommonHeader;

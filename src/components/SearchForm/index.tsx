@@ -1,5 +1,5 @@
 import {
-    Button, Checkbox, Form, Input, Select,
+    Button, Form, Input, Select,
 } from 'antd';
 import { FormattedMessage, formatMessage } from 'umi-plugin-locale';
 import React, { useEffect } from 'react';
@@ -87,12 +87,7 @@ const SearchForm: React.FunctionComponent<Props> = ({
                     ],
                 })(<Input placeholder={formatMessage({ id: 'component.SearchForm.keyword.label' })} />)}
             </FormItem>
-            <FormItem label="MySQL">
-                {form.getFieldDecorator('cache', {
-                    initialValue: currentData.cache,
-                })(<Checkbox />)}
-            </FormItem>
-            <FormItem>
+            <FormItem label="">
                 <Button
                     onClick={handleSubmit}
                     type="primary"

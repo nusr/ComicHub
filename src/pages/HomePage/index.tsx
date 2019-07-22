@@ -40,6 +40,7 @@ const HomePage: React.FunctionComponent<Props> = ({
         const [, temp] = pathname.split('/');
         setCurrentType(temp);
     }, [pathname]);
+    const isVertical: boolean = window.innerWidth > 800;
     return (
         <Layout className={styles.container}>
             <Header>
@@ -48,7 +49,8 @@ const HomePage: React.FunctionComponent<Props> = ({
             <Content>
                 <Card>
                     <Steps
-                        labelPlacement="vertical"
+                        size={isVertical ? 'default' : 'small'}
+                        labelPlacement={isVertical ? 'vertical' : 'horizontal'}
                         current={getCurrentStep(currentType)}
                     >
                         <Step title={<FormattedMessage id="page.HomePage.step0" />} />

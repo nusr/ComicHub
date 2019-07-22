@@ -42,7 +42,7 @@ const SelectLang: React.FunctionComponent = () => {
     );
     return (
         <Dropdown overlay={langMenu} placement="bottomRight">
-            <Icon type="global" title={title} />
+            <Icon type="global" title={title} className={styles.icon} />
         </Dropdown>
     );
 };
