@@ -9,3 +9,4 @@ server/logs
 node_modules
 src/node_modules
 server/tmp
+**/*.snap

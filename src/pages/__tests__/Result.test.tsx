@@ -13,4 +13,9 @@ describe('Page: Result', () => {
         const wrapper: ReactTestRenderer = renderer.create(<Result download="" dispatch={dispatch} shared={shared} />);
         expect(wrapper.root.children.length).toBe(1);
     });
+    it('Page: Result Snapshots', () => {
+        const shared: SharedState = { currentUrl: '', params: { name: '' } };
+        const tree = renderer.create(<Result download="" dispatch={dispatch} shared={shared} />).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
 });

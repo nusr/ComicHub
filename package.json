@@ -11,7 +11,7 @@
         "build:server": "npm run --prefix ./server build",
         "lint-staged": "lint-staged",
         "format": "npm run lint && npm run style && npm run prettier",
-        "prettier": "prettier \"**/*.{ts,tsx,js,jsx,json,md}\" --write",
+        "prettier": "prettier \"**/*.{ts,tsx,js,jsx}\" --write",
         "style": "stylelint 'src/**/*.less' --syntax less --fix",
         "lint": "eslint --ext .js,.jsx,.ts,.tsx src server --fix",
         "test": "umi test --coverage",
@@ -64,10 +64,6 @@
         ],
         "**/*.less": [
             "stylelint --syntax less --fix",
-            "git add"
-        ],
-        "**/*.{json}": [
-            "prettier --write",
             "git add"
         ]
     },
