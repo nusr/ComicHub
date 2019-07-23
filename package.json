@@ -23,21 +23,19 @@
         "dva": "^2.4.1",
         "react": "^16.8.6",
         "react-dom": "^16.8.6",
-        "umi": "^2.8.8"
+        "umi": "^2.8.13"
     },
     "devDependencies": {
         "@types/jest": "^24.0.15",
-        "@types/lodash": "^4.14.135",
         "@types/react-test-renderer": "^16.8.2",
         "@typescript-eslint/eslint-plugin": "^1.11.0",
         "@typescript-eslint/parser": "^1.11.0",
-        "babel-eslint": "^10.0.2",
         "eslint": "^6.0.1",
         "eslint-config-airbnb": "^17.1.1",
         "eslint-config-prettier": "^6.0.0",
         "eslint-plugin-import": "^2.18.0",
         "eslint-plugin-jsx-a11y": "^6.2.3",
-        "eslint-plugin-react": "^7.14.2",
+        "eslint-plugin-react": "^7.14.3",
         "husky": "^3.0.0",
         "jest": "^24.8.0",
         "lint-staged": "^9.0.2",
@@ -51,7 +49,7 @@
         "stylelint-declaration-block-no-ignored-properties": "^2.1.0",
         "stylelint-order": "^3.0.0",
         "ts-jest": "^24.0.2",
-        "umi-plugin-react": "^1.9.7"
+        "umi-plugin-react": "^1.9.12"
     },
     "husky": {
         "hooks": {
@@ -68,7 +66,7 @@
             "stylelint --syntax less --fix",
             "git add"
         ],
-        "**/*.{json,md}": [
+        "**/*.{json}": [
             "prettier --write",
             "git add"
         ]
