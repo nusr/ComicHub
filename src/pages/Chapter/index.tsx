@@ -3,10 +3,10 @@ import { connect } from 'dva';
 import router from 'umi/router';
 import { FormattedMessage } from 'umi-plugin-locale';
 import React, { Fragment, useEffect, useState } from 'react';
-import { renderDate, typeConfig } from '../../utils';
+import { renderDate } from '../../utils';
 import styles from './index.less';
 import DumpTable from '../../components/DumpTable';
-import { SharedState } from '../../type';
+import { SharedState, TypeConfig } from '../../type';
 import { ISearchItem } from '../../../server/type';
 
 const searchColumns = [
@@ -65,7 +65,7 @@ type Props = {
     loading: boolean;
 };
 
-const SearchResult: React.FunctionComponent<Props> = ({
+const Chapter: React.FunctionComponent<Props> = ({
     dispatch,
     loading,
     list = [],
@@ -79,7 +79,7 @@ const SearchResult: React.FunctionComponent<Props> = ({
             payload: {
                 url: currentUrl,
                 name: params.name,
-                type: typeConfig.search,
+                type: TypeConfig.search,
                 noCache: params.noCache,
             },
         });
@@ -101,7 +101,7 @@ const SearchResult: React.FunctionComponent<Props> = ({
                 name: item.url,
             },
         });
-        router.push(`/${typeConfig.download}`);
+        router.push(`/${TypeConfig.download}`);
     }
 
     return (
@@ -131,8 +131,11 @@ type ConnectProps = {
     common: any;
     shared: SharedState;
 };
+export {
+    Chapter,
+};
 export default connect(({ loading, common, shared }: ConnectProps) => ({
     loading: loading.models.common,
     list: common.list,
     shared,
-}))(SearchResult);
+}))(Chapter);

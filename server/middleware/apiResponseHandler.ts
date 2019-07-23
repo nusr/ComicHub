@@ -1,6 +1,6 @@
 import * as Koa from 'koa';
 
-import statusCodes from './config';
+import statusCodes from '../shared/statusCode';
 
 const responseHandler = async (
     ctx: Koa.BaseContext,

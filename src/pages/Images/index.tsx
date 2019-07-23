@@ -3,11 +3,11 @@ import { connect } from 'dva';
 import { FormattedMessage } from 'umi-plugin-locale';
 import router from 'umi/router';
 import React, { Fragment, useEffect, useState } from 'react';
-import { renderDate, typeConfig } from '../../utils';
+import { renderDate } from '../../utils';
 import styles from './index.less';
 import DumpTable from '../../components/DumpTable';
 import { IChapterItem } from '../../../server/type';
-import { SharedState } from '../../type';
+import { SharedState, TypeConfig } from '../../type';
 
 const chapterColumns = [
     {
@@ -65,7 +65,7 @@ const ChapterResult: React.FunctionComponent<Props> = ({
             payload: {
                 url: currentUrl,
                 name: params.name,
-                type: typeConfig.chapter,
+                type: TypeConfig.chapter,
             },
         });
     }, []);
@@ -88,7 +88,7 @@ const ChapterResult: React.FunctionComponent<Props> = ({
                 page_size: item.page_size,
             },
         });
-        router.push(`/${typeConfig.result}`);
+        router.push(`/${TypeConfig.result}`);
     }
 
     return (

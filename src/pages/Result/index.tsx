@@ -2,8 +2,7 @@ import { connect } from 'dva';
 import React, { useEffect } from 'react';
 import { FormattedMessage } from 'umi-plugin-locale';
 import Loading from '../../components/Loading';
-import { typeConfig } from '../../utils';
-import { SharedState } from '../../type';
+import { SharedState, TypeConfig } from '../../type';
 import styles from './index.less';
 
 type Props = {
@@ -12,7 +11,7 @@ type Props = {
     shared: SharedState;
 }
 
-const DownloadResult: React.FunctionComponent<Props> = ({
+const Result: React.FunctionComponent<Props> = ({
     download: {
         downloadPath,
         result,
@@ -25,7 +24,7 @@ const DownloadResult: React.FunctionComponent<Props> = ({
                 url: currentUrl,
                 name: params.name,
                 page_size: params.page_size,
-                type: typeConfig.download,
+                type: TypeConfig.download,
             },
         });
     }, []);
@@ -51,8 +50,11 @@ type ConnectProps = {
     download: any;
     shared: SharedState;
 }
+export {
+    Result,
+};
 
 export default connect(({ download, shared }: ConnectProps) => ({
     download,
     shared,
-}))(DownloadResult);
+}))(Result);

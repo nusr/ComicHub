@@ -1,6 +1,6 @@
 import * as Koa from 'koa';
 import config from '../shared';
-import statusCodes from './config';
+import statusCodes from '../shared/statusCode';
 import { getLanguageData } from '../locales';
 
 const FAIL_MATCH = -1;

@@ -32,7 +32,7 @@
         "@types/dotenv": "^6.1.1",
         "@types/koa": "^2.0.48",
         "@types/koa-bodyparser": "^4.2.2",
-        "@types/koa-mount": "^4.0.0",
+        "@types/koa-mount": "^3.0.1",
         "@types/koa-router": "^7.0.40",
         "@types/lodash": "^4.14.134",
         "@types/mustache": "^0.8.32",

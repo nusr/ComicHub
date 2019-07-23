@@ -3,8 +3,9 @@ import React, { useEffect, useState } from 'react';
 import { FormattedMessage } from 'umi-plugin-locale';
 import CommonFooter from '../../components/CommonFooter';
 import CommonHeader from '../../components/CommonHeader';
-import { typeConfig } from '../../utils';
+import SelectLang from '../../components/SelectLang';
 import styles from './index.less';
+import { TypeConfig } from '../../type';
 
 const { Header, Footer, Content } = Layout;
 const { Step } = Steps;
@@ -16,13 +17,13 @@ type Props = {
 
 export function getCurrentStep(type: string = ''): number {
     switch (type) {
-        case typeConfig.search:
+        case TypeConfig.search:
             return 0;
-        case typeConfig.chapter:
+        case TypeConfig.chapter:
             return 1;
-        case typeConfig.download:
+        case TypeConfig.download:
             return 2;
-        case typeConfig.result:
+        case TypeConfig.result:
             return 3;
         default:
             return 0;
@@ -44,7 +45,9 @@ const HomePage: React.FunctionComponent<Props> = ({
     return (
         <Layout className={styles.container}>
             <Header>
-                <CommonHeader />
+                <CommonHeader>
+                    <SelectLang />
+                </CommonHeader>
             </Header>
             <Content>
                 <Card>

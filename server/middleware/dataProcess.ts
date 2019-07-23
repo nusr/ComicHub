@@ -5,7 +5,7 @@ import { apiType } from '../shared';
 import {
     IChapterMysql, IRequestData, ISearchMysql, IObject,
 } from '../type';
-import statusCodes from './config';
+import statusCodes from '../shared/statusCode';
 import generateBook from '../utils/generateBook';
 import { getLanguageData } from '../locales';
 

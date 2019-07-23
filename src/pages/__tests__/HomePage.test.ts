@@ -1,12 +1,12 @@
 import { getCurrentStep } from '../HomePage';
-import { typeConfig } from '../../utils';
+import { TypeConfig } from '../../type';
 
 describe('getCurrentStep', () => {
     it('getCurrentStep Should Right Result', () => {
-        expect(getCurrentStep(typeConfig.search)).toBe(0);
-        expect(getCurrentStep(typeConfig.chapter)).toBe(1);
-        expect(getCurrentStep(typeConfig.download)).toBe(2);
-        expect(getCurrentStep(typeConfig.result)).toBe(3);
+        expect(getCurrentStep(TypeConfig.search)).toBe(0);
+        expect(getCurrentStep(TypeConfig.chapter)).toBe(1);
+        expect(getCurrentStep(TypeConfig.download)).toBe(2);
+        expect(getCurrentStep(TypeConfig.result)).toBe(3);
     });
     it('getCurrentStep Should Handle Non String', () => {
         expect(getCurrentStep()).toBe(0);

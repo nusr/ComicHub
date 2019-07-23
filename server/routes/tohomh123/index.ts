@@ -6,7 +6,6 @@ import { IRequestData } from '../../type';
 
 const tuHao = async (ctx: Koa.BaseContext) => {
     const { type, name, page_size: pageSize }: IRequestData = ctx.request.body;
-    console.log(type, name);
     let temp: any;
     if (apiType.search === type) {
         const response = await axios.get(util.getSearchUrl(name));

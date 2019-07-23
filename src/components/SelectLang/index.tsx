@@ -12,7 +12,6 @@ type Event = {
 const SelectLang: React.FunctionComponent = () => {
     function changeLang(event: Event) {
         const { key } = event;
-        // @ts-ignore
         setLocale(key);
     }
 

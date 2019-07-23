@@ -2,8 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'dva';
 import router from 'umi/router';
 import SearchForm from '../../components/SearchForm';
-import { IFormData, MenuItem } from '../../type';
-import { typeConfig } from '../../utils';
+import { IFormData, MenuItem, TypeConfig } from '../../type';
 
 type Props = {
     dispatch: any;
@@ -45,7 +44,7 @@ const HomePage: React.FunctionComponent<Props> = ({
                     noCache: Number(!value.cache),
                 },
             });
-            router.push(`/${typeConfig.chapter}`);
+            router.push(`/${TypeConfig.chapter}`);
         }
     }
 

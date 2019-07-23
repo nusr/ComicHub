@@ -27,12 +27,3 @@ export function renderDate(temp: number | string): string {
     const second: number = date.getSeconds();
     return `${year}-${addZero(month)}-${addZero(day)} ${addZero(hour)}:${addZero(minute)}:${addZero(second)}`;
 }
-
-
-export enum typeConfig {
-    chapter = 'chapter',
-    downloadAll = 'downloadAll',
-    download = 'images',
-    search = 'search',
-    result = 'result',
-}

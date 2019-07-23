@@ -1,5 +1,4 @@
 import { notification } from 'antd';
-import fetch from 'dva/fetch';
 import { formatMessage } from 'umi-plugin-locale';
 
 function checkStatus(response: any) {
@@ -51,12 +50,10 @@ export default function request(url: string, options = {}) {
             };
         }
     }
-    // @ts-ignore
     return fetch(url, newOptions)
         .then(checkStatus)
         .then((response: any) => response.json())
         .catch((error: Error) => {
-            // @ts-ignore
             const title = formatMessage({ id: `utils.request.${error.name}` }) || error.name || formatMessage({ id: 'utils.request.status.error' });
             if (process.env.NODE_ENV === 'development') {
                 return;

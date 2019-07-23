@@ -9,3 +9,4 @@ src/global.ts
 logs
 tmp
 src/typing.d.ts
+src/pages/.umi

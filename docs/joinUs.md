@@ -26,6 +26,6 @@
 
 使用环境变量用作配置，绝大部分配置都可以在 [../.env](../.env) 中进行配置。前端和服务端的配置均在里面。
 
-服务端配置文件: [../server/shared/config.ts](../server/shared/config.ts)
+服务端配置文件: [../server/shared/config.ts](../server/shared/statusCode.ts)
 
 前端 Webpack 配置文件夹: [../config](../config)

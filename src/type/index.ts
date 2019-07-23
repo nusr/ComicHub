@@ -26,3 +26,11 @@ export interface IOptionData {
     name: string;
     enabled: boolean;
 }
+
+export enum TypeConfig {
+    chapter = 'chapter',
+    downloadAll = 'downloadAll',
+    download = 'images',
+    search = 'search',
+    result = 'result',
+}

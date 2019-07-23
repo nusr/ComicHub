@@ -1,6 +1,6 @@
 import * as Koa from 'koa';
 import logger from '../utils/logger';
-import statusCodes from './config';
+import statusCodes from '../shared/statusCode';
 import { getLanguageData } from '../locales';
 
 const errorHandler = async (ctx: Koa.BaseContext, next: () => Promise<any>) => {
