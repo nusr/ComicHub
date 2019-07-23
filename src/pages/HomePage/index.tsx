@@ -10,7 +10,7 @@ const { Header, Footer, Content } = Layout;
 const { Step } = Steps;
 
 type Props = {
-    children: React.ReactChild;
+    children?: React.ReactChild;
     location: any;
 };
 

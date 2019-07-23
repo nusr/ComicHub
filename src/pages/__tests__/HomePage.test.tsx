@@ -1,4 +1,3 @@
-import 'jest';
 import { getCurrentStep } from '../HomePage';
 import { typeConfig } from '../../utils';
 

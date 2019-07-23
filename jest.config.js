@@ -5,17 +5,20 @@ module.exports = {
         '/node_modules/',
         '/server/node_modules/',
     ],
-    collectCoverageFrom: ['src/**/*.{ts,tsx}', 'server/**/*.{ts,tsx}'],
+    collectCoverageFrom: ['src/components/**/*.{ts,tsx}', 'src/pages/**/*.{ts,tsx}', '**/utils/**/*.{ts,tsx}', 'server/middleware/**/*.{ts,tsx}', 'server/routes/**/*.{ts,tsx}', '!**/(en-US|zh-CN)/**/*.{ts,tsx}'],
     coveragePathIgnorePatterns: [
         '/node_modules/',
         '/server/node_modules/',
     ],
+    transform: {
+        '^.+\\.tsx?$': 'ts-jest',
+    },
     coverageThreshold: {
         global: {
             functions: 15,
             lines: 25,
             statements: 25,
-            branches: 25,
+            branches: 22,
         },
     },
     bail: true,
