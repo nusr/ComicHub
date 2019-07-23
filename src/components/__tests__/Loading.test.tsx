@@ -8,9 +8,4 @@ describe('Component: Loading', () => {
         const testInstance = wrapper.root;
         expect(testInstance.children.length).toBe(1);
     });
-    it('Component: Loading Snapshots', () => {
-        const tree = renderer.create(<Loading />).toJSON();
-
-        expect(tree).toMatchSnapshot();
-    });
 });
