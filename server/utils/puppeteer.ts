@@ -32,3 +32,24 @@ export const DESKTOP_WINDOW_SIZE = {
   height: 768,
 };
 export default puppeteerBrowser;
+
+export function getHtml(selector: string = 'html'): string {
+  const dom: JsObject | null = document.querySelector(selector);
+  if (!dom) {
+    return '';
+  }
+  return dom.innerHTML;
+}
+
+export function scrollToBottom(): void {
+  const dom: JsObject = document.scrollingElement || {};
+  let lastScrollTop: number = dom.scrollTop;
+  const scroll = () => {
+    dom.scrollTop += 200;
+    if (dom.scrollTop !== lastScrollTop) {
+      lastScrollTop = dom.scrollTop;
+      requestAnimationFrame(scroll);
+    }
+  };
+  scroll();
+}

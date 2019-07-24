@@ -10,12 +10,11 @@ describe('puppeteer', () => {
       await page.goto('https://github.com/nusr/ComicHub', {
         waitUntil: 'domcontentloaded',
       });
-      // @ts-ignore
       const html = await page.evaluate(() => document.body.innerHTML);
       expect(html.length).toBeGreaterThan(0);
 
       await browser.close();
     },
-    DELAY_TIME
+    DELAY_TIME,
   );
 });

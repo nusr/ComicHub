@@ -3,7 +3,7 @@ import { IRequestData } from '../../type';
 import axios from '../../utils/axios';
 import util from './utils';
 import { apiType } from '../../shared';
-import puppeteer, { DESKTOP_WINDOW_SIZE } from '../../utils/puppeteer';
+import puppeteer, { DESKTOP_WINDOW_SIZE, getHtml } from '../../utils/puppeteer';
 
 const DELAY_TIME = 500;
 const manHuaGui = async (ctx: Koa.BaseContext) => {
@@ -26,9 +26,8 @@ const manHuaGui = async (ctx: Koa.BaseContext) => {
     await page.goto(name, {
       waitUntil: 'networkidle0',
     });
-    // @ts-ignore
     const html = await page.evaluate(
-      () => document.querySelector('html').innerHTML
+      getHtml,
     );
     const imageSrc = util.getDownloadItem(html);
     temp.push({
@@ -40,9 +39,8 @@ const manHuaGui = async (ctx: Koa.BaseContext) => {
       const nextItem = await page.$('#next');
       nextItem.click();
       await page.waitFor(DELAY_TIME);
-      // @ts-ignore
       const otherHtml = await page.evaluate(
-        () => document.querySelector('html').innerHTML
+        getHtml,
       );
       const otherImage = util.getDownloadItem(otherHtml);
       temp.push({

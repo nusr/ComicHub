@@ -3,9 +3,10 @@ import util from './utils';
 import axios from '../../utils/axios';
 import { apiType } from '../../shared';
 import { IRequestData } from '../../type';
-import puppeteer from '../../utils/puppeteer';
+import puppeteer, { getHtml, scrollToBottom } from '../../utils/puppeteer';
 
 const WAIT_TIME = 1000;
+
 const tuHao = async (ctx: Koa.BaseContext) => {
   const { type, name }: IRequestData = ctx.request.body;
   let temp: any;
@@ -33,27 +34,10 @@ const tuHao = async (ctx: Koa.BaseContext) => {
 
     await page.waitFor(WAIT_TIME);
 
-    await page.evaluate(() => {
-      // @ts-ignore
-      let lastScrollTop: number = document.scrollingElement.scrollTop;
-      const scroll = () => {
-        // @ts-ignore
-        document.scrollingElement.scrollTop += 200;
-        // @ts-ignore
-        if (document.scrollingElement.scrollTop !== lastScrollTop) {
-          // @ts-ignore
-          lastScrollTop = document.scrollingElement.scrollTop;
-          requestAnimationFrame(scroll);
-        }
-      };
-      scroll();
-    });
+    await page.evaluate(scrollToBottom);
 
     await page.waitFor(WAIT_TIME * 2);
-    // @ts-ignore
-    const html = await page.evaluate(
-      () => document.querySelector('html').innerHTML
-    );
+    const html = await page.evaluate(getHtml);
 
     temp = util.getDownloadList(html);
     await browser.close();

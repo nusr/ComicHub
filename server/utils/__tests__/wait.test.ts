@@ -7,7 +7,7 @@ describe('wait', () => {
     await wait(100);
 
     const endDate: any = new Date();
-    expect(endDate - startDate).toBeGreaterThan(90);
-    expect(endDate - startDate).toBeLessThan(110);
+    expect(endDate - startDate).toBeGreaterThan(80);
+    expect(endDate - startDate).toBeLessThan(120);
   });
 });
