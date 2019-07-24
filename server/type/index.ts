@@ -41,6 +41,3 @@ export interface IRequestData {
   noCache?: boolean; // 使用不查找数据库 ,为 true 不查找
 }
 
-export interface IObject {
-  [key: string]: string;
-}

@@ -1,10 +1,9 @@
 import configData from '../shared';
 import zhCN from './zh-CN';
 import enUS from './en-US';
-import { IObject } from '../type';
 
 type LanguageMap = {
-  [key: string]: IObject;
+  [key: string]: JsObject;
 };
 const languageMap: LanguageMap = {
   'zh-CN': zhCN,
@@ -15,7 +14,7 @@ export function getLanguageData(
   id: string,
   language: string = configData.language
 ): string {
-  const data: IObject = languageMap[language];
+  const data: JsObject = languageMap[language];
   if (data && data[id]) {
     return data[id];
   }

@@ -1,5 +1,4 @@
 import { Button, Form, Input, Select } from 'antd';
-import { WrappedFormUtils } from 'antd/lib/form/Form.d';
 import { FormattedMessage, formatMessage } from 'umi-plugin-locale';
 import React, { useEffect } from 'react';
 import { IFormData, IOptionData, MenuItem } from '../../type';
@@ -8,7 +7,7 @@ const FormItem = Form.Item;
 
 type Props = {
   menuList: MenuItem[];
-  form: WrappedFormUtils;
+  form: JsObject;
   handleFormSubmit: (data: IFormData) => void;
 };
 

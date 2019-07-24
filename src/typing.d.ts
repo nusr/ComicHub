@@ -9,6 +9,6 @@ declare module '*.jpeg';
 declare module '*.gif';
 declare module '*.bmp';
 declare module '*.tiff';
-declare type JsObject = {
+declare interface JsObject {
   [key: string]: any;
 }

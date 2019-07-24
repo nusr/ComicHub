@@ -1,7 +1,7 @@
 module.exports = {
   verbose: true,
   rootDir: __dirname,
-  testMatch: ['**/__tests__/**/*.[jt]s?(x)', '**/?(*.)+(spec|test).[jt]s?(x)'],
+  testMatch: ['**/?(*.)+(spec|test).ts?(x)'],
   // testMatch: ['**/src/**/*.test.(ts|tsx)'],
   testPathIgnorePatterns: ['/node_modules/', '/server/node_modules/'],
   collectCoverageFrom: [
@@ -19,14 +19,11 @@ module.exports = {
       '<rootDir>/__mock__/jest.fileMock.js',
     '~(.*)$': '<rootDir>/src$1',
   },
-  transform: {
-    '^.+\\.tsx?$': 'ts-jest',
-  },
   coverageThreshold: {
     global: {
       functions: 22,
-      lines: 35,
-      statements: 35,
+      lines: 25,
+      statements: 25,
       branches: 22,
     },
   },

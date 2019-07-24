@@ -2,7 +2,7 @@ import * as Koa from 'koa';
 import _ from 'lodash';
 import mysqlService from '../service';
 import { apiType } from '../shared';
-import { IChapterMysql, IRequestData, ISearchMysql, IObject } from '../type';
+import { IChapterMysql, IRequestData, ISearchMysql} from '../type';
 import statusCodes from '../shared/statusCode';
 import generateBook from '../utils/generateBook';
 import { getLanguageData } from '../locales';
@@ -28,7 +28,7 @@ function handleEmpty(stateType: string): EmptyData {
 }
 
 function filterArray<T>(data: T[] = []): T[] {
-  const record: IObject = {};
+  const record: JsObject = {};
   const result: T[] = [];
   data.forEach((item: any) => {
     if (item.url && !record[item.url]) {

@@ -9,5 +9,5 @@ src/global.ts
 logs
 tmp
 **/*.snap
-typing.d.ts
+src/typing.d.ts
 src/pages/.umi
