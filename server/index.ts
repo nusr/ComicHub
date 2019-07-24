@@ -14,8 +14,8 @@ import router from './router';
 
 import apiResponseHandler from './middleware/apiResponseHandler';
 
-process.on('uncaughtException', (e) => {
-    logger.error(`uncaughtException: ${e}`);
+process.on('uncaughtException', e => {
+  logger.error(`uncaughtException: ${e}`);
 });
 
 logger.info('Comic start!');
@@ -30,7 +30,7 @@ app.use(header);
 app.use(accessControl);
 
 app.context.debug = {
-    request: 0,
+  request: 0,
 };
 
 app.use(apiResponseHandler);
@@ -42,12 +42,12 @@ app.use(mysql);
 app.use(mount('/', router.routes())).use(router.allowedMethods());
 let koaPort: number = config.serverPort;
 if (process.env.NODE_ENV === 'test') {
-    koaPort = _.random(5000, 8000);
+  koaPort = _.random(5000, 8000);
 }
 const server: any = app.listen(koaPort);
 logger.info(`Running in http://localhost:${koaPort}`);
 
 export default {
-    app,
-    server,
+  app,
+  server,
 };

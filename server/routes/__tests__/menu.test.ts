@@ -6,12 +6,12 @@ const { server } = koaServer;
 const request = superTest(server);
 
 afterAll(() => {
-    server.close();
+  server.close();
 });
 
 describe('Test /menu Api', () => {
-    it('/menu should result right result', async () => {
-        const response: superTest.Response = await request.get('/menu');
-        expect(response.text).toBe(JSON.stringify(urlConfig));
-    });
+  it('/menu should result right result', async () => {
+    const response: superTest.Response = await request.get('/menu');
+    expect(response.text).toBe(JSON.stringify(urlConfig));
+  });
 });

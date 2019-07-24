@@ -9,12 +9,12 @@ import u17 from '../routes/u17';
 
 const router = new Router();
 router.get('/', async (ctx: Koa.Context) => {
-    ctx.set({
-        'Cache-Control': 'no-cache',
-    });
-    ctx.body = {
-        request: ctx.debug.request,
-    };
+  ctx.set({
+    'Cache-Control': 'no-cache',
+  });
+  ctx.body = {
+    request: ctx.debug.request,
+  };
 });
 
 // Test

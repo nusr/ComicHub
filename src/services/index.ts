@@ -1,22 +1,22 @@
 import request from '../utils/request';
 
 interface PostData {
-    url: string ;
-    [index: string]: string;
+  url: string;
+  [index: string]: string;
 }
 
 export async function getMenuList() {
-    return request('/v1/menu');
+  return request('/v1/menu');
 }
 
 export async function postItem(params: PostData) {
-    const { url = '', ...rest } = params;
-    if (!url) {
-        return null;
-    }
-    const realUrl = `/v1/${url}`;
-    return request(realUrl, {
-        method: 'POST',
-        body: rest,
-    });
+  const { url = '', ...rest } = params;
+  if (!url) {
+    return null;
+  }
+  const realUrl = `/v1/${url}`;
+  return request(realUrl, {
+    method: 'POST',
+    body: rest,
+  });
 }

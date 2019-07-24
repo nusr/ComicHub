@@ -1,25 +1,25 @@
 {
-    "compilerOptions": {
-        "module": "CommonJS",
-        "esModuleInterop": true,
-        "target": "ESNext",
-        "noImplicitAny": true,
-        "strict": true,
-        "alwaysStrict": true,
-        "moduleResolution": "node",
-        "sourceMap": true,
-        "outDir": "dist",
-        "baseUrl": "."
-    },
-    "include": [
-        "routes/**/*",
-        "index.ts",
-        "middleware/*",
-        "sql/*",
-        "router/*",
-        "service/*",
-        "shared/*",
-        "utils/*",
-        "type/*"
-    ]
+  "compilerOptions": {
+    "module": "CommonJS",
+    "esModuleInterop": true,
+    "target": "ESNext",
+    "noImplicitAny": true,
+    "strict": true,
+    "alwaysStrict": true,
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "outDir": "dist",
+    "baseUrl": "."
+  },
+  "include": [
+    "routes/**/*",
+    "index.ts",
+    "middleware/*",
+    "sql/*",
+    "router/*",
+    "service/*",
+    "shared/*",
+    "utils/*",
+    "type/*"
+  ]
 }

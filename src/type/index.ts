@@ -1,36 +1,36 @@
 type Params = {
-    name: string;
-    page_size?: number;
-    noCache?: number;
-}
+  name: string;
+  page_size?: number;
+  noCache?: number;
+};
 
 export interface SharedState {
-    currentUrl: string;
-    params: Params;
+  currentUrl: string;
+  params: Params;
 }
 
 export interface MenuItem {
-    value: string;
-    enabled: boolean;
-    name: string;
+  value: string;
+  enabled: boolean;
+  name: string;
 }
 
 export interface IFormData {
-    url: string;
-    name: string;
-    cache: boolean;
+  url: string;
+  name: string;
+  cache: boolean;
 }
 
 export interface IOptionData {
-    value: string | number;
-    name: string;
-    enabled: boolean;
+  value: string | number;
+  name: string;
+  enabled: boolean;
 }
 
 export enum TypeConfig {
-    chapter = 'chapter',
-    downloadAll = 'downloadAll',
-    download = 'images',
-    search = 'search',
-    result = 'result',
+  chapter = 'chapter',
+  downloadAll = 'downloadAll',
+  download = 'images',
+  search = 'search',
+  result = 'result',
 }

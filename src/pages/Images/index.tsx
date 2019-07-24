@@ -10,116 +10,111 @@ import { IChapterItem } from '../../../server/type';
 import { SharedState, TypeConfig } from '../../type';
 
 const chapterColumns = [
-    {
-        dataIndex: 'id',
-        title: 'ID',
-    },
-    {
-        dataIndex: 'title',
-        title: <FormattedMessage id="page.Chapter.table.title" />,
-    },
-    {
-        dataIndex: 'url',
-        title: <FormattedMessage id="page.Chapter.table.url" />,
-        render: (text: string) => (
-            <a title={text} target="_blank" href={text} rel="noopener noreferrer">
-                {text}
-            </a>
-        ),
-
-    },
-    {
-        dataIndex: 'page_size',
-        title: <FormattedMessage id="page.Images.table.page_size" />,
-    },
-    {
-        dataIndex: 'create_time',
-        title: <FormattedMessage id="page.Chapter.table.create_time" />,
-        render: renderDate,
-    },
+  {
+    dataIndex: 'id',
+    title: 'ID',
+  },
+  {
+    dataIndex: 'title',
+    title: <FormattedMessage id="page.Chapter.table.title" />,
+  },
+  {
+    dataIndex: 'url',
+    title: <FormattedMessage id="page.Chapter.table.url" />,
+    render: (text: string) => (
+      <a title={text} target="_blank" href={text} rel="noopener noreferrer">
+        {text}
+      </a>
+    ),
+  },
+  {
+    dataIndex: 'page_size',
+    title: <FormattedMessage id="page.Images.table.page_size" />,
+  },
+  {
+    dataIndex: 'create_time',
+    title: <FormattedMessage id="page.Chapter.table.create_time" />,
+    render: renderDate,
+  },
 ];
 
 type Props = {
-    dispatch: any;
-    loading: boolean;
-    list: IChapterItem[];
-    shared: SharedState;
+  dispatch: (params: { type: string; payload: any }) => void;
+  loading: boolean;
+  list: IChapterItem[];
+  shared: SharedState;
 };
-
 
 const ChapterResult: React.FunctionComponent<Props> = ({
-    dispatch,
-    loading,
-    list = [],
-    shared: { currentUrl, params },
+  dispatch,
+  loading,
+  list = [],
+  shared: { currentUrl, params },
 }) => {
-    const [
-        selectedRows,
-        setSelectedRows,
-    ] = useState<IChapterItem[]>([]);
-    const checkType = 'radio';
+  const [selectedRows, setSelectedRows] = useState<IChapterItem[]>([]);
+  const checkType = 'radio';
 
-    useEffect(() => {
-        dispatch({
-            type: 'common/fetch',
-            payload: {
-                url: currentUrl,
-                name: params.name,
-                type: TypeConfig.chapter,
-            },
-        });
-    }, []);
+  useEffect(() => {
+    dispatch({
+      type: 'common/fetch',
+      payload: {
+        url: currentUrl,
+        name: params.name,
+        type: TypeConfig.chapter,
+      },
+    });
+  }, []);
 
-    function handleSelectRows(value: IChapterItem[]) {
-        setSelectedRows(value);
+  function handleSelectRows(value: IChapterItem[]) {
+    setSelectedRows(value);
+  }
+
+  function handleChapterSubmit() {
+    if (!selectedRows || selectedRows.length === 0) {
+      message.error(<FormattedMessage id="page.Images.select.tip" />);
+      return;
     }
+    const item = selectedRows[0];
 
-    function handleChapterSubmit() {
-        if (!selectedRows || selectedRows.length === 0) {
-            message.error(<FormattedMessage id="page.Images.select.tip" />);
-            return;
-        }
-        const item = selectedRows[0];
+    dispatch({
+      type: 'shared/changeParams',
+      payload: {
+        name: item.url,
+        page_size: item.page_size,
+      },
+    });
+    router.push(`/${TypeConfig.result}`);
+  }
 
-        dispatch({
-            type: 'shared/changeParams',
-            payload: {
-                name: item.url,
-                page_size: item.page_size,
-            },
-        });
-        router.push(`/${TypeConfig.result}`);
-    }
-
-    return (
-        <Fragment>
-            <div className={styles.submit}>
-                <Button
-                    type="primary"
-                    onClick={handleChapterSubmit}
-                    disabled={selectedRows.length === 0}
-                >
-                    <FormattedMessage id="component.button.submit" />
-                </Button>
-            </div>
-            <DumpTable
-                loading={loading}
-                checkType={checkType}
-                selectedRows={selectedRows}
-                data={list}
-                columns={chapterColumns}
-                onSelectRow={handleSelectRows}
-            />
-        </Fragment>
-    );
+  return (
+    <Fragment>
+      <div className={styles.submit}>
+        <Button
+          type="primary"
+          onClick={handleChapterSubmit}
+          disabled={selectedRows.length === 0}
+        >
+          <FormattedMessage id="component.button.submit" />
+        </Button>
+      </div>
+      <DumpTable
+        loading={loading}
+        checkType={checkType}
+        selectedRows={selectedRows}
+        data={list}
+        columns={chapterColumns}
+        onSelectRow={handleSelectRows}
+      />
+    </Fragment>
+  );
 };
 type ConnectProps = {
-    loading: any;
-    common: any;
-    shared: SharedState;
+  loading: any;
+  common: any;
+  shared: SharedState;
 };
 export default connect(({ loading, common, shared }: ConnectProps) => ({
-    loading: loading.models.common,
-    list: common.list,
-    shared,
+  loading: loading.models.common,
+  list: common.list,
+  shared,
 }))(ChapterResult);

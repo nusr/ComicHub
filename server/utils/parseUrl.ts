@@ -4,34 +4,31 @@ import _ from 'lodash';
 const maxLength = 4;
 
 function getReferer(link: string): string {
-    const result = urlModule.parse(link);
-    return `${result.protocol || ''}//${result.host || ''}`;
+  const result = urlModule.parse(link);
+  return `${result.protocol || ''}//${result.host || ''}`;
 }
 
 function filterIllegalPath(filePath: string): string {
-    const result = filePath.replace(/[^\da-z\u4e00-\u9fa5]/gi, '');
-    return result;
+  const result = filePath.replace(/[^\da-z\u4e00-\u9fa5]/gi, '');
+  return result;
 }
 
 function numToString(num: number): string {
-    if (!_.isNumber(num)) {
-        return '';
-    }
-    const temp: number = maxLength - num.toString().length;
-    if (temp <= 0) {
-        return _.toString(num);
-    }
-    const zero = new Array(temp).fill(0)
-        .join('');
-    return `${zero}${num}`;
+  if (!_.isNumber(num)) {
+    return '';
+  }
+  const temp: number = maxLength - num.toString().length;
+  if (temp <= 0) {
+    return _.toString(num);
+  }
+  const zero = new Array(temp).fill(0).join('');
+  return `${zero}${num}`;
 }
 
 function getComicSite(url: string): string {
-    const temp: string[] = url.split('.');
-    temp.pop();
-    return _.last(temp) || '';
+  const temp: string[] = url.split('.');
+  temp.pop();
+  return _.last(temp) || '';
 }
 
-export {
-    getReferer, filterIllegalPath, numToString, getComicSite,
-};
+export { getReferer, filterIllegalPath, numToString, getComicSite };

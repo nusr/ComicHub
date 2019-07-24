@@ -5,20 +5,20 @@ import { apiType } from '../../shared';
 import { IRequestData } from '../../type';
 
 const tuHao = async (ctx: Koa.BaseContext) => {
-    const { type, name, page_size: pageSize }: IRequestData = ctx.request.body;
-    let temp: any;
-    if (apiType.search === type) {
-        const response = await axios.get(util.getSearchUrl(name));
-        temp = util.getSearchList(response.data);
-    }
-    if (apiType.chapter === type) {
-        const response = await axios.get(name);
-        temp = util.getChapterList(response.data);
-    }
-    if (apiType.download === type) {
-        const response = await axios.get(name);
-        temp = util.getDownloadItem(response.data, pageSize);
-    }
-    ctx.state.data = temp;
+  const { type, name, page_size: pageSize }: IRequestData = ctx.request.body;
+  let temp: any;
+  if (apiType.search === type) {
+    const response = await axios.get(util.getSearchUrl(name));
+    temp = util.getSearchList(response.data);
+  }
+  if (apiType.chapter === type) {
+    const response = await axios.get(name);
+    temp = util.getChapterList(response.data);
+  }
+  if (apiType.download === type) {
+    const response = await axios.get(name);
+    temp = util.getDownloadItem(response.data, pageSize);
+  }
+  ctx.state.data = temp;
 };
 export default tuHao;
