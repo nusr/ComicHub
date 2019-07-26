@@ -2,7 +2,6 @@ module.exports = {
   verbose: true,
   rootDir: __dirname,
   testMatch: ['**/?(*.)+(spec|test).ts?(x)'],
-  // testMatch: ['**/src/**/*.test.(ts|tsx)'],
   testPathIgnorePatterns: ['/node_modules/', '/server/node_modules/'],
   collectCoverageFrom: [
     'src/components/**/*.{ts,tsx}',
@@ -10,6 +9,7 @@ module.exports = {
     '**/utils/**/*.{ts,tsx}',
     'server/middleware/**/*.{ts,tsx}',
     'server/routes/**/*.{ts,tsx}',
+    '!**/type/**/*.ts',
   ],
   coveragePathIgnorePatterns: ['/node_modules/', '/server/node_modules/'],
   moduleNameMapper: {

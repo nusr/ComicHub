@@ -14,5 +14,8 @@
     "noImplicitAny": true,
     "alwaysStrict": true,
     "allowSyntheticDefaultImports": true
-  }
+  },
+  "include": [
+    "src"
+  ]
 }

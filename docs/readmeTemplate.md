@@ -11,7 +11,6 @@
 [![Test coverage](https://img.shields.io/codecov/c/github/nusr/ComicHub.svg?style=flat-square)](https://codecov.io/github/nusr/ComicHub?branch=master)
 [![codebeat badge](https://codebeat.co/badges/d9f586aa-2e0a-4999-ad9a-4f51cb6f4fae)](https://codebeat.co/projects/github-com-nusr-comichub-master)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/9600f74529c7446292b20527855f6aea)](https://www.codacy.com/app/nusr/ComicHub?utm_source=github.com&utm_medium=referral&utm_content=nusr/ComicHub&utm_campaign=Badge_Grade)
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fnusr%2FComicHub.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fnusr%2FComicHub?ref=badge_shield)
 [![DeepScan grade](https://deepscan.io/api/teams/4611/projects/6382/branches/52943/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=4611&pid=6382&bid=52943)
 ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/nusr/ComicHub/master.svg)
 ![GitHub commit activity the past week, 4 weeks, year](https://img.shields.io/github/commit-activity/y/nusr/ComicHub.svg)
@@ -53,10 +52,7 @@ ComicHub 是一款漫画下载器。爬取漫画网站的图片，生成 PDF 文
 
 更多站点，敬请期待！
 
-{{#siteList}}
-
-1. [{{ name }}]({{ &base }})
-   {{/siteList}}
+---comic-site--
 
 ## 装包
 

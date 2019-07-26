@@ -6,7 +6,7 @@
 
 ## 不要直接修改 README.md 文件
 
-请修改 [readmeTemplate.md](readmeTemplate.md)，**README.md** 使用 mustache 渲染生成。
+修改 [readmeTemplate.md](readmeTemplate.md)
 
 添加爬取站点或者修改了 [readmeTemplate.md](readmeTemplate.md)，`git add` 前运行 `npm run readme`，刷新 **README.md** 。
 
