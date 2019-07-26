@@ -7,8 +7,8 @@ export default {
   },
   effects: {
     *fetch(
-      { payload }: { payload: any },
-      { call, put }: { call: any; put: any }
+      { payload }: { payload: JsObject },
+      { call, put }: { call: Function; put: Function }
     ) {
       const response = yield call(postItem, payload);
       yield put({
@@ -22,7 +22,7 @@ export default {
       state: {
         list: any[];
       },
-      { payload }: { payload: any }
+      { payload }: { payload: JsObject }
     ) {
       return {
         ...state,

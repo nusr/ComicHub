@@ -5,7 +5,7 @@ import urlConfig from '../shared/urlConfig';
 import logger from './logger';
 import { UrlConfigItem } from '../shared/type';
 
-function generateMarkdown() {
+function generateMarkdown(): void {
   const sourceFilePath = Path.join(process.cwd(), '../docs/readmeTemplate.md');
   const template = fs.readFileSync(sourceFilePath, 'utf8');
   const result = Object.values(urlConfig);

@@ -64,7 +64,7 @@ const getChapterList = (data: string): IChapterItem[] => {
 };
 
 function getDownloadItem(data: string, pageSize: number): IImageItem[] {
-  const linkResult: any = data.match(/var pl = '([\s\S]*)';\s*var bqimg/);
+  const linkResult: string[] = (data.match(/var pl = '([\s\S]*)';\s*var bqimg/)) as string[];
   const [, link] = linkResult;
   if (!link) {
     return [];

@@ -60,7 +60,7 @@ module.exports = {
     '@typescript-eslint/indent': ['error', intentSize, { SwitchCase: 1 }],
     '@typescript-eslint/prefer-interface': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
-    '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/no-explicit-any': 'warn',
     '@typescript-eslint/camelcase': 'off',
     '@typescript-eslint/interface-name-prefix': 'off',
     'require-atomic-updates': 'off',

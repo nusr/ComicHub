@@ -39,7 +39,7 @@ const chapterColumns = [
 ];
 
 type Props = {
-  dispatch: (params: { type: string; payload: any }) => void;
+  dispatch: (params: { type: string; payload: object }) => void;
   loading: boolean;
   list: IChapterItem[];
   shared: SharedState;
@@ -65,11 +65,11 @@ const ChapterResult: React.FunctionComponent<Props> = ({
     });
   }, []);
 
-  function handleSelectRows(value: IChapterItem[]) {
+  function handleSelectRows(value: IChapterItem[]): void {
     setSelectedRows(value);
   }
 
-  function handleChapterSubmit() {
+  function handleChapterSubmit(): void {
     if (!selectedRows || selectedRows.length === 0) {
       message.error(<FormattedMessage id="page.Images.select.tip" />);
       return;
@@ -109,8 +109,8 @@ const ChapterResult: React.FunctionComponent<Props> = ({
   );
 };
 type ConnectProps = {
-  loading: any;
-  common: any;
+  loading: JsObject;
+  common: JsObject;
   shared: SharedState;
 };
 export default connect(({ loading, common, shared }: ConnectProps) => ({

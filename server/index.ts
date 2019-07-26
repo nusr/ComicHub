@@ -1,9 +1,9 @@
 import Koa from 'koa';
 import mount from 'koa-mount';
 import _ from 'lodash';
+import { Server } from 'http';
 import bodyParser from 'koa-bodyparser';
 import config from './shared';
-
 import logger from './utils/logger';
 import errorHandler from './middleware/onerror';
 import header from './middleware/header';
@@ -20,7 +20,7 @@ process.on('uncaughtException', e => {
 
 logger.info('Comic start!');
 
-const app: any = new Koa();
+const app: Koa = new Koa();
 app.proxy = true;
 
 app.use(errorHandler);
@@ -38,13 +38,13 @@ app.use(apiResponseHandler);
 app.use(bodyParser());
 
 app.use(mysql);
-// @ts-ignore
-app.use(mount('/', router.routes())).use(router.allowedMethods());
+const realRouters = router.routes();
+app.use(mount('/', realRouters as Koa.Middleware)).use(router.allowedMethods());
 let koaPort: number = config.serverPort;
 if (process.env.NODE_ENV === 'test') {
   koaPort = _.random(5000, 8000);
 }
-const server: any = app.listen(koaPort);
+const server: Server = app.listen(koaPort);
 logger.info(`Running in http://localhost:${koaPort}`);
 
 export default {

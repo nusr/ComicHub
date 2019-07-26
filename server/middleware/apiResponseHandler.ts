@@ -4,20 +4,16 @@ import statusCodes from '../shared/statusCode';
 
 const responseHandler = async (
   ctx: Koa.BaseContext,
-  next: () => Promise<any>
-) => {
+  next: Function,
+)=> {
   ctx.res.statusCodes = statusCodes;
   ctx.statusCodes = ctx.res.statusCodes;
 
   ctx.res.success = ({
     statusCode,
-    data = null,
-    message = null,
-  }: {
-    statusCode: any;
-    data: any;
-    message: any;
-  }) => {
+    data,
+    message,
+  }: JsObject) => {
     const status = 0;
 
     if (Boolean(statusCode) && statusCode < statusCode.BAD_REQUEST) {
@@ -32,7 +28,7 @@ const responseHandler = async (
       message,
     };
   };
-  ctx.res.ok = (params: any = {}) => {
+  ctx.res.ok = (params: object = {}) => {
     ctx.res.success({
       ...params,
       statusCode: statusCodes.OK,

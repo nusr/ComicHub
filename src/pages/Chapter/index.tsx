@@ -62,7 +62,7 @@ const searchColumns = [
 type Props = {
   shared: SharedState;
   list: ISearchItem[];
-  dispatch: (params: { type: string; payload: any }) => void;
+  dispatch: (params: { type: string; payload: object }) => void;
   loading: boolean;
 };
 
@@ -86,11 +86,11 @@ const Chapter: React.FunctionComponent<Props> = ({
     });
   }, []);
 
-  function handleSelectRows(value: ISearchItem[]) {
+  function handleSelectRows(value: ISearchItem[]): void {
     setSelectedRows(value);
   }
 
-  function handleChapterSubmit() {
+  function handleChapterSubmit(): void {
     if (!selectedRows || selectedRows.length === 0) {
       message.error(<FormattedMessage id="page.Chapter.select.tip"/>);
       return;
@@ -128,8 +128,8 @@ const Chapter: React.FunctionComponent<Props> = ({
   );
 };
 type ConnectProps = {
-  loading: any;
-  common: any;
+  loading: JsObject;
+  common: JsObject ;
   shared: SharedState;
 };
 export { Chapter };

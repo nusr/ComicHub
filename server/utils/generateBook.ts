@@ -7,29 +7,33 @@ import { getComicSite, getReferer, numToString } from './parseUrl';
 import downloadImage, { checkExtName } from './downloadImage';
 import convertImage from './convertImage';
 
+type DownloadItem = {
+  url: string;
+  fileName: string;
+}
 const getBookDir = (
   searchItem: ISearchMysql,
-  chapterItem: IChapterMysql
+  chapterItem: IChapterMysql,
 ): string => `${searchItem.title}/${chapterItem.title}`;
 
-const formatDownloadPath = (
-  dataResult: any,
+function formatDownloadPath<T>(
+  dataResult: JsObject[],
   searchItem: ISearchMysql,
-  chapterItem: IChapterMysql
-) => {
+  chapterItem: IChapterMysql,
+): DownloadItem[]{
   const dirPath: string = getBookDir(searchItem, chapterItem);
-  return dataResult.map((item: any): any => ({
+  return dataResult.map((item: JsObject): DownloadItem => ({
     url: item.url,
     fileName: `${dirPath}/${numToString(item.page)}`,
   }));
-};
+}
 
 async function makeBook(
-  results: any,
+  results: JsObject[],
   searchItem: ISearchMysql,
   chapterItem: IChapterMysql,
-  requestName: string
-) {
+  requestName: string,
+): Promise<string> {
   const downloadList = formatDownloadPath(results, searchItem, chapterItem);
   const requestUrl = getReferer(requestName);
   for (const item of downloadList) {
@@ -37,11 +41,11 @@ async function makeBook(
       const filePath: string = await downloadImage(
         item.url,
         item.fileName,
-        requestUrl
+        requestUrl,
       );
       if (!checkExtName(filePath)) {
         logger.info(filePath);
-        const result: any = await convertImage(filePath);
+        const result: JsObject = await convertImage(filePath);
         if (result) {
           await convertImage(filePath);
         }
@@ -54,7 +58,7 @@ async function makeBook(
   const realPath = path.join(
     configData.downloadBase,
     getComicSite(requestUrl),
-    dirPath
+    dirPath,
   );
   return generatePdf(realPath);
 }

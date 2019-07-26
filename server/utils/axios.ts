@@ -5,7 +5,7 @@ import config from '../shared';
 
 axiosRetry(axios, {
   retries: config.requestRetry,
-  retryDelay: (count, err) => {
+  retryDelay: (count: number, err: JsObject): number => {
     logger.error(
       `Request ${err.config.url} fail, retry attempt #${count}: ${err}`
     );

@@ -8,10 +8,10 @@ export default {
   },
   effects: {
     *fetch(
-      { payload }: { payload: any },
-      { call, put }: { call: any; put: any }
+      { payload }: { payload: JsObject },
+      { call, put }: { call: Function; put: Function }
     ) {
-      const response: any = yield call(postItem, payload);
+      const response: JsObject = yield call(postItem, payload);
       const checkCode: boolean = response && response.code === 200;
       yield put({
         payload: {
@@ -23,7 +23,7 @@ export default {
     },
   },
   reducers: {
-    saveResult(state: { result: boolean }, { payload }: { payload: any }) {
+    saveResult(state: { result: boolean }, { payload }: { payload: JsObject }) {
       return {
         ...state,
         ...payload,

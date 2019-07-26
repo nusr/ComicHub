@@ -5,11 +5,11 @@ import SearchForm from '../../components/SearchForm';
 import { IFormData, MenuItem, TypeConfig } from '../../type';
 
 type Props = {
-  dispatch: (params: { type: string; payload?: any }) => void;
-  list: any;
+  dispatch: (params: { type: string; payload?: object | string | number }) => void;
+  list: JsObject;
 };
 
-function getMenuList(data: any = {}): MenuItem[] {
+function getMenuList(data: JsObject = {}): MenuItem[] {
   return Object.keys(data).map(
     (key: string): MenuItem => {
       const item = data[key];
@@ -30,7 +30,7 @@ const HomePage: React.FunctionComponent<Props> = ({ dispatch, list }) => {
     });
   }, []);
 
-  function handleSearchSubmit(value: IFormData) {
+  function handleSearchSubmit(value: IFormData): void {
     if (value.name && value.url) {
       dispatch({
         type: 'shared/changeUrl',
@@ -47,15 +47,12 @@ const HomePage: React.FunctionComponent<Props> = ({ dispatch, list }) => {
     }
   }
 
-  // @ts-ignore
   return <SearchForm handleFormSubmit={handleSearchSubmit} menuList={menuList}/>;
 
 };
 type ConnectProps = {
-  loading: any;
-  menu: {
-    list: any[];
-  };
+  loading: JsObject;
+  menu: JsObject;
 };
 
 export default connect(({ loading, menu }: ConnectProps) => ({

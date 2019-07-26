@@ -22,7 +22,7 @@ const SearchForm: React.FunctionComponent<Props> = ({
     cache: false,
   };
 
-  function resetForm() {
+  function resetForm(): void {
     form.resetFields();
   }
 
@@ -30,7 +30,7 @@ const SearchForm: React.FunctionComponent<Props> = ({
     resetForm();
   }, []);
 
-  function handleSubmit(event: React.SyntheticEvent) {
+  function handleSubmit(event: React.SyntheticEvent): void {
     event.preventDefault();
     form.validateFields((error: Error, fieldsValue: IFormData) => {
       if (error) {
@@ -42,7 +42,7 @@ const SearchForm: React.FunctionComponent<Props> = ({
     });
   }
 
-  function filterOption(value: string, record: any) {
+  function filterOption(value: string, record: JsObject): boolean {
     if (!value) {
       return false;
     }
@@ -116,5 +116,5 @@ const SearchForm: React.FunctionComponent<Props> = ({
     </Form>
   );
 };
-
-export default Form.create({ name: 'SearchForm' })(SearchForm);
+const FormWrapper: any = Form.create({ name: 'SearchForm' })(SearchForm);
+export default FormWrapper

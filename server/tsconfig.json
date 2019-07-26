@@ -21,6 +21,6 @@
     "shared/*",
     "utils/*",
     "type/*",
-    "global.d.ts"
+    "../global.d.ts"
   ]
 }

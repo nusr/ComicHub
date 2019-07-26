@@ -6,8 +6,8 @@ import { SharedState, TypeConfig } from '../../type';
 import styles from './index.less';
 
 type Props = {
-  download: any;
-  dispatch: (params: { type: string; payload: any }) => void;
+  download: JsObject;
+  dispatch: (params: { type: string; payload: object }) => void;
   shared: SharedState;
 };
 
@@ -42,7 +42,7 @@ const Result: React.FunctionComponent<Props> = ({
   return <div className={styles.container}>{temp}</div>;
 };
 type ConnectProps = {
-  download: any;
+  download: object;
   shared: SharedState;
 };
 export { Result };

@@ -1,7 +1,7 @@
 import { notification } from 'antd';
 import { formatMessage } from 'umi-plugin-locale';
 
-function checkStatus(response: any) {
+function checkStatus(response: JsObject): JsObject | Error {
   if (response.status >= 200 && response.status < 300) {
     return response;
   }
@@ -29,7 +29,7 @@ export default function request(url: string, options = {}) {
   const defaultOptions = {
     credentials: 'include',
   };
-  const newOptions: any = {
+  const newOptions: JsObject = {
     ...defaultOptions,
     ...options,
   };
@@ -54,7 +54,7 @@ export default function request(url: string, options = {}) {
   }
   return fetch(url, newOptions)
     .then(checkStatus)
-    .then((response: any) => response.json())
+    .then((response: JsObject) => response.json())
     .catch((error: Error) => {
       const title =
         formatMessage({ id: `utils.request.${error.name}` }) ||

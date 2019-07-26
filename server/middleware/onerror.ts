@@ -3,7 +3,7 @@ import logger from '../utils/logger';
 import statusCodes from '../shared/statusCode';
 import { getLanguageData } from '../locales';
 
-const errorHandler = async (ctx: Koa.BaseContext, next: () => Promise<any>) => {
+const errorHandler = async (ctx: Koa.BaseContext, next: Function) => {
   try {
     await next();
   } catch (err) {

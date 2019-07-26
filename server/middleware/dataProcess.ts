@@ -2,7 +2,7 @@ import * as Koa from 'koa';
 import _ from 'lodash';
 import mysqlService from '../service';
 import { apiType } from '../shared';
-import { IChapterMysql, IRequestData, ISearchMysql} from '../type';
+import { IChapterMysql, IRequestData, ISearchMysql } from '../type';
 import statusCodes from '../shared/statusCode';
 import generateBook from '../utils/generateBook';
 import { getLanguageData } from '../locales';
@@ -10,6 +10,7 @@ import { getLanguageData } from '../locales';
 type EmptyData = {
   message: string;
 };
+
 const { NODE_ENV } = process.env;
 const REQUEST_WHITE_LIST: string[] = ['/menu', '/test'];
 
@@ -21,7 +22,7 @@ function handleEmpty(stateType: string): EmptyData {
     dataResult.message = getLanguageData('middleware.dataProcess.search.empty');
   } else if (stateType === apiType.chapter) {
     dataResult.message = getLanguageData(
-      'middleware.dataProcess.chapter.empty'
+      'middleware.dataProcess.chapter.empty',
     );
   }
   return dataResult;
@@ -40,12 +41,12 @@ function filterArray<T>(data: T[] = []): T[] {
 }
 
 /* eslint-disable */
-const mysqlHandler = async (ctx: Koa.Context, next: () => Promise<any>) => {
+const mysqlHandler = async (ctx: Koa.Context, next: Function):Promise<any> => {
   const requestData: IRequestData = ctx.request.body;
   const { type: requestType = '', name: requestName = '' } = requestData;
   const checkRequestUrl: boolean =
     !REQUEST_WHITE_LIST.some((item: string): boolean =>
-      ctx.url.startsWith(item)
+      ctx.url.startsWith(item),
     ) &&
     (!requestName || !requestType);
   if (checkRequestUrl) {
@@ -60,7 +61,7 @@ const mysqlHandler = async (ctx: Koa.Context, next: () => Promise<any>) => {
     if (requestType === apiType.search) {
       const result: any = await mysqlService.foggySearch(
         `%${requestName}%`,
-        requestType
+        requestType,
       );
       if (!_.isEmpty(result)) {
         ctx.body = result;
@@ -71,14 +72,14 @@ const mysqlHandler = async (ctx: Koa.Context, next: () => Promise<any>) => {
       }
     }
     if (requestType === apiType.chapter) {
-      const searchItem: ISearchMysql = await mysqlService.searchOne(
+      const searchItem: ISearchMysql = await mysqlService.searchOne<ISearchMysql>(
         requestName,
-        apiType.search
+        apiType.search,
       );
       const results: any = await mysqlService.searchItem(
         _.get(searchItem, 'id', ''),
         requestType,
-        'search_id'
+        'search_id',
       );
       if (!_.isEmpty(results)) {
         ctx.body = results;
@@ -91,24 +92,24 @@ const mysqlHandler = async (ctx: Koa.Context, next: () => Promise<any>) => {
     if (requestType === apiType.download) {
       const chapterItem: IChapterMysql = await mysqlService.searchOne(
         requestName,
-        apiType.chapter
+        apiType.chapter,
       );
       const results: any = await mysqlService.searchItem(
         _.get(chapterItem, 'id', ''),
         requestType,
-        'chapter_id'
+        'chapter_id',
       );
       if (!_.isEmpty(results)) {
         const searchItem: ISearchMysql = await mysqlService.searchOne(
           _.get(chapterItem, 'search_id', ''),
           apiType.search,
-          'id'
+          'id',
         );
         const bookPath: string = await generateBook(
           results,
           searchItem,
           chapterItem,
-          requestName
+          requestName,
         );
 
         ctx.response.set({
@@ -144,7 +145,7 @@ const mysqlHandler = async (ctx: Koa.Context, next: () => Promise<any>) => {
       dataResult = filterArray(dataResult);
       const searchResult: ISearchMysql = await mysqlService.searchOne(
         searchUrl,
-        apiType.search
+        apiType.search,
       );
       for (const item of dataResult) {
         await mysqlService.addItem(
@@ -152,7 +153,7 @@ const mysqlHandler = async (ctx: Koa.Context, next: () => Promise<any>) => {
             search_id: _.get(searchResult, 'id'),
             ...item,
           },
-          stateType
+          stateType,
         );
       }
     }
@@ -160,12 +161,12 @@ const mysqlHandler = async (ctx: Koa.Context, next: () => Promise<any>) => {
       dataResult = filterArray(dataResult);
       const chapterItem: IChapterMysql = await mysqlService.searchOne(
         searchUrl,
-        apiType.chapter
+        apiType.chapter,
       );
       const searchItem: ISearchMysql = await mysqlService.searchOne(
         _.get(chapterItem, 'search_id', ''),
         apiType.search,
-        'id'
+        'id',
       );
       if (!_.isEmpty(searchItem) && !_.isEmpty(chapterItem)) {
         for (const item of dataResult) {
@@ -174,14 +175,14 @@ const mysqlHandler = async (ctx: Koa.Context, next: () => Promise<any>) => {
               chapter_id: chapterItem.id,
               ...item,
             },
-            stateType
+            stateType,
           );
         }
         const bookPath: string = await generateBook(
           dataResult,
           searchItem,
           chapterItem,
-          searchUrl
+          searchUrl,
         );
         dataResult = {
           message: getLanguageData('middleware.dataProcess.success'),

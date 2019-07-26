@@ -8,7 +8,7 @@ let envPath: string = path.join(process.cwd(), '../.env');
 if (process.env.NODE_ENV === 'test') {
   envPath = path.join(process.cwd(), './.env');
 }
-let envConfig: any;
+let envConfig: JsObject;
 try {
   envConfig = dotEnv.parse(fs.readFileSync(envPath));
 } catch (error) {

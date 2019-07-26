@@ -8,9 +8,9 @@ function getBookInfo(dirName: string, extName: string = 'pdf'): BookInfo {
   const outputPath = `${dirName}.${extName}`;
   const files: string[] = fs.readdirSync(dirName);
 
-  const bookTitle: any = _.last(_.split(dirName, '/'));
+  const bookTitle: string = (_.last(_.split(dirName, '/'))) as string;
   const filePathList: string[] = [];
-  files.forEach((fileName: string) => {
+  files.forEach((fileName: string): void => {
     const filePath = path.join(dirName, fileName);
     const temp = path.extname(filePath);
     if (pdfSupportImage.includes(temp)) {

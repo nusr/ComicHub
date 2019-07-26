@@ -3,10 +3,10 @@ import util from './utils';
 import axios from '../../utils/axios';
 import { apiType } from '../../shared';
 import { IRequestData } from '../../type';
-
+let temp: object;
 const tuHao = async (ctx: Koa.BaseContext) => {
   const { type, name, page_size: pageSize }: IRequestData = ctx.request.body;
-  let temp: any;
+
   if (apiType.search === type) {
     const response = await axios.get(util.getSearchUrl(name));
     temp = util.getSearchList(response.data);

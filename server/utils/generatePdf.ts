@@ -5,7 +5,7 @@ import { bookConfig } from '../shared';
 import getBookInfo from './bookInfo';
 import { BookInfo } from './type';
 
-function generatePdf(dirName: string) {
+function generatePdf(dirName: string): string {
   if (!dirName) {
     logger.error('下载路径为空！');
     return '';
@@ -17,13 +17,13 @@ function generatePdf(dirName: string) {
 
   const { outputPath, filePathList = [], bookTitle }: BookInfo = getBookInfo(
     dirName,
-    'pdf'
+    'pdf',
   );
 
   if (filePathList.length === 0) {
     logger.error('内容为空！');
   }
-  const pdf: any = new PdfDoc();
+  const pdf: JsObject = new PdfDoc();
   pdf.pipe(fs.createWriteStream(outputPath));
 
   pdf.info.Title = bookTitle;

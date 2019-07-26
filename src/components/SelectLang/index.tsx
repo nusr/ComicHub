@@ -2,15 +2,15 @@ import React from 'react';
 import { formatMessage, getLocale, setLocale } from 'umi-plugin-locale';
 import { Dropdown, Icon, Menu } from 'antd';
 import styles from './index.less';
-
+type Props = {}
 type ObjectType = {
   [key: string]: string;
 };
 type Event = {
   key: string;
 };
-const SelectLang: React.FunctionComponent = () => {
-  function changeLang(event: Event) {
+const SelectLang: React.FunctionComponent<Props> = () => {
+  function changeLang(event: Event): void {
     const { key } = event;
     setLocale(key);
   }

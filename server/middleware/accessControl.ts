@@ -5,7 +5,7 @@ import { getLanguageData } from '../locales';
 
 const FAIL_MATCH = -1;
 const LINK_TIME: number = 24 * 60 * 60;
-const reject = (ctx: Koa.BaseContext) => {
+const reject = (ctx: Koa.BaseContext): void => {
   ctx.response.status = statusCodes.FORBIDDEN;
   ctx.body = {
     lastBuildDate: new Date().toUTCString(),
@@ -17,7 +17,7 @@ const reject = (ctx: Koa.BaseContext) => {
 
 const accessControl = async (
   ctx: Koa.BaseContext,
-  next: () => Promise<any>
+  next: Function,
 ) => {
   const ip = ctx.ips[0] || ctx.ip;
   const requestPath = ctx.request.path;

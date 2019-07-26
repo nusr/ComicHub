@@ -1,6 +1,6 @@
-import crypto from 'crypto';
+import crypto, { BinaryLike } from 'crypto';
 
-export default function md5(content: any): string {
+export default function md5(content: BinaryLike): string {
   return crypto
     .createHash('md5')
     .update(content)

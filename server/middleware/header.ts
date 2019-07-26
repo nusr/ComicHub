@@ -8,7 +8,7 @@ const headers = {
 
 const headerHandler = async (
   ctx: Koa.BaseContext,
-  next: () => Promise<any>
+  next: Function
 ) => {
   logger.info(`current request url: ${ctx.url}`);
   ctx.set(headers);

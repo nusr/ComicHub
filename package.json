@@ -9,9 +9,9 @@
     "build": "npm run build:server && npm run build:react",
     "build:react": "umi build",
     "build:server": "npm run --prefix ./server build",
-    "format": "npm run style  && npm run lint",
-    "style": "stylelint 'src/**/*.less' --syntax less --fix",
-    "lint": "eslint --ext .js,.jsx,.ts,.tsx src server --fix",
+    "fix": "npm run style -- --fix && npm run lint -- --fix",
+    "style": "stylelint 'src/**/*.less' --syntax less",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx src server",
     "test": "umi test --coverage",
     "test:watch": "umi test --watchAll",
     "readme": "npm run --prefix ./server readme"
@@ -45,7 +45,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run format",
+      "pre-commit": "npm run style  && npm run lint",
       "pre-push": "npm run test"
     }
   },

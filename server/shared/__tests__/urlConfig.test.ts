@@ -1,10 +1,11 @@
+import { Browser, Page } from 'puppeteer';
 import Puppeteer from '../../utils/puppeteer';
 import urlConfig from '../urlConfig';
 
 const DELAY_TIME = 100000;
 describe('Test Base Url', () => {
-  let page: any;
-  let browser: any;
+  let page: Page;
+  let browser: Browser;
   beforeAll(async () => {
     browser = await Puppeteer();
     page = await browser.newPage();
@@ -19,8 +20,8 @@ describe('Test Base Url', () => {
       waitUntil: 'domcontentloaded',
     });
     const list: string[] = await page.evaluate(() => {
-      const arr: any = Array.prototype.slice.apply(
-        document.querySelectorAll('img')
+      const arr: HTMLImageElement[] = Array.prototype.slice.apply(
+        document.querySelectorAll('img'),
       );
       return arr.map((v: HTMLImageElement) => v.src);
     });
@@ -30,7 +31,7 @@ describe('Test Base Url', () => {
     it(
       `base url ${item.base} should include many images`,
       testPage(item.base),
-      DELAY_TIME
+      DELAY_TIME,
     );
   });
 });

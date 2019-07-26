@@ -1,4 +1,4 @@
-import sharp from 'sharp';
+import sharp,{OutputInfo} from 'sharp';
 import { pdfSupportImage } from '../shared';
 
 export function getJpegPath(filePath: string): string {
@@ -7,7 +7,7 @@ export function getJpegPath(filePath: string): string {
   return temp.join('.') + pdfSupportImage[0];
 }
 
-export default function convertImage(filePath: string): Promise<any> {
+export default function convertImage(filePath: string): Promise<OutputInfo> {
   const jpegPath: string = getJpegPath(filePath);
   return sharp(filePath)
     .jpeg()

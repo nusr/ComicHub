@@ -10,7 +10,6 @@ module.exports = {
     '**/utils/**/*.{ts,tsx}',
     'server/middleware/**/*.{ts,tsx}',
     'server/routes/**/*.{ts,tsx}',
-    '!**/(en-US|zh-CN)/**/*.{ts,tsx}',
   ],
   coveragePathIgnorePatterns: ['/node_modules/', '/server/node_modules/'],
   moduleNameMapper: {

@@ -1,4 +1,4 @@
-import puppeteer from 'puppeteer';
+import puppeteer, { Browser } from 'puppeteer';
 import config from '../shared';
 
 const options = {
@@ -16,8 +16,8 @@ const options = {
   userDataDir: './tmp',
 };
 
-const puppeteerBrowser = async () => {
-  let browser: JsObject;
+const puppeteerBrowser = async (): Promise<Browser> => {
+  let browser: Browser;
   if (config.puppeteerWSEndpoint) {
     browser = await puppeteer.connect({
       browserWSEndpoint: config.puppeteerWSEndpoint,
@@ -44,7 +44,7 @@ export function getHtml(selector: string = 'html'): string {
 export function scrollToBottom(): void {
   const dom: JsObject = document.scrollingElement || {};
   let lastScrollTop: number = dom.scrollTop;
-  const scroll = () => {
+  const scroll = (): void => {
     dom.scrollTop += 200;
     if (dom.scrollTop !== lastScrollTop) {
       lastScrollTop = dom.scrollTop;

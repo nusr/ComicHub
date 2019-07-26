@@ -21,8 +21,8 @@ export function checkExtName(filePath: string): boolean {
 function downloadImage(
   url: string,
   fileName: string,
-  referer: string = 'https://www.manhuagui.com'
-): Promise<any> {
+  referer: string = 'https://www.manhuagui.com',
+): Promise<string> {
   return new Promise(resolve => {
     const extName = getExtName(url);
     if (!extName) {
@@ -32,17 +32,12 @@ function downloadImage(
     const filePath = path.join(
       config.downloadBase,
       getComicSite(referer),
-      fileName + extName
+      fileName + extName,
     );
-    // 已经下载的图片不再下载
-    // if (fs.existsSync(filePath)) {
-    //     resolve(filePath);
-    //     return;
-    // }
     const parseDir = path.parse(filePath);
     makeDir(parseDir.dir);
     const stream = fs.createWriteStream(filePath);
-    stream.on('finish', () => {
+    stream.on('finish', (): void => {
       logger.info(`[Download Image Success] ${filePath}`);
       resolve(filePath);
     });
@@ -55,7 +50,7 @@ function downloadImage(
         Referer: referer,
         'User-Agent': config.userAgent,
       },
-    }).then(response => {
+    }).then((response: JsObject): void => {
       response.data.pipe(stream);
     });
   });

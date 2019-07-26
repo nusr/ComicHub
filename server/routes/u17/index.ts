@@ -1,4 +1,5 @@
 import * as Koa from 'koa';
+import { Browser, ElementHandle, Page } from 'puppeteer';
 import util from './utils';
 import axios from '../../utils/axios';
 import { apiType } from '../../shared';
@@ -6,10 +7,10 @@ import { IRequestData } from '../../type';
 import puppeteer, { getHtml, scrollToBottom } from '../../utils/puppeteer';
 
 const WAIT_TIME = 1000;
-
+let temp: object;
 const tuHao = async (ctx: Koa.BaseContext) => {
   const { type, name }: IRequestData = ctx.request.body;
-  let temp: any;
+
   if (apiType.search === type) {
     const response = await axios.get(util.getSearchUrl(name));
     temp = util.getSearchList(response.data);
@@ -19,8 +20,8 @@ const tuHao = async (ctx: Koa.BaseContext) => {
     temp = util.getChapterList(response.data);
   }
   if (apiType.download === type) {
-    const browser = await puppeteer();
-    const page = await browser.newPage();
+    const browser: Browser = await puppeteer();
+    const page: Page = await browser.newPage();
     page.setViewport({
       width: 1366,
       height: 768,
@@ -29,7 +30,7 @@ const tuHao = async (ctx: Koa.BaseContext) => {
       waitUntil: 'networkidle0',
       timeout: 0,
     });
-    const nextItem = await page.$('#cr_top > div > div.right > a:nth-child(4)');
+    const nextItem = (await page.$('#cr_top > div > div.right > a:nth-child(4)')) as ElementHandle;
     nextItem.click();
 
     await page.waitFor(WAIT_TIME);
