@@ -57,7 +57,7 @@ const mysqlHandler = async (ctx: Koa.Context, next: Function):Promise<any> => {
   }
   ctx.state.url = requestName;
   ctx.state.type = requestType;
-  if (!requestData.noCache && NODE_ENV !== 'test') {
+  if (requestData.cache && NODE_ENV !== 'test') {
     if (requestType === apiType.search) {
       const result: any = await mysqlService.foggySearch(
         `%${requestName}%`,

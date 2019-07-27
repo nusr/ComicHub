@@ -13,7 +13,7 @@
     "style": "stylelint 'src/**/*.less' --syntax less",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx src server",
     "test": "umi test --coverage",
-    "test:watch": "umi test --watchAll",
+    "test:watch": "umi test --watchAll --coverage",
     "readme": "npm run --prefix ./server readme"
   },
   "dependencies": {

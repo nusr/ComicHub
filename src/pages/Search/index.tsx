@@ -40,7 +40,7 @@ const HomePage: React.FunctionComponent<Props> = ({ dispatch, list }) => {
         type: 'shared/changeParams',
         payload: {
           name: value.name,
-          noCache: Number(!value.cache),
+          cache: Boolean(value.cache),
         },
       });
       router.push(`/${TypeConfig.chapter}`);

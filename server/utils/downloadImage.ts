@@ -1,16 +1,27 @@
 import fs from 'fs';
 import path from 'path';
-import _ from 'lodash';
 import logger from './logger';
 import makeDir from './makeDir';
-import config, { pdfSupportImage } from '../shared';
+import config, { pdfSupportImage, sharpConvertType } from '../shared';
 import axios from './axios';
 import { getComicSite } from './parseUrl';
 
+export const checkSharpExtName = (extName: string): boolean => sharpConvertType.includes(extName);
+
 export function getExtName(url: string): string {
-  const extName = path.extname(url);
-  const result = extName.match(/^\.\w+/gi);
-  return _.head(result) || '';
+  let result = path.extname(url);
+  if (checkSharpExtName(result)) {
+    return result;
+  }
+  result = ''
+  const list: string[] = url.split('/');
+  for (let i = list.length - 1; i >= 0; i -= 1) {
+    const extName = path.extname(list[i]);
+    if (checkSharpExtName(extName)) {
+      result = extName;
+    }
+  }
+  return result;
 }
 
 export function checkExtName(filePath: string): boolean {

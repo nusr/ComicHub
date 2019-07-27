@@ -1,6 +1,5 @@
 import cheerio from 'cheerio';
 import _ from 'lodash';
-import path from 'path';
 import { IChapterItem, IImageItem, ISearchItem } from '../../type';
 import urlConfig from '../../shared/urlConfig';
 
@@ -14,15 +13,15 @@ const getSearchList = (data: string): ISearchItem[] => {
       .find('a')
       .eq(0);
     const title: string = dom.attr('title');
-    const url: string = path.join(baseUrl, dom.attr('href'));
+    const url: string = baseUrl + dom.attr('href');
     const cover: string = $(item)
       .find('img')
       .eq(0)
-      .attr('src');
+      .attr('data-original');
     result.push({
       url,
       title,
-      cover,
+      cover: cover.endsWith('blank.gif') ? '' : cover,
     });
   });
   return result;
@@ -35,7 +34,7 @@ function getChapterList(data: string): IChapterItem[] {
     const dom = $(item)
       .find('a')
       .eq(0);
-    const url: string = path.join(baseUrl, dom.attr('href'));
+    const url: string = baseUrl + dom.attr('href');
     const title: string = _.trim(dom.text());
     chapters.push({
       url,
@@ -54,7 +53,7 @@ function getDownloadList(data: string): IImageItem[] {
       .children('img')
       .first();
     const url: string = dom.attr('src');
-    if (url) {
+    if (!url.endsWith('pixel.gif')) {
       result.push({
         url,
         page,

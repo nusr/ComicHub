@@ -17,21 +17,9 @@ const options = {
 };
 
 const puppeteerBrowser = async (): Promise<Browser> => {
-  let browser: Browser;
-  if (config.puppeteerWSEndpoint) {
-    browser = await puppeteer.connect({
-      browserWSEndpoint: config.puppeteerWSEndpoint,
-    });
-  } else {
-    browser = await puppeteer.launch(options);
-  }
-  return browser;
+  return await puppeteer.launch(options);
 };
-export const DESKTOP_WINDOW_SIZE = {
-  width: 1366,
-  height: 768,
-};
-export default puppeteerBrowser;
+
 
 export function getHtml(selector: string = 'html'): string {
   const dom: JsObject | null = document.querySelector(selector);
@@ -41,11 +29,11 @@ export function getHtml(selector: string = 'html'): string {
   return dom.innerHTML;
 }
 
-export function scrollToBottom(): void {
+export function scrollToBottom(distance: number = 100): void {
   const dom: JsObject = document.scrollingElement || {};
   let lastScrollTop: number = dom.scrollTop;
   const scroll = (): void => {
-    dom.scrollTop += 200;
+    dom.scrollTop += distance;
     if (dom.scrollTop !== lastScrollTop) {
       lastScrollTop = dom.scrollTop;
       requestAnimationFrame(scroll);
@@ -53,3 +41,5 @@ export function scrollToBottom(): void {
   };
   scroll();
 }
+
+export default puppeteerBrowser;

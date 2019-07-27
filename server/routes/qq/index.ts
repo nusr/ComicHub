@@ -5,10 +5,11 @@ import axios from '../../utils/axios';
 import { apiType } from '../../shared';
 import { IRequestData } from '../../type';
 import puppeteer, { getHtml, scrollToBottom } from '../../utils/puppeteer';
+import sleep from '../../utils/wait';
 
 const WAIT_TIME = 1000;
 let temp: object;
-const tuHao = async (ctx: Koa.BaseContext) => {
+const qq = async (ctx: Koa.BaseContext) => {
   const { type, name }: IRequestData = ctx.request.body;
   if (apiType.search === type) {
     const response = await axios.get(util.getSearchUrl(name));
@@ -30,14 +31,12 @@ const tuHao = async (ctx: Koa.BaseContext) => {
       timeout: 0,
     });
     await page.waitFor(WAIT_TIME);
-
     await page.evaluate(scrollToBottom);
-
-    await page.waitFor(WAIT_TIME * 2);
+    await sleep(WAIT_TIME * 5);
     const html = await page.evaluate(getHtml);
     temp = util.getDownloadList(html);
     await browser.close();
   }
   ctx.state.data = temp;
 };
-export default tuHao;
+export default qq;

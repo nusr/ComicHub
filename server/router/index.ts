@@ -6,6 +6,7 @@ import menuRouter from '../routes/menu';
 import tohomh from '../routes/tohomh123';
 import manhuagui from '../routes/manhuagui';
 import u17 from '../routes/u17';
+import qq from '../routes/qq'
 
 const router = new Router();
 router.get('/', async (ctx: Koa.Context) => {
@@ -25,4 +26,5 @@ router.get('/menu', menuRouter);
 router.post('/manhuagui', manhuagui);
 router.post('/tohomh123', tohomh);
 router.post('/u17', u17);
+router.post('/qq', qq);
 export default router;

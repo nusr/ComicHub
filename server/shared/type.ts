@@ -19,7 +19,6 @@ export interface SharedConfig {
   requestRetry: number;
   debugInfo: boolean;
   loggerLevel: string;
-  puppeteerWSEndpoint: string | undefined;
   blacklist: string[];
   whitelist: string[];
   downloadBase: string;

@@ -1,7 +1,7 @@
 type Params = {
   name: string;
   page_size?: number;
-  noCache?: number;
+  cache?: boolean;
 };
 
 export interface SharedState {

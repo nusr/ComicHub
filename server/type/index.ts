@@ -38,6 +38,6 @@ export interface IRequestData {
   name: string; // 请求值
   type: string; // 请求类型
   page_size: number; // 章节图片数量
-  noCache?: boolean; // 使用不查找数据库 ,为 true 不查找
+  cache?: boolean; // 使用查找数据库 ,为 true 才查找
 }
 

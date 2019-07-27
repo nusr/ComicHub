@@ -3,8 +3,8 @@ import { Browser, Page, ElementHandle } from 'puppeteer';
 import { IRequestData } from '../../type';
 import axios from '../../utils/axios';
 import util from './utils';
-import { apiType } from '../../shared';
-import puppeteer, { DESKTOP_WINDOW_SIZE, getHtml } from '../../utils/puppeteer';
+import { apiType, DESKTOP_WINDOW_SIZE } from '../../shared';
+import puppeteer, { getHtml } from '../../utils/puppeteer';
 
 const DELAY_TIME = 500;
 let temp: JsObject[];

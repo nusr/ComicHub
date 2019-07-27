@@ -27,8 +27,13 @@ const apiType = {
   download: 'images',
   downloadAll: 'downloadAll',
 };
+const DESKTOP_WINDOW_SIZE = {
+  width: 1366,
+  height: 768,
+};
 const pdfSupportImage: string[] = ['.jpeg', '.png']; // Pdfkit 只支持 png jpeg
-export { bookConfig, pdfSupportImage, apiType };
+const sharpConvertType: string[] = ['.jpeg', '.jpg', '.png', '.webp', '.tiff', '.gif', '.svg'];// sharp input type
+export { bookConfig, pdfSupportImage, apiType, sharpConvertType, DESKTOP_WINDOW_SIZE };
 const sharedConfig: SharedConfig = {
   language: envConfig.DEFAULT_LANGUAGE || 'zh-CN',
   serverPort: toNum(envConfig.SERVER_PORT) || 1200, // 监听端口,
@@ -39,7 +44,6 @@ const sharedConfig: SharedConfig = {
   // 是否显示 Debug 信息，取值 boolean 'false' 'key' ，取值为 'false' false 时永远不显示，取值为 'key' 时带上 ?debug=key 显示
   debugInfo: envConfig.DEBUG_INFO || true,
   loggerLevel: envConfig.LOGGER_LEVEL || 'info',
-  puppeteerWSEndpoint: envConfig.PUPPETEER_WS_ENDPOINT,
   blacklist:
     envConfig.SERVER_BLACKLIST && envConfig.SERVER_BLACKLIST.split(','),
   whitelist:

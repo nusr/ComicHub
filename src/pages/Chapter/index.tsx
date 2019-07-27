@@ -81,7 +81,7 @@ const Chapter: React.FunctionComponent<Props> = ({
         url: currentUrl,
         name: params.name,
         type: TypeConfig.search,
-        noCache: params.noCache,
+        cache: params.cache,
       },
     });
   }, []);

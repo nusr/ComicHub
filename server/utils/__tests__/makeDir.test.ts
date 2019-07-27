@@ -2,9 +2,14 @@ import fs from 'fs';
 import makeDir from '../makeDir';
 
 describe('makeDir', () => {
-  it('makeDir tmp/makeDir', () => {
-    const dirPath = 'tmp/makeDir';
-    makeDir(dirPath);
-    expect(fs.existsSync(dirPath)).toBe(true);
+  it('makeDir should make directory success', () => {
+    expect(makeDir('')).toBeFalsy()
+    expect(fs.existsSync('')).toBeFalsy()
+
+    expect(makeDir('type')).toBeTruthy()
+    expect(fs.existsSync('type')).toBeTruthy();
+
+    makeDir('tmp/makeDir');
+    expect(fs.existsSync('tmp/makeDir')).toBeTruthy();
   });
 });
