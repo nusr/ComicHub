@@ -25,5 +25,10 @@ const configData: ConfigType = {
     name: '腾讯动漫',
     enabled: false,
   },
+  kuaikanmanhua: {
+    base: 'https://www.kuaikanmanhua.com',
+    name: '快看动漫',
+    enabled: false,
+  },
 };
 export default configData;

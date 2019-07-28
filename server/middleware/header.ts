@@ -10,7 +10,6 @@ const headerHandler = async (
   ctx: Koa.Context,
   next: Function,
 ) => {
-  logger.info(ctx.request.body);
   logger.info(`current request url: ${ctx.url}`);
   ctx.set(headers);
   ctx.set({

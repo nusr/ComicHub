@@ -42,21 +42,19 @@ function filterArray<T>(data: T[] = []): T[] {
 
 const mysqlHandler = async (ctx: Koa.Context, next: Function): Promise<any> => {
   const requestData: IRequestData = ctx.request.body;
-  const { type: requestType = '', name: requestName = '' } = requestData;
   const checkRequestUrl: boolean =
     !REQUEST_WHITE_LIST.some((item: string): boolean =>
       ctx.url.startsWith(item),
     ) &&
-    (!requestName || !requestType);
+    (!requestData.name || !requestData.type);
   if (checkRequestUrl) {
     ctx.body = {
       message: getLanguageData('middleware.dataProcess.paramsFail'),
     };
     return;
   }
-  ctx.state.url = requestName;
-  ctx.state.type = requestType;
-
+  ctx.state.url = requestData.name;
+  ctx.state.type = requestData.type;
   await next();
   let dataResult = ctx.state.data;
   const stateType = ctx.state.type;
@@ -123,7 +121,8 @@ const mysqlHandler = async (ctx: Koa.Context, next: Function): Promise<any> => {
         };
       }
     }
-  } else {
+  }
+  if (_.isEmpty(dataResult)) {
     dataResult = handleEmpty(stateType);
   }
 

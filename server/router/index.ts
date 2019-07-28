@@ -8,6 +8,7 @@ import tohomh from '../routes/tohomh123';
 import manhuagui from '../routes/manhuagui';
 import u17 from '../routes/u17';
 import qq from '../routes/qq';
+import kuaikanmanhua from '../routes/kuaikanmanhua'
 
 const router = new Router();
 router.get('/', async (ctx: Koa.Context) => {
@@ -29,5 +30,6 @@ router.post('/manhuagui', manhuagui);
 router.post('/tohomh123', tohomh);
 router.post('/u17', u17);
 router.post('/qq', qq);
+router.post('/kuaikanmanhua', kuaikanmanhua);
 
 export default router;

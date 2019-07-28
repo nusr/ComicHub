@@ -8,12 +8,13 @@ import { getComicSite } from './parseUrl';
 
 export const checkSharpExtName = (extName: string): boolean => sharpConvertType.includes(extName);
 
-export function getExtName(url: string): string {
+export function getExtName(realUrl: string): string {
+  const [url] = realUrl.split('?');
   let result = path.extname(url);
   if (checkSharpExtName(result)) {
     return result;
   }
-  result = ''
+  result = '';
   const list: string[] = url.split('/');
   for (let i = list.length - 1; i >= 0; i -= 1) {
     const extName = path.extname(list[i]);

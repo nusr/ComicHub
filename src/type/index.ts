@@ -1,7 +1,6 @@
 type Params = {
   name: string;
   page_size?: number;
-  cache?: boolean;
 };
 
 export interface SharedState {
@@ -18,7 +17,6 @@ export interface MenuItem {
 export interface IFormData {
   url: string;
   name: string;
-  cache: boolean;
 }
 
 export interface IOptionData {

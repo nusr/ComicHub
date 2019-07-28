@@ -39,7 +39,7 @@ const chapterColumns = [
 ];
 
 type Props = {
-  dispatch: (params: { type: string; payload: object }) => void;
+  dispatch: Function;
   loading: boolean;
   list: IChapterItem[];
   shared: SharedState;

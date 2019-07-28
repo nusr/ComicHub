@@ -50,7 +50,7 @@ class DumpTable extends Component<StandardTableProps, any> {
       ...item,
       total: selectedRows.reduce(
         (sum: any, val: any) => sum + parseFloat(val[item.dataIndex]),
-        0
+        0,
       ),
     }));
     const { onSelectRow } = this.props;
@@ -72,7 +72,8 @@ class DumpTable extends Component<StandardTableProps, any> {
 
   render() {
     const { selectedRowKeys, needTotalList } = this.state;
-    const { data = {}, rowKey, checkType = 'checkbox', ...rest } = this.props;
+    const { data = [], rowKey, checkType = 'checkbox', ...rest } = this.props;
+    const realData = data.map((item: JsObject, i: number) => ({ ...item, id: item.id || (i + 1) }));
     const rowSelection: any = {
       selectedRowKeys,
       onChange: this.handleRowSelectChange,
@@ -88,16 +89,16 @@ class DumpTable extends Component<StandardTableProps, any> {
           <Alert
             message={
               <Fragment>
-                <FormattedMessage id="component.DumpTable.selected" />
+                <FormattedMessage id="component.DumpTable.selected"/>
                 &nbsp;
                 <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a>
                 &nbsp;
-                <FormattedMessage id="component.DumpTable.single" />
+                <FormattedMessage id="component.DumpTable.single"/>
                 &nbsp;
                 {needTotalList.map((item: any) => (
                   <span style={{ marginLeft: 8 }} key={item.dataIndex}>
                     {item.title}
-                    <FormattedMessage id="component.DumpTable.total" />
+                    <FormattedMessage id="component.DumpTable.total"/>
                     &nbsp;
                     <span style={{ fontWeight: 600 }}>
                       {item.render ? item.render(item.total) : item.total}
@@ -105,7 +106,7 @@ class DumpTable extends Component<StandardTableProps, any> {
                   </span>
                 ))}
                 <a onClick={this.cleanSelectedKeys} style={{ marginLeft: 24 }}>
-                  <FormattedMessage id="component.DumpTable.clear" />
+                  <FormattedMessage id="component.DumpTable.clear"/>
                 </a>
               </Fragment>
             }
@@ -117,7 +118,7 @@ class DumpTable extends Component<StandardTableProps, any> {
           size="small"
           rowSelection={rowSelection}
           rowKey={rowKey}
-          dataSource={data}
+          dataSource={realData}
           pagination={false}
           onChange={this.handleTableChange}
           bordered

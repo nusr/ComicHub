@@ -5,7 +5,7 @@ import SearchForm from '../../components/SearchForm';
 import { IFormData, MenuItem, TypeConfig } from '../../type';
 
 type Props = {
-  dispatch: (params: { type: string; payload?: object | string | number }) => void;
+  dispatch: Function;
   list: JsObject;
 };
 
@@ -40,7 +40,6 @@ const HomePage: React.FunctionComponent<Props> = ({ dispatch, list }) => {
         type: 'shared/changeParams',
         payload: {
           name: value.name,
-          cache: Boolean(value.cache),
         },
       });
       router.push(`/${TypeConfig.chapter}`);

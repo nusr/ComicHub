@@ -48,8 +48,7 @@ function generatePdf(dirName: string): string {
     }
   }
   pdf.end();
-  logger.info(outputPath);
-  logger.info('Generate Pdf Success\nDone!');
+  logger.info(`Generate Pdf Success: ${outputPath}\nDone!`);
   return outputPath;
 }
 
