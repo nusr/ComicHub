@@ -2,11 +2,12 @@ import Router from 'koa-router';
 import * as Koa from 'koa';
 // Router
 import testRouter from '../routes/test';
+import sql from '../routes/sql';
 import menuRouter from '../routes/menu';
 import tohomh from '../routes/tohomh123';
 import manhuagui from '../routes/manhuagui';
 import u17 from '../routes/u17';
-import qq from '../routes/qq'
+import qq from '../routes/qq';
 
 const router = new Router();
 router.get('/', async (ctx: Koa.Context) => {
@@ -20,11 +21,13 @@ router.get('/', async (ctx: Koa.Context) => {
 
 // Test
 router.get('/test/:id', testRouter);
+// 查询 sql 数据
+router.post('/sql', sql);
 // 左侧菜单
 router.get('/menu', menuRouter);
-// 看漫画
 router.post('/manhuagui', manhuagui);
 router.post('/tohomh123', tohomh);
 router.post('/u17', u17);
 router.post('/qq', qq);
+
 export default router;

@@ -20,6 +20,7 @@ const qq = async (ctx: Koa.BaseContext) => {
     temp = util.getChapterList(response.data);
   }
   if (apiType.download === type) {
+    // TODO 没有爬取到一话的所有漫画图片
     const browser: Browser = await puppeteer();
     const page: Page = await browser.newPage();
     page.setViewport({
