@@ -17,8 +17,9 @@ describe('Test Base Url', () => {
 
   const testPage = (path: string) => async () => {
     await page.goto(path, {
-      waitUntil: 'domcontentloaded',
+      waitUntil: 'networkidle0',
     });
+    await page.waitFor(2000);
     const list: string[] = await page.evaluate(() => {
       const arr: HTMLImageElement[] = Array.prototype.slice.apply(
         document.querySelectorAll('img'),
