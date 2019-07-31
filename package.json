@@ -17,20 +17,20 @@
     "readme": "npm run --prefix ./server readme"
   },
   "dependencies": {
-    "antd": "^3.20.5",
+    "antd": "^3.20.7",
     "dva": "^2.4.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "umi": "^2.8.15"
+    "umi": "^2.8.16"
   },
   "devDependencies": {
-    "@types/jest": "^24.0.15",
+    "@types/jest": "^24.0.16",
     "@types/react-test-renderer": "^16.8.3",
     "@typescript-eslint/eslint-plugin": "^1.13.0",
     "@typescript-eslint/parser": "^1.13.0",
     "eslint": "^6.1.0",
     "eslint-plugin-react": "^7.14.3",
-    "husky": "^3.0.1",
+    "husky": "^3.0.2",
     "jest": "^24.8.0",
     "prettier": "^1.18.2",
     "react-test-renderer": "^16.8.6",
@@ -41,7 +41,7 @@
     "stylelint-config-standard": "^18.3.0",
     "stylelint-declaration-block-no-ignored-properties": "^2.1.0",
     "stylelint-order": "^3.0.1",
-    "umi-plugin-react": "^1.9.13"
+    "umi-plugin-react": "^1.9.14"
   },
   "husky": {
     "hooks": {
