@@ -115,5 +115,5 @@ const SearchForm: React.FunctionComponent<Props> = ({
     </Form>
   );
 };
-const FormWrapper: any = Form.create({ name: 'SearchForm' })(SearchForm);
+const FormWrapper: JsObject = Form.create({ name: 'SearchForm' })(SearchForm);
 export default FormWrapper;

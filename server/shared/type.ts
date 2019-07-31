@@ -18,7 +18,6 @@ export interface SharedConfig {
   userAgent: number;
   requestRetry: number;
   debugInfo: boolean;
-  loggerLevel: string;
   blacklist: string[];
   whitelist: string[];
   downloadBase: string;

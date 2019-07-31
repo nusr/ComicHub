@@ -1,8 +1,7 @@
 import winston from 'winston';
-import config from '../shared';
 
 const logger = winston.createLogger({
-  level: config.loggerLevel,
+  level: process.env.LOGGER_LEVEL || 'info',
   format: winston.format.json(),
   transports: [
     new winston.transports.File({

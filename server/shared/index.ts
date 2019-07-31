@@ -1,19 +1,28 @@
 import path from 'path';
 import dotEnv from 'dotenv';
 import fs from 'fs';
+import logger from '../utils/logger';
 import toNum from '../utils/toNum';
 import { SharedConfig } from './type';
+import { getLanguageData } from '../locales';
 
-let envPath: string = path.join(process.cwd(), '../.env');
-if (process.env.NODE_ENV === 'test') {
-  envPath = path.join(process.cwd(), './.env');
-}
+const isTestEnv: boolean = process.env.NODE_ENV === 'test';
+const basePath: string = isTestEnv ? './' : '../';
+const envPath: string = path.join(process.cwd(), `${basePath}.env`);
 let envConfig: JsObject;
 try {
   envConfig = dotEnv.parse(fs.readFileSync(envPath));
 } catch (error) {
   envConfig = {};
 }
+
+const downloadBase: string = envConfig.DOWNLOAD_IMAGE_BASE ||
+  path.join(process.cwd(), `${basePath}downloadResult`);
+
+if (!fs.existsSync(downloadBase)) {
+  logger.error(`${downloadBase || ''} ${getLanguageData('shared.downloadBase.notExist')}`);
+}
+
 const bookConfig = {
   author: 'Steve Xu',
   imageWidth: 520,
@@ -43,14 +52,11 @@ const sharedConfig: SharedConfig = {
   requestRetry: toNum(envConfig.REQUEST_RETRY) || 2, // 请求失败重试次数
   // 是否显示 Debug 信息，取值 boolean 'false' 'key' ，取值为 'false' false 时永远不显示，取值为 'key' 时带上 ?debug=key 显示
   debugInfo: envConfig.DEBUG_INFO || true,
-  loggerLevel: envConfig.LOGGER_LEVEL || 'info',
   blacklist:
     envConfig.SERVER_BLACKLIST && envConfig.SERVER_BLACKLIST.split(','),
   whitelist:
     envConfig.SERVER_WHITELIST && envConfig.SERVER_WHITELIST.split(','),
-  downloadBase:
-    envConfig.DOWNLOAD_IMAGE_BASE ||
-    path.join(process.cwd(), '../downloadResult'), // 下载根目录
+  downloadBase, // 下载根目录
   mysql: {
     host: envConfig.MYSQL_HOST || 'localhost', // 数据库服务器所在的IP或域名
     port: toNum(envConfig.MYSQL_PORT) || 3306,
