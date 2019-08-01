@@ -9,8 +9,7 @@
     "build": "npm run build:server && npm run build:react",
     "build:react": "umi build",
     "build:server": "npm run --prefix ./server build",
-    "fix": "npm run style -- --fix && npm run lint -- --fix",
-    "style": "stylelint 'src/**/*.less' --syntax less",
+    "lint:fix": "npm run lint -- --fix",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx src server",
     "test": "umi test --coverage",
     "test:watch": "umi test --watchAll --coverage",
@@ -34,18 +33,11 @@
     "jest": "^24.8.0",
     "prettier": "^1.18.2",
     "react-test-renderer": "^16.8.6",
-    "stylelint": "^10.1.0",
-    "stylelint-config-css-modules": "^1.4.0",
-    "stylelint-config-prettier": "^5.2.0",
-    "stylelint-config-rational-order": "^0.1.2",
-    "stylelint-config-standard": "^18.3.0",
-    "stylelint-declaration-block-no-ignored-properties": "^2.1.0",
-    "stylelint-order": "^3.0.1",
     "umi-plugin-react": "^1.9.14"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run style  && npm run lint",
+      "pre-commit": "npm run lint",
       "pre-push": "npm run test"
     }
   },

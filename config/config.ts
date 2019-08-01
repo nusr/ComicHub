@@ -4,7 +4,7 @@ import plugins from './plugins';
 // const NODE_ENV: string = process.env.NODE_ENV as string;
 export default {
   history: 'hash',
-  // outputPath: 'server/dist/views',
+  outputPath: 'server/dist/views',
   plugins,
   proxy: {
     '/v1': {

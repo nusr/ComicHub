@@ -12,7 +12,6 @@ type EmptyData = {
 };
 
 const { NODE_ENV } = process.env;
-const REQUEST_WHITE_LIST: string[] = ['/menu', '/test', '/sql'];
 
 function handleEmpty(stateType: string): EmptyData {
   const dataResult: EmptyData = {
@@ -42,17 +41,6 @@ function filterArray<T>(data: T[] = []): T[] {
 
 const mysqlHandler = async (ctx: Koa.Context, next: Function): Promise<any> => {
   const requestData: IRequestData = ctx.request.body;
-  const checkRequestUrl: boolean =
-    !REQUEST_WHITE_LIST.some((item: string): boolean =>
-      ctx.url.startsWith(item),
-    ) &&
-    (!requestData.name || !requestData.type);
-  if (checkRequestUrl) {
-    ctx.body = {
-      message: getLanguageData('middleware.dataProcess.paramsFail'),
-    };
-    return;
-  }
   ctx.state.url = requestData.name;
   ctx.state.type = requestData.type;
   await next();

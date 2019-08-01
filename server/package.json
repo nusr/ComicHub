@@ -1,11 +1,14 @@
 {
   "main": "dist/index.js",
+  "bin": "dist/index.js",
   "scripts": {
     "postinstall": "npm run build",
     "readme": "ts-node utils/generateMarkdown.ts",
     "build": "npm run build-ts",
     "start": "node dist/index.js",
     "build-ts": "tsc",
+    "package": "pkg dist/index.js",
+    "package:mac": "pkg -t node10-macos-x64 dist/index.js",
     "watch-ts": "tsc -w",
     "serve-debug": "nodemon --inspect dist/index.js",
     "dev": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"yellow.bold,green.bold\"  \"npm run watch-ts\" \"npm run serve-debug\""
@@ -17,8 +20,8 @@
     "dotenv": "^8.0.0",
     "koa": "2.7.0",
     "koa-bodyparser": "^4.2.1",
-    "koa-mount": "4.0.0",
     "koa-router": "7.4.0",
+    "koa-static": "^5.0.0",
     "lodash": "^4.17.15",
     "mysql": "^2.17.1",
     "pdfkit": "^0.10.0",
@@ -31,8 +34,8 @@
     "@types/dotenv": "^6.1.1",
     "@types/koa": "^2.0.49",
     "@types/koa-bodyparser": "^4.2.2",
-    "@types/koa-mount": "^3.0.1",
     "@types/koa-router": "^7.0.42",
+    "@types/koa-static": "^4.0.1",
     "@types/lodash": "^4.14.136",
     "@types/mysql": "^2.15.6",
     "@types/node": "^12.6.8",
@@ -46,5 +49,13 @@
     "supertest": "4.0.2",
     "ts-node": "^8.3.0",
     "typescript": "^3.5.3"
+  },
+  "pkg": {
+    "assets": [
+      "dist/views/**/*"
+    ],
+    "targets": [
+      "node10"
+    ]
   }
 }
