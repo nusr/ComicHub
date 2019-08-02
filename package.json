@@ -13,7 +13,8 @@
     "lint": "eslint --ext .js,.jsx,.ts,.tsx src server",
     "test": "umi test --coverage",
     "test:watch": "umi test --watchAll --coverage",
-    "readme": "npm run --prefix ./server readme"
+    "readme": "npm run --prefix ./server readme",
+    "lint-staged": "lint-staged"
   },
   "dependencies": {
     "antd": "^3.20.7",
@@ -31,13 +32,20 @@
     "eslint-plugin-react": "^7.14.3",
     "husky": "^3.0.2",
     "jest": "^24.8.0",
+    "lint-staged": "^9.2.1",
     "prettier": "^1.18.2",
     "react-test-renderer": "^16.8.6",
     "umi-plugin-react": "^1.9.14"
   },
+  "lint-staged": {
+    "**/*.{ts,tsx}": [
+      "eslint --fix",
+      "git add"
+    ]
+  },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint",
+      "pre-commit": "npm run lint-staged",
       "pre-push": "npm run test"
     }
   },
