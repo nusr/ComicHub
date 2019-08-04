@@ -29,7 +29,7 @@ const kuaikan = async (ctx: Koa.BaseContext) => {
       waitUntil: 'networkidle0',
       timeout: 0,
     });
-    await page.waitFor(WAIT_TIME);
+    await page.waitFor(WAIT_TIME * 2);
     const html = await page.evaluate(getHtml);
     temp = util.getDownloadList(html);
     await browser.close();

@@ -64,6 +64,8 @@ function downloadImage(
       },
     }).then((response: JsObject): void => {
       response.data.pipe(stream);
+    }).catch((error: Error) => {
+      throw error;
     });
   });
 }

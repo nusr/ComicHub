@@ -28,7 +28,7 @@ const configData: ConfigType = {
   kuaikanmanhua: {
     base: 'https://www.kuaikanmanhua.com',
     name: '快看动漫',
-    enabled: false,
+    enabled: true,
   },
 };
 export default configData;

@@ -1,8 +1,12 @@
 module.exports = {
   verbose: true,
   rootDir: __dirname,
-  testMatch: ['**/?(*.)+(spec|test).ts?(x)'],
-  // testMatch: ['**/src/**/*.test.ts?(x)'],
+  // testMatch: ['**/?(*.)+(spec|test).ts?(x)'],
+  testMatch: ['**/server/routes/**/*.test.ts?(x)'],
+  transform: {
+    '^.+\\.tsx?$': 'ts-jest',
+  },
+
   testPathIgnorePatterns: ['/node_modules/', '/server/node_modules/'],
   collectCoverageFrom: [
     'src/components/**/*.{ts,tsx}',

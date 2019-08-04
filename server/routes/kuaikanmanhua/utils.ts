@@ -52,8 +52,10 @@ function getDownloadList(data: string): IImageItem[] {
   const result: IImageItem[] = [];
   const $ = cheerio.load(data);
   let page = 1;
+  const others: string [] = [];
   $('.imgList>img').each((i, item) => {
     const url: string = $(item).attr('data-src');
+    others.push($(item).attr('src'));
     if (url) {
       result.push({
         url,
