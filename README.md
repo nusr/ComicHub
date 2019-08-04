@@ -55,8 +55,8 @@ ComicHub 是一款漫画下载器。爬取漫画网站的图片，生成 PDF 文
 1. [看漫画 (https://www.manhuagui.com)](https://www.manhuagui.com)
 1. [土豪漫画 (https://www.tohomh123.com)](https://www.tohomh123.com)
 1. [有妖气漫画 (http://www.u17.com)](http://www.u17.com)
+1. [快看动漫 (https://www.kuaikanmanhua.com)](https://www.kuaikanmanhua.com)
 1. [~~腾讯动漫 (https://ac.qq.com)~~](https://ac.qq.com)
-1. [~~快看动漫 (https://www.kuaikanmanhua.com)~~](https://www.kuaikanmanhua.com)
 
 ## 装包
 

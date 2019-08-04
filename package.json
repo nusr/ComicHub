@@ -41,12 +41,12 @@
   "lint-staged": {
     "*.{ts,tsx}": [
       "eslint --fix",
-      "npm run readme",
       "git add"
     ],
-    "*.md": [
+    "*": [
       "npm run readme",
-      "git add"
+      "git add",
+      "git status"
     ]
   },
   "husky": {
