@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer, { ReactTestRenderer } from 'react-test-renderer';
 import Loading from '../Loading';
-
+// TODO 前端测试覆盖率
 describe('Component: Loading', () => {
   it('Render correctly', () => {
     const wrapper: ReactTestRenderer = renderer.create(<Loading />);

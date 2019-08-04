@@ -7,7 +7,7 @@ import styles from './index.less';
 
 type Props = {
   download: JsObject;
-  dispatch: (params: { type: string; payload: object }) => void;
+  dispatch: Function;
   shared: SharedState;
 };
 

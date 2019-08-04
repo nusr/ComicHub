@@ -62,7 +62,7 @@ const searchColumns = [
 type Props = {
   shared: SharedState;
   list: ISearchItem[];
-  dispatch: (params: { type: string; payload: object }) => void;
+  dispatch: Function;
   loading: boolean;
 };
 
@@ -81,7 +81,6 @@ const Chapter: React.FunctionComponent<Props> = ({
         url: currentUrl,
         name: params.name,
         type: TypeConfig.search,
-        cache: params.cache,
       },
     });
   }, []);

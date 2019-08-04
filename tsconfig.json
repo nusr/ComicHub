@@ -13,7 +13,10 @@
     "strict": true,
     "noImplicitAny": true,
     "alwaysStrict": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "typeRoots": [
+      "node_modules/@types"
+    ]
   },
   "include": [
     "src",

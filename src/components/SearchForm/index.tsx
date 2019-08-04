@@ -19,7 +19,6 @@ const SearchForm: React.FunctionComponent<Props> = ({
   const currentData: IFormData = {
     name: '',
     url: '',
-    cache: false,
   };
 
   function resetForm(): void {
@@ -75,7 +74,7 @@ const SearchForm: React.FunctionComponent<Props> = ({
             filterOption={filterOption}
           >
             {menuList.map((item: IOptionData) => (
-              <Select.Option value={item.value} key={item.value}>
+              <Select.Option value={item.value} key={item.value} disabled={!item.enabled}>
                 {item.name}
               </Select.Option>
             ))}
@@ -116,5 +115,5 @@ const SearchForm: React.FunctionComponent<Props> = ({
     </Form>
   );
 };
-const FormWrapper: any = Form.create({ name: 'SearchForm' })(SearchForm);
-export default FormWrapper
+const FormWrapper: JsObject = Form.create({ name: 'SearchForm' })(SearchForm);
+export default FormWrapper;

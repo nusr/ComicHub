@@ -16,6 +16,7 @@ const tuHao = async (ctx: Koa.BaseContext) => {
     temp = util.getChapterList(response.data);
   }
   if (apiType.download === type) {
+    // TODO 下载出现问题
     const response = await axios.get(name);
     temp = util.getDownloadItem(response.data, pageSize);
   }
