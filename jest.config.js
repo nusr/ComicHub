@@ -2,7 +2,7 @@ module.exports = {
   verbose: true,
   rootDir: __dirname,
   testMatch: ['**/?(*.)+(spec|test).ts?(x)'],
-  // testMatch: ['**/server/utils/**/*.test.ts?(x)'],
+  // testMatch: ['**/src/**/*.test.ts?(x)'],
   testPathIgnorePatterns: ['/node_modules/', '/server/node_modules/'],
   collectCoverageFrom: [
     'src/components/**/*.{ts,tsx}',
