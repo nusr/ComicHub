@@ -2,7 +2,7 @@
   "main": "dist/index.js",
   "bin": "dist/index.js",
   "scripts": {
-    "postinstall": "npm run build",
+    "postinstall": "npm run build && npm run readme",
     "readme": "ts-node utils/generateMarkdown.ts",
     "build": "npm run build-ts",
     "start": "node dist/index.js",

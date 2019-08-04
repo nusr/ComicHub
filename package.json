@@ -39,8 +39,13 @@
     "umi-plugin-react": "^1.9.14"
   },
   "lint-staged": {
-    "**/*.{ts,tsx}": [
+    "*.{ts,tsx}": [
       "eslint --fix",
+      "npm run readme",
+      "git add"
+    ],
+    "*.md": [
+      "npm run readme",
       "git add"
     ]
   },
