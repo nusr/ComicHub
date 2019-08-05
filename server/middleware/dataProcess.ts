@@ -39,20 +39,18 @@ function filterArray<T>(data: T[] = []): T[] {
   return result;
 }
 
-const mysqlHandler = async (ctx: Koa.Context, next: Function): Promise<any> => {
+const mysqlHandler = async (ctx: Koa.BaseContext, next: Function): Promise<any> => {
   const requestData: IRequestData = ctx.request.body;
   ctx.state.url = requestData.name;
   ctx.state.type = requestData.type;
   await next();
   let dataResult = ctx.state.data;
   const stateType = ctx.state.type;
-  if (!stateType) {
-    if (dataResult) {
-      ctx.body = dataResult;
-    }
+  if (!stateType || NODE_ENV === 'test') {
+    ctx.body = dataResult;
     return;
   }
-  if (dataResult && NODE_ENV !== 'test') {
+  if (dataResult) {
     const searchUrl = ctx.state.url;
     if (stateType === apiType.search) {
       for (const item of dataResult) {
@@ -110,10 +108,7 @@ const mysqlHandler = async (ctx: Koa.Context, next: Function): Promise<any> => {
       }
     }
   }
-  if (_.isEmpty(dataResult)) {
-    dataResult = handleEmpty(stateType);
-  }
 
-  ctx.body = dataResult;
+  ctx.body = _.isEmpty(dataResult) ? handleEmpty(stateType) : dataResult;
 };
 export default mysqlHandler;

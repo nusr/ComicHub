@@ -3,7 +3,7 @@ import _ from 'lodash';
 import { IChapterItem, IImageItem, ISearchItem } from '../../type';
 import toNum from '../../utils/toNum';
 
-const getSearchList = (data: string): ISearchItem[] => {
+function getSearchList(data: string): ISearchItem[]{
   const $ = cheerio.load(data);
   const result: ISearchItem[] = [];
   const list = $('#comiclist > div > div.comiclist > ul > li');
@@ -41,7 +41,7 @@ const getSearchList = (data: string): ISearchItem[] => {
     });
   });
   return result;
-};
+}
 
 const getChapterList = (data: string): IChapterItem[] => {
   const $ = cheerio.load(data);

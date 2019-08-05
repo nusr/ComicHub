@@ -37,7 +37,7 @@ function getSearchList(data: string): ISearchItem[] {
   return result;
 }
 
-const getChapterList = (data: string): IChapterItem[] => {
+function getChapterList(data: string): IChapterItem[] {
   const $ = cheerio.load(data);
   const chapters: IChapterItem[] = [];
   $('#chapterlistload li').each((i, item) => {
@@ -61,7 +61,7 @@ const getChapterList = (data: string): IChapterItem[] => {
     }
   });
   return chapters;
-};
+}
 
 function getDownloadItem(data: string, pageSize: number): IImageItem[] {
   const linkResult: string[] = (data.match(/var pl = '([\s\S]*)';\s*var bqimg/)) as string[];

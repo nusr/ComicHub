@@ -11,7 +11,8 @@ let temp: object;
 const kuaikan = async (ctx: Koa.BaseContext) => {
   const { type, name }: IRequestData = ctx.request.body;
   if (apiType.search === type) {
-    const response = await axios.get(util.getSearchUrl(name));
+    const url: string = util.getSearchUrl(name);
+    const response = await axios.get(url);
     temp = util.getSearchList(response.data);
   }
   if (apiType.chapter === type) {

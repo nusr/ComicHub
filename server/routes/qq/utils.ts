@@ -4,7 +4,7 @@ import { IChapterItem, IImageItem, ISearchItem } from '../../type';
 import urlConfig from '../../shared/urlConfig';
 
 const baseUrl: string = urlConfig.qq.base;
-const getSearchList = (data: string): ISearchItem[] => {
+function getSearchList (data: string): ISearchItem[] {
   const $ = cheerio.load(data);
   const result: ISearchItem[] = [];
   const list = $('ul.mod_book_list.mod_all_works_list > li');
@@ -25,7 +25,7 @@ const getSearchList = (data: string): ISearchItem[] => {
     });
   });
   return result;
-};
+}
 
 function getChapterList(data: string): IChapterItem[] {
   const $ = cheerio.load(data);

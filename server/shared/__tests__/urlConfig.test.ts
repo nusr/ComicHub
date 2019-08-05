@@ -16,12 +16,12 @@ describe('test routes', () => {
   const testPage = (path: string) => async () => {
     const response: superTest.Response = await request.post(`/${path}`);
     expect(response.text).toBe(
-      'Not Found',
+      '',
     );
   };
   Object.keys(config).forEach((key: string) => {
     it(
-      `post /${key} should return Not Found`,
+      `post /${key} should return ''`,
       testPage(key),
       DELAY_TIME,
     );

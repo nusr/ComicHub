@@ -4,7 +4,8 @@ import { IChapterItem, IImageItem, ISearchItem } from '../../type';
 import urlConfig from '../../shared/urlConfig';
 
 const baseUrl: string = urlConfig.kuaikanmanhua.base;
-const getSearchList = (data: string): ISearchItem[] => {
+
+function getSearchList(data: string): ISearchItem[] {
   const $ = cheerio.load(data);
   const result: ISearchItem[] = [];
   const list = $('.resultList>.TabW184');
@@ -18,7 +19,7 @@ const getSearchList = (data: string): ISearchItem[] => {
     const cover: string = $(item)
       .find('.img')
       .eq(0)
-      .attr('data-src');
+      .attr('src');
     const category: string = $(item).find('.tab').text();
     result.push({
       url,
@@ -29,7 +30,7 @@ const getSearchList = (data: string): ISearchItem[] => {
     });
   });
   return result;
-};
+}
 
 function getChapterList(data: string): IChapterItem[] {
   const $ = cheerio.load(data);

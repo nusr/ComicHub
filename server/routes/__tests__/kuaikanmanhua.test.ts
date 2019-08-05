@@ -9,18 +9,17 @@ afterAll(() => {
 });
 
 describe('test', () => {
-  it('test /tohomh123 search', async () => {
+  it('test /kuaikanmanhua search', async () => {
     const name = '火影';
-    const response: superTest.Response = await request.post('/tohomh123').send({ type: 'search', name });
+    const response: superTest.Response = await request.post('/kuaikanmanhua').send({ type: 'search', name });
     const data: ISearchItem[] = response.body;
     expect(data.every((item: ISearchItem) => item.title.includes(name))).toBeTruthy();
   });
-
-  it('test /tohomh123 chapter', async () => {
-    const response: superTest.Response = await request.post('/tohomh123').send({
+  it('test /kuaikanmanhua chapter', async () => {
+    const response: superTest.Response = await request.post('/kuaikanmanhua').send({
       'type': 'chapter',
-      'name': 'https://www.tohomh123.com/huoyingrenzhejiezhishu/',
+      'name': 'https://www.kuaikanmanhua.com/web/topic/1342',
     });
-    expect(response.body.length).toBeGreaterThan(6);
+    expect(response.body.length).toBeGreaterThan(700);
   });
 });
