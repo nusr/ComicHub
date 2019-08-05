@@ -2,7 +2,7 @@
 import { UrlConfigItem } from './type';
 
 type ConfigType = {
-  readonly [key: string]: UrlConfigItem;
+  [key: string]: UrlConfigItem;
 };
 const configData: ConfigType = {
   manhuagui: {

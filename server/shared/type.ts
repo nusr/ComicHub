@@ -13,7 +13,7 @@ export interface MysqlConfig {
 }
 
 export interface SharedConfig {
-  readonly language: string;
+  language: string;
   readonly serverPort: number;
   readonly userAgent: number;
   readonly requestRetry: number;
