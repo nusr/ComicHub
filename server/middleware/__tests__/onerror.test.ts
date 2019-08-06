@@ -1,6 +1,5 @@
 import superTest from 'supertest';
 import koaServer from '../../index';
-import { getLanguageData } from '../../locales';
 
 const { server } = koaServer;
 const request = superTest(server);
@@ -15,9 +14,7 @@ describe('error', () => {
     // eslint-disable-next-line
     expect(response.text).toMatch(
       eval(
-        `/${getLanguageData(
-          'middleware.onerror.error'
-        )}: <pre>Error: Error test/`
+        `/ComicHub 发生了一些意外: <pre>Error: Error test/`
       )
     );
   });

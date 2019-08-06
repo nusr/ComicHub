@@ -29,7 +29,7 @@ module.exports = {
       functions: 45,
       lines: 50,
       statements: 50,
-      branches: 35,
+      branches: 30,
     },
   },
   bail: true,
