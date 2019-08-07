@@ -1,6 +1,5 @@
 import Puppeteer from '../puppeteer';
 
-const DELAY_TIME = 100000;
 describe('puppeteer', () => {
   it(
     'puppeteer run success',
@@ -15,6 +14,5 @@ describe('puppeteer', () => {
 
       await browser.close();
     },
-    DELAY_TIME,
   );
 });

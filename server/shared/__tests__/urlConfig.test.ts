@@ -7,7 +7,6 @@ import config from '../../shared/urlConfig';
 
 const { server } = koaServer;
 const request = superTest(server);
-const DELAY_TIME = 100000;
 
 describe('test routes', () => {
   afterAll(() => {
@@ -23,7 +22,6 @@ describe('test routes', () => {
     it(
       `post /${key} should return ''`,
       testPage(key),
-      DELAY_TIME,
     );
   });
 });
@@ -58,7 +56,7 @@ describe('Test Base Url', () => {
     it(
       `base url ${item.base} should include many images`,
       testPage(item.base),
-      DELAY_TIME,
+      1000000
     );
   });
 });

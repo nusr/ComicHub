@@ -21,5 +21,5 @@ describe('test', () => {
       'name': 'https://www.kuaikanmanhua.com/web/topic/1342',
     });
     expect(response.body.length).toBeGreaterThan(700);
-  });
+  },100000);
 });

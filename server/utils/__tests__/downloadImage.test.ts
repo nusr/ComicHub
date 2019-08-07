@@ -1,7 +1,6 @@
 import fs from 'fs';
 import downloadImage, { getExtName, checkSharpExtName, checkExtName } from '../downloadImage';
 
-const DELAY_TIME = 100000;
 describe('getExtName', () => {
   it('getExtName should return right result', () => {
     expect(getExtName('nusr.com.webp')).toBe('.webp');
@@ -45,7 +44,7 @@ describe('downloadImage', () => {
   it('downloadImage should download success', async () => {
     const filePath: string = await downloadImage('https://jestjs.io/img/jest.svg', 'jest', 'https://jestjs.io');
     expect(fs.existsSync(filePath)).toBeTruthy();
-  }, DELAY_TIME);
+  });
 
 });
 
