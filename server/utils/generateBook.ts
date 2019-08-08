@@ -7,7 +7,7 @@ import { getComicSite, getReferer, numToString } from './parseUrl';
 import downloadImage, { checkExtName } from './downloadImage';
 import convertImage from './convertImage';
 
-type DownloadItem = {
+interface DownloadItem {
   url: string;
   fileName: string;
 }

@@ -3,12 +3,12 @@ import { formatMessage, getLocale, setLocale } from 'umi-plugin-locale';
 import { Dropdown, Icon, Menu } from 'antd';
 import styles from './index.less';
 type Props = {}
-type ObjectType = {
+interface ObjectType {
   [key: string]: string;
-};
-type Event = {
+}
+interface Event {
   key: string;
-};
+}
 const SelectLang: React.FunctionComponent<Props> = () => {
   function changeLang(event: Event): void {
     const { key } = event;

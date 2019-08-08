@@ -1,7 +1,7 @@
-type Params = {
+interface Params {
   name: string;
   page_size?: number;
-};
+}
 
 export interface SharedState {
   currentUrl: string;

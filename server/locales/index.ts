@@ -3,9 +3,9 @@ import configData from '../shared';
 import zhCN from './zh-CN';
 import enUS from './en-US';
 
-type LanguageMap = {
+interface LanguageMap {
   [key: string]: JsObject;
-};
+}
 const languageMap: LanguageMap = {
   'zh-CN': zhCN,
   'en-US': enUS,

@@ -65,6 +65,7 @@ module.exports = {
     '@typescript-eslint/ban-ts-ignore': 'error',
     '@typescript-eslint/no-empty-function': 'error',
     '@typescript-eslint/unified-signatures': 'error',
+    'prefer-destructuring':'error'
   },
   settings: {
     // 'import/resolver': { node: { extensions: ['.js', '.ts', '.tsx', '.jsx'] } },

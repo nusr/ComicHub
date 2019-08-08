@@ -2,7 +2,6 @@ import Koa from 'koa';
 import _ from 'lodash';
 import { Server } from 'http';
 import bodyParser from 'koa-bodyparser';
-import koaStatic from 'koa-static';
 import config from './shared';
 import logger from './utils/logger';
 import errorHandler from './middleware/onerror';
@@ -38,8 +37,6 @@ app.use(apiResponseHandler);
 app.use(bodyParser());
 
 app.use(mysql);
-const absPath = process.cwd() + '/dist/views';
-app.use(koaStatic(absPath));
 app.use(router.routes()).use(router.allowedMethods());
 let koaPort: number = config.serverPort;
 if (process.env.NODE_ENV === 'test') {

@@ -4,7 +4,7 @@ import { FormattedMessage } from 'umi-plugin-locale';
 import Link from 'umi/link';
 import styles from './index.less';
 
-type Props = {};
+type Props = {}
 
 const CommonHeader: React.FunctionComponent<Props> = ({ children }) => (
   <React.Fragment>

@@ -4,10 +4,10 @@ import router from 'umi/router';
 import SearchForm from '../../components/SearchForm';
 import { IFormData, MenuItem, TypeConfig } from '../../type';
 
-type Props = {
+interface Props {
   dispatch: Function;
   list: JsObject;
-};
+}
 
 function getMenuList(data: JsObject = {}): MenuItem[] {
   return Object.keys(data).map(
@@ -49,10 +49,10 @@ const HomePage: React.FunctionComponent<Props> = ({ dispatch, list }) => {
   return <SearchForm handleFormSubmit={handleSearchSubmit} menuList={menuList}/>;
 
 };
-type ConnectProps = {
+interface ConnectProps {
   loading: JsObject;
   menu: JsObject;
-};
+}
 
 export default connect(({ loading, menu }: ConnectProps) => ({
   loading: loading.models.menu,

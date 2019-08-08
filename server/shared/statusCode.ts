@@ -1,7 +1,7 @@
 /**
  * HTTP Status codes
  */
-type StatusCode = {
+interface StatusCode {
   [key: string]: number;
 }
 const statusCode: StatusCode = {

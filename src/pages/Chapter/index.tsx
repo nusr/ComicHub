@@ -59,12 +59,12 @@ const searchColumns = [
   },
 ];
 
-type Props = {
+interface Props {
   shared: SharedState;
   list: ISearchItem[];
   dispatch: Function;
   loading: boolean;
-};
+}
 
 const Chapter: React.FunctionComponent<Props> = ({
   dispatch,
@@ -94,7 +94,7 @@ const Chapter: React.FunctionComponent<Props> = ({
       message.error(<FormattedMessage id="page.Chapter.select.tip"/>);
       return;
     }
-    const item: ISearchItem = selectedRows[0];
+    const [item] = selectedRows;
     dispatch({
       type: 'shared/changeParams',
       payload: {
@@ -126,11 +126,13 @@ const Chapter: React.FunctionComponent<Props> = ({
     </Fragment>
   );
 };
-type ConnectProps = {
+
+interface ConnectProps {
   loading: JsObject;
-  common: JsObject ;
+  common: JsObject;
   shared: SharedState;
-};
+}
+
 export { Chapter };
 export default connect(({ loading, common, shared }: ConnectProps) => ({
   loading: loading.models.common,

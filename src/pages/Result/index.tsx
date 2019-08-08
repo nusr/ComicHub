@@ -5,11 +5,11 @@ import Loading from '../../components/Loading';
 import { SharedState, TypeConfig } from '../../type';
 import styles from './index.less';
 
-type Props = {
+interface Props {
   download: JsObject;
   dispatch: Function;
   shared: SharedState;
-};
+}
 
 const Result: React.FunctionComponent<Props> = ({
   download: { downloadPath, result },
@@ -41,10 +41,10 @@ const Result: React.FunctionComponent<Props> = ({
   }
   return <div className={styles.container}>{temp}</div>;
 };
-type ConnectProps = {
+interface ConnectProps {
   download: object;
   shared: SharedState;
-};
+}
 export { Result };
 
 export default connect(({ download, shared }: ConnectProps) => ({

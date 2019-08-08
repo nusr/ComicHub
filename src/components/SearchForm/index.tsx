@@ -5,11 +5,11 @@ import { IFormData, IOptionData, MenuItem } from '../../type';
 
 const FormItem = Form.Item;
 
-type Props = {
+interface Props {
   menuList: MenuItem[];
   form: JsObject;
   handleFormSubmit: (data: IFormData) => void;
-};
+}
 
 const SearchForm: React.FunctionComponent<Props> = ({
   form,

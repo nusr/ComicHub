@@ -56,7 +56,7 @@ describe('Test Base Url', () => {
     it(
       `base url ${item.base} should include many images`,
       testPage(item.base),
-      1000000
+      100000000
     );
   });
 });

@@ -7,9 +7,9 @@ import statusCodes from '../shared/statusCode';
 import generateBook from '../utils/generateBook';
 import { getLanguageData } from '../locales';
 
-type EmptyData = {
+interface EmptyData {
   message: string;
-};
+}
 
 const { NODE_ENV } = process.env;
 

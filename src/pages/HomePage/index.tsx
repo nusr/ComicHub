@@ -10,10 +10,10 @@ import { TypeConfig } from '../../type';
 const { Header, Footer, Content } = Layout;
 const { Step } = Steps;
 
-type Props = {
+interface Props {
   children?: React.ReactChild;
   location: Location;
-};
+}
 
 export function getCurrentStep(type: string = ''): number {
   switch (type) {

@@ -1,9 +1,9 @@
 // Enabled 为 true 表示功能完成
 import { UrlConfigItem } from './type';
 
-type ConfigType = {
+interface ConfigType {
   [key: string]: UrlConfigItem;
-};
+}
 const configData: ConfigType = {
   manhuagui: {
     base: 'https://www.manhuagui.com',

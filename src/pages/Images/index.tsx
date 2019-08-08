@@ -38,12 +38,12 @@ const chapterColumns = [
   },
 ];
 
-type Props = {
+interface Props {
   dispatch: Function;
   loading: boolean;
   list: IChapterItem[];
   shared: SharedState;
-};
+}
 
 const ChapterResult: React.FunctionComponent<Props> = ({
   dispatch,
@@ -74,7 +74,7 @@ const ChapterResult: React.FunctionComponent<Props> = ({
       message.error(<FormattedMessage id="page.Images.select.tip" />);
       return;
     }
-    const item = selectedRows[0];
+    const [item] = selectedRows;
 
     dispatch({
       type: 'shared/changeParams',
@@ -108,11 +108,11 @@ const ChapterResult: React.FunctionComponent<Props> = ({
     </Fragment>
   );
 };
-type ConnectProps = {
+interface ConnectProps {
   loading: JsObject;
   common: JsObject;
   shared: SharedState;
-};
+}
 export default connect(({ loading, common, shared }: ConnectProps) => ({
   loading: loading.models.common,
   list: common.list,
