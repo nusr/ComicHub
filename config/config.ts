@@ -1,10 +1,9 @@
 import routes from './routes';
 import plugins from './plugins';
 
-// const NODE_ENV: string = process.env.NODE_ENV as string;
 export default {
   history: 'hash',
-  outputPath: 'server/dist/views',
+  outputPath: 'dist',
   plugins,
   proxy: {
     '/v1': {

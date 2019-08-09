@@ -3,6 +3,7 @@ import logger from '../utils/logger';
 
 const headers = {
   'Access-Control-Allow-Methods': 'GET,HEAD,PUT,POST,DELETE,PATCH',
+  'Content-Type': 'application/json; charset=utf-8',
 };
 
 const headerHandler = async (
@@ -13,13 +14,7 @@ const headerHandler = async (
   ctx.set({
     'Access-Control-Allow-Origin': `${ctx.host}`,
   });
+  logger.info(`current request url: ${ctx.url}`);
   await next();
-  // api request
-  if (ctx.state.data) {
-    logger.info(`current request url: ${ctx.url}`);
-    ctx.set({
-      'Content-Type': 'application/json; charset=utf-8',
-    });
-  }
 };
 export default headerHandler;

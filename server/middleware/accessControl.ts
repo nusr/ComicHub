@@ -44,7 +44,6 @@ const accessControl = async (
     }
 
     if (ctx.response.status !== statusCodes.FORBIDDEN) {
-      ctx.debug.request += 1;
       await next();
     }
   }

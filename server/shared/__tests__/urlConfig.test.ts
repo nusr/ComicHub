@@ -43,7 +43,7 @@ describe('Test Base Url', () => {
     await page.goto(path, {
       waitUntil: 'networkidle0',
     });
-    await page.waitFor(2000);
+    await page.waitFor(1000);
     const list: string[] = await page.evaluate(() => {
       const arr: HTMLImageElement[] = Array.prototype.slice.apply(
         document.querySelectorAll('img'),

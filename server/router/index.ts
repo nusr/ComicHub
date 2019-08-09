@@ -16,7 +16,7 @@ router.get('/', async (ctx: Koa.Context) => {
     'Cache-Control': 'no-cache',
   });
   ctx.body = {
-    request: ctx.debug.request,
+    request: 'Comic Hub',
   };
 });
 
