@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { FormattedMessage } from 'umi-plugin-locale';
+import { getLanguageData } from '../../locales';
 import Loading from '../../components/Loading';
 import { TypeConfig } from '../../type';
 import styles from './index.less';
 import { postItem } from '../../services';
+import { getQuery } from '../../utils';
 
 interface Props {
   location: any;
@@ -15,7 +16,7 @@ const Result: React.FunctionComponent<Props> = ({
   const [result, setResult] = useState<boolean>(false);
   const [downloadPath, setDownloadPath] = useState<string>('');
   useEffect(() => {
-    const { query } = location;
+    const query = getQuery(location.search);
     postItem({
       url: query.url,
       name: query.name,
@@ -33,7 +34,7 @@ const Result: React.FunctionComponent<Props> = ({
     temp = (
       <div className={styles.pdf}>
         <div>
-          <FormattedMessage id="page.Result.download.success"/>
+          { getLanguageData("page.Result.download.success") }
         </div>
         <div className={styles.downloadPath}>{downloadPath}</div>
       </div>

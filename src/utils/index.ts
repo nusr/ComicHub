@@ -1,3 +1,6 @@
+import { parse } from 'qs';
+import { createBrowserHistory, History } from 'history';
+
 export function addZero(temp: number): string {
   if (temp < 10) {
     return `0${temp}`;
@@ -26,6 +29,16 @@ export function renderDate(temp: number | string): string {
   const minute: number = date.getMinutes();
   const second: number = date.getSeconds();
   return `${year}-${addZero(month)}-${addZero(day)} ${addZero(hour)}:${addZero(
-    minute
+    minute,
   )}:${addZero(second)}`;
 }
+
+
+export function getQuery(search: string) {
+  const [, data] = search.split('?');
+  return parse(data);
+}
+
+export const history: History = createBrowserHistory({
+  basename: '/',
+});

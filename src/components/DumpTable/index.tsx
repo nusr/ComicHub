@@ -1,7 +1,7 @@
 /* eslint-disable */
 import React, { Component, Fragment } from 'react';
 import { Table, Alert } from 'antd';
-import { FormattedMessage } from 'umi-plugin-locale';
+import { getLanguageData } from '../../locales';
 import styles from './index.less';
 
 type StandardTableProps = {
@@ -89,16 +89,16 @@ class DumpTable extends Component<StandardTableProps, any> {
           <Alert
             message={
               <Fragment>
-                <FormattedMessage id="component.DumpTable.selected"/>
+                {getLanguageData("component.DumpTable.selected")}
                 &nbsp;
                 <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a>
                 &nbsp;
-                <FormattedMessage id="component.DumpTable.single"/>
+                {getLanguageData("component.DumpTable.single")}
                 &nbsp;
                 {needTotalList.map((item: any) => (
                   <span style={{ marginLeft: 8 }} key={item.dataIndex}>
                     {item.title}
-                    <FormattedMessage id="component.DumpTable.total"/>
+                    {getLanguageData("component.DumpTable.total")}
                     &nbsp;
                     <span style={{ fontWeight: 600 }}>
                       {item.render ? item.render(item.total) : item.total}
@@ -106,7 +106,7 @@ class DumpTable extends Component<StandardTableProps, any> {
                   </span>
                 ))}
                 <a onClick={this.cleanSelectedKeys} style={{ marginLeft: 24 }}>
-                  <FormattedMessage id="component.DumpTable.clear"/>
+                  {getLanguageData("component.DumpTable.clear")}
                 </a>
               </Fragment>
             }

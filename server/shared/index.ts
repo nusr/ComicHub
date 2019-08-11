@@ -44,7 +44,7 @@ const pdfSupportImage: string[] = ['.jpeg', '.png']; // Pdfkit 只支持 png jpe
 const sharpConvertType: string[] = ['.jpeg', '.jpg', '.png', '.webp', '.tiff', '.gif', '.svg'];// sharp input type
 export { bookConfig, pdfSupportImage, apiType, sharpConvertType, DESKTOP_WINDOW_SIZE };
 const sharedConfig: SharedConfig = {
-  language: envConfig.DEFAULT_LANGUAGE || 'zh-CN',
+  language: envConfig.DEFAULT_LANGUAGE,
   serverPort: toNum(envConfig.SERVER_PORT) || 1200, // 监听端口,
   userAgent:
     envConfig.USER_AGENT ||

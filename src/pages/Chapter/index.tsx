@@ -1,8 +1,7 @@
 import { Avatar, Button, message } from 'antd';
-import router from 'umi/router';
-import { FormattedMessage } from 'umi-plugin-locale';
+import { getLanguageData } from '../../locales';
 import React, { Fragment, useEffect, useState } from 'react';
-import { renderDate } from '../../utils';
+import { renderDate, getQuery, history } from '../../utils';
 import styles from './index.less';
 import DumpTable from '../../components/DumpTable';
 import { TypeConfig } from '../../type';
@@ -16,15 +15,15 @@ const searchColumns = [
   },
   {
     dataIndex: 'title',
-    title: <FormattedMessage id="page.Chapter.table.title"/>,
+    title: getLanguageData('page.Chapter.table.title'),
   },
   {
     dataIndex: 'author',
-    title: <FormattedMessage id="page.Chapter.table.author"/>,
+    title: getLanguageData('page.Chapter.table.author'),
   },
   {
     dataIndex: 'url',
-    title: <FormattedMessage id="page.Chapter.table.url"/>,
+    title: getLanguageData('page.Chapter.table.url'),
     render: (text: string) => (
       <a title={text} target="_blank" href={text} rel="noopener noreferrer">
         {text}
@@ -34,15 +33,15 @@ const searchColumns = [
 
   {
     dataIndex: 'area',
-    title: <FormattedMessage id="page.Chapter.table.area"/>,
+    title: getLanguageData('page.Chapter.table.area'),
   },
   {
     dataIndex: 'category',
-    title: <FormattedMessage id="page.Chapter.table.category"/>,
+    title: getLanguageData('page.Chapter.table.category'),
   },
   {
     dataIndex: 'cover',
-    title: <FormattedMessage id="page.Chapter.table.cover"/>,
+    title: getLanguageData('page.Chapter.table.cover'),
     render: (text: string) =>
       text ? (
         <a target="_blank" href={text} rel="noopener noreferrer">
@@ -54,7 +53,7 @@ const searchColumns = [
   },
   {
     dataIndex: 'create_time',
-    title: <FormattedMessage id="page.Chapter.table.create_time"/>,
+    title: getLanguageData('page.Chapter.table.create_time'),
     render: renderDate,
   },
 ];
@@ -70,8 +69,8 @@ const Chapter: React.FunctionComponent<Props> = (props: Props) => {
   const [selectedRows, setSelectedRows] = useState<ISearchItem[]>([]);
   const checkType = 'radio';
   const [list, setList] = useState<ISearchItem[]>([]);
+  const query = getQuery(location.search);
   useEffect(() => {
-    const { query } = location;
     postItem({
       url: query.url,
       name: query.name,
@@ -87,11 +86,12 @@ const Chapter: React.FunctionComponent<Props> = (props: Props) => {
 
   function handleChapterSubmit(): void {
     if (!selectedRows || selectedRows.length === 0) {
-      message.error(<FormattedMessage id="page.Chapter.select.tip"/>);
+      message.error(getLanguageData('page.Chapter.select.tip'));
       return;
     }
     const [item] = selectedRows;
-    router.push(`/${TypeConfig.download}?url=${location.query.url}&name=${encodeURIComponent(item.url)}`);
+    const link = `/${TypeConfig.download}?url=${query.url}&name=${encodeURIComponent(item.url)}`;
+    history.push(link);
   }
 
   return (
@@ -102,7 +102,7 @@ const Chapter: React.FunctionComponent<Props> = (props: Props) => {
           onClick={handleChapterSubmit}
           disabled={selectedRows.length === 0}
         >
-          <FormattedMessage id="component.button.submit"/>
+          {getLanguageData('component.button.submit')}
         </Button>
       </div>
       <DumpTable

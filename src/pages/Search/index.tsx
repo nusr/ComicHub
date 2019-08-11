@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import router from 'umi/router';
 import SearchForm from '../../components/SearchForm';
 import { IFormData, MenuItem, TypeConfig } from '../../type';
 import { getMenuList as fetchMenuList } from '../../services';
+import { history } from '../../utils';
 
 type Props = {}
 
@@ -29,7 +29,8 @@ const HomePage: React.FunctionComponent<Props> = () => {
 
   function handleSearchSubmit(value: IFormData): void {
     if (value.name && value.url) {
-      router.push(`/${TypeConfig.chapter}?url=${value.url}&name=${value.name}`);
+      const link = `/${TypeConfig.chapter}?url=${value.url}&name=${value.name}`;
+      history.push(link);
     }
   }
 

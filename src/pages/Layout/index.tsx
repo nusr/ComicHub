@@ -1,6 +1,7 @@
 import { Card, Layout, Steps } from 'antd';
 import React, { useEffect, useState } from 'react';
-import { FormattedMessage } from 'umi-plugin-locale';
+import { Location } from 'history';
+import { getLanguageData } from '../../locales';
 import CommonFooter from '../../components/CommonFooter';
 import CommonHeader from '../../components/CommonHeader';
 import SelectLang from '../../components/SelectLang';
@@ -12,7 +13,7 @@ const { Step } = Steps;
 
 interface Props {
   children?: React.ReactChild;
-  location: any;
+  location: Location;
 }
 
 export function getCurrentStep(type: string = ''): number {
@@ -44,7 +45,7 @@ const HomePage: React.FunctionComponent<Props> = ({
     <Layout className={styles.container}>
       <Header>
         <CommonHeader>
-          <SelectLang />
+          <SelectLang/>
         </CommonHeader>
       </Header>
       <Content>
@@ -54,16 +55,16 @@ const HomePage: React.FunctionComponent<Props> = ({
             labelPlacement={isVertical ? 'vertical' : 'horizontal'}
             current={getCurrentStep(currentType)}
           >
-            <Step title={<FormattedMessage id="page.HomePage.step0" />} />
-            <Step title={<FormattedMessage id="page.HomePage.step1" />} />
-            <Step title={<FormattedMessage id="page.HomePage.step2" />} />
-            <Step title={<FormattedMessage id="page.HomePage.step3" />} />
+            <Step title={getLanguageData('page.HomePage.step0')}/>
+            <Step title={getLanguageData('page.HomePage.step1')}/>
+            <Step title={getLanguageData('page.HomePage.step2')}/>
+            <Step title={getLanguageData('page.HomePage.step3')}/>
           </Steps>
         </Card>
         <Card>{children}</Card>
       </Content>
       <Footer>
-        <CommonFooter />
+        <CommonFooter/>
       </Footer>
     </Layout>
   );

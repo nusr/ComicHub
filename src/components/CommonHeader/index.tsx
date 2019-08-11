@@ -1,7 +1,7 @@
 import { Icon, Tooltip } from 'antd';
 import React from 'react';
-import { FormattedMessage } from 'umi-plugin-locale';
-import Link from 'umi/link';
+import { getLanguageData } from '../../locales';
+import { Link } from 'react-router-dom';
 import styles from './index.less';
 
 type Props = {}
@@ -14,10 +14,10 @@ const CommonHeader: React.FunctionComponent<Props> = ({ children }) => (
     <div style={{ fontSize: 20 }}>
       {children}
       <Tooltip
-        title={<FormattedMessage id="component.CommonHeader.tooltip" />}
+        title={getLanguageData("component.CommonHeader.tooltip")}
         className={styles.help}
       >
-        <Icon type="question-circle" />
+        <Icon type="question-circle"/>
       </Tooltip>
     </div>
   </React.Fragment>

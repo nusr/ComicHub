@@ -1,8 +1,7 @@
 import { Button, message } from 'antd';
-import { FormattedMessage } from 'umi-plugin-locale';
-import router from 'umi/router';
+import { getLanguageData } from '../../locales';
 import React, { Fragment, useEffect, useState } from 'react';
-import { renderDate } from '../../utils';
+import { renderDate, history, getQuery } from '../../utils';
 import styles from './index.less';
 import DumpTable from '../../components/DumpTable';
 import { IChapterItem } from '../../../server/type';
@@ -16,11 +15,11 @@ const chapterColumns = [
   },
   {
     dataIndex: 'title',
-    title: <FormattedMessage id="page.Chapter.table.title"/>,
+    title: getLanguageData('page.Chapter.table.title'),
   },
   {
     dataIndex: 'url',
-    title: <FormattedMessage id="page.Chapter.table.url"/>,
+    title: getLanguageData('page.Chapter.table.url'),
     render: (text: string) => (
       <a title={text} target="_blank" href={text} rel="noopener noreferrer">
         {text}
@@ -29,11 +28,11 @@ const chapterColumns = [
   },
   {
     dataIndex: 'page_size',
-    title: <FormattedMessage id="page.Images.table.page_size"/>,
+    title: getLanguageData('page.Images.table.page_size'),
   },
   {
     dataIndex: 'create_time',
-    title: <FormattedMessage id="page.Chapter.table.create_time"/>,
+    title: getLanguageData('page.Chapter.table.create_time'),
     render: renderDate,
   },
 ];
@@ -48,8 +47,8 @@ const ChapterResult: React.FunctionComponent<Props> = ({
   const [selectedRows, setSelectedRows] = useState<IChapterItem[]>([]);
   const checkType = 'radio';
   const [list, setList] = useState<IChapterItem[]>([]);
+  const query = getQuery(location.search);
   useEffect(() => {
-    const { query } = location;
     postItem({
       url: query.url,
       name: decodeURIComponent(query.name),
@@ -65,11 +64,12 @@ const ChapterResult: React.FunctionComponent<Props> = ({
 
   function handleChapterSubmit(): void {
     if (!selectedRows || selectedRows.length === 0) {
-      message.error(<FormattedMessage id="page.Images.select.tip"/>);
+      message.error(getLanguageData('page.Images.select.tip'));
       return;
     }
     const [item] = selectedRows;
-    router.push(`/${TypeConfig.result}?url=${location.query.url}&name=${encodeURIComponent(item.url)}&page_size=${item.page_size}`);
+    const link = `/${TypeConfig.result}?url=${query.url}&name=${encodeURIComponent(item.url)}&page_size=${item.page_size}`;
+    history.push(link);
   }
 
   return (
@@ -80,7 +80,7 @@ const ChapterResult: React.FunctionComponent<Props> = ({
           onClick={handleChapterSubmit}
           disabled={selectedRows.length === 0}
         >
-          <FormattedMessage id="component.button.submit"/>
+          {getLanguageData('component.button.submit')}
         </Button>
       </div>
       <DumpTable

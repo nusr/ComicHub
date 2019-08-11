@@ -1,5 +1,5 @@
 import { notification } from 'antd';
-import { formatMessage } from 'umi-plugin-locale';
+import { getLanguageData } from '../locales';
 
 function checkStatus(response: JsObject): JsObject | Error {
   if (response.status >= 200 && response.status < 300) {
@@ -7,7 +7,7 @@ function checkStatus(response: JsObject): JsObject | Error {
   }
   const error = new Error();
   error.name = response.status;
-  error.message = `${formatMessage({ id: 'utils.request.status.error' })} ${
+  error.message = `${getLanguageData('utils.request.status.error')} ${
     response.status
   }: ${response.url}`;
   throw error;
@@ -57,9 +57,9 @@ export default function request(url: string, options = {}) {
     .then((response: JsObject) => response.json())
     .catch((error: Error) => {
       const title =
-        formatMessage({ id: `utils.request.${error.name}` }) ||
+        getLanguageData(`utils.request.${error.name}`) ||
         error.name ||
-        formatMessage({ id: 'utils.request.status.error' });
+        getLanguageData('utils.request.status.error');
       if (process.env.NODE_ENV === 'development') {
         return;
       }

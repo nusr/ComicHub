@@ -1,5 +1,5 @@
 import { Button, Form, Input, Select } from 'antd';
-import { FormattedMessage, formatMessage } from 'umi-plugin-locale';
+import { getLanguageData } from '../../locales';
 import React, { useEffect } from 'react';
 import { IFormData, IOptionData, MenuItem } from '../../type';
 
@@ -52,23 +52,23 @@ const SearchForm: React.FunctionComponent<Props> = ({
   return (
     <Form onSubmit={handleSubmit} layout="inline">
       <FormItem
-        label={<FormattedMessage id="component.SearchForm.site.label"/>}
+        label={getLanguageData('component.SearchForm.site.label')}
       >
         {form.getFieldDecorator('url', {
           initialValue: currentData.url,
           rules: [
             {
               required: true,
-              message: (
-                <FormattedMessage id="component.SearchForm.site.message"/>
-              ),
+              message:
+                getLanguageData('component.SearchForm.site.message')
+              ,
             },
           ],
         })(
           <Select
             showSearch
             placeholder={
-              <FormattedMessage id="component.SearchForm.site.message"/>
+              getLanguageData('component.SearchForm.site.message')
             }
             style={{ width: 170 }}
             filterOption={filterOption}
@@ -82,23 +82,23 @@ const SearchForm: React.FunctionComponent<Props> = ({
         )}
       </FormItem>
       <FormItem
-        label={<FormattedMessage id="component.SearchForm.keyword.label"/>}
+        label={getLanguageData('component.SearchForm.keyword.label')}
       >
         {form.getFieldDecorator('name', {
           initialValue: currentData.name,
           rules: [
             {
               required: true,
-              message: (
-                <FormattedMessage id="component.SearchForm.keyword.label"/>
-              ),
+              message:
+                getLanguageData('component.SearchForm.keyword.label')
+              ,
             },
           ],
         })(
           <Input
-            placeholder={formatMessage({
-              id: 'component.SearchForm.keyword.label',
-            })}
+            placeholder={getLanguageData(
+              'component.SearchForm.keyword.label',
+            )}
           />,
         )}
       </FormItem>
@@ -108,7 +108,7 @@ const SearchForm: React.FunctionComponent<Props> = ({
           type="primary"
           style={{ marginRight: 16 }}
         >
-          <FormattedMessage id="component.button.search"/>
+          {getLanguageData('component.button.search')}
         </Button>
         <Button onClick={resetForm}>重置</Button>
       </FormItem>

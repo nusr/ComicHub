@@ -1,5 +1,5 @@
 import React from 'react';
-import { formatMessage, getLocale, setLocale } from 'umi-plugin-locale';
+import { getLanguageData, getLocale, setLocale } from '../../locales';
 import { Dropdown, Icon, Menu } from 'antd';
 import styles from './index.less';
 type Props = {}
@@ -21,7 +21,7 @@ const SelectLang: React.FunctionComponent<Props> = () => {
     'zh-CN': '中文',
     'en-US': 'English',
   };
-  const title: string = formatMessage({ id: 'component.SelectLang.language' });
+  const title: string = getLanguageData( 'component.SelectLang.language' );
   const languageIcons: ObjectType = {
     'zh-CN': '🇨🇳',
     'en-US': '🇬🇧',
