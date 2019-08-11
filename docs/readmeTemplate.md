@@ -34,7 +34,6 @@ ComicHub 是一款漫画下载器。爬取漫画网站的图片，生成 PDF 文
 
 -   [Koa](https://github.com/koajs/koa) - Expressive middleware for node.js using ES2017 async functions
 -   [MySQL](https://github.com/mysqljs/mysql)
--   [Umi](https://github.com/umijs/umi) - Pluggable enterprise-level react application framework.
 -   [React](https://github.com/facebook/react) - A declarative, efficient, and flexible JavaScript library for building user interfaces.
 -   [Typescript](https://github.com/microsoft/TypeScript) - TypeScript is a superset of JavaScript
 
@@ -46,7 +45,7 @@ ComicHub 是一款漫画下载器。爬取漫画网站的图片，生成 PDF 文
 1. [x] 生成 PDF 文件
 1. [x] 多语言
 1. [ ] 下载整部漫画
-1. [ ] 打包成桌面应用
+~~1. [ ] 打包成桌面应用~~
 
 ## 支持的网站
 
