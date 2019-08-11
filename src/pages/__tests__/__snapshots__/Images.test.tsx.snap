@@ -1,0 +1,303 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Page: Images  Snapshots 1`] = `
+Array [
+  <div>
+    <button
+      className="ant-btn ant-btn-primary"
+      disabled={true}
+      onClick={[Function]}
+      type="button"
+    >
+      <span>
+        提 交
+      </span>
+    </button>
+  </div>,
+  <div>
+    <div>
+      <div
+        className="ant-alert ant-alert-info"
+        data-show={true}
+      >
+        <i
+          aria-label="icon: info-circle"
+          className="anticon anticon-info-circle ant-alert-icon"
+        >
+          <svg
+            aria-hidden="true"
+            className=""
+            data-icon="info-circle"
+            fill="currentColor"
+            focusable="false"
+            height="1em"
+            viewBox="64 64 896 896"
+            width="1em"
+          >
+            <path
+              d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm32 664c0 4.4-3.6 8-8 8h-48c-4.4 0-8-3.6-8-8V456c0-4.4 3.6-8 8-8h48c4.4 0 8 3.6 8 8v272zm-32-344a48.01 48.01 0 0 1 0-96 48.01 48.01 0 0 1 0 96z"
+            />
+          </svg>
+        </i>
+        <span
+          className="ant-alert-message"
+        >
+          已选择
+           
+          <a
+            style={
+              Object {
+                "fontWeight": 600,
+              }
+            }
+          >
+            0
+          </a>
+           
+          项
+           
+          <a
+            onClick={[Function]}
+            style={
+              Object {
+                "marginLeft": 24,
+              }
+            }
+          >
+            清空
+          </a>
+        </span>
+        <span
+          className="ant-alert-description"
+        />
+      </div>
+    </div>
+    <div
+      className="ant-table-wrapper"
+    >
+      <div
+        className="ant-spin-nested-loading"
+      >
+        <div
+          className="ant-spin-container"
+        >
+          <div
+            className="ant-table ant-table-small ant-table-bordered ant-table-empty ant-table-scroll-position-left"
+            style={Object {}}
+          >
+            <div
+              className="ant-table-content"
+            >
+              <div
+                className="ant-table-body"
+                onScroll={[Function]}
+                onWheel={[Function]}
+                style={Object {}}
+              >
+                <table
+                  className=""
+                  style={Object {}}
+                >
+                  <colgroup>
+                    <col
+                      className="ant-table-selection-col"
+                      style={
+                        Object {
+                          "minWidth": undefined,
+                          "width": undefined,
+                        }
+                      }
+                    />
+                    <col
+                      style={
+                        Object {
+                          "minWidth": undefined,
+                          "width": undefined,
+                        }
+                      }
+                    />
+                    <col
+                      style={
+                        Object {
+                          "minWidth": undefined,
+                          "width": undefined,
+                        }
+                      }
+                    />
+                    <col
+                      style={
+                        Object {
+                          "minWidth": undefined,
+                          "width": undefined,
+                        }
+                      }
+                    />
+                    <col
+                      style={
+                        Object {
+                          "minWidth": undefined,
+                          "width": undefined,
+                        }
+                      }
+                    />
+                    <col
+                      style={
+                        Object {
+                          "minWidth": undefined,
+                          "width": undefined,
+                        }
+                      }
+                    />
+                  </colgroup>
+                  <thead
+                    className="ant-table-thead"
+                  >
+                    <tr
+                      style={
+                        Object {
+                          "height": null,
+                        }
+                      }
+                    >
+                      <th
+                        className="ant-table-selection-column"
+                      >
+                        <span
+                          className="ant-table-header-column"
+                        >
+                          <div>
+                            <span
+                              className="ant-table-column-title"
+                            />
+                            <span
+                              className="ant-table-column-sorter"
+                            />
+                          </div>
+                        </span>
+                      </th>
+                      <th
+                        className=""
+                      >
+                        <span
+                          className="ant-table-header-column"
+                        >
+                          <div>
+                            <span
+                              className="ant-table-column-title"
+                            >
+                              ID
+                            </span>
+                            <span
+                              className="ant-table-column-sorter"
+                            />
+                          </div>
+                        </span>
+                      </th>
+                      <th
+                        className=""
+                      >
+                        <span
+                          className="ant-table-header-column"
+                        >
+                          <div>
+                            <span
+                              className="ant-table-column-title"
+                            >
+                              名称
+                            </span>
+                            <span
+                              className="ant-table-column-sorter"
+                            />
+                          </div>
+                        </span>
+                      </th>
+                      <th
+                        className=""
+                      >
+                        <span
+                          className="ant-table-header-column"
+                        >
+                          <div>
+                            <span
+                              className="ant-table-column-title"
+                            >
+                              链接
+                            </span>
+                            <span
+                              className="ant-table-column-sorter"
+                            />
+                          </div>
+                        </span>
+                      </th>
+                      <th
+                        className=""
+                      >
+                        <span
+                          className="ant-table-header-column"
+                        >
+                          <div>
+                            <span
+                              className="ant-table-column-title"
+                            >
+                              章节图片数量
+                            </span>
+                            <span
+                              className="ant-table-column-sorter"
+                            />
+                          </div>
+                        </span>
+                      </th>
+                      <th
+                        className=""
+                      >
+                        <span
+                          className="ant-table-header-column"
+                        >
+                          <div>
+                            <span
+                              className="ant-table-column-title"
+                            >
+                              爬取时间
+                            </span>
+                            <span
+                              className="ant-table-column-sorter"
+                            />
+                          </div>
+                        </span>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody
+                    className="ant-table-tbody"
+                  />
+                </table>
+              </div>
+              <div
+                className="ant-table-placeholder"
+              >
+                <div
+                  className="ant-empty ant-empty-normal"
+                >
+                  <div
+                    className="ant-empty-image"
+                  >
+                    <img
+                      alt="No Data"
+                      src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNDEiIHZpZXdCb3g9IjAgMCA2NCA0MSIgIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCAxKSIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj4KICAgIDxlbGxpcHNlIGZpbGw9IiNGNUY1RjUiIGN4PSIzMiIgY3k9IjMzIiByeD0iMzIiIHJ5PSI3Ii8+CiAgICA8ZyBmaWxsLXJ1bGU9Im5vbnplcm8iIHN0cm9rZT0iI0Q5RDlEOSI+CiAgICAgIDxwYXRoIGQ9Ik01NSAxMi43Nkw0NC44NTQgMS4yNThDNDQuMzY3LjQ3NCA0My42NTYgMCA0Mi45MDcgMEgyMS4wOTNjLS43NDkgMC0xLjQ2LjQ3NC0xLjk0NyAxLjI1N0w5IDEyLjc2MVYyMmg0NnYtOS4yNHoiLz4KICAgICAgPHBhdGggZD0iTTQxLjYxMyAxNS45MzFjMC0xLjYwNS45OTQtMi45MyAyLjIyNy0yLjkzMUg1NXYxOC4xMzdDNTUgMzMuMjYgNTMuNjggMzUgNTIuMDUgMzVoLTQwLjFDMTAuMzIgMzUgOSAzMy4yNTkgOSAzMS4xMzdWMTNoMTEuMTZjMS4yMzMgMCAyLjIyNyAxLjMyMyAyLjIyNyAyLjkyOHYuMDIyYzAgMS42MDUgMS4wMDUgMi45MDEgMi4yMzcgMi45MDFoMTQuNzUyYzEuMjMyIDAgMi4yMzctMS4zMDggMi4yMzctMi45MTN2LS4wMDd6IiBmaWxsPSIjRkFGQUZBIi8+CiAgICA8L2c+CiAgPC9nPgo8L3N2Zz4K"
+                    />
+                  </div>
+                  <p
+                    className="ant-empty-description"
+                  >
+                    No Data
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>,
+]
+`;

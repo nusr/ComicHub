@@ -1,11 +1,7 @@
 import zhCN from './zh-CN';
 import enUS from './en-US';
 
-interface LanguageMap {
-  [key: string]: any;
-}
-
-const languageMap: LanguageMap = {
+const languageMap: any = {
   'zh-CN': zhCN,
   'en-US': enUS,
 };
@@ -13,7 +9,7 @@ const languageMap: LanguageMap = {
 export function getLanguageData(
   id: string,
   language: string = 'zh-CN') {
-  const data: any = languageMap[language];
+  const data = languageMap[language];
   if (data && data[id]) {
     return data[id];
   }
@@ -21,7 +17,7 @@ export function getLanguageData(
 }
 
 export function getLocale() {
-  return 'zh-CN'
+  return 'zh-CN';
 }
 
 export function setLocale(value: string) {

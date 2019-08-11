@@ -1,4 +1,5 @@
 import { Avatar, Button, message } from 'antd';
+import { Location } from 'history'
 import { getLanguageData } from '../../locales';
 import React, { Fragment, useEffect, useState } from 'react';
 import { renderDate, getQuery, history } from '../../utils';
@@ -59,7 +60,7 @@ const searchColumns = [
 ];
 
 interface Props {
-  location: any;
+  location: Location;
 }
 
 const Chapter: React.FunctionComponent<Props> = (props: Props) => {

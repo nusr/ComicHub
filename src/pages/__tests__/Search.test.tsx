@@ -1,15 +1,13 @@
 import React from 'react';
 import renderer, { ReactTestRenderer } from 'react-test-renderer';
-import CommonFooter from '../CommonFooter';
+import Search from '../Search';
 
-it('Component: CommonFooter Snapshots', () => {
-
+it('Page: Chpter  Snapshots', () => {
   let tree: ReactTestRenderer;
   renderer.act(() => {
     tree = renderer
-      .create(<CommonFooter/>);
+      .create(<Search/>);
   });
   // @ts-ignore
   expect(tree.toJSON()).toMatchSnapshot();
 });
-

@@ -7,7 +7,7 @@ import DumpTable from '../../components/DumpTable';
 import { IChapterItem } from '../../../server/type';
 import { TypeConfig } from '../../type';
 import { postItem } from '../../services';
-
+import { Location } from 'history'
 const chapterColumns = [
   {
     dataIndex: 'id',
@@ -38,7 +38,7 @@ const chapterColumns = [
 ];
 
 interface Props {
-  location: any;
+  location: Location;
 }
 
 const ChapterResult: React.FunctionComponent<Props> = ({

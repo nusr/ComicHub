@@ -5,9 +5,9 @@ import { TypeConfig } from '../../type';
 import styles from './index.less';
 import { postItem } from '../../services';
 import { getQuery } from '../../utils';
-
+import { Location } from 'history'
 interface Props {
-  location: any;
+  location: Location;
 }
 
 const Result: React.FunctionComponent<Props> = ({
@@ -22,7 +22,7 @@ const Result: React.FunctionComponent<Props> = ({
       name: query.name,
       page_size: query.page_size,
       type: TypeConfig.download,
-    }).then((response: any) => {
+    }).then((response) => {
       const checkCode: boolean = response && response.code === 200;
       setResult(checkCode);
       setDownloadPath(response && response.data);

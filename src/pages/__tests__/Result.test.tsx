@@ -3,7 +3,7 @@ import renderer  from 'react-test-renderer';
 import Result from '../Result';
 
 it('Page: Result Snapshots', () => {
-  const location = { query: { name: '', url: '', page_size: 0 } };
+  const location = { pathname: '', search: '?', hash: '', state: '' };
   const tree = renderer
     .create(<Result location={location}/>)
     .toJSON();

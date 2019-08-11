@@ -1,15 +1,16 @@
 import React from 'react';
 import renderer, { ReactTestRenderer } from 'react-test-renderer';
-import CommonFooter from '../CommonFooter';
+import Images from '../Images';
 
-it('Component: CommonFooter Snapshots', () => {
+it('Page: Images  Snapshots', () => {
+  const location = { pathname: '', search: '?', hash: '', state: '' };
+
 
   let tree: ReactTestRenderer;
   renderer.act(() => {
     tree = renderer
-      .create(<CommonFooter/>);
+      .create(<Images location={location}/>);
   });
   // @ts-ignore
   expect(tree.toJSON()).toMatchSnapshot();
 });
-

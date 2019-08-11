@@ -52,7 +52,7 @@ export default function request(url: string, options = {}) {
       };
     }
   }
-  return fetch(url, newOptions)
+  return window.fetch(url, newOptions)
     .then(checkStatus)
     .then((response: JsObject) => response.json())
     .catch((error: Error) => {

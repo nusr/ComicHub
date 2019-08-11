@@ -22,6 +22,7 @@ describe('test routes', () => {
     it(
       `post /${key} should return ''`,
       testPage(key),
+      1000000
     );
   });
 });
@@ -56,7 +57,7 @@ describe('Test Base Url', () => {
     it(
       `base url ${item.base} should include many images`,
       testPage(item.base),
-      100000000
+      1000000
     );
   });
 });

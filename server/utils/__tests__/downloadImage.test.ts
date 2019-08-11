@@ -44,7 +44,7 @@ describe('downloadImage', () => {
   it('downloadImage should download success', async () => {
     const filePath: string = await downloadImage('https://jestjs.io/img/jest.svg', 'jest', 'https://jestjs.io');
     expect(fs.existsSync(filePath)).toBeTruthy();
-  });
+  }, 200000);
 
 });
 
