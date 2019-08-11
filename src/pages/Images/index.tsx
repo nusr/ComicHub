@@ -1,5 +1,4 @@
 import { Button, message } from 'antd';
-import { connect } from 'dva';
 import { FormattedMessage } from 'umi-plugin-locale';
 import router from 'umi/router';
 import React, { Fragment, useEffect, useState } from 'react';
@@ -7,7 +6,8 @@ import { renderDate } from '../../utils';
 import styles from './index.less';
 import DumpTable from '../../components/DumpTable';
 import { IChapterItem } from '../../../server/type';
-import { SharedState, TypeConfig } from '../../type';
+import { TypeConfig } from '../../type';
+import { postItem } from '../../services';
 
 const chapterColumns = [
   {
@@ -16,11 +16,11 @@ const chapterColumns = [
   },
   {
     dataIndex: 'title',
-    title: <FormattedMessage id="page.Chapter.table.title" />,
+    title: <FormattedMessage id="page.Chapter.table.title"/>,
   },
   {
     dataIndex: 'url',
-    title: <FormattedMessage id="page.Chapter.table.url" />,
+    title: <FormattedMessage id="page.Chapter.table.url"/>,
     render: (text: string) => (
       <a title={text} target="_blank" href={text} rel="noopener noreferrer">
         {text}
@@ -29,39 +29,33 @@ const chapterColumns = [
   },
   {
     dataIndex: 'page_size',
-    title: <FormattedMessage id="page.Images.table.page_size" />,
+    title: <FormattedMessage id="page.Images.table.page_size"/>,
   },
   {
     dataIndex: 'create_time',
-    title: <FormattedMessage id="page.Chapter.table.create_time" />,
+    title: <FormattedMessage id="page.Chapter.table.create_time"/>,
     render: renderDate,
   },
 ];
 
 interface Props {
-  dispatch: Function;
-  loading: boolean;
-  list: IChapterItem[];
-  shared: SharedState;
+  location: any;
 }
 
 const ChapterResult: React.FunctionComponent<Props> = ({
-  dispatch,
-  loading,
-  list = [],
-  shared: { currentUrl, params },
+  location,
 }) => {
   const [selectedRows, setSelectedRows] = useState<IChapterItem[]>([]);
   const checkType = 'radio';
-
+  const [list, setList] = useState<IChapterItem[]>([]);
   useEffect(() => {
-    dispatch({
-      type: 'common/fetch',
-      payload: {
-        url: currentUrl,
-        name: params.name,
-        type: TypeConfig.chapter,
-      },
+    const { query } = location;
+    postItem({
+      url: query.url,
+      name: decodeURIComponent(query.name),
+      type: TypeConfig.chapter,
+    }).then(data => {
+      setList(data);
     });
   }, []);
 
@@ -71,19 +65,11 @@ const ChapterResult: React.FunctionComponent<Props> = ({
 
   function handleChapterSubmit(): void {
     if (!selectedRows || selectedRows.length === 0) {
-      message.error(<FormattedMessage id="page.Images.select.tip" />);
+      message.error(<FormattedMessage id="page.Images.select.tip"/>);
       return;
     }
     const [item] = selectedRows;
-
-    dispatch({
-      type: 'shared/changeParams',
-      payload: {
-        name: item.url,
-        page_size: item.page_size,
-      },
-    });
-    router.push(`/${TypeConfig.result}`);
+    router.push(`/${TypeConfig.result}?url=${location.query.url}&name=${encodeURIComponent(item.url)}&page_size=${item.page_size}`);
   }
 
   return (
@@ -94,11 +80,10 @@ const ChapterResult: React.FunctionComponent<Props> = ({
           onClick={handleChapterSubmit}
           disabled={selectedRows.length === 0}
         >
-          <FormattedMessage id="component.button.submit" />
+          <FormattedMessage id="component.button.submit"/>
         </Button>
       </div>
       <DumpTable
-        loading={loading}
         checkType={checkType}
         selectedRows={selectedRows}
         data={list}
@@ -108,13 +93,5 @@ const ChapterResult: React.FunctionComponent<Props> = ({
     </Fragment>
   );
 };
-interface ConnectProps {
-  loading: JsObject;
-  common: JsObject;
-  shared: SharedState;
-}
-export default connect(({ loading, common, shared }: ConnectProps) => ({
-  loading: loading.models.common,
-  list: common.list,
-  shared,
-}))(ChapterResult);
+
+export default ChapterResult;

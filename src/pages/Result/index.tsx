@@ -1,39 +1,39 @@
-import { connect } from 'dva';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FormattedMessage } from 'umi-plugin-locale';
 import Loading from '../../components/Loading';
-import { SharedState, TypeConfig } from '../../type';
+import { TypeConfig } from '../../type';
 import styles from './index.less';
+import { postItem } from '../../services';
 
 interface Props {
-  download: JsObject;
-  dispatch: Function;
-  shared: SharedState;
+  location: any;
 }
 
 const Result: React.FunctionComponent<Props> = ({
-  download: { downloadPath, result },
-  dispatch,
-  shared: { currentUrl, params },
+  location,
 }) => {
+  const [result, setResult] = useState<boolean>(false);
+  const [downloadPath, setDownloadPath] = useState<string>('');
   useEffect(() => {
-    dispatch({
-      type: 'download/fetch',
-      payload: {
-        url: currentUrl,
-        name: params.name,
-        page_size: params.page_size,
-        type: TypeConfig.download,
-      },
+    const { query } = location;
+    postItem({
+      url: query.url,
+      name: query.name,
+      page_size: query.page_size,
+      type: TypeConfig.download,
+    }).then((response: any) => {
+      const checkCode: boolean = response && response.code === 200;
+      setResult(checkCode);
+      setDownloadPath(response && response.data);
     });
   }, []);
-  let temp: React.ReactNode = <Loading />;
+  let temp: React.ReactNode = <Loading/>;
 
   if (result) {
     temp = (
       <div className={styles.pdf}>
         <div>
-          <FormattedMessage id="page.Result.download.success" />
+          <FormattedMessage id="page.Result.download.success"/>
         </div>
         <div className={styles.downloadPath}>{downloadPath}</div>
       </div>
@@ -41,13 +41,4 @@ const Result: React.FunctionComponent<Props> = ({
   }
   return <div className={styles.container}>{temp}</div>;
 };
-interface ConnectProps {
-  download: object;
-  shared: SharedState;
-}
-export { Result };
-
-export default connect(({ download, shared }: ConnectProps) => ({
-  download,
-  shared,
-}))(Result);
+export default Result;

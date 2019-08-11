@@ -1,8 +1,8 @@
 module.exports = {
   verbose: true,
   rootDir: __dirname,
-  testMatch: ['**/?(*.)+(spec|test).ts?(x)'],
-  // testMatch: ['**/server/routes/**/*.test.ts?(x)'],
+  // testMatch: ['**/?(*.)+(spec|test).ts?(x)'],
+  testMatch: ['**/src/**/*.test.ts?(x)'],
   transform: {
     '^.+\\.tsx?$': 'ts-jest',
   },
@@ -21,8 +21,7 @@ module.exports = {
   moduleNameMapper: {
     '\\.(css|less|sass|scss|svg)$': '<rootDir>/__mock__/jest.styleMock.js',
     '^.+\\.(ico|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
-      '<rootDir>/__mock__/jest.fileMock.js',
-    '~(.*)$': '<rootDir>/src$1',
+      '<rootDir>/__mock__/jest.fileMock.js'
   },
   coverageThreshold: {
     global: {

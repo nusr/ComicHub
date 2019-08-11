@@ -11,8 +11,8 @@
     "build:server": "npm run --prefix ./server build",
     "lint:fix": "npm run lint -- --fix",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx src server",
-    "test": "umi test --coverage",
-    "test:watch": "umi test --watchAll --coverage",
+    "test": "jest --coverage",
+    "test:watch": "jest --watchAll --coverage",
     "readme": "npm run --prefix ./server readme",
     "lint-staged": "lint-staged"
   },

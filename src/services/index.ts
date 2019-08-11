@@ -1,11 +1,12 @@
 import request from '../utils/request';
 
-const requestPrefix: string = process.env.NODE_ENV === 'production' ? '' : '/v1';
+const requestPrefix = '/v1';
 
 interface PostData {
   url: string;
-
-  [index: string]: string;
+  type: string;
+  name: string;
+  page_size?: number;
 }
 
 export async function getMenuList() {

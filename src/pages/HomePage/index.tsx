@@ -12,7 +12,7 @@ const { Step } = Steps;
 
 interface Props {
   children?: React.ReactChild;
-  location: Location;
+  location: any;
 }
 
 export function getCurrentStep(type: string = ''): number {

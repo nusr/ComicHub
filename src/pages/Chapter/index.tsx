@@ -1,13 +1,13 @@
 import { Avatar, Button, message } from 'antd';
-import { connect } from 'dva';
 import router from 'umi/router';
 import { FormattedMessage } from 'umi-plugin-locale';
 import React, { Fragment, useEffect, useState } from 'react';
 import { renderDate } from '../../utils';
 import styles from './index.less';
 import DumpTable from '../../components/DumpTable';
-import { SharedState, TypeConfig } from '../../type';
+import { TypeConfig } from '../../type';
 import { ISearchItem } from '../../../server/type';
+import { postItem } from '../../services';
 
 const searchColumns = [
   {
@@ -60,28 +60,24 @@ const searchColumns = [
 ];
 
 interface Props {
-  shared: SharedState;
-  list: ISearchItem[];
-  dispatch: Function;
-  loading: boolean;
+  location: any;
 }
 
-const Chapter: React.FunctionComponent<Props> = ({
-  dispatch,
-  loading,
-  list = [],
-  shared: { currentUrl, params },
-}) => {
+const Chapter: React.FunctionComponent<Props> = (props: Props) => {
+  const {
+    location,
+  } = props;
   const [selectedRows, setSelectedRows] = useState<ISearchItem[]>([]);
   const checkType = 'radio';
+  const [list, setList] = useState<ISearchItem[]>([]);
   useEffect(() => {
-    dispatch({
-      type: 'common/fetch',
-      payload: {
-        url: currentUrl,
-        name: params.name,
-        type: TypeConfig.search,
-      },
+    const { query } = location;
+    postItem({
+      url: query.url,
+      name: query.name,
+      type: TypeConfig.search,
+    }).then(data => {
+      setList(data);
     });
   }, []);
 
@@ -95,13 +91,7 @@ const Chapter: React.FunctionComponent<Props> = ({
       return;
     }
     const [item] = selectedRows;
-    dispatch({
-      type: 'shared/changeParams',
-      payload: {
-        name: item.url,
-      },
-    });
-    router.push(`/${TypeConfig.download}`);
+    router.push(`/${TypeConfig.download}?url=${location.query.url}&name=${encodeURIComponent(item.url)}`);
   }
 
   return (
@@ -116,7 +106,6 @@ const Chapter: React.FunctionComponent<Props> = ({
         </Button>
       </div>
       <DumpTable
-        loading={loading}
         checkType={checkType}
         selectedRows={selectedRows}
         data={list}
@@ -127,15 +116,5 @@ const Chapter: React.FunctionComponent<Props> = ({
   );
 };
 
-interface ConnectProps {
-  loading: JsObject;
-  common: JsObject;
-  shared: SharedState;
-}
 
-export { Chapter };
-export default connect(({ loading, common, shared }: ConnectProps) => ({
-  loading: loading.models.common,
-  list: common.list,
-  shared,
-}))(Chapter);
+export default Chapter;

@@ -1,13 +1,10 @@
-import React, { useEffect } from 'react';
-import { connect } from 'dva';
+import React, { useEffect, useState } from 'react';
 import router from 'umi/router';
 import SearchForm from '../../components/SearchForm';
 import { IFormData, MenuItem, TypeConfig } from '../../type';
+import { getMenuList as fetchMenuList } from '../../services';
 
-interface Props {
-  dispatch: Function;
-  list: JsObject;
-}
+type Props = {}
 
 function getMenuList(data: JsObject = {}): MenuItem[] {
   return Object.keys(data).map(
@@ -22,39 +19,22 @@ function getMenuList(data: JsObject = {}): MenuItem[] {
   );
 }
 
-const HomePage: React.FunctionComponent<Props> = ({ dispatch, list }) => {
-  const menuList: MenuItem[] = getMenuList(list);
+const HomePage: React.FunctionComponent<Props> = () => {
+  const [menuList, setMenuList] = useState<MenuItem[]>([]);
   useEffect(() => {
-    dispatch({
-      type: 'menu/fetch',
+    fetchMenuList().then(data => {
+      setMenuList(getMenuList(data));
     });
   }, []);
 
   function handleSearchSubmit(value: IFormData): void {
     if (value.name && value.url) {
-      dispatch({
-        type: 'shared/changeUrl',
-        payload: value.url,
-      });
-      dispatch({
-        type: 'shared/changeParams',
-        payload: {
-          name: value.name,
-        },
-      });
-      router.push(`/${TypeConfig.chapter}`);
+      router.push(`/${TypeConfig.chapter}?url=${value.url}&name=${value.name}`);
     }
   }
 
   return <SearchForm handleFormSubmit={handleSearchSubmit} menuList={menuList}/>;
 
 };
-interface ConnectProps {
-  loading: JsObject;
-  menu: JsObject;
-}
 
-export default connect(({ loading, menu }: ConnectProps) => ({
-  loading: loading.models.menu,
-  list: menu.list,
-}))(HomePage);
+export default HomePage;

@@ -1,9 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component: CommonFooter Component: CommonFooter Snapshots 1`] = `
-<footer
-  className="container"
->
+exports[`Component: CommonFooter Snapshots 1`] = `
+<footer>
   <span>
     Copyright @
   </span>

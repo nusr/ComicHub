@@ -1,4 +1,5 @@
-import { getCurrentStep } from '../HomePage';
+import React from 'react';
+import HomePage, { getCurrentStep } from '../HomePage';
 import { TypeConfig } from '../../type';
 
 describe('getCurrentStep', () => {
