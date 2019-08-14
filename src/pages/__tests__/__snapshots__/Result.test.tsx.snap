@@ -1,10 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Page: Result Snapshots 1`] = `
-<div>
-  <div>
+<div
+  className="result"
+>
+  <div
+    className="loading"
+  >
     <div
-      className="ant-spin ant-spin-spinning"
+      className="ant-spin ant-spin-spinning loading-icon"
     >
       <i
         aria-label="icon: loading"

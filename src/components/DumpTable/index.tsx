@@ -69,7 +69,7 @@ class DumpTable extends Component<StandardTableProps, any> {
     this.handleRowSelectChange([], []);
   };
 
-  protected render() {
+  public render() {
     const { selectedRowKeys, needTotalList } = this.state;
     const { data = [], rowKey, checkType = 'checkbox', ...rest } = this.props;
     const realData = data.map((item: JsObject, i: number) => ({ ...item, id: item.id || (i + 1) }));

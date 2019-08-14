@@ -6,20 +6,18 @@ Array [
     href="/"
     onClick={[Function]}
   >
-    <h1>
+    <h1
+      className="header-title"
+    >
       ComicHub
     </h1>
   </a>,
   <div
-    style={
-      Object {
-        "fontSize": 20,
-      }
-    }
+    className="header-content"
   >
     <i
       aria-label="icon: question-circle"
-      className="anticon anticon-question-circle"
+      className="anticon anticon-question-circle header-help"
       onMouseEnter={[Function]}
       onMouseLeave={[Function]}
     >

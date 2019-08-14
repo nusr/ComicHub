@@ -1,7 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component: CommonFooter Snapshots 1`] = `
-<footer>
+<footer
+  style={
+    Object {
+      "textAlign": "center",
+    }
+  }
+>
   <span>
     Copyright @
   </span>

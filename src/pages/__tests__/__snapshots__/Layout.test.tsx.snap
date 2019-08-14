@@ -2,7 +2,7 @@
 
 exports[`Page: Layout Snapshots 1`] = `
 <section
-  className="ant-layout"
+  className="home-page ant-layout"
 >
   <header
     className="ant-layout-header"
@@ -11,20 +11,18 @@ exports[`Page: Layout Snapshots 1`] = `
       href="/"
       onClick={[Function]}
     >
-      <h1>
+      <h1
+        className="header-title"
+      >
         ComicHub
       </h1>
     </a>
     <div
-      style={
-        Object {
-          "fontSize": 20,
-        }
-      }
+      className="header-content"
     >
       <i
         aria-label="icon: global"
-        className="anticon anticon-global ant-dropdown-trigger"
+        className="anticon anticon-global language-icon ant-dropdown-trigger language"
         onMouseEnter={[Function]}
         onMouseLeave={[Function]}
         title="语言"
@@ -46,7 +44,7 @@ exports[`Page: Layout Snapshots 1`] = `
       </i>
       <i
         aria-label="icon: question-circle"
-        className="anticon anticon-question-circle"
+        className="anticon anticon-question-circle header-help"
         onMouseEnter={[Function]}
         onMouseLeave={[Function]}
       >
@@ -221,7 +219,13 @@ exports[`Page: Layout Snapshots 1`] = `
   <footer
     className="ant-layout-footer"
   >
-    <footer>
+    <footer
+      style={
+        Object {
+          "textAlign": "center",
+        }
+      }
+    >
       <span>
         Copyright @
       </span>

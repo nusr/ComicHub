@@ -1,9 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component: Loading Component: Loading Snapshots 1`] = `
-<div>
+<div
+  className="loading"
+>
   <div
-    className="ant-spin ant-spin-spinning"
+    className="ant-spin ant-spin-spinning loading-icon"
   >
     <i
       aria-label="icon: loading"
