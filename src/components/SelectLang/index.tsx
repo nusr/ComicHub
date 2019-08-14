@@ -1,18 +1,23 @@
 import React from 'react';
 import { getLanguageData, getLocale, setLocale } from '../../locales';
 import { Dropdown, Icon, Menu } from 'antd';
-import styles from './index.less';
+import './index.less';
+
 type Props = {}
+
 interface ObjectType {
   [key: string]: string;
 }
+
 interface Event {
   key: string;
 }
+
 const SelectLang: React.FunctionComponent<Props> = () => {
   function changeLang(event: Event): void {
     const { key } = event;
     setLocale(key);
+    location.reload()
   }
 
   const selectedLang = getLocale();
@@ -21,14 +26,13 @@ const SelectLang: React.FunctionComponent<Props> = () => {
     'zh-CN': '中文',
     'en-US': 'English',
   };
-  const title: string = getLanguageData( 'component.SelectLang.language' );
+  const title: string = getLanguageData('component.SelectLang.language');
   const languageIcons: ObjectType = {
     'zh-CN': '🇨🇳',
     'en-US': '🇬🇧',
   };
   const langMenu = (
     <Menu
-      className={styles.menu}
       selectedKeys={[selectedLang]}
       onClick={changeLang}
     >
@@ -43,8 +47,8 @@ const SelectLang: React.FunctionComponent<Props> = () => {
     </Menu>
   );
   return (
-    <Dropdown overlay={langMenu} placement="bottomRight">
-      <Icon type="global" title={title} className={styles.icon} />
+    <Dropdown overlay={langMenu} placement="bottomRight" className="language">
+      <Icon type="global" title={title} className='language-icon'/>
     </Dropdown>
   );
 };

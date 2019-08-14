@@ -2,7 +2,6 @@ const path = require('path')
 const webpack = require('webpack')
 const merge = require('webpack-merge')
 const common = require('./webpack.base.confg')
-const HardSourceWebpackPlugin = require('hard-source-webpack-plugin')
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 
 const PORT = 3000
@@ -45,6 +44,5 @@ module.exports = merge(common, {
   plugins: [
     new FriendlyErrorsWebpackPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    new HardSourceWebpackPlugin()
   ]
 })

@@ -1,12 +1,13 @@
 import { Icon, Spin } from 'antd';
 import React from 'react';
-import styles from './index.less';
+import './index.less';
 
-const Loading: React.FunctionComponent = () => (
-  <div className={styles.loadingWrap}>
+type Props = {}
+const Loading: React.FunctionComponent<Props> = () => (
+  <div className='loading'>
     <Spin
-      indicator={<Icon type="loading" style={{ fontSize: 50 }} spin />}
-      className={styles.loadingIcon}
+      indicator={<Icon type="loading" style={{ fontSize: 50 }} spin/>}
+      className='loading-icon'
     />
   </div>
 );

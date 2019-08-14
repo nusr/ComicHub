@@ -3,7 +3,6 @@ import { Location } from 'history'
 import { getLanguageData } from '../../locales';
 import React, { Fragment, useEffect, useState } from 'react';
 import { renderDate, getQuery, history } from '../../utils';
-import styles from './index.less';
 import DumpTable from '../../components/DumpTable';
 import { TypeConfig } from '../../type';
 import { ISearchItem } from '../../../server/type';
@@ -97,7 +96,7 @@ const Chapter: React.FunctionComponent<Props> = (props: Props) => {
 
   return (
     <Fragment>
-      <div className={styles.submit}>
+      <div className='submit-button'>
         <Button
           type="primary"
           onClick={handleChapterSubmit}

@@ -4,7 +4,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const isProd = process.env.NODE_ENV === 'production';
-// TODO less css modules
 module.exports = {
   resolve: {
     alias: {
@@ -54,7 +53,6 @@ module.exports = {
             loader: 'css-loader',
             options: {
               sourceMap: !isProd,
-              modules: true,
             },
           },
           {

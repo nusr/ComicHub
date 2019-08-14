@@ -2,7 +2,6 @@ import { Button, message } from 'antd';
 import { getLanguageData } from '../../locales';
 import React, { Fragment, useEffect, useState } from 'react';
 import { renderDate, history, getQuery } from '../../utils';
-import styles from './index.less';
 import DumpTable from '../../components/DumpTable';
 import { IChapterItem } from '../../../server/type';
 import { TypeConfig } from '../../type';
@@ -74,7 +73,7 @@ const ChapterResult: React.FunctionComponent<Props> = ({
 
   return (
     <Fragment>
-      <div className={styles.submit}>
+      <div className='submit-button'>
         <Button
           type="primary"
           onClick={handleChapterSubmit}

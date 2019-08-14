@@ -5,7 +5,7 @@ import { getLanguageData } from '../../locales';
 import CommonFooter from '../../components/CommonFooter';
 import CommonHeader from '../../components/CommonHeader';
 import SelectLang from '../../components/SelectLang';
-import styles from './index.less';
+import './index.less';
 import { TypeConfig } from '../../type';
 
 const { Header, Footer, Content } = Layout;
@@ -42,7 +42,7 @@ const HomePage: React.FunctionComponent<Props> = ({
   }, [pathname]);
   const isVertical: boolean = window.innerWidth > 800;
   return (
-    <Layout className={styles.container}>
+    <Layout className='home-page'>
       <Header>
         <CommonHeader>
           <SelectLang/>

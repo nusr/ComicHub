@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { getLanguageData } from '../../locales';
 import Loading from '../../components/Loading';
 import { TypeConfig } from '../../type';
-import styles from './index.less';
+import './index.less';
 import { postItem } from '../../services';
 import { getQuery } from '../../utils';
-import { Location } from 'history'
+import { Location } from 'history';
+
 interface Props {
   location: Location;
 }
@@ -32,14 +33,14 @@ const Result: React.FunctionComponent<Props> = ({
 
   if (result) {
     temp = (
-      <div className={styles.pdf}>
+      <div className='result-pdf'>
         <div>
-          { getLanguageData("page.Result.download.success") }
+          {getLanguageData('page.Result.download.success')}
         </div>
-        <div className={styles.downloadPath}>{downloadPath}</div>
+        <div className='result-path'>{downloadPath}</div>
       </div>
     );
   }
-  return <div className={styles.container}>{temp}</div>;
+  return <div className='result'>{temp}</div>;
 };
 export default Result;

@@ -1,8 +1,7 @@
-/* eslint-disable */
 import React, { Component, Fragment } from 'react';
 import { Table, Alert } from 'antd';
 import { getLanguageData } from '../../locales';
-import styles from './index.less';
+import './index.less';
 
 type StandardTableProps = {
   columns: any;
@@ -26,7 +25,7 @@ function initTotalList(columns: any) {
 }
 
 class DumpTable extends Component<StandardTableProps, any> {
-  static defaultProps = {
+  private static defaultProps = {
     columns: [],
     data: [],
     rowKey: (item: any) => item.id || item.url,
@@ -34,7 +33,7 @@ class DumpTable extends Component<StandardTableProps, any> {
     selectedRows: [],
   };
 
-  constructor(props: StandardTableProps) {
+  private constructor(props: StandardTableProps) {
     super(props);
     const { columns } = props;
     const needTotalList = initTotalList(columns);
@@ -44,7 +43,7 @@ class DumpTable extends Component<StandardTableProps, any> {
     };
   }
 
-  handleRowSelectChange = (selectedRowKeys: any, selectedRows: any) => {
+  private handleRowSelectChange = (selectedRowKeys: any, selectedRows: any) => {
     let { needTotalList } = this.state;
     needTotalList = needTotalList.map((item: any) => ({
       ...item,
@@ -60,17 +59,17 @@ class DumpTable extends Component<StandardTableProps, any> {
 
     this.setState({ selectedRowKeys, needTotalList });
   };
-  handleTableChange = (pagination: any) => {
+  private handleTableChange = (pagination: any) => {
     const { onChange } = this.props;
     if (onChange) {
       onChange(pagination);
     }
   };
-  cleanSelectedKeys = () => {
+  private cleanSelectedKeys = () => {
     this.handleRowSelectChange([], []);
   };
 
-  render() {
+  protected render() {
     const { selectedRowKeys, needTotalList } = this.state;
     const { data = [], rowKey, checkType = 'checkbox', ...rest } = this.props;
     const realData = data.map((item: JsObject, i: number) => ({ ...item, id: item.id || (i + 1) }));
@@ -84,21 +83,21 @@ class DumpTable extends Component<StandardTableProps, any> {
     };
 
     return (
-      <div className={styles.standardTable}>
-        <div className={styles.tableAlert}>
+      <div className='table'>
+        <div className="table-alert">
           <Alert
             message={
               <Fragment>
-                {getLanguageData("component.DumpTable.selected")}
+                {getLanguageData('component.DumpTable.selected')}
                 &nbsp;
                 <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a>
                 &nbsp;
-                {getLanguageData("component.DumpTable.single")}
+                {getLanguageData('component.DumpTable.single')}
                 &nbsp;
                 {needTotalList.map((item: any) => (
                   <span style={{ marginLeft: 8 }} key={item.dataIndex}>
                     {item.title}
-                    {getLanguageData("component.DumpTable.total")}
+                    {getLanguageData('component.DumpTable.total')}
                     &nbsp;
                     <span style={{ fontWeight: 600 }}>
                       {item.render ? item.render(item.total) : item.total}
@@ -106,7 +105,7 @@ class DumpTable extends Component<StandardTableProps, any> {
                   </span>
                 ))}
                 <a onClick={this.cleanSelectedKeys} style={{ marginLeft: 24 }}>
-                  {getLanguageData("component.DumpTable.clear")}
+                  {getLanguageData('component.DumpTable.clear')}
                 </a>
               </Fragment>
             }
