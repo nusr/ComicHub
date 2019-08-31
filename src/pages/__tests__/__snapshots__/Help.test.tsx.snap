@@ -1,7 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Page: Help Page: Help Snapshots 1`] = `
-<div>
-  help
-</div>
+Array [
+  " ",
+  <div>
+    Help
+  </div>,
+  " ",
+]
 `;

@@ -1,81 +1,245 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Page: Chpter  Snapshots 1`] = `
-<form
-  className="ant-form ant-form-inline"
-  onSubmit={[Function]}
->
-  <div
-    className="ant-row ant-form-item"
+Array [
+  " ",
+  <form
+    className="ant-form ant-form-inline"
+    onSubmit={[Function]}
   >
     <div
-      className="ant-col ant-form-item-label"
-    >
-      <label
-        className="ant-form-item-required"
-        htmlFor="SearchForm_url"
-        onClick={[Function]}
-        title="站点"
-      >
-        站点
-      </label>
-    </div>
-    <div
-      className="ant-col ant-form-item-control-wrapper"
+      className="ant-row ant-form-item"
     >
       <div
-        className="ant-form-item-control"
+        className="ant-col ant-form-item-label"
       >
-        <span
-          className="ant-form-item-children"
+        <label
+          className="ant-form-item-required"
+          htmlFor="SearchForm_url"
+          onClick={[Function]}
+          title="站点"
         >
-          <div
-            className="ant-select ant-select-enabled"
-            id="SearchForm_url"
-            onBlur={[Function]}
-            onClick={[Function]}
-            onFocus={[Function]}
-            onMouseDown={[Function]}
-            onMouseOut={[Function]}
-            onMouseUp={[Function]}
-            onTouchStart={[Function]}
-            style={
-              Object {
-                "width": 170,
-              }
-            }
+          站点
+        </label>
+      </div>
+      <div
+        className="ant-col ant-form-item-control-wrapper"
+      >
+        <div
+          className="ant-form-item-control"
+        >
+          <span
+            className="ant-form-item-children"
           >
             <div
-              aria-autocomplete="list"
-              aria-controls="test-uuid"
-              aria-expanded={false}
-              aria-haspopup="true"
-              className="ant-select-selection
+              className="ant-select ant-select-enabled"
+              id="SearchForm_url"
+              onBlur={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              onMouseDown={[Function]}
+              onMouseOut={[Function]}
+              onMouseUp={[Function]}
+              onTouchStart={[Function]}
+              style={
+                Object {
+                  "width": 170,
+                }
+              }
+            >
+              <div
+                aria-autocomplete="list"
+                aria-controls="test-uuid"
+                aria-expanded={false}
+                aria-haspopup="true"
+                className="ant-select-selection
             ant-select-selection--single"
+                data-__field={
+                  Object {
+                    "name": "url",
+                  }
+                }
+                data-__meta={
+                  Object {
+                    "initialValue": "",
+                    "name": "url",
+                    "originalProps": Object {
+                      "children": Array [],
+                      "choiceTransitionName": "zoom",
+                      "filterOption": [Function],
+                      "placeholder": "请选择站点",
+                      "showSearch": true,
+                      "style": Object {
+                        "width": 170,
+                      },
+                      "transitionName": "slide-up",
+                    },
+                    "ref": null,
+                    "rules": Array [
+                      Object {
+                        "message": "请选择站点",
+                        "required": true,
+                      },
+                    ],
+                    "trigger": "onChange",
+                    "validate": Array [
+                      Object {
+                        "rules": Array [
+                          Object {
+                            "message": "请选择站点",
+                            "required": true,
+                          },
+                        ],
+                        "trigger": Array [
+                          "onChange",
+                        ],
+                      },
+                    ],
+                    "valuePropName": "value",
+                  }
+                }
+                onKeyDown={[Function]}
+                role="combobox"
+                tabIndex={0}
+              >
+                <div
+                  className="ant-select-selection__rendered"
+                >
+                  <div
+                    className="ant-select-selection__placeholder"
+                    onClick={[Function]}
+                    onMouseDown={[Function]}
+                    style={
+                      Object {
+                        "WebkitUserSelect": "none",
+                        "display": "none",
+                        "userSelect": "none",
+                      }
+                    }
+                    unselectable="on"
+                  >
+                    请选择站点
+                  </div>
+                  <div
+                    className="ant-select-selection-selected-value"
+                    style={
+                      Object {
+                        "display": "block",
+                        "opacity": 1,
+                      }
+                    }
+                    title=""
+                  >
+                    
+                  </div>
+                  <div
+                    className="ant-select-search ant-select-search--inline"
+                    style={
+                      Object {
+                        "display": "none",
+                      }
+                    }
+                  >
+                    <div
+                      className="ant-select-search__field__wrap"
+                    >
+                      <input
+                        autoComplete="off"
+                        className="ant-select-search__field"
+                        id="SearchForm_url"
+                        onChange={[Function]}
+                        onKeyDown={[Function]}
+                        value=""
+                      />
+                      <span
+                        className="ant-select-search__field__mirror"
+                      >
+                        
+                         
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <span
+                  className="ant-select-arrow"
+                  onClick={[Function]}
+                  style={
+                    Object {
+                      "WebkitUserSelect": "none",
+                      "userSelect": "none",
+                    }
+                  }
+                  unselectable="on"
+                >
+                  <i
+                    aria-label="icon: down"
+                    className="anticon anticon-down ant-select-arrow-icon"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      className=""
+                      data-icon="down"
+                      fill="currentColor"
+                      focusable="false"
+                      height="1em"
+                      viewBox="64 64 896 896"
+                      width="1em"
+                    >
+                      <path
+                        d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"
+                      />
+                    </svg>
+                  </i>
+                </span>
+              </div>
+            </div>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      className="ant-row ant-form-item"
+    >
+      <div
+        className="ant-col ant-form-item-label"
+      >
+        <label
+          className="ant-form-item-required"
+          htmlFor="SearchForm_name"
+          onClick={[Function]}
+          title="关键词"
+        >
+          关键词
+        </label>
+      </div>
+      <div
+        className="ant-col ant-form-item-control-wrapper"
+      >
+        <div
+          className="ant-form-item-control"
+        >
+          <span
+            className="ant-form-item-children"
+          >
+            <input
+              className="ant-input"
               data-__field={
                 Object {
-                  "name": "url",
+                  "name": "name",
                 }
               }
               data-__meta={
                 Object {
                   "initialValue": "",
-                  "name": "url",
+                  "name": "name",
                   "originalProps": Object {
-                    "children": Array [],
-                    "choiceTransitionName": "zoom",
-                    "filterOption": [Function],
-                    "placeholder": "请选择站点",
-                    "showSearch": true,
-                    "style": Object {
-                      "width": 170,
-                    },
-                    "transitionName": "slide-up",
+                    "placeholder": "关键词",
+                    "type": "text",
                   },
                   "ref": null,
                   "rules": Array [
                     Object {
-                      "message": "请选择站点",
+                      "message": "关键词",
                       "required": true,
                     },
                   ],
@@ -84,7 +248,7 @@ exports[`Page: Chpter  Snapshots 1`] = `
                     Object {
                       "rules": Array [
                         Object {
-                          "message": "请选择站点",
+                          "message": "关键词",
                           "required": true,
                         },
                       ],
@@ -96,217 +260,57 @@ exports[`Page: Chpter  Snapshots 1`] = `
                   "valuePropName": "value",
                 }
               }
+              id="SearchForm_name"
+              onChange={[Function]}
               onKeyDown={[Function]}
-              role="combobox"
-              tabIndex={0}
-            >
-              <div
-                className="ant-select-selection__rendered"
-              >
-                <div
-                  className="ant-select-selection__placeholder"
-                  onClick={[Function]}
-                  onMouseDown={[Function]}
-                  style={
-                    Object {
-                      "WebkitUserSelect": "none",
-                      "display": "none",
-                      "userSelect": "none",
-                    }
-                  }
-                  unselectable="on"
-                >
-                  请选择站点
-                </div>
-                <div
-                  className="ant-select-selection-selected-value"
-                  style={
-                    Object {
-                      "display": "block",
-                      "opacity": 1,
-                    }
-                  }
-                  title=""
-                >
-                  
-                </div>
-                <div
-                  className="ant-select-search ant-select-search--inline"
-                  style={
-                    Object {
-                      "display": "none",
-                    }
-                  }
-                >
-                  <div
-                    className="ant-select-search__field__wrap"
-                  >
-                    <input
-                      autoComplete="off"
-                      className="ant-select-search__field"
-                      id="SearchForm_url"
-                      onChange={[Function]}
-                      onKeyDown={[Function]}
-                      value=""
-                    />
-                    <span
-                      className="ant-select-search__field__mirror"
-                    >
-                      
-                       
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <span
-                className="ant-select-arrow"
-                onClick={[Function]}
-                style={
-                  Object {
-                    "WebkitUserSelect": "none",
-                    "userSelect": "none",
-                  }
+              placeholder="关键词"
+              type="text"
+              value=""
+            />
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      className="ant-row ant-form-item"
+    >
+      <div
+        className="ant-col ant-form-item-control-wrapper"
+      >
+        <div
+          className="ant-form-item-control"
+        >
+          <span
+            className="ant-form-item-children"
+          >
+            <button
+              className="ant-btn ant-btn-primary"
+              onClick={[Function]}
+              style={
+                Object {
+                  "marginRight": 16,
                 }
-                unselectable="on"
-              >
-                <i
-                  aria-label="icon: down"
-                  className="anticon anticon-down ant-select-arrow-icon"
-                >
-                  <svg
-                    aria-hidden="true"
-                    className=""
-                    data-icon="down"
-                    fill="currentColor"
-                    focusable="false"
-                    height="1em"
-                    viewBox="64 64 896 896"
-                    width="1em"
-                  >
-                    <path
-                      d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"
-                    />
-                  </svg>
-                </i>
+              }
+              type="button"
+            >
+              <span>
+                搜 索
               </span>
-            </div>
-          </div>
-        </span>
+            </button>
+            <button
+              className="ant-btn"
+              onClick={[Function]}
+              type="button"
+            >
+              <span>
+                重 置
+              </span>
+            </button>
+          </span>
+        </div>
       </div>
     </div>
-  </div>
-  <div
-    className="ant-row ant-form-item"
-  >
-    <div
-      className="ant-col ant-form-item-label"
-    >
-      <label
-        className="ant-form-item-required"
-        htmlFor="SearchForm_name"
-        onClick={[Function]}
-        title="关键词"
-      >
-        关键词
-      </label>
-    </div>
-    <div
-      className="ant-col ant-form-item-control-wrapper"
-    >
-      <div
-        className="ant-form-item-control"
-      >
-        <span
-          className="ant-form-item-children"
-        >
-          <input
-            className="ant-input"
-            data-__field={
-              Object {
-                "name": "name",
-              }
-            }
-            data-__meta={
-              Object {
-                "initialValue": "",
-                "name": "name",
-                "originalProps": Object {
-                  "placeholder": "关键词",
-                  "type": "text",
-                },
-                "ref": null,
-                "rules": Array [
-                  Object {
-                    "message": "关键词",
-                    "required": true,
-                  },
-                ],
-                "trigger": "onChange",
-                "validate": Array [
-                  Object {
-                    "rules": Array [
-                      Object {
-                        "message": "关键词",
-                        "required": true,
-                      },
-                    ],
-                    "trigger": Array [
-                      "onChange",
-                    ],
-                  },
-                ],
-                "valuePropName": "value",
-              }
-            }
-            id="SearchForm_name"
-            onChange={[Function]}
-            onKeyDown={[Function]}
-            placeholder="关键词"
-            type="text"
-            value=""
-          />
-        </span>
-      </div>
-    </div>
-  </div>
-  <div
-    className="ant-row ant-form-item"
-  >
-    <div
-      className="ant-col ant-form-item-control-wrapper"
-    >
-      <div
-        className="ant-form-item-control"
-      >
-        <span
-          className="ant-form-item-children"
-        >
-          <button
-            className="ant-btn ant-btn-primary"
-            onClick={[Function]}
-            style={
-              Object {
-                "marginRight": 16,
-              }
-            }
-            type="button"
-          >
-            <span>
-              搜 索
-            </span>
-          </button>
-          <button
-            className="ant-btn"
-            onClick={[Function]}
-            type="button"
-          >
-            <span>
-              重 置
-            </span>
-          </button>
-        </span>
-      </div>
-    </div>
-  </div>
-</form>
+  </form>,
+  " ",
+]
 `;

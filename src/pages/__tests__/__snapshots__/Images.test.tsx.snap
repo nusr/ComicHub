@@ -2,6 +2,7 @@
 
 exports[`Page: Images  Snapshots 1`] = `
 Array [
+  " ",
   <div
     className="submit-button"
   >
@@ -333,5 +334,6 @@ Array [
       </div>
     </div>
   </div>,
+  " ",
 ]
 `;

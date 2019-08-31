@@ -4,7 +4,7 @@ import renderer, { ReactTestRenderer } from 'react-test-renderer';
 import React from 'react';
 import { Router } from 'react-router-dom';
 import { history } from '../../utils';
-
+import Store from '../../store';
 describe('getCurrentStep', () => {
   it('getCurrentStep Should Right Result', () => {
     expect(getCurrentStep(TypeConfig.search)).toBe(0);
@@ -25,7 +25,7 @@ it('Page: Layout Snapshots', () => {
   let tree: ReactTestRenderer;
   renderer.act(() => {
     tree = renderer
-      .create(<Router history={history}><Layout location={location}/></Router>);
+      .create(<Store.Provider><Router history={history}><Layout location={location}/></Router></Store.Provider>);
   });
   // @ts-ignore
   expect(tree.toJSON()).toMatchSnapshot();

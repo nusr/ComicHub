@@ -3,6 +3,7 @@ module.exports = {
   'testRunner': 'jest-circus/runner',
   'preset': 'ts-jest',
   testMatch: ['**/?(*.)+(spec|test).ts?(x)'],
+  // testMatch: ['**/src/**/*.test.ts?(x)'],
   setupFilesAfterEnv: ['<rootDir>/__mock__/jest.setup.js'],
   testPathIgnorePatterns: ['/node_modules/', '/server/node_modules/'],
   collectCoverageFrom: [

@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 export interface ContainerProviderProps<State = void> {
   initialState?: State;
@@ -13,20 +13,20 @@ export interface Container<Value, State = void> {
 export function createContainer<Value, State = void>(
   useHook: (initialState?: State) => Value,
 ): Container<Value, State> {
-  const Context = React.createContext<Value | null>(null)
+  const Context = React.createContext<Value | null>(null);
 
   function Provider(props: ContainerProviderProps<State>) {
-    const value = useHook(props.initialState)
-    return (<Context.Provider value={value} > {props.children} </Context.Provider>)
+    const value = useHook(props.initialState);
+    return (<Context.Provider value={value}> {props.children} </Context.Provider>);
   }
 
   function useContainer(): Value {
-    const value = React.useContext(Context)
+    const value = React.useContext(Context);
     if (value === null) {
-      throw new Error("Component must be wrapped with <Container.Provider>")
+      throw new Error('Component must be wrapped with <Container.Provider>');
     }
-    return value
+    return value;
   }
 
-  return {Provider, useContainer}
+  return { Provider, useContainer };
 }

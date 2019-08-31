@@ -1,20 +1,24 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Page: Chpter  Snapshots 1`] = `
-<div>
-  <h3>
-    No match for 
-    <code>
-      test
-    </code>
-  </h3>
+Array [
+  " ",
   <div>
-    <a
-      href="/"
-      onClick={[Function]}
-    >
-      Back To Home
-    </a>
-  </div>
-</div>
+    <h3>
+      No match for 
+      <code>
+        test
+      </code>
+    </h3>
+    <div>
+      <a
+        href="/"
+        onClick={[Function]}
+      >
+        Back To Home
+      </a>
+    </div>
+  </div>,
+  " ",
+]
 `;
