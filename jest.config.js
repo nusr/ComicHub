@@ -1,12 +1,9 @@
 module.exports = {
-  verbose: true,
   rootDir: __dirname,
+  'testRunner': 'jest-circus/runner',
+  'preset': 'ts-jest',
   testMatch: ['**/?(*.)+(spec|test).ts?(x)'],
-  // testMatch: ['**/src/**/*.test.ts?(x)'],
-  transform: {
-    '^.+\\.tsx?$': 'ts-jest',
-  },
-
+  setupFilesAfterEnv: ['<rootDir>/__mock__/jest.setup.js'],
   testPathIgnorePatterns: ['/node_modules/', '/server/node_modules/'],
   collectCoverageFrom: [
     'src/components/**/*.{ts,tsx}',
@@ -21,7 +18,7 @@ module.exports = {
   moduleNameMapper: {
     '\\.(css|less|sass|scss|svg)$': '<rootDir>/__mock__/jest.styleMock.js',
     '^.+\\.(ico|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
-      '<rootDir>/__mock__/jest.fileMock.js'
+      '<rootDir>/__mock__/jest.fileMock.js',
   },
   coverageThreshold: {
     global: {
@@ -31,6 +28,5 @@ module.exports = {
       branches: 35,
     },
   },
-  bail: true,
   testURL: 'http://localhost:8080',
 };

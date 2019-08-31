@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { Icon, Spin } from 'antd';
 import { getLanguageData } from '../../locales';
-import Loading from '../../components/Loading';
 import { TypeConfig } from '../../type';
 import './index.less';
 import { postItem } from '../../services';
@@ -29,7 +29,7 @@ const Result: React.FunctionComponent<Props> = ({
       setDownloadPath(response && response.data);
     });
   }, []);
-  let temp: React.ReactNode = <Loading/>;
+  let temp: React.ReactNode = <Spin indicator={<Icon type="loading" style={{ fontSize: 50 }} spin/>}/>;
 
   if (result) {
     temp = (

@@ -14,6 +14,5 @@ describe('puppeteer', () => {
 
       await browser.close();
     },
-    2000000,
   );
 });

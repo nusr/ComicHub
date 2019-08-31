@@ -4,7 +4,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-
+const ProgressBarPlugin = require('progress-bar-webpack-plugin')
 const isProd = process.env.NODE_ENV === 'production';
 let envConfig;
 try {
@@ -94,6 +94,9 @@ module.exports = {
     ],
   },
   plugins: [
+    new ProgressBarPlugin({
+      format: '  build [:bar] :percent (:elapsed seconds)',
+    }),
     new webpack.DefinePlugin({
       'process.env': defineEnv,
     }),
