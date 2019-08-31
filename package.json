@@ -18,11 +18,11 @@
     "lint-staged": "lint-staged"
   },
   "dependencies": {
-    "antd": "^3.20.7",
+    "antd": "^3.22.2",
     "history": "^4.9.0",
-    "qs": "^6.7.0",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
+    "qs": "^6.8.0",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
     "react-router-dom": "^5.0.1"
   },
   "devDependencies": {
@@ -34,6 +34,7 @@
     "@types/react-test-renderer": "^16.8.3",
     "@typescript-eslint/eslint-plugin": "^1.13.0",
     "@typescript-eslint/parser": "^1.13.0",
+    "babel-plugin-import": "^1.12.1",
     "clean-webpack-plugin": "^3.0.0",
     "cross-env": "^5.2.0",
     "css-loader": "^3.2.0",

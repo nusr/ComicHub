@@ -16,7 +16,7 @@
     "axios-retry": "3.1.2",
     "cheerio": "1.0.0-rc.3",
     "dotenv": "^8.0.0",
-    "koa": "2.7.0",
+    "koa": "^2.8.1",
     "koa-bodyparser": "^4.2.1",
     "koa-mount": "^4.0.0",
     "koa-router": "7.4.0",
@@ -38,8 +38,8 @@
     "@types/mysql": "^2.15.6",
     "@types/node": "^12.6.9",
     "@types/pdfkit": "^0.10.0",
-    "@types/puppeteer": "^1.19.0",
     "@types/sharp": "^0.22.1",
+    "@types/puppeteer": "^1.19.0",
     "@types/supertest": "^2.0.8",
     "axios-mock-adapter": "^1.17.0",
     "concurrently": "^4.1.1",
@@ -47,13 +47,5 @@
     "supertest": "4.0.2",
     "ts-node": "^8.3.0",
     "typescript": "^3.5.3"
-  },
-  "pkg": {
-    "assets": [
-      "dist/views/**/*"
-    ],
-    "targets": [
-      "node10"
-    ]
   }
 }

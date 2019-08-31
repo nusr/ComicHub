@@ -11,7 +11,7 @@ const URL = `${HOST}:${PORT}`
 
 module.exports = merge(common, {
   mode: 'development',
-  devtool: 'eval', // for best build performance when use HMR
+  devtool: 'source-map', // for best build performance when use HMR
   devServer: {
     stats: {
       colors: true,
