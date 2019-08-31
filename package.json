@@ -4,8 +4,9 @@
   "description": "ComicHub",
   "private": true,
   "scripts": {
-    "start": "webpack-dev-server --config build/webpack.dev.config.js",
+    "start": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack.dev.config.js --open",
     "start:server": "npm run --prefix ./server dev",
+    "analyze": "cross-env ANALYZE=true NODE_ENV=production webpack --config build/webpack.prod.config.js",
     "build": "npm run build:server && npm run build:react",
     "build:react": "cross-env NODE_ENV=production webpack --config build/webpack.prod.config.js",
     "build:server": "npm run --prefix ./server scripts",
@@ -36,6 +37,7 @@
     "clean-webpack-plugin": "^3.0.0",
     "cross-env": "^5.2.0",
     "css-loader": "^3.2.0",
+    "dotenv": "^8.1.0",
     "eslint": "^6.1.0",
     "eslint-plugin-react": "^7.14.3",
     "friendly-errors-webpack-plugin": "^1.7.0",

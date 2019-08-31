@@ -1,9 +1,22 @@
+const fs = require('fs');
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const isProd = process.env.NODE_ENV === 'production';
+let envConfig;
+try {
+  envConfig = dotEnv.parse(fs.readFileSync('../.env'));
+} catch (error) {
+  envConfig = {};
+}
+
+const defineEnv = {
+  NODE_ENV: process.env.NODE_ENV,
+  ...envConfig,
+};
 module.exports = {
   resolve: {
     alias: {
@@ -81,8 +94,11 @@ module.exports = {
     ],
   },
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env': defineEnv,
+    }),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, '../src') + '/index.html',
     }),
-  ].concat(process.env.npm_config_report ? new BundleAnalyzerPlugin() : []),
+  ].concat(process.env.ANALYZE ? new BundleAnalyzerPlugin() : []),
 };
