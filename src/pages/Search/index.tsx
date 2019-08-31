@@ -3,6 +3,7 @@ import SearchForm from '../../components/SearchForm';
 import { IFormData, MenuItem, TypeConfig } from '../../type';
 import { getMenuList as fetchMenuList } from '../../services';
 import { history } from '../../utils';
+import Store from '../../store';
 
 type Props = {}
 
@@ -21,9 +22,11 @@ function getMenuList(data: JsObject = {}): MenuItem[] {
 
 const HomePage: React.FunctionComponent<Props> = () => {
   const [menuList, setMenuList] = useState<MenuItem[]>([]);
+  const { toggleLoading } = Store.useContainer();
   useEffect(() => {
     fetchMenuList().then(data => {
       setMenuList(getMenuList(data));
+      toggleLoading()
     });
   }, []);
 

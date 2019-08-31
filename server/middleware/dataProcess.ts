@@ -47,7 +47,7 @@ const mysqlHandler = async (ctx: Koa.BaseContext, next: Function): Promise<any> 
   let dataResult = ctx.state.data;
   const stateType = ctx.state.type;
   if (!stateType || NODE_ENV === 'test') {
-    ctx.body = dataResult;
+    ctx.body = dataResult || ctx.body;
     return;
   }
   if (dataResult) {

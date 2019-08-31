@@ -6,6 +6,7 @@ import './index.less';
 import { postItem } from '../../services';
 import { getQuery } from '../../utils';
 import { Location } from 'history';
+import Store from '../../store';
 
 interface Props {
   location: Location;
@@ -16,6 +17,7 @@ const Result: React.FunctionComponent<Props> = ({
 }) => {
   const [result, setResult] = useState<boolean>(false);
   const [downloadPath, setDownloadPath] = useState<string>('');
+  const { toggleLoading } = Store.useContainer();
   useEffect(() => {
     const query = getQuery(location.search);
     postItem({
@@ -27,6 +29,7 @@ const Result: React.FunctionComponent<Props> = ({
       const checkCode: boolean = response && response.code === 200;
       setResult(checkCode);
       setDownloadPath(response && response.data);
+      toggleLoading()
     });
   }, []);
   let temp: React.ReactNode = <Spin indicator={<Icon type="loading" style={{ fontSize: 50 }} spin/>}/>;

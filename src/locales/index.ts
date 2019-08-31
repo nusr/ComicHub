@@ -8,7 +8,7 @@ const languageMap: any = {
 };
 
 export function getLocale() {
-  return localStorage.getItem(LANGUAGE_KEY) || 'zh-CN';
+  return process.env.LANGUAGE || localStorage.getItem(LANGUAGE_KEY) || 'zh-CN';
 }
 
 export function setLocale(value: string) {

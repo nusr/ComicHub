@@ -1,62 +1,14 @@
-import { Avatar, Button, message } from 'antd';
-import { Location } from 'history'
+import { Button, message } from 'antd';
+import { Location } from 'history';
 import { getLanguageData } from '../../locales';
 import React, { Fragment, useEffect, useState } from 'react';
-import { renderDate, getQuery, history } from '../../utils';
+import { getQuery, history } from '../../utils';
 import DumpTable from '../../components/DumpTable';
 import { TypeConfig } from '../../type';
 import { ISearchItem } from '../../../server/type';
 import { postItem } from '../../services';
-
-const searchColumns = [
-  {
-    dataIndex: 'id',
-    title: 'ID',
-  },
-  {
-    dataIndex: 'title',
-    title: getLanguageData('page.Chapter.table.title'),
-  },
-  {
-    dataIndex: 'author',
-    title: getLanguageData('page.Chapter.table.author'),
-  },
-  {
-    dataIndex: 'url',
-    title: getLanguageData('page.Chapter.table.url'),
-    render: (text: string) => (
-      <a title={text} target="_blank" href={text} rel="noopener noreferrer">
-        {text}
-      </a>
-    ),
-  },
-
-  {
-    dataIndex: 'area',
-    title: getLanguageData('page.Chapter.table.area'),
-  },
-  {
-    dataIndex: 'category',
-    title: getLanguageData('page.Chapter.table.category'),
-  },
-  {
-    dataIndex: 'cover',
-    title: getLanguageData('page.Chapter.table.cover'),
-    render: (text: string) =>
-      text ? (
-        <a target="_blank" href={text} rel="noopener noreferrer">
-          <Avatar src={text}/>
-        </a>
-      ) : (
-        ''
-      ),
-  },
-  {
-    dataIndex: 'create_time',
-    title: getLanguageData('page.Chapter.table.create_time'),
-    render: renderDate,
-  },
-];
+import Store from '../../store';
+import { searchColumns } from '../../services/columns';
 
 interface Props {
   location: Location;
@@ -70,6 +22,7 @@ const Chapter: React.FunctionComponent<Props> = (props: Props) => {
   const checkType = 'radio';
   const [list, setList] = useState<ISearchItem[]>([]);
   const query = getQuery(location.search);
+  const { toggleLoading } = Store.useContainer();
   useEffect(() => {
     postItem({
       url: query.url,
@@ -77,6 +30,7 @@ const Chapter: React.FunctionComponent<Props> = (props: Props) => {
       type: TypeConfig.search,
     }).then(data => {
       setList(data);
+      toggleLoading()
     });
   }, []);
 

@@ -8,15 +8,15 @@ import tohomh from '../routes/tohomh123';
 import manhuagui from '../routes/manhuagui';
 import u17 from '../routes/u17';
 import qq from '../routes/qq';
-import kuaikanmanhua from '../routes/kuaikanmanhua'
+import kuaikanmanhua from '../routes/kuaikanmanhua';
 
 const router = new Router();
-router.get('/', async (ctx: Koa.Context) => {
+router.get('/', (ctx: Koa.Context) => {
   ctx.set({
     'Cache-Control': 'no-cache',
   });
   ctx.body = {
-    request: 'Comic Hub',
+    request: 'Welcome Use Comic Hub',
   };
 });
 

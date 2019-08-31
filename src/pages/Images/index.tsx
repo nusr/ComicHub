@@ -1,40 +1,14 @@
 import { Button, message } from 'antd';
 import { getLanguageData } from '../../locales';
 import React, { Fragment, useEffect, useState } from 'react';
-import { renderDate, history, getQuery } from '../../utils';
+import { getQuery, history } from '../../utils';
 import DumpTable from '../../components/DumpTable';
 import { IChapterItem } from '../../../server/type';
 import { TypeConfig } from '../../type';
 import { postItem } from '../../services';
-import { Location } from 'history'
-const chapterColumns = [
-  {
-    dataIndex: 'id',
-    title: 'ID',
-  },
-  {
-    dataIndex: 'title',
-    title: getLanguageData('page.Chapter.table.title'),
-  },
-  {
-    dataIndex: 'url',
-    title: getLanguageData('page.Chapter.table.url'),
-    render: (text: string) => (
-      <a title={text} target="_blank" href={text} rel="noopener noreferrer">
-        {text}
-      </a>
-    ),
-  },
-  {
-    dataIndex: 'page_size',
-    title: getLanguageData('page.Images.table.page_size'),
-  },
-  {
-    dataIndex: 'create_time',
-    title: getLanguageData('page.Chapter.table.create_time'),
-    render: renderDate,
-  },
-];
+import { Location } from 'history';
+import Store from '../../store';
+import { chapterColumns } from '../../services/columns';
 
 interface Props {
   location: Location;
@@ -47,6 +21,7 @@ const ChapterResult: React.FunctionComponent<Props> = ({
   const checkType = 'radio';
   const [list, setList] = useState<IChapterItem[]>([]);
   const query = getQuery(location.search);
+  const { toggleLoading } = Store.useContainer();
   useEffect(() => {
     postItem({
       url: query.url,
@@ -54,6 +29,7 @@ const ChapterResult: React.FunctionComponent<Props> = ({
       type: TypeConfig.chapter,
     }).then(data => {
       setList(data);
+      toggleLoading()
     });
   }, []);
 

@@ -1,5 +1,5 @@
-
 @import '~antd/lib/style/themes/default.less';
+
 body {
   color: #000;
   line-height: 1.5;
@@ -11,3 +11,19 @@ body {
   padding-bottom: @form-item-margin-bottom;
 }
 
+.page-loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: #fff;
+  z-index: 3;
+
+  > .ant-spin {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+  }
+}

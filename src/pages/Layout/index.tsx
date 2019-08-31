@@ -42,7 +42,7 @@ const HomePage: React.FunctionComponent<Props> = ({
   }, [pathname]);
   const isVertical: boolean = window.innerWidth > 800;
   return (
-    <Layout className='home-page'>
+    <Layout className='home-page' style={{ minHeight: '100vh' }}>
       <Header>
         <CommonHeader>
           <SelectLang/>
