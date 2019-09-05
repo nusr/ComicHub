@@ -16,9 +16,17 @@
 
 参见 [../server/routes/u17/index.ts](../server/routes/u17/index.ts) ，或者搜索整个项目 **puppeteer** 。
 
-## 数据库表结构
+## 数据库使用
 
-见 [comic.sql](comic.sql)
+
+1. 从[https://dev.mysql.com/downloads/mysql/](https://dev.mysql.com/downloads/mysql/)下载应用，安装 MySQL
+2. 启动本地 MySQL，使用默认端口即可
+3. 建立数据库 **comic**
+4. 导入数据库表到数据库 **comic**
+ 
+> 如何导入数据库，查看[https://www.runoob.com/mysql/mysql-database-import.html](https://www.runoob.com/mysql/mysql-database-import.html)
+
+数据库表结构见 [comic.sql](comic.sql)
 
 字段说明参见 [../server/type/index.ts](../server/types/index.ts)
 

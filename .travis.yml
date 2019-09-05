@@ -14,7 +14,7 @@ before_script:
 
 script:
     - npm run lint
-    - npm run test -- -u
+    - npm run test
 
 after_script:
     - codecov
