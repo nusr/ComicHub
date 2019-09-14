@@ -51,55 +51,47 @@ const SearchForm: React.FunctionComponent<Props> = ({
 
   return (
     <Form onSubmit={handleSubmit} layout="inline">
-      <FormItem
-        label={getLanguageData('component.SearchForm.site.label')}
-      >
+      <FormItem label={getLanguageData('component.SearchForm.site.label')}>
         {form.getFieldDecorator('url', {
           initialValue: currentData.url,
           rules: [
             {
               required: true,
-              message:
-                getLanguageData('component.SearchForm.site.message')
-              ,
+              message: getLanguageData('component.SearchForm.site.message'),
             },
           ],
         })(
           <Select
             showSearch
-            placeholder={
-              getLanguageData('component.SearchForm.site.message')
-            }
+            placeholder={getLanguageData('component.SearchForm.site.message')}
             style={{ width: 170 }}
             filterOption={filterOption}
           >
             {menuList.map((item: IOptionData) => (
-              <Select.Option value={item.value} key={item.value} disabled={!item.enabled}>
+              <Select.Option
+                value={item.value}
+                key={item.value}
+                disabled={!item.enabled}
+              >
                 {item.name}
               </Select.Option>
             ))}
-          </Select>,
+          </Select>
         )}
       </FormItem>
-      <FormItem
-        label={getLanguageData('component.SearchForm.keyword.label')}
-      >
+      <FormItem label={getLanguageData('component.SearchForm.keyword.label')}>
         {form.getFieldDecorator('name', {
           initialValue: currentData.name,
           rules: [
             {
               required: true,
-              message:
-                getLanguageData('component.SearchForm.keyword.label')
-              ,
+              message: getLanguageData('component.SearchForm.keyword.label'),
             },
           ],
         })(
           <Input
-            placeholder={getLanguageData(
-              'component.SearchForm.keyword.label',
-            )}
-          />,
+            placeholder={getLanguageData('component.SearchForm.keyword.label')}
+          />
         )}
       </FormItem>
       <FormItem label="">
@@ -110,7 +102,9 @@ const SearchForm: React.FunctionComponent<Props> = ({
         >
           {getLanguageData('component.button.search')}
         </Button>
-        <Button onClick={resetForm}>重置</Button>
+        <Button onClick={resetForm}>
+          {getLanguageData('component.SearchForm.reset')}
+        </Button>
       </FormItem>
     </Form>
   );

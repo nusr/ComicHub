@@ -11,4 +11,5 @@ export default {
   'component.SearchForm.keyword.label': 'Keyword',
   'component.SearchForm.keyword.message': 'please input keyword',
   'component.SelectLang.language': 'Language',
+  'component.SelectLang.reset': 'Reset',
 };

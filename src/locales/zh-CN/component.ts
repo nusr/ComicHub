@@ -11,4 +11,5 @@ export default {
   'component.SearchForm.keyword.label': '关键词',
   'component.SearchForm.keyword.message': '请输入关键词',
   'component.SelectLang.language': '语言',
+  'component.SelectLang.reset': '重置',
 };
