@@ -33,7 +33,7 @@ export function renderDate(temp: number | string): string {
   )}:${addZero(second)}`;
 }
 
-export function getQuery(search: string): object {
+export function getQuery(search: string) {
   const [, data] = search.split('?');
   return parse(data);
 }

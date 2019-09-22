@@ -15,7 +15,7 @@ function generatePdf(dirName: string): string {
     return '';
   }
 
-  const { outputPath, filePathList = [], bookTitle }: BookInfo = getBookInfo(
+  const { outputPath, filePathList, bookTitle }: BookInfo = getBookInfo(
     dirName,
     'pdf',
   );

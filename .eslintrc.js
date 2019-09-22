@@ -34,7 +34,6 @@ module.exports = {
     'import/prefer-default-export': 'off',
     'no-await-in-loop': 'off',
     'react/prop-types': 'off',
-    'no-unused-vars': ['error'],
     'react/jsx-uses-react': ['error'],
     'react/jsx-uses-vars': ['error'],
     'react/jsx-filename-extension': [
