@@ -301,7 +301,11 @@ Array [
               className="ant-btn"
               onClick={[Function]}
               type="button"
-            />
+            >
+              <span>
+                重 置
+              </span>
+            </button>
           </span>
         </div>
       </div>

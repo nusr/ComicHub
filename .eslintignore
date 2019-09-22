@@ -12,3 +12,4 @@ tmp
 src/pages/.umi
 src/models
 **/global.d.ts
+build
