@@ -21,7 +21,7 @@ function handleEmpty(stateType: string): EmptyData {
     dataResult.message = getLanguageData('middleware.dataProcess.search.empty');
   } else if (stateType === apiType.chapter) {
     dataResult.message = getLanguageData(
-      'middleware.dataProcess.chapter.empty',
+      'middleware.dataProcess.chapter.empty'
     );
   }
   return dataResult;
@@ -30,6 +30,7 @@ function handleEmpty(stateType: string): EmptyData {
 function filterArray<T>(data: T[] = []): T[] {
   const record: JsObject = {};
   const result: T[] = [];
+  // eslint-disable-next-line
   data.forEach((item: any) => {
     if (item.url && !record[item.url]) {
       record[item.url] = '1';
@@ -39,7 +40,11 @@ function filterArray<T>(data: T[] = []): T[] {
   return result;
 }
 
-const mysqlHandler = async (ctx: Koa.BaseContext, next: Function): Promise<any> => {
+const mysqlHandler = async (
+  ctx: Koa.BaseContext,
+  next: Function
+  // eslint-disable-next-line
+): Promise<any> => {
   const requestData: IRequestData = ctx.request.body;
   ctx.state.url = requestData.name;
   ctx.state.type = requestData.type;
@@ -61,7 +66,7 @@ const mysqlHandler = async (ctx: Koa.BaseContext, next: Function): Promise<any> 
       dataResult = filterArray(dataResult);
       const searchResult: ISearchMysql = await mysqlService.searchOne(
         searchUrl,
-        apiType.search,
+        apiType.search
       );
       for (const item of dataResult) {
         await mysqlService.addItem(
@@ -69,7 +74,7 @@ const mysqlHandler = async (ctx: Koa.BaseContext, next: Function): Promise<any> 
             search_id: _.get(searchResult, 'id'),
             ...item,
           },
-          stateType,
+          stateType
         );
       }
     }
@@ -77,12 +82,12 @@ const mysqlHandler = async (ctx: Koa.BaseContext, next: Function): Promise<any> 
       dataResult = filterArray(dataResult);
       const chapterItem: IChapterMysql = await mysqlService.searchOne(
         searchUrl,
-        apiType.chapter,
+        apiType.chapter
       );
       const searchItem: ISearchMysql = await mysqlService.searchOne(
         _.get(chapterItem, 'search_id', ''),
         apiType.search,
-        'id',
+        'id'
       );
       if (!_.isEmpty(searchItem) && !_.isEmpty(chapterItem)) {
         for (const item of dataResult) {
@@ -91,14 +96,14 @@ const mysqlHandler = async (ctx: Koa.BaseContext, next: Function): Promise<any> 
               chapter_id: chapterItem.id,
               ...item,
             },
-            stateType,
+            stateType
           );
         }
         const bookPath: string = await generateBook(
           dataResult,
           searchItem,
           chapterItem,
-          searchUrl,
+          searchUrl
         );
         dataResult = {
           message: getLanguageData('middleware.dataProcess.success'),

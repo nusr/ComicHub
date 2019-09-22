@@ -29,12 +29,11 @@ export function renderDate(temp: number | string): string {
   const minute: number = date.getMinutes();
   const second: number = date.getSeconds();
   return `${year}-${addZero(month)}-${addZero(day)} ${addZero(hour)}:${addZero(
-    minute,
+    minute
   )}:${addZero(second)}`;
 }
 
-
-export function getQuery(search: string) {
+export function getQuery(search: string): object {
   const [, data] = search.split('?');
   return parse(data);
 }

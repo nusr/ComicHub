@@ -34,15 +34,9 @@ module.exports = {
     'import/prefer-default-export': 'off',
     'no-await-in-loop': 'off',
     'react/prop-types': 'off',
-    'no-unused-vars': [
-      'error',
-    ],
-    'react/jsx-uses-react': [
-      'error',
-    ],
-    'react/jsx-uses-vars': [
-      'error',
-    ],
+    'no-unused-vars': ['error'],
+    'react/jsx-uses-react': ['error'],
+    'react/jsx-uses-vars': ['error'],
     'react/jsx-filename-extension': [
       'error',
       { extensions: ['.js', '.jsx', '.ts', '.tsx'] },
@@ -59,16 +53,15 @@ module.exports = {
     '@typescript-eslint/indent': ['error', intentSize, { SwitchCase: 1 }],
     '@typescript-eslint/prefer-interface': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
-    '@typescript-eslint/no-explicit-any': 'warn',
     '@typescript-eslint/camelcase': 'off',
     '@typescript-eslint/interface-name-prefix': 'off',
     '@typescript-eslint/ban-ts-ignore': 'off',
     '@typescript-eslint/no-empty-function': 'error',
     '@typescript-eslint/unified-signatures': 'error',
-    'prefer-destructuring':'error'
+    'prefer-destructuring': 'error',
+    '@typescript-eslint/no-explicit-any': 'error',
   },
   settings: {
-    // 'import/resolver': { node: { extensions: ['.js', '.ts', '.tsx', '.jsx'] } },
     react: {
       version: 'detect',
     },

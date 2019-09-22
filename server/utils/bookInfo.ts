@@ -4,7 +4,7 @@ import _ from 'lodash';
 import { BookInfo } from './type';
 import { pdfSupportImage } from '../shared';
 
-function getBookInfo(dirName: string, extName: string = 'pdf'): BookInfo {
+function getBookInfo(dirName: string, extName = 'pdf'): BookInfo {
   const outputPath = `${dirName}.${extName}`;
   const files: string[] = fs.readdirSync(dirName);
 

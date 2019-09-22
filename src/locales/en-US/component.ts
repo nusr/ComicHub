@@ -10,6 +10,6 @@ export default {
   'component.SearchForm.site.message': 'please select site!',
   'component.SearchForm.keyword.label': 'Keyword',
   'component.SearchForm.keyword.message': 'please input keyword',
+  'component.SearchForm.reset': 'Reset',
   'component.SelectLang.language': 'Language',
-  'component.SelectLang.reset': 'Reset',
 };

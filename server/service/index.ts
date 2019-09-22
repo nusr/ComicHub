@@ -13,7 +13,7 @@ function getAllData(tableName: string) {
 async function searchItem(
   value: string | number,
   tableName: string,
-  field: string = 'url',
+  field = 'url',
 ) {
   return new Promise(resolve => {
     const sql = `SELECT * FROM ${tableName} WHERE ${field}=?`;
@@ -26,7 +26,7 @@ async function searchItem(
 function searchOne<T>(
   value: string | number,
   tableName: string,
-  field: string = 'url',
+  field = 'url',
 ): Promise<T> {
   return new Promise(resolve => {
     const sql = `SELECT * FROM ${tableName} WHERE ${field}=?`;
@@ -78,7 +78,7 @@ function editItem(data: JsObject, tableName: string) {
 function foggySearch(
   value: string | number,
   tableName: string,
-  field: string = 'title',
+  field = 'title',
 ) {
   return new Promise(resolve => {
     const sql = `SELECT * FROM ${tableName} WHERE ${field} LIKE ?`;

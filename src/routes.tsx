@@ -14,26 +14,60 @@ import Store from './store';
 
 type componentProps = {
   location: Location;
-}
-type Props = {}
+};
+type Props = {};
 const Routes: React.FunctionComponent<Props> = () => {
   const { isLoading } = Store.useContainer();
   return (
     <Router history={history}>
-      {
-        isLoading && (
-          <div className="page-loading">
-            <Spin size="large"/>
-          </div>
-        )
-      }
+      {isLoading && (
+        <div className="page-loading">
+          <Spin size="large" />
+        </div>
+      )}
       <Switch>
-        <Route path="/" exact render={(props: componentProps) => <Layout {...props}><Search/></Layout>}/>
-        <Route path="/chapter" render={(props: componentProps) => <Layout {...props}><Chapter {...props}/></Layout>}/>
-        <Route path="/images" render={(props: componentProps) => <Layout {...props}><Images {...props}/></Layout>}/>
-        <Route path="/result" render={(props: componentProps) => <Layout {...props}><Result {...props}/></Layout>}/>
-        <Route path="/help" render={(props: componentProps) => <Layout {...props}><Help/></Layout>}/>
-        <Route component={NotMatch}/>
+        <Route
+          path="/"
+          exact
+          render={(props: componentProps): JSX.Element => (
+            <Layout {...props}>
+              <Search />
+            </Layout>
+          )}
+        />
+        <Route
+          path="/chapter"
+          render={(props: componentProps): JSX.Element => (
+            <Layout {...props}>
+              <Chapter {...props} />
+            </Layout>
+          )}
+        />
+        <Route
+          path="/images"
+          render={(props: componentProps): JSX.Element => (
+            <Layout {...props}>
+              <Images {...props} />
+            </Layout>
+          )}
+        />
+        <Route
+          path="/result"
+          render={(props: componentProps): JSX.Element => (
+            <Layout {...props}>
+              <Result {...props} />
+            </Layout>
+          )}
+        />
+        <Route
+          path="/help"
+          render={(props: componentProps): JSX.Element => (
+            <Layout {...props}>
+              <Help />
+            </Layout>
+          )}
+        />
+        <Route component={NotMatch} />
       </Switch>
     </Router>
   );

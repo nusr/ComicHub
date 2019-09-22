@@ -16,7 +16,7 @@ interface Props {
   location: Location;
 }
 
-export function getCurrentStep(type: string = ''): number {
+export function getCurrentStep(type = ''): number {
   switch (type) {
     case TypeConfig.search:
       return 0;
@@ -42,10 +42,10 @@ const HomePage: React.FunctionComponent<Props> = ({
   }, [pathname]);
   const isVertical: boolean = window.innerWidth > 800;
   return (
-    <Layout className='home-page' style={{ minHeight: '100vh' }}>
+    <Layout className="home-page" style={{ minHeight: '100vh' }}>
       <Header>
         <CommonHeader>
-          <SelectLang/>
+          <SelectLang />
         </CommonHeader>
       </Header>
       <Content>
@@ -55,16 +55,16 @@ const HomePage: React.FunctionComponent<Props> = ({
             labelPlacement={isVertical ? 'vertical' : 'horizontal'}
             current={getCurrentStep(currentType)}
           >
-            <Step title={getLanguageData('page.HomePage.step0')}/>
-            <Step title={getLanguageData('page.HomePage.step1')}/>
-            <Step title={getLanguageData('page.HomePage.step2')}/>
-            <Step title={getLanguageData('page.HomePage.step3')}/>
+            <Step title={getLanguageData('page.HomePage.step0')} />
+            <Step title={getLanguageData('page.HomePage.step1')} />
+            <Step title={getLanguageData('page.HomePage.step2')} />
+            <Step title={getLanguageData('page.HomePage.step3')} />
           </Steps>
         </Card>
         <Card>{children}</Card>
       </Content>
       <Footer>
-        <CommonFooter/>
+        <CommonFooter />
       </Footer>
     </Layout>
   );

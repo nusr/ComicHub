@@ -21,7 +21,7 @@ const puppeteerBrowser = async (): Promise<Browser> => {
 };
 
 
-export function getHtml(selector: string = 'html'): string {
+export function getHtml(selector = 'html'): string {
   const dom: JsObject | null = document.querySelector(selector);
   if (!dom) {
     return '';
@@ -29,7 +29,7 @@ export function getHtml(selector: string = 'html'): string {
   return dom.innerHTML;
 }
 
-export function scrollToBottom(distance: number = 100): void {
+export function scrollToBottom(distance = 100): void {
   const dom: JsObject = document.scrollingElement || {};
   let lastScrollTop: number = dom.scrollTop;
   const scroll = (): void => {

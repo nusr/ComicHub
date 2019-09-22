@@ -9,11 +9,11 @@ interface PostData {
   page_size?: number;
 }
 
-export async function getMenuList() {
+export async function getMenuList(): Promise<JsObject> {
   return request(`${requestPrefix}/menu`);
 }
-
-export async function postItem(params: PostData) {
+// eslint-disable-next-line
+export async function postItem(params: PostData): Promise<any> {
   const { url = '', ...rest } = params;
   if (!url) {
     return null;

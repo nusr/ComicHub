@@ -12,21 +12,14 @@ describe('test routes', () => {
   afterAll(() => {
     server.close();
   });
-  const testPage = (path: string) => async () => {
+  const testPage = (path: string): (() => void) => async () => {
     const response: superTest.Response = await request.post(`/${path}`);
-    expect(response.text).toBe(
-      '',
-    );
+    expect(response.text).toBe('');
   };
   Object.keys(config).forEach((key: string) => {
-    it(
-      `post /${key} should return ''`,
-      testPage(key),
-      1000000
-    );
+    it(`post /${key} should return ''`, testPage(key), 1000000);
   });
 });
-
 
 describe('Test Base Url', () => {
   let page: Page;
@@ -40,14 +33,14 @@ describe('Test Base Url', () => {
     await browser.close();
   });
 
-  const testPage = (path: string) => async () => {
+  const testPage = (path: string): (() => void) => async () => {
     await page.goto(path, {
       waitUntil: 'networkidle0',
     });
     await page.waitFor(1000);
     const list: string[] = await page.evaluate(() => {
       const arr: HTMLImageElement[] = Array.prototype.slice.apply(
-        document.querySelectorAll('img'),
+        document.querySelectorAll('img')
       );
       return arr.map((v: HTMLImageElement) => v.src);
     });

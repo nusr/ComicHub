@@ -1,3 +1,4 @@
+/* eslint-disable */
 import * as Koa from 'koa';
 import { apiType } from '../../shared';
 import mysqlService from '../../service';
@@ -6,20 +7,16 @@ import { IChapterMysql, IRequestData, ISearchMysql } from '../../type';
 import generateBook from '../../utils/generateBook';
 import { getLanguageData } from '../../locales';
 import statusCodes from '../../shared/statusCode';
-
-interface TestItem {
-  title: string;
-  description: string;
-  pubDate: string;
-}
-
 let temp: any;
 const sqlCache = async (ctx: Koa.BaseContext) => {
-  const { name: requestName, type: requestType }: IRequestData = ctx.request.body;
+  const {
+    name: requestName,
+    type: requestType,
+  }: IRequestData = ctx.request.body;
   if (requestType === apiType.search) {
     const result: any = await mysqlService.foggySearch(
       `%${requestName}%`,
-      requestType,
+      requestType
     );
     if (!_.isEmpty(result)) {
       ctx.response.set({
@@ -31,12 +28,12 @@ const sqlCache = async (ctx: Koa.BaseContext) => {
   if (requestType === apiType.chapter) {
     const searchItem: ISearchMysql = await mysqlService.searchOne<ISearchMysql>(
       requestName,
-      apiType.search,
+      apiType.search
     );
     const results: any = await mysqlService.searchItem(
       _.get(searchItem, 'id', ''),
       requestType,
-      'search_id',
+      'search_id'
     );
     if (!_.isEmpty(results)) {
       temp = results;
@@ -48,24 +45,24 @@ const sqlCache = async (ctx: Koa.BaseContext) => {
   if (requestType === apiType.download) {
     const chapterItem: IChapterMysql = await mysqlService.searchOne(
       requestName,
-      apiType.chapter,
+      apiType.chapter
     );
     const results: any = await mysqlService.searchItem(
       _.get(chapterItem, 'id', ''),
       requestType,
-      'chapter_id',
+      'chapter_id'
     );
     if (!_.isEmpty(results)) {
       const searchItem: ISearchMysql = await mysqlService.searchOne(
         _.get(chapterItem, 'search_id', ''),
         apiType.search,
-        'id',
+        'id'
       );
       const bookPath: string = await generateBook(
         results,
         searchItem,
         chapterItem,
-        requestName,
+        requestName
       );
 
       ctx.response.set({

@@ -10,6 +10,6 @@ export default {
   'component.SearchForm.site.message': '请选择站点',
   'component.SearchForm.keyword.label': '关键词',
   'component.SearchForm.keyword.message': '请输入关键词',
+  'component.SearchForm.reset': '重置',
   'component.SelectLang.language': '语言',
-  'component.SelectLang.reset': '重置',
 };

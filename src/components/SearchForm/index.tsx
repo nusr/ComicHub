@@ -109,5 +109,6 @@ const SearchForm: React.FunctionComponent<Props> = ({
     </Form>
   );
 };
+// eslint-disable-next-line
 const FormWrapper: any = Form.create({ name: 'SearchForm' })(SearchForm);
 export default FormWrapper;

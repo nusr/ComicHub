@@ -1,12 +1,15 @@
 import { useEffect, useState } from 'react';
 import { createContainer } from './base';
 
-
-function useLanguage(initLoaing: boolean = true) {
-  const [isLoading, setIsLoading] = useState<boolean>(initLoaing);
+function useLanguage(
+  initLoading = true
+): {
+    toggleLoading: () => void;
+    isLoading: boolean;
+  } {
+  const [isLoading, setIsLoading] = useState<boolean>(initLoading);
   const toggleLoading = () => {
     setIsLoading(!isLoading);
-
   };
   useEffect(() => {
     setTimeout(() => {

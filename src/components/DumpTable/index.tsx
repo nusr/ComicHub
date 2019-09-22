@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { Component, Fragment } from 'react';
 import { Table, Alert } from 'antd';
 import { getLanguageData } from '../../locales';

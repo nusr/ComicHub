@@ -33,9 +33,9 @@ export function checkExtName(filePath: string): boolean {
 function downloadImage(
   url: string,
   fileName: string,
-  referer: string = 'https://www.manhuagui.com',
+  referer = 'https://www.manhuagui.com',
 ): Promise<string> {
-  return new Promise(resolve => {
+  return new Promise<string>(resolve => {
     const extName = getExtName(url);
     if (!extName) {
       resolve('');

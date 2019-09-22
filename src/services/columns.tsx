@@ -19,7 +19,7 @@ export const searchColumns = [
   {
     dataIndex: 'url',
     title: getLanguageData('page.Chapter.table.url'),
-    render: (text: string) => (
+    render: (text: string): JSX.Element => (
       <a title={text} target="_blank" href={text} rel="noopener noreferrer">
         {text}
       </a>
@@ -37,14 +37,12 @@ export const searchColumns = [
   {
     dataIndex: 'cover',
     title: getLanguageData('page.Chapter.table.cover'),
-    render: (text: string) =>
+    render: (text: string): JSX.Element | null =>
       text ? (
         <a target="_blank" href={text} rel="noopener noreferrer">
-          <Avatar src={text}/>
+          <Avatar src={text} />
         </a>
-      ) : (
-        ''
-      ),
+      ) : null,
   },
   {
     dataIndex: 'create_time',
@@ -64,7 +62,7 @@ export const chapterColumns = [
   {
     dataIndex: 'url',
     title: getLanguageData('page.Chapter.table.url'),
-    render: (text: string) => (
+    render: (text: string): JSX.Element => (
       <a title={text} target="_blank" href={text} rel="noopener noreferrer">
         {text}
       </a>
