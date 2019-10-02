@@ -1,7 +1,5 @@
 node_modules
 dist
-src/pages/.umi
-src/pages/.umi-production
 release
 downloadResult
 # misc

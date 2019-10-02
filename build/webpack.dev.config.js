@@ -1,25 +1,18 @@
-const path = require('path')
-const webpack = require('webpack')
-const merge = require('webpack-merge')
-const common = require('./webpack.base.confg')
-const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
+const path = require('path');
+const webpack = require('webpack');
+const merge = require('webpack-merge');
+const common = require('./webpack.base.confg');
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 
-const PORT = 3000
-const _HOST = 'localhost'
-const HOST = `http://${_HOST}`
-const URL = `${HOST}:${PORT}`
+const PORT = 3000;
+const _HOST = 'localhost';
+const HOST = `http://${_HOST}`;
+const URL = `${HOST}:${PORT}`;
 
 module.exports = merge(common, {
   mode: 'development',
   devtool: 'source-map', // for best build performance when use HMR
   devServer: {
-    stats: {
-      colors: true,
-      modules: false,
-      children: false,
-      chunks: false,
-      chunkModules: false
-    },
     quiet: true,
     hot: true,
     // enable HMR on the server
@@ -36,13 +29,10 @@ module.exports = merge(common, {
         pathRewrite: { '^/v1': '' },
         target: 'http://localhost:1200',
       },
-    }
-  },
-  module: {
-    rules: []
+    },
   },
   plugins: [
     new FriendlyErrorsWebpackPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-  ]
-})
+  ],
+});

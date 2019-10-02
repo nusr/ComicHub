@@ -3,8 +3,9 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const ProgressBarPlugin = require('progress-bar-webpack-plugin')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
+  .BundleAnalyzerPlugin;
+const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 // 注入 .env 环境变量
 const isProd = process.env.NODE_ENV === 'production';
 let envConfig;
@@ -30,16 +31,16 @@ module.exports = {
     // use absolute path
     // publicPath: '/',
     path: path.join(__dirname, '../dist'),
-    filename: process.env.NODE_ENV === 'production' ? 'bundle.[chunkhash:8].js' : 'bundle.main.js',
+    filename:
+      process.env.NODE_ENV === 'production'
+        ? 'bundle.[chunkhash:8].js'
+        : 'bundle.main.js',
   },
-  devtool: 'source-map',
   module: {
     rules: [
       {
         test: /\.ts(x?)$/,
-        use: [
-          'ts-loader',
-        ],
+        use: ['ts-loader'],
         include: [path.join(__dirname, '../src')],
       },
       {
