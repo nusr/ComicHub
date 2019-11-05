@@ -9,9 +9,11 @@ Array [
   >
     <div
       className="ant-row ant-form-item"
+      style={Object {}}
     >
       <div
         className="ant-col ant-form-item-label"
+        style={Object {}}
       >
         <label
           className="ant-form-item-required"
@@ -24,6 +26,7 @@ Array [
       </div>
       <div
         className="ant-col ant-form-item-control-wrapper"
+        style={Object {}}
       >
         <div
           className="ant-form-item-control"
@@ -199,9 +202,11 @@ Array [
     </div>
     <div
       className="ant-row ant-form-item"
+      style={Object {}}
     >
       <div
         className="ant-col ant-form-item-label"
+        style={Object {}}
       >
         <label
           className="ant-form-item-required"
@@ -214,6 +219,7 @@ Array [
       </div>
       <div
         className="ant-col ant-form-item-control-wrapper"
+        style={Object {}}
       >
         <div
           className="ant-form-item-control"
@@ -273,9 +279,11 @@ Array [
     </div>
     <div
       className="ant-row ant-form-item"
+      style={Object {}}
     >
       <div
         className="ant-col ant-form-item-control-wrapper"
+        style={Object {}}
       >
         <div
           className="ant-form-item-control"
