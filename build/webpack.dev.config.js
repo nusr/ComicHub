@@ -1,7 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
-const common = require('./webpack.base.confg');
+const common = require('./webpack.base.config');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 
 const PORT = 3000;
