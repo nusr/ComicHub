@@ -30,16 +30,14 @@ const tuHao = async (ctx: Koa.BaseContext) => {
       waitUntil: 'networkidle0',
       timeout: 0,
     });
-    const nextItem = (await page.$('#cr_top > div > div.right > a:nth-child(4)')) as ElementHandle;
+    const nextItem = (await page.$(
+      '#cr_top > div > div.right > a:nth-child(4)'
+    )) as ElementHandle;
     nextItem.click();
-
     await page.waitFor(WAIT_TIME);
-
     await page.evaluate(scrollToBottom);
-
     await page.waitFor(WAIT_TIME * 2);
     const html = await page.evaluate(getHtml);
-
     temp = util.getDownloadList(html);
     await browser.close();
   }

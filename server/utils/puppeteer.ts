@@ -1,6 +1,6 @@
-import puppeteer, { Browser } from 'puppeteer';
-import config from '../shared';
-
+import puppeteer, { Browser, Page, LoadEvent } from 'puppeteer';
+import config, { DESKTOP_WINDOW_SIZE } from '../shared';
+import sleep from '../utils/wait';
 const options = {
   args: [
     '--no-sandbox',
@@ -19,7 +19,6 @@ const options = {
 const puppeteerBrowser = async (): Promise<Browser> => {
   return await puppeteer.launch(options);
 };
-
 
 export function getHtml(selector = 'html'): string {
   const dom: JsObject | null = document.querySelector(selector);
@@ -40,6 +39,29 @@ export function scrollToBottom(distance = 100): void {
     }
   };
   scroll();
+}
+type OptionsType = {
+  waitUntil?: LoadEvent;
+  isScroll?: boolean;
+};
+export async function getAsyncHTML(url: string, options: OptionsType) {
+  const WAIT_TIME = 1000;
+  const { waitUntil = 'networkidle0',isScroll = false } = options;
+  const browser: Browser = await puppeteerBrowser();
+  const page: Page = await browser.newPage();
+  page.setViewport(DESKTOP_WINDOW_SIZE);
+  await page.goto(url, {
+    waitUntil,
+    timeout: 0,
+  });
+  await page.waitFor(WAIT_TIME * 2);
+  if(isScroll){
+    await page.evaluate(scrollToBottom);
+    await sleep(WAIT_TIME * 5);
+  }
+  const html = await page.evaluate(getHtml);
+  await browser.close();
+  return html;
 }
 
 export default puppeteerBrowser;

@@ -11,7 +11,6 @@ afterAll(() => {
 describe('error', () => {
   it('error', async () => {
     const response: superTest.Response = await request.get('/test/0');
-    // eslint-disable-next-line
     expect(response.text).toMatch(
       eval(
         `/ComicHub 发生了一些意外: <pre>Error: Error test/`

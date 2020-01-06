@@ -4,7 +4,7 @@
     "esModuleInterop": true,
     "target": "ESNext",
     "noImplicitAny": true,
-    "strict": true,
+    "strict": false,
     "alwaysStrict": true,
     "moduleResolution": "node",
     "sourceMap": true,

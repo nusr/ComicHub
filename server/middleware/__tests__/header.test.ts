@@ -10,8 +10,7 @@ afterAll(() => {
 
 describe('header', () => {
   it('header', async () => {
-    // eslint-disable-next-line
-    const response: any = await request.get('/test/1');
+    const response: superTest.Response = await request.get('/test/1');
     // Test generate random port
     expect(response.headers['access-control-allow-origin']).toContain(
       '127.0.0.1:'

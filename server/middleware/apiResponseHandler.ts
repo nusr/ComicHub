@@ -16,7 +16,7 @@ const responseHandler = async (
   }: JsObject) => {
     const status = 0;
 
-    if (Boolean(statusCode) && statusCode < statusCode.BAD_REQUEST) {
+    if (!!statusCode && statusCode < statusCode.BAD_REQUEST) {
       ctx.status = statusCode;
     } else if (!(ctx.status < statusCode.BAD_REQUEST)) {
       ctx.status = statusCodes.OK;
